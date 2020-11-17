@@ -1,0 +1,1568 @@
+
+
+
+
+Network Working Group                                       C. Celi, Ed.
+Internet-Draft                                          17 November 2020
+Intended status: Informational                                          
+Expires: 21 May 2021
+
+
+                ACVP EdDSA Algorithm JSON Specification
+
+Status of This Memo
+
+   This Internet-Draft is submitted in full conformance with the
+   provisions of BCP 78 and BCP 79.
+
+   Internet-Drafts are working documents of the Internet Engineering
+   Task Force (IETF).  Note that other groups may also distribute
+   working documents as Internet-Drafts.  The list of current Internet-
+   Drafts is at https://datatracker.ietf.org/drafts/current/.
+
+   Internet-Drafts are draft documents valid for a maximum of six months
+   and may be updated, replaced, or obsoleted by other documents at any
+   time.  It is inappropriate to use Internet-Drafts as reference
+   material or to cite them other than as "work in progress."
+
+   This Internet-Draft will expire on 21 May 2021.
+
+Copyright Notice
+
+   Copyright (c) 2020 IETF Trust and the persons identified as the
+   document authors.  All rights reserved.
+
+   This document is subject to BCP 78 and the IETF Trust's Legal
+   Provisions Relating to IETF Documents (https://trustee.ietf.org/
+   license-info) in effect on the date of publication of this document.
+   Please review these documents carefully, as they describe your rights
+   and restrictions with respect to this document.
+
+Table of Contents
+
+   1.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   2
+   2.  Abstract  . . . . . . . . . . . . . . . . . . . . . . . . . .   2
+   3.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   4.  Terms and definitions . . . . . . . . . . . . . . . . . . . .   3
+     4.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
+     4.2.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   3
+       4.2.1.  Requirements Covered  . . . . . . . . . . . . . . . .   3
+       4.2.2.  Requirements Not Covered  . . . . . . . . . . . . . .   4
+     4.3.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   4
+     4.4.  Required Prerequisite Algorithms for EDDSA Validations  .   5
+
+
+
+Celi                       Expires 21 May 2021                  [Page 1]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+     4.5.  EDDSA Algorithm Capabilities Registration . . . . . . . .   6
+       4.5.1.  The EDDSA keyGen Mode Capabilities  . . . . . . . . .   6
+       4.5.2.  The EDDSA keyVer Mode Capabilities  . . . . . . . . .   8
+       4.5.3.  The sigGen Mode Capabilities  . . . . . . . . . . . .   8
+       4.5.4.  The sigVer Mode Capabilities  . . . . . . . . . . . .  10
+   5.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  11
+   6.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  12
+     6.1.  EDDSA keyGen Test Groups JSON Schema  . . . . . . . . . .  13
+     6.2.  EDDSA keyGen Test Case JSON Schema  . . . . . . . . . . .  13
+     6.3.  EDDSA keyVer Test Groups JSON Schema  . . . . . . . . . .  14
+     6.4.  EDDSA keyVer Test Case JSON Schema  . . . . . . . . . . .  15
+     6.5.  EDDSA sigGen Test Groups JSON Schema  . . . . . . . . . .  16
+     6.6.  EDDSA sigGen Test Case JSON Schema  . . . . . . . . . . .  17
+     6.7.  EDDSA sigVer Test Groups JSON Schema  . . . . . . . . . .  19
+     6.8.  EDDSA sigVer Test Case JSON Schema  . . . . . . . . . . .  19
+   7.  Test Vector Responses . . . . . . . . . . . . . . . . . . . .  21
+     7.1.  EDDSA keyGen Test Group Responses . . . . . . . . . . . .  22
+     7.2.  EDDSA keyVer Test Group Responses . . . . . . . . . . . .  23
+     7.3.  EDDSA sigGen Test Group Responses . . . . . . . . . . . .  24
+     7.4.  EDDSA sigVer Test Group Responses . . . . . . . . . . . .  26
+   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  28
+   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  28
+   10. Normative references  . . . . . . . . . . . . . . . . . . . .  28
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  28
+
+1.  Acknowledgements
+
+   There are no acknowledgements.
+
+2.  Abstract
+
+   This document defines the JSON schema for testing FIPS Pub 186 EdDSA
+   implementations with the ACVP specification.
+
+3.  Introduction
+
+   The Automated Crypto Validation Protocol (ACVP) defines a mechanism
+   to automatically verify the cryptographic implementation of a
+   software or hardware crypto module.  The ACVP specification defines
+   how a crypto module communicates with an ACVP server, including
+   crypto capabilities negotiation, session management, authentication,
+   vector processing and more.  The ACVP specification does not define
+   algorithm specific JSON constructs for performing the crypto
+   validation.  A series of ACVP sub-specifications define the
+   constructs for testing individual crypto algorithms.  Each sub-
+   specification addresses a specific class of crypto algorithms.  This
+   sub-specification defines the JSON constructs for testing FIPS Pub
+   186 EdDSA implementations using ACVP.
+
+
+
+Celi                       Expires 21 May 2021                  [Page 2]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+4.  Terms and definitions
+
+   For the purposes of this document, the following terms and
+   definitions apply.
+
+4.1.  Test Types
+
+   The ACVP server performs a set of tests on the specified EDDSA
+   algorithm in order to assess the correctness and robustness of the
+   implementation.  A typical ACVP validation session SHALL require
+   multiple tests to be performed for every supported permutation of
+   EDDSA capabilities.  This section describes the design of the tests
+   used to validate implementations of the EDDSA algorithms.
+
+   *  EDDSA / keyGen / 1.0 "AFT" - Algorithm Functional Test.  The IUT
+      is REQUIRED for each test case provided, to generate a key pair
+      based on an approved curve.  This information is then communicated
+      to the ACVP server and validated.
+
+   *  EDDSA / keyVer / 1.0 "AFT" - Algorithm Functional Test.  The ACVP
+      server is REQUIRED to generate a series of keys based on the IUT
+      provided NIST curve(s).  The keys generated by the server MAY or
+      *MAY NOT* be valid, the IUT is REQUIRED to determine if the keys
+      provided in the test cases are valid or invalid keys as they
+      relate to the curve.
+
+   *  EDDSA / sigGen / 1.0 "AFT" - Algorithm Functional Test.  This
+      testing mode expects the IUT to generate valid signatures based on
+      the ACVP provided message.  The signature is then validated with
+      the ACVP server given the IUT's communicated curve, public key,
+      and signature.
+
+   *  EDDSA / sigGen / 1.0 "BFT" - Bit Flip Test.  This testing mode
+      produces a single message and flips individual bits in the message
+      to ensure a client is able to produce distinct signatures for each
+      message.
+
+   *  EDDSA / sigVer / 1.0 "AFT" - Algorithm Functional Test.  The ACVP
+      server generates a series of signatures to communicate to the IUT.
+      The IUT is REQUIRED to determine the validity of the signature
+      given the curve, key, and message.
+
+4.2.  Test Coverage
+
+4.2.1.  Requirements Covered
+
+   *  TBD...
+
+
+
+
+Celi                       Expires 21 May 2021                  [Page 3]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+4.2.2.  Requirements Not Covered
+
+   *  TBD... == Capabilities Registration
+
+   ACVP requires crypto modules to register their capabilities.  This
+   allows the crypto module to advertise support for specific
+   algorithms, notifying the ACVP server which algorithms need test
+   vectors generated for the validation process.  This section describes
+   the constructs for advertising support of EdDSA algorithms to the
+   ACVP server.
+
+   The algorithm capabilities MUST be advertised as JSON objects within
+   the 'algorithms' value of the ACVP registration message.  The
+   'algorithms' value is an array, where each array element is an
+   individual JSON object defined in this section.  The 'algorithms'
+   value is part of the 'capability_exchange' element of the ACVP JSON
+   registration message.  See the ACVP specification [ACVP] for more
+   details on the registration message.
+
+4.3.  Prerequisites
+
+   Each algorithm implementation MAY rely on other cryptographic
+   primitives.  For example, RSA Signature algorithms depend on an
+   underlying hash function.  Each of these underlying algorithm
+   primitives must be validated, either separately or as part of the
+   same submission.  ACVP provides a mechanism for specifying the
+   required prerequisites:
+
+   Prerequisites, if applicable, MUST be submitted in the registration
+   as the "prereqVals" JSON property array inside each element of the
+   "algorithms" array.  Each element in the "prereqVals" array MUST
+   contain the following properties
+
+   A "valValue" of "same" SHALL be used to indicate that the
+   prerequisite is being met by a different algorithm in the capability
+   exchange in the same registration.
+
+   An example description of prerequisites within a single algorithm
+   capability exchange looks like this
+
+
+
+
+
+
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                  [Page 4]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+        +===============+=============================+===========+
+        | JSON Property | Description                 | JSON Type |
+        +===============+=============================+===========+
+        | algorithm     | a prerequisite algorithm    | string    |
+        +---------------+-----------------------------+-----------+
+        | valValue      | algorithm validation number | string    |
+        +---------------+-----------------------------+-----------+
+
+                      Table 1: Prerequisite Properties
+
+   "prereqVals":
+   [
+     {
+       "algorithm": "Alg1",
+       "valValue": "Val-1234"
+     },
+     {
+       "algorithm": "Alg2",
+       "valValue": "same"
+     }
+   ]
+
+                                  Figure 1
+
+4.4.  Required Prerequisite Algorithms for EDDSA Validations
+
+   Each EDDSA implementation relies on other cryptographic primitives.
+   For example, EDDSA uses an underlying SHA algorithm.  Each of these
+   underlying algorithm primitives must be validated, either separately
+   or as part of the same submission.  ACVP provides a mechanism for
+   specifying the required prerequisites:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                  [Page 5]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+    +==============+================+=====================+===========+
+    | JSON Value   | Description    | JSON type           | Valid     |
+    |              |                |                     | Values    |
+    +==============+================+=====================+===========+
+    | algorithm    | a prerequisite | string              | DRBG, SHA |
+    |              | algorithm      |                     |           |
+    +--------------+----------------+---------------------+-----------+
+    | valValue     | algorithm      | string              | actual    |
+    |              | validation     |                     | number or |
+    |              | number         |                     | "same"    |
+    +--------------+----------------+---------------------+-----------+
+    | prereqAlgVal | prerequistie   | object with         | see above |
+    |              | algorithm      | algorithm and       |           |
+    |              | validation     | valValue properties |           |
+    +--------------+----------------+---------------------+-----------+
+    | prereqVals   | prerequistie   | array of            | see above |
+    |              | algorithm      | prereqAlgVal        |           |
+    |              | validations    | objects             |           |
+    +--------------+----------------+---------------------+-----------+
+
+        Table 2: Required EDDSA Prerequisite Algorithms JSON Values
+
+4.5.  EDDSA Algorithm Capabilities Registration
+
+   +============+=================+==============+=====================+
+   | JSON Value | Description     | JSON type    | Valid Values        |
+   +============+=================+==============+=====================+
+   | algorithm  | The algorithm   | string       | "EDDSA"             |
+   |            | under test      |              |                     |
+   +------------+-----------------+--------------+---------------------+
+   | mode       | The EDDSA       | string       | "keyGen", "keyVer", |
+   |            | mode to be      |              | "sigGen", or        |
+   |            | validated       |              | "sigVer"            |
+   +------------+-----------------+--------------+---------------------+
+   | revision   | The algorithm   | string       | "1.0"               |
+   |            | testing         |              |                     |
+   |            | revision to     |              |                     |
+   |            | use             |              |                     |
+   +------------+-----------------+--------------+---------------------+
+   | prereqVals | prerequistie    | array of     | See Section 4.4     |
+   |            | algorithm       | prereqAlgVal |                     |
+   |            | validations     | objects      |                     |
+   +------------+-----------------+--------------+---------------------+
+
+             Table 3: EDDSA Algorithm Capabilities JSON Values
+
+4.5.1.  The EDDSA keyGen Mode Capabilities
+
+
+
+
+Celi                       Expires 21 May 2021                  [Page 6]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+4.5.1.1.  EDDSA keyGen Full Set of Capabilities
+
+   The complete list of EDDSA key generation capabilities may be
+   advertised by the ACVP compliant crypto module:
+
+   An example of this is the following
+
+    +======================+=================+=======+================+
+    | JSON Value           | Description     | JSON  | Valid Values   |
+    |                      |                 | type  |                |
+    +======================+=================+=======+================+
+    | curve                | The curve names | array | Any non-empty  |
+    |                      | supported for   |       | subset of      |
+    |                      | the IUT in      |       | {"ED-25519",   |
+    |                      | keyGen          |       | "ED-448"}      |
+    +----------------------+-----------------+-------+----------------+
+    | secretGenerationMode | The method used | array | Any non-empty  |
+    |                      | to generate the |       | subset of      |
+    |                      | randomness      |       | {"extra bits", |
+    |                      | incoporated in  |       | "testing       |
+    |                      | the key         |       | candidates"}   |
+    +----------------------+-----------------+-------+----------------+
+
+               Table 4: EDDSA keyGen Capabilities JSON Values
+
+   {
+       "algorithm": "EDDSA",
+       "mode": "keyGen",
+       "revision": "1.0",
+       "prereqVals": [{
+               "algorithm": "SHA",
+               "valValue": "123456"
+           },
+           {
+               "algorithm": "DRBG",
+               "valValue": "123456"
+           }
+       ],
+       "curve": [
+           "ED-25519",
+           "ED-448"
+       ],
+       "secretGenerationMode": [
+           "extra bits",
+           "testing candidates"
+       ]
+   }
+
+
+
+
+Celi                       Expires 21 May 2021                  [Page 7]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+                                  Figure 2
+
+      |  NOTE: More information on the 'secretGenerationMode' can be
+      |  found in Appendix A.2 in [FIPS186-5].
+
+4.5.2.  The EDDSA keyVer Mode Capabilities
+
+4.5.2.1.  keyVer Full Set of Capabilities
+
+   The complete list of EDDSA key verification capabilities may be
+   advertised by the ACVP compliant crypto module:
+
+   An example of this is the following
+
+     +=======+===========================+=======+===================+
+     | JSON  | Description               | JSON  | Valid Values      |
+     | Value |                           | type  |                   |
+     +=======+===========================+=======+===================+
+     | curve | The curve names supported | array | Any non-empty     |
+     |       | for the IUT in keyVer     |       | subset of {"ED-   |
+     |       |                           |       | 25519", "ED-448"} |
+     +-------+---------------------------+-------+-------------------+
+
+               Table 5: EDDSA keyVer Capabilities JSON Values
+
+   {
+       "algorithm": "EDDSA",
+       "mode": "keyVer",
+       "revision": "1.0",
+       "prereqVals": [{
+               "algorithm": "SHA",
+               "valValue": "123456"
+           },
+           {
+               "algorithm": "DRBG",
+               "valValue": "123456"
+           }
+       ],
+       "curve": [
+           "ED-25519",
+           "ED-448"
+       ]
+   }
+
+                                  Figure 3
+
+4.5.3.  The sigGen Mode Capabilities
+
+
+
+
+Celi                       Expires 21 May 2021                  [Page 8]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+4.5.3.1.  sigGen Full Set of Capabilities
+
+   The complete list of EDDSA signature generation capabilities may be
+   advertised by the ACVP compliant crypto module:
+
+   The following is an example
+
+    +=========+===========================+=======+===================+
+    | JSON    | Description               | JSON  | Valid Values      |
+    | Value   |                           | type  |                   |
+    +=========+===========================+=======+===================+
+    | curve   | The curve names supported | array | Any non-empty     |
+    |         | for the IUT in sigGen     |       | subset of {"ED-   |
+    |         |                           |       | 25519", "ED-448"} |
+    +---------+---------------------------+-------+-------------------+
+    | pure    | If the IUT supports       | bool  | true/false        |
+    |         | normal 'pure' sigGen      |       |                   |
+    |         | functionality             |       |                   |
+    +---------+---------------------------+-------+-------------------+
+    | preHash | If the IUT supports       | bool  | true/false        |
+    |         | accepting a preHashed     |       |                   |
+    |         | message to sign           |       |                   |
+    +---------+---------------------------+-------+-------------------+
+
+               Table 6: EDDSA sigGen Capabilities JSON Values
+
+   {
+       "algorithm": "EDDSA",
+       "mode": "sigGen",
+       "revision": "1.0",
+       "prereqVals": [{
+               "algorithm": "SHA",
+               "valValue": "123456"
+           },
+           {
+               "algorithm": "DRBG",
+               "valValue": "123456"
+           }
+       ],
+       "pure": true,
+       "preHash": true,
+       "curve": [
+           "ED-25519",
+           "ED-448"
+       ]
+   }
+
+                                  Figure 4
+
+
+
+Celi                       Expires 21 May 2021                  [Page 9]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+4.5.4.  The sigVer Mode Capabilities
+
+4.5.4.1.  sigVer Full Set of Capabilities
+
+   The complete list of EDDSA signature verification capabilities may be
+   advertised by the ACVP compliant crypto module:
+
+   The following is an example
+
+    +=========+===========================+=======+===================+
+    | JSON    | Description               | JSON  | Valid Values      |
+    | Value   |                           | type  |                   |
+    +=========+===========================+=======+===================+
+    | curve   | The curve names supported | array | Any non-empty     |
+    |         | for the IUT in sigGen     |       | subset of {"ED-   |
+    |         |                           |       | 25519", "ED-448"} |
+    +---------+---------------------------+-------+-------------------+
+    | pure    | If the IUT supports       | bool  | true/false        |
+    |         | normal 'pure' sigGen      |       |                   |
+    |         | functionality             |       |                   |
+    +---------+---------------------------+-------+-------------------+
+    | preHash | If the IUT supports       | bool  | true/false        |
+    |         | accepting a preHashed     |       |                   |
+    |         | message to sign           |       |                   |
+    +---------+---------------------------+-------+-------------------+
+
+               Table 7: EDDSA sigVer Capabilities JSON Values
+
+   {
+       "algorithm": "EDDSA",
+       "mode": "sigVer",
+       "revision": "1.0",
+       "prereqVals": [{
+               "algorithm": "SHA",
+               "valValue": "123456"
+           },
+           {
+               "algorithm": "DRBG",
+               "valValue": "123456"
+           }
+       ],
+       "pure": true,
+       "preHash": true,
+       "curve": [
+           "ED-25519",
+           "ED-448"
+       ]
+   }
+
+
+
+Celi                       Expires 21 May 2021                 [Page 10]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+                                  Figure 5
+
+5.  Test Vectors
+
+   The ACVP server provides test vectors to the ACVP client, which are
+   then processed and returned to the ACVP server for validation.  A
+   typical ACVP validation test session would require multiple test
+   vector sets to be downloaded and processed by the ACVP client.  Each
+   test vector set represents an individual algorithm defined during the
+   capability exchange.  This section describes the JSON schema for a
+   test vector set used with FIPS Pub 186 EdDSA algorithms.
+
+   The test vector set JSON schema is a multi-level hierarchy that
+   contains meta data for the entire vector set as well as individual
+   test vectors to be processed by the ACVP client.  The following table
+   describes the JSON elements at the top level of the hierarchy.
+
+    +=============+======================================+===========+
+    | JSON Values | Description                          | JSON Type |
+    +=============+======================================+===========+
+    | acvVersion  | Protocol version identifier          | string    |
+    +-------------+--------------------------------------+-----------+
+    | vsId        | Unique numeric vector set identifier | integer   |
+    +-------------+--------------------------------------+-----------+
+    | algorithm   | Algorithm defined in the capability  | string    |
+    |             | exchange                             |           |
+    +-------------+--------------------------------------+-----------+
+    | mode        | Mode defined in the capability       | string    |
+    |             | exchange                             |           |
+    +-------------+--------------------------------------+-----------+
+    | revision    | Protocol test revision selected      | string    |
+    +-------------+--------------------------------------+-----------+
+    | testGroups  | Array of test groups containing test | array     |
+    |             | data, see Section 6                  |           |
+    +-------------+--------------------------------------+-----------+
+
+               Table 8: Top Level Test Vector JSON Elements
+
+   An example of this would look like this
+
+   {
+     "acvVersion": "version",
+     "vsId": 1,
+     "algorithm": "Alg1",
+     "mode": "Mode1",
+     "revision": "Revision1.0",
+     "testGroups": [ ... ]
+   }
+
+
+
+Celi                       Expires 21 May 2021                 [Page 11]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+                                  Figure 6
+
+6.  Test Vectors
+
+   The ACVP server provides test vectors to the ACVP client, which are
+   then processed and returned to the ACVP server for validation.  A
+   typical ACVP validation session would require multiple test vector
+   sets to be downloaded and processed by the ACVP client.  Each test
+   vector set represents an individual EDDSA function.  This section
+   describes the JSON schema for a test vector set used with EDDSA
+   algorithms.
+
+   The test vector set JSON schema is a multi-level hierarchy that
+   contains meta data for the entire vector set as well as individual
+   test vectors to be processed by the ACVP client.The following table
+   describes the JSON elements at the top level of the hierarchy.
+
+    +============+==========================================+========+
+    | JSON Value | Description                              | JSON   |
+    |            |                                          | type   |
+    +============+==========================================+========+
+    | acvVersion | Protocol version identifier              | string |
+    +------------+------------------------------------------+--------+
+    | vsId       | Unique numeric identifier for the vector | string |
+    |            | set                                      |        |
+    +------------+------------------------------------------+--------+
+    | algorithm  | EDDSA                                    | string |
+    +------------+------------------------------------------+--------+
+    | mode       | The EDDSA mode used for the test vectors | string |
+    +------------+------------------------------------------+--------+
+    | revision   | The algorithm testing revision to use    | string |
+    +------------+------------------------------------------+--------+
+    | testGroups | Array of test group JSON objects, which  | array  |
+    |            | are defined in Section 6.1, Section 6.3, |        |
+    |            | Section 6.5, and Section 6.7             |        |
+    +------------+------------------------------------------+--------+
+
+                     Table 9: Vector Set JSON Object
+
+
+
+
+
+
+
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                 [Page 12]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+6.1.  EDDSA keyGen Test Groups JSON Schema
+
+   The testGroups element at the top level in the test vector JSON
+   object is an array of test groups.  Test vectors are grouped into
+   similar test cases to reduce the amount of data transmitted in the
+   vector set.  For instance, all test vectors that use the same key
+   size would be grouped together.  The Test Group JSON object contains
+   meta data that applies to all test vectors within the group.  The
+   following table describes the secure hash JSON elements of the Test
+   Group JSON object.
+
+   The test group for EDDSA / keyGen / 1.0 is as follows:
+
+    +======================+================================+=========+
+    | JSON Value           | Description                    | JSON    |
+    |                      |                                | type    |
+    +======================+================================+=========+
+    | tgId                 | The test group identifier      | integer |
+    +----------------------+--------------------------------+---------+
+    | curve                | The curve type used for the    | string  |
+    |                      | test vectors                   |         |
+    +----------------------+--------------------------------+---------+
+    | secretGenerationMode | The method of generating a     | string  |
+    |                      | secret used for key generation |         |
+    |                      | in the test vectors            |         |
+    +----------------------+--------------------------------+---------+
+    | testType             | The testType for the group     | string  |
+    +----------------------+--------------------------------+---------+
+    | tests                | Array of individual test       | array   |
+    |                      | vector JSON objects, which are |         |
+    |                      | defined in Section 6.2         |         |
+    +----------------------+--------------------------------+---------+
+
+               Table 10: EDDSA keyGen Test Group JSON Object
+
+6.2.  EDDSA keyGen Test Case JSON Schema
+
+   Each test group contains an array of one or more test cases.  Each
+   test case is a JSON object that represents a single test vector to be
+   processed by the ACVP client.  The following table describes the JSON
+   elements for each EDDSA test vector.
+
+
+
+
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                 [Page 13]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+    +============+=======================================+===========+
+    | JSON Value | Description                           | JSON type |
+    +============+=======================================+===========+
+    | tcId       | Numeric identifier for the test case, | integer   |
+    |            | unique across the entire vector set   |           |
+    +------------+---------------------------------------+-----------+
+
+                     Table 11: Test Case JSON Object
+
+      |  NOTE: The client is responsible for generating a single key per
+      |  test case.
+
+   The following is an example of a prompt for EDDSA / keyGen / 1.0
+
+   [
+       {
+           "acvVersion": <acvp-version>
+       },
+       {
+           "vsId": 1564,
+           "algorithm": "EDDSA",
+           "mode": "keyGen",
+           "revision": "1.0",
+           "testGroups": [
+               {
+                   "curve": "ED-25519",
+                   "secretGenerationMode": "extra bits",
+                   "testType": "AFT",
+                   "tests": [
+                       {
+                           "tcId": 1
+                       }
+                   ]
+               }
+           ]
+       }
+   ]
+
+                                  Figure 7
+
+6.3.  EDDSA keyVer Test Groups JSON Schema
+
+   The testGroups element at the top level in the test vector JSON
+   object is an array of test groups.  Test vectors are grouped into
+   similar test cases to reduce the amount of data transmitted in the
+   vector set.  For instance, all test vectors that use the same key
+   size would be grouped together.  The Test Group JSON object contains
+   meta data that applies to all test vectors within the group.  The
+
+
+
+Celi                       Expires 21 May 2021                 [Page 14]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+   following table describes the secure hash JSON elements of the Test
+   Group JSON object.
+
+   The test group for EDDSA / keyVer / 1.0 is as follows:
+
+   +============+===========================================+=========+
+   | JSON Value | Description                               | JSON    |
+   |            |                                           | type    |
+   +============+===========================================+=========+
+   | tgId       | The test group identifier                 | integer |
+   +------------+-------------------------------------------+---------+
+   | curve      | The curve type used for the test vectors  | string  |
+   +------------+-------------------------------------------+---------+
+   | testType   | The testType for the group                | string  |
+   +------------+-------------------------------------------+---------+
+   | tests      | Array of individual test vector JSON      | array   |
+   |            | objects, which are defined in Section 6.4 |         |
+   +------------+-------------------------------------------+---------+
+
+              Table 12: EDDSA keyVer Test Group JSON Object
+
+6.4.  EDDSA keyVer Test Case JSON Schema
+
+   Each test group contains an array of one or more test cases.  Each
+   test case is a JSON object that represents a single test vector to be
+   processed by the ACVP client.  The following table describes the JSON
+   elements for each EDDSA test vector.
+
+    +============+=======================================+===========+
+    | JSON Value | Description                           | JSON type |
+    +============+=======================================+===========+
+    | tcId       | Numeric identifier for the test case, | integer   |
+    |            | unique across the entire vector set   |           |
+    +------------+---------------------------------------+-----------+
+    | q          | The encoded public key curve point    | hex       |
+    +------------+---------------------------------------+-----------+
+
+                     Table 13: Test Case JSON Object
+
+   The following is an example of a prompt for EDDSA / keyVer / 1.0
+
+
+
+
+
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                 [Page 15]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+   [
+       {
+           "acvVersion": <acvp-version>
+       },
+       {
+           "vsId": 1564,
+           "algorithm": "EDDSA",
+           "mode": "keyVer",
+           "revision": "1.0",
+           "testGroups": [
+               {
+                   "tgId": 1,
+                   "curve": "ED-25519",
+                   "testType": "AFT",
+                   "tests": [
+                       {
+                           "tcId": 1,
+                           "q": "227093C50F7D04A41121CEFDF076CC8B21D44E7506F341F8BFAB269CE06F2B7E",
+                       }
+                   ]
+               }
+           ]
+       }
+   ]
+
+                                  Figure 8
+
+6.5.  EDDSA sigGen Test Groups JSON Schema
+
+   The testGroups element at the top level in the test vector JSON
+   object is an array of test groups.  Test vectors are grouped into
+   similar test cases to reduce the amount of data transmitted in the
+   vector set.  For instance, all test vectors that use the same key
+   size would be grouped together.  The Test Group JSON object contains
+   meta data that applies to all test vectors within the group.  The
+   following table describes the secure hash JSON elements of the Test
+   Group JSON object.
+
+   The test group for EDDSA / sigGen / 1.0 is as follows:
+
+
+
+
+
+
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                 [Page 16]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+   +============+===========================================+=========+
+   | JSON Value | Description                               | JSON    |
+   |            |                                           | type    |
+   +============+===========================================+=========+
+   | tgId       | The test group identifier                 | integer |
+   +------------+-------------------------------------------+---------+
+   | curve      | The curve type used for the test vectors  | string  |
+   +------------+-------------------------------------------+---------+
+   | prehash    | Whether or not the message is pre-hashed  | boolean |
+   |            | entering the signature function           |         |
+   +------------+-------------------------------------------+---------+
+   | testType   | The testType for the group                | string  |
+   +------------+-------------------------------------------+---------+
+   | tests      | Array of individual test vector JSON      | array   |
+   |            | objects, which are defined in Section 6.6 |         |
+   +------------+-------------------------------------------+---------+
+
+              Table 14: EDDSA sigGen Test Group JSON Object
+
+6.6.  EDDSA sigGen Test Case JSON Schema
+
+   Each test group contains an array of one or more test cases.  Each
+   test case is a JSON object that represents a single test vector to be
+   processed by the ACVP client.  The following table describes the JSON
+   elements for each EDDSA test vector.
+
+    +============+=======================================+===========+
+    | JSON Value | Description                           | JSON type |
+    +============+=======================================+===========+
+    | tcId       | Numeric identifier for the test case, | integer   |
+    |            | unique across the entire vector set   |           |
+    +------------+---------------------------------------+-----------+
+    | message    | The message used to generate the      | hex       |
+    |            | signature                             |           |
+    +------------+---------------------------------------+-----------+
+    | context    | The context used to generate the      | hex       |
+    |            | signature                             |           |
+    +------------+---------------------------------------+-----------+
+
+                     Table 15: Test Case JSON Object
+
+      |  NOTE: The 'context' property will only be present if the
+      |  'prehash' group property is set to true.
+
+   The following is an example of a prompt for EDDSA / sigGen / 1.0
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                 [Page 17]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+   [
+       {
+           "acvVersion": <acvp-version>
+       },
+       {
+           "vsId": 1564,
+           "algorithm": "EDDSA",
+           "mode": "sigGen",
+           "revision": "1.0",
+           "testGroups": [
+               {
+                   "tgId": 1,
+                   "testType": "AFT",
+                   "curve": "ED-25519",
+                   "preHash": true,
+                   "tests": [
+                       {
+                           "tcId": 1,
+                           "message": "A81C8A22735A260...",
+                           "context": "12CBEF869A08BCD..."
+                       }
+                   ]
+               },
+               {
+                   "tgId": 5,
+                   "testType": "BFT",
+                   "curve": "ED-25519",
+                   "preHash": false,
+                   "tests": [
+                       {
+                           "tcId": 41,
+                           "message": "F27E9F9D"
+                       },
+                       {
+                           "tcId": 42,
+                           "message": "F27E9F9C"
+                       },
+                       {
+                           "tcId": 43,
+                           "message": "F27E9F9F"
+                       }
+                   ]
+               }
+           ]
+       }
+   ]
+
+                                  Figure 9
+
+
+
+Celi                       Expires 21 May 2021                 [Page 18]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+6.7.  EDDSA sigVer Test Groups JSON Schema
+
+   The testGroups element at the top level in the test vector JSON
+   object is an array of test groups.  Test vectors are grouped into
+   similar test cases to reduce the amount of data transmitted in the
+   vector set.  For instance, all test vectors that use the same key
+   size would be grouped together.  The Test Group JSON object contains
+   meta data that applies to all test vectors within the group.  The
+   following table describes the secure hash JSON elements of the Test
+   Group JSON object.
+
+   The test group for EDDSA / sigVer / 1.0 is as follows:
+
+   +============+===========================================+=========+
+   | JSON Value | Description                               | JSON    |
+   |            |                                           | type    |
+   +============+===========================================+=========+
+   | tgId       | The test group identifier                 | integer |
+   +------------+-------------------------------------------+---------+
+   | curve      | The curve type used for the test vectors  | string  |
+   +------------+-------------------------------------------+---------+
+   | prehash    | Whether or not the message is pre-hashed  | boolean |
+   |            | entering the signature function           |         |
+   +------------+-------------------------------------------+---------+
+   | testType   | The testType for the group                | string  |
+   +------------+-------------------------------------------+---------+
+   | tests      | Array of individual test vector JSON      | array   |
+   |            | objects, which are defined in Section 6.8 |         |
+   +------------+-------------------------------------------+---------+
+
+              Table 16: EDDSA sigVer Test Group JSON Object
+
+6.8.  EDDSA sigVer Test Case JSON Schema
+
+   Each test group contains an array of one or more test cases.  Each
+   test case is a JSON object that represents a single test vector to be
+   processed by the ACVP client.  The following table describes the JSON
+   elements for each EDDSA test vector.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                 [Page 19]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+    +============+=======================================+===========+
+    | JSON Value | Description                           | JSON type |
+    +============+=======================================+===========+
+    | tcId       | Numeric identifier for the test case, | integer   |
+    |            | unique across the entire vector set   |           |
+    +------------+---------------------------------------+-----------+
+    | message    | The message used to generate the      | hex       |
+    |            | signature                             |           |
+    +------------+---------------------------------------+-----------+
+    | q          | The encoded public key                | hex       |
+    +------------+---------------------------------------+-----------+
+    | signature  | The signature to verify               | hex       |
+    +------------+---------------------------------------+-----------+
+
+                     Table 17: Test Case JSON Object
+
+   The following is an example of a prompt for EDDSA / sigVer / 1.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                 [Page 20]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+   [
+       {
+           "acvVersion": <acvp-version>
+       },
+       {
+           "vsId": 0,
+           "algorithm": "EDDSA",
+           "mode": "sigVer",
+           "revision": "1.0",
+           "isSample": true,
+           "testGroups": [
+               {
+                   "tgId": 1,
+                   "testType": "AFT",
+                   "curve": "ED-25519",
+                   "preHash": false,
+                   "tests": [
+                       {
+                           "tcId": 1,
+                           "message": "61524B41E89736DEE...",
+                           "q": "14FB8D71A6CEDFC7B33109F...",
+                           "signature": "283877CFDAFE61A..."
+                       },
+                       {
+                           "tcId": 2,
+                           "message": "43529BD72351015CA...",
+                           "q": "99E318DCAD59F37DD3355EE...",
+                           "signature": "F21BCB4898B32B6..."
+                       }
+                   ]
+               }
+           ]
+       }
+   ]
+
+                                 Figure 10
+
+7.  Test Vector Responses
+
+   After the ACVP client downloads and processes a vector set, it must
+   send the response vectors back to the ACVP server.  The following
+   table describes the JSON object that represents a vector set
+   response.
+
+
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                 [Page 21]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+      +============+======================================+=========+
+      | JSON Value | Description                          | JSON    |
+      |            |                                      | type    |
+      +============+======================================+=========+
+      | acvVersion | Protocol version identifier          | string  |
+      +------------+--------------------------------------+---------+
+      | vsId       | Unique numeric identifier for the    | integer |
+      |            | vector set                           |         |
+      +------------+--------------------------------------+---------+
+      | testGroups | Array of JSON objects that are       | array   |
+      |            | defined in Section 7.1, Section 7.2, |         |
+      |            | Section 7.3 and Section 7.4          |         |
+      +------------+--------------------------------------+---------+
+
+                 Table 18: Vector Set Response JSON Object
+
+7.1.  EDDSA keyGen Test Group Responses
+
+   The following table describes the JSON object that represents a test
+   group response for EDDSA / keyGen / 1.0.
+
+   +============+===========================================+=========+
+   | JSON Value | Description                               | JSON    |
+   |            |                                           | type    |
+   +============+===========================================+=========+
+   | tgId       | Unique numeric identifier for the test    | integer |
+   |            | group                                     |         |
+   +------------+-------------------------------------------+---------+
+   | tests      | Array of JSON objects that represent each | array   |
+   |            | result, as defined by the table below     |         |
+   +------------+-------------------------------------------+---------+
+
+          Table 19: EDDSA keyGen Test Group Response JSON Object
+
+   The following table describes the JSON object that represents a test
+   case response for EDDSA / keyGen / 1.0.
+
+        +============+===============================+===========+
+        | JSON Value | Description                   | JSON type |
+        +============+===============================+===========+
+        | tcId       | The test case identifier      | integer   |
+        +------------+-------------------------------+-----------+
+        | d          | The encoded private key point | hex       |
+        +------------+-------------------------------+-----------+
+        | q          | The encoded public key point  | hex       |
+        +------------+-------------------------------+-----------+
+
+          Table 20: EDDSA keyGen Test Case Response JSON Object
+
+
+
+Celi                       Expires 21 May 2021                 [Page 22]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+   The following is an example of the response for EDDSA / keyGen / 1.0
+
+   [
+       {
+           "acvVersion": <acvp-version>
+       },
+       {
+           "vsId": 1564,
+           "testGroups": [
+               {
+                   "tgId": 1,
+                   "tests": [
+                       {
+                           "tcId": 1,
+                           "q": "D51FB3D405A63622783...",
+                           "d": "147BA261D11CD323331..."
+                       }
+                   ]
+               }
+           ]
+       }
+   ]
+
+                                 Figure 11
+
+7.2.  EDDSA keyVer Test Group Responses
+
+   The following table describes the JSON object that represents a test
+   group response for EDDSA / keyVer / 1.0.
+
+   +============+===========================================+=========+
+   | JSON Value | Description                               | JSON    |
+   |            |                                           | type    |
+   +============+===========================================+=========+
+   | tgId       | Unique numeric identifier for the test    | integer |
+   |            | group                                     |         |
+   +------------+-------------------------------------------+---------+
+   | tests      | Array of JSON objects that represent each | array   |
+   |            | result, as defined by the table below     |         |
+   +------------+-------------------------------------------+---------+
+
+          Table 21: EDDSA keyVer Test Group Response JSON Object
+
+   The following table describes the JSON object that represents a test
+   case response for EDDSA / keyVer / 1.0.
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                 [Page 23]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+           +============+==========================+===========+
+           | JSON Value | Description              | JSON type |
+           +============+==========================+===========+
+           | tcId       | The test case identifier | integer   |
+           +------------+--------------------------+-----------+
+           | testPassed | Whether or not the key   | boolean   |
+           |            | provided was valid       |           |
+           +------------+--------------------------+-----------+
+
+           Table 22: EDDSA keyVer Test Case Response JSON Object
+
+   The following is an example of the response for EDDSA / keyVer / 1.0
+
+   [
+       {
+           "acvVersion": <acvp-version>
+       },
+       {
+           "vsId": 1564,
+           "testGroups": [
+               {
+                   "tgId": 1,
+                   "tests": [
+                       {
+                           "tcId": 1,
+                           "testPassed": true
+                       }
+                   ]
+               }
+           ]
+       }
+   ]
+
+                                 Figure 12
+
+7.3.  EDDSA sigGen Test Group Responses
+
+   The following table describes the JSON object that represents a test
+   group response for EDDSA / sigGen / 1.0.
+
+
+
+
+
+
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                 [Page 24]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+   +============+===========================================+=========+
+   | JSON Value | Description                               | JSON    |
+   |            |                                           | type    |
+   +============+===========================================+=========+
+   | tgId       | Unique numeric identifier for the test    | integer |
+   |            | group                                     |         |
+   +------------+-------------------------------------------+---------+
+   | q          | The encoded public key point used for     | hex     |
+   |            | signatures in the group                   |         |
+   +------------+-------------------------------------------+---------+
+   | tests      | Array of JSON objects that represent each | array   |
+   |            | result, as defined by the table below     |         |
+   +------------+-------------------------------------------+---------+
+
+          Table 23: EDDSA sigGen Test Group Response JSON Object
+
+   The following table describes the JSON object that represents a test
+   case response for EDDSA / sigGen / 1.0.
+
+           +============+==========================+===========+
+           | JSON Value | Description              | JSON type |
+           +============+==========================+===========+
+           | tcId       | The test case identifier | integer   |
+           +------------+--------------------------+-----------+
+           | signature  | The computed signature   | hex       |
+           +------------+--------------------------+-----------+
+
+           Table 24: EDDSA sigGen Test Case Response JSON Object
+
+   The following is an example of the response for EDDSA / sigGen / 1.0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                 [Page 25]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+   [
+       {
+           "acvVersion": <acvp-version>
+       },
+       {
+           "vsId": 1564,
+           "testGroups": [
+               {
+                   "tgId": 1,
+                   "q": "4BA34FE699DBDC89750FF006...",
+                   "tests": [
+                       {
+                           "tcId": 1,
+                           "signature": "772990B0..."
+                       }
+                   ]
+               },
+               {
+                   "tgId": 5,
+                   "q": "ADD51513B67540E3A392721...",
+                   "tests": [
+                       {
+                           "tcId": 41,
+                           "signature": "6EA857E..."
+                       },
+                       {
+                           "tcId": 42,
+                           "signature": "883B033..."
+                       },
+                       {
+                           "tcId": 43,
+                           "signature": "E402705..."
+                       }
+                   ]
+               }
+           ]
+       }
+   ]
+
+                                 Figure 13
+
+7.4.  EDDSA sigVer Test Group Responses
+
+   The following table describes the JSON object that represents a test
+   group response for EDDSA / sigVer / 1.0.
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                 [Page 26]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+   +============+===========================================+=========+
+   | JSON Value | Description                               | JSON    |
+   |            |                                           | type    |
+   +============+===========================================+=========+
+   | tgId       | Unique numeric identifier for the test    | integer |
+   |            | group                                     |         |
+   +------------+-------------------------------------------+---------+
+   | tests      | Array of JSON objects that represent each | array   |
+   |            | result, as defined by the table below     |         |
+   +------------+-------------------------------------------+---------+
+
+          Table 25: EDDSA sigVer Test Group Response JSON Object
+
+   The following table describes the JSON object that represents a test
+   case response for EDDSA / sigVer / 1.0.
+
+         +============+==============================+===========+
+         | JSON Value | Description                  | JSON type |
+         +============+==============================+===========+
+         | tcId       | The test case identifier     | integer   |
+         +------------+------------------------------+-----------+
+         | testPassed | Whether or not the signature | boolean   |
+         |            | provided was valid           |           |
+         +------------+------------------------------+-----------+
+
+           Table 26: EDDSA sigVer Test Case Response JSON Object
+
+   The following is an example of the response for EDDSA / sigVer / 1.0
+
+   [
+       {
+           "acvVersion": <acvp-version>
+       },
+       {
+           "vsId": 1564,
+           "testGroups": [
+               {
+                   "tgId": 1,
+                   "tests": [
+                       {
+                           "tcId": 1,
+                           "testPassed": true
+                       }
+                   ]
+               }
+           ]
+       }
+   ]
+
+
+
+Celi                       Expires 21 May 2021                 [Page 27]
+
+Internet-Draft                 ACVP EdDSA                  November 2020
+
+
+                                 Figure 14
+
+8.  Security Considerations
+
+   There are no additional security considerations outside of those
+   outlined in the ACVP document.
+
+9.  IANA Considerations
+
+   This document does not require any action by IANA.
+
+10.  Normative references
+
+   [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
+              Requirement Levels", IETF RFC 2119, IETF RFC 2119,
+              DOI 10.17487/RFC2119, March 1997,
+              <https://www.rfc-editor.org/info/rfc2119>.
+
+   [RFC7991]  Hoffman, P., "The "xml2rfc" Version 3 Vocabulary", IETF
+              RFC 7991, IETF RFC 7991, DOI 10.17487/RFC7991, December
+              2016, <https://www.rfc-editor.org/info/rfc7991>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", IETF RFC 8174, IETF RFC 8174,
+              DOI 10.17487/RFC8174, May 2017,
+              <https://www.rfc-editor.org/info/rfc8174>.
+
+   [ACVP]     National Institute of Standards and Technology, "Automatic
+              Cryptographic Validation Protocol", ACVP ACVP, 2019.
+
+   [SP800-89] "SP800-89", SP800 SP800-89.
+
+   [SP800-106]
+              "SP800-106", SP800 SP800-106.
+
+   [FIPS186-5]
+              "FIPS Pub 186-5", FIPS186 FIPS186-5.
+
+Author's Address
+
+   Christopher Celi (editor)
+
+   Email: christopher.celi@nist.gov
+
+
+
+
+
+
+
+
+Celi                       Expires 21 May 2021                 [Page 28]
