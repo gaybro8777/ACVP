@@ -3,9 +3,9 @@
 
 
 Network Working Group                                    R. Hammett, Ed.
-Internet-Draft                                          17 November 2020
+Internet-Draft                                          18 November 2020
 Intended status: Informational                                          
-Expires: 21 May 2021
+Expires: 22 May 2021
 
 
                    ACVP SafePrimes JSON Specification
@@ -25,7 +25,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2021.
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -47,38 +47,39 @@ Table of Contents
    2.  Abstract  . . . . . . . . . . . . . . . . . . . . . . . . . .   2
    3.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    4.  Terms and definitions . . . . . . . . . . . . . . . . . . . .   3
-     4.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
-     4.2.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   3
-       4.2.1.  SafePrime Requirements Covered  . . . . . . . . . . .   3
+   5.  Supported Safe Prime Functions  . . . . . . . . . . . . . . .   3
+     5.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
+     5.2.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   3
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 1]
+Hammett                    Expires 22 May 2021                  [Page 1]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
 
-       4.2.2.  SafePrime Requirements Not Covered  . . . . . . . . .   3
-   5.  Capabilities Registration . . . . . . . . . . . . . . . . . .   3
-     5.1.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   4
-     5.2.  SafePrime Prerequisites . . . . . . . . . . . . . . . . .   5
-     5.3.  SafePrime Capabilities  . . . . . . . . . . . . . . . . .   5
-     5.4.  Safe Prime Example Registrations  . . . . . . . . . . . .   6
-   6.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .   7
+       5.2.1.  SafePrime Requirements Covered  . . . . . . . . . . .   3
+       5.2.2.  SafePrime Requirements Not Covered  . . . . . . . . .   4
+   6.  Capabilities Registration . . . . . . . . . . . . . . . . . .   4
+     6.1.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   4
+     6.2.  SafePrime Prerequisites . . . . . . . . . . . . . . . . .   5
+     6.3.  SafePrime Capabilities  . . . . . . . . . . . . . . . . .   6
+     6.4.  Safe Prime Example Registrations  . . . . . . . . . . . .   7
    7.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .   8
-     7.1.  SafePrime keyGen Test Vectors . . . . . . . . . . . . . .   9
-       7.1.1.  SafePrime keyGen Test Groups JSON Schema  . . . . . .   9
-       7.1.2.  SafePrime keyGen Test Case JSON Schema  . . . . . . .  10
-     7.2.  SafePrime keyVer Test Vectors . . . . . . . . . . . . . .  12
-       7.2.1.  SafePrime keyVer Test Groups JSON Schema  . . . . . .  12
-       7.2.2.  SafePrime keyVer Test Case JSON Schema  . . . . . . .  12
-   8.  Test Vector Responses . . . . . . . . . . . . . . . . . . . .  14
-     8.1.  Safe Primes keyGen Test Vector Responses  . . . . . . . .  15
-     8.2.  Safe Primes keyVer Test Vector Responses  . . . . . . . .  17
-   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  18
-   10. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  18
-   11. Bibliography  . . . . . . . . . . . . . . . . . . . . . . . .  18
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  19
+   8.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .   9
+     8.1.  SafePrime keyGen Test Vectors . . . . . . . . . . . . . .  10
+       8.1.1.  SafePrime keyGen Test Groups JSON Schema  . . . . . .  10
+       8.1.2.  SafePrime keyGen Test Case JSON Schema  . . . . . . .  11
+     8.2.  SafePrime keyVer Test Vectors . . . . . . . . . . . . . .  13
+       8.2.1.  SafePrime keyVer Test Groups JSON Schema  . . . . . .  13
+       8.2.2.  SafePrime keyVer Test Case JSON Schema  . . . . . . .  13
+   9.  Test Vector Responses . . . . . . . . . . . . . . . . . . . .  15
+     9.1.  Safe Primes keyGen Test Vector Responses  . . . . . . . .  16
+     9.2.  Safe Primes keyVer Test Vector Responses  . . . . . . . .  18
+   10. Security Considerations . . . . . . . . . . . . . . . . . . .  19
+   11. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  19
+   12. Bibliography  . . . . . . . . . . . . . . . . . . . . . . . .  19
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  20
 
 1.  Acknowledgements
 
@@ -108,18 +109,33 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
 
 
-
-Hammett                    Expires 21 May 2021                  [Page 2]
+Hammett                    Expires 22 May 2021                  [Page 2]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
 
 4.  Terms and definitions
 
-   For the purposes of this document, the following terms and
-   definitions apply.
+   No terms and definitions are listed in this document.
 
-4.1.  Test Types
+5.  Supported Safe Prime Functions
+
+   The following Safe Prime operations MAY be advertised by the ACVP
+   compliant cryptographic module listed as "algorithm" / "mode" /
+   "revision":
+
+   *  safePrimes / keyGen / 1.0
+
+   *  safePrimes / keyVer / 1.0 == Test Types and Test Coverage
+
+   The ACVP server performs a set of tests on the specified SafePrimes
+   algorithm in order to assess the correctness and robustness of the
+   implementation.  A typical ACVP validation session SHALL require
+   multiple tests to be performed for every supported permutation of
+   SafePrimes capabilities.  This section describes the design of the
+   tests used to validate implementations of the SafePrimes algorithms.
+
+5.1.  Test Types
 
    *  SafePrimes / keyGen / 1.0 "AFT" - Algorithm Functional Test.  The
       IUT is REQUIRED for each test case provided, to generate a key
@@ -132,14 +148,27 @@ Internet-Draft               ACVP SafePrimes               November 2020
       IUT per safe prime group.  The IUT is REQUIRED to validate the
       key-pair satisfies "0 < x < q" and "y = g^x mod p".
 
-4.2.  Test Coverage
+5.2.  Test Coverage
 
-4.2.1.  SafePrime Requirements Covered
+   The tests described in this document have the intention of ensuring
+   an implementation is conformant to [SP800-56Ar3], [RFC3526], and
+   [RFC7919].
+
+5.2.1.  SafePrime Requirements Covered
 
    *  SP800-56Ar3 - Section 5.6.1.1.1 Using the Approved Safe-Prime
       Groups.  This ACVP server specification makes testing available/
       validatable for use in Safe-Prime Groups key generation for KAS-
       FFC as specified in [SP800-56Ar3].
+
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 3]
+
+Internet-Draft               ACVP SafePrimes               November 2020
+
 
    *  RFC3526 - All safe prime groups defined in this document are made
       available for testing via the ACVP server.
@@ -147,11 +176,11 @@ Internet-Draft               ACVP SafePrimes               November 2020
    *  RFC7919 - All safe prime groups defined in this document are made
       available for testing via the ACVP server.
 
-4.2.2.  SafePrime Requirements Not Covered
+5.2.2.  SafePrime Requirements Not Covered
 
    N/A
 
-5.  Capabilities Registration
+6.  Capabilities Registration
 
    ACVP requires crypto modules to register their capabilities.  This
    allows the crypto module to advertise support for specific
@@ -159,16 +188,6 @@ Internet-Draft               ACVP SafePrimes               November 2020
    vectors generated for the validation process.  This section describes
    the constructs for advertising support of SafePrimes algorithms to
    the ACVP server.
-
-
-
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 3]
-
-Internet-Draft               ACVP SafePrimes               November 2020
-
 
    The algorithm capabilities MUST be advertised as JSON objects within
    the 'algorithms' value of the ACVP registration message.  The
@@ -178,7 +197,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
    registration message.  See the ACVP specification [ACVP] for more
    details on the registration message.
 
-5.1.  Prerequisites
+6.1.  Prerequisites
 
    Each algorithm implementation MAY rely on other cryptographic
    primitives.  For example, RSA Signature algorithms depend on an
@@ -192,7 +211,22 @@ Internet-Draft               ACVP SafePrimes               November 2020
    "algorithms" array.  Each element in the "prereqVals" array MUST
    contain the following properties
 
-        +===============+=============================+===========+
+
+
+
+
+
+
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 4]
+
+Internet-Draft               ACVP SafePrimes               November 2020
+
+
+        +---------------+-----------------------------+-----------+
         | JSON Property | Description                 | JSON Type |
         +===============+=============================+===========+
         | algorithm     | a prerequisite algorithm    | string    |
@@ -209,23 +243,6 @@ Internet-Draft               ACVP SafePrimes               November 2020
    An example description of prerequisites within a single algorithm
    capability exchange looks like this
 
-
-
-
-
-
-
-
-
-
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 4]
-
-Internet-Draft               ACVP SafePrimes               November 2020
-
-
    "prereqVals":
    [
      {
@@ -240,7 +257,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
                                   Figure 1
 
-5.2.  SafePrime Prerequisites
+6.2.  SafePrime Prerequisites
 
    Each safePrimes / * / * implementation relies on other cryptographic
    primitives.  For example, safePrimes / * / * uses an underlying SHA
@@ -248,7 +265,24 @@ Internet-Draft               ACVP SafePrimes               November 2020
    validated, either separately or as part of the same submission.  ACVP
    provides a mechanism for specifying the required prerequisites:
 
-   +==============+================+=====================+============+
+
+
+
+
+
+
+
+
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 5]
+
+Internet-Draft               ACVP SafePrimes               November 2020
+
+
+   +--------------+----------------+---------------------+------------+
    | JSON Value   | Description    | JSON type           | Valid      |
    |              |                |                     | Values     |
    +==============+================+=====================+============+
@@ -270,19 +304,41 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
      Table 2: Required SafePrime Prerequisite Algorithms JSON Values
 
-5.3.  SafePrime Capabilities
+6.3.  SafePrime Capabilities
 
    Each algorithm capability advertised is a self-contained JSON object
    using the following values.
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 5]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 6]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
 
-     +=================+==============+==============+===============+
+     +-----------------+--------------+--------------+---------------+
      | JSON Value      | Description  | JSON Type    | Valid Values  |
      +=================+==============+==============+===============+
      | algorithm       | The          | string       | "safePrimes"  |
@@ -320,7 +376,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
               Table 3: SafePrime Capabilities JSON Properties
 
-5.4.  Safe Prime Example Registrations
+6.4.  Safe Prime Example Registrations
 
    A safePrime / keyGen / 1.0 registration looks like the following
 
@@ -333,7 +389,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 6]
+Hammett                    Expires 22 May 2021                  [Page 7]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
@@ -372,7 +428,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
                                   Figure 3
 
-6.  Test Vectors
+7.  Test Vectors
 
    The ACVP server provides test vectors to the ACVP client, which are
    then processed and returned to the ACVP server for validation.  A
@@ -389,12 +445,12 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 7]
+Hammett                    Expires 22 May 2021                  [Page 8]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
 
-    +=============+======================================+===========+
+    +-------------+--------------------------------------+-----------+
     | JSON Values | Description                          | JSON Type |
     +=============+======================================+===========+
     | acvVersion  | Protocol version identifier          | string    |
@@ -410,7 +466,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
     | revision    | Protocol test revision selected      | string    |
     +-------------+--------------------------------------+-----------+
     | testGroups  | Array of test groups containing test | array     |
-    |             | data, see Section 7                  |           |
+    |             | data, see Section 8                  |           |
     +-------------+--------------------------------------+-----------+
 
                Table 4: Top Level Test Vector JSON Elements
@@ -428,7 +484,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
                                   Figure 4
 
-7.  Test Vectors
+8.  Test Vectors
 
    The ACVP server provides test vectors to the ACVP client, which are
    then processed and returned to the ACVP server for validation.  A
@@ -445,12 +501,12 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 8]
+Hammett                    Expires 22 May 2021                  [Page 9]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
 
-     +============+========================================+=========+
+     +------------+----------------------------------------+---------+
      | JSON Value | Description                            | JSON    |
      |            |                                        | type    |
      +============+========================================+=========+
@@ -467,15 +523,15 @@ Internet-Draft               ACVP SafePrimes               November 2020
      | revision   | The algorithm testing revision to use  | string  |
      +------------+----------------------------------------+---------+
      | testGroups | Array of test group JSON objects,      | array   |
-     |            | which are defined in Section 7.1, or   |         |
-     |            | Section 7.2 depending on the algorithm |         |
+     |            | which are defined in Section 8.1, or   |         |
+     |            | Section 8.2 depending on the algorithm |         |
      +------------+----------------------------------------+---------+
 
                 Table 5: Safe Primes Vector Set JSON Object
 
-7.1.  SafePrime keyGen Test Vectors
+8.1.  SafePrime keyGen Test Vectors
 
-7.1.1.  SafePrime keyGen Test Groups JSON Schema
+8.1.1.  SafePrime keyGen Test Groups JSON Schema
 
    The testGroups element at the top level in the test vector JSON
    object is an array of test groups.  Test vectors are grouped into
@@ -501,12 +557,12 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 9]
+Hammett                    Expires 22 May 2021                 [Page 10]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
 
-     +================+===================================+=========+
+     +----------------+-----------------------------------+---------+
      | JSON Value     | Description                       | JSON    |
      |                |                                   | type    |
      +================+===================================+=========+
@@ -519,19 +575,19 @@ Internet-Draft               ACVP SafePrimes               November 2020
      +----------------+-----------------------------------+---------+
      | tests          | Array of individual test vector   | array   |
      |                | JSON objects, which are defined   |         |
-     |                | in Section 7.1.2                  |         |
+     |                | in Section 8.1.2                  |         |
      +----------------+-----------------------------------+---------+
 
             Table 6: Safe Prime keyGen Test Group JSON Object
 
-7.1.2.  SafePrime keyGen Test Case JSON Schema
+8.1.2.  SafePrime keyGen Test Case JSON Schema
 
    Each test group contains an array of one or more test cases.  Each
    test case is a JSON object that represents a single test vector to be
    processed by the ACVP client.  The following table describes the JSON
    elements for each safePrime / keyGen / 1.0 test vector.
 
-    +============+=======================================+===========+
+    +------------+---------------------------------------+-----------+
     | JSON Value | Description                           | JSON type |
     +============+=======================================+===========+
     | tcId       | Numeric identifier for the test case, | integer   |
@@ -557,14 +613,14 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 10]
+Hammett                    Expires 22 May 2021                 [Page 11]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
 
    [
        {
-           "acvVersion": <acvp-version>
+           "acvVersion": &lt;acvp-version&gt;
        },
        {
            "vsId": 0,
@@ -613,14 +669,14 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 11]
+Hammett                    Expires 22 May 2021                 [Page 12]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
 
-7.2.  SafePrime keyVer Test Vectors
+8.2.  SafePrime keyVer Test Vectors
 
-7.2.1.  SafePrime keyVer Test Groups JSON Schema
+8.2.1.  SafePrime keyVer Test Groups JSON Schema
 
    The testGroups element at the top level in the test vector JSON
    object is an array of test groups.  Test vectors are grouped into
@@ -633,7 +689,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
    The test group for safePrime / keyVer / 1.0 is as follows:
 
-     +================+===================================+=========+
+     +----------------+-----------------------------------+---------+
      | JSON Value     | Description                       | JSON    |
      |                |                                   | type    |
      +================+===================================+=========+
@@ -646,12 +702,12 @@ Internet-Draft               ACVP SafePrimes               November 2020
      +----------------+-----------------------------------+---------+
      | tests          | Array of individual test vector   | array   |
      |                | JSON objects, which are defined   |         |
-     |                | in Section 7.2.2                  |         |
+     |                | in Section 8.2.2                  |         |
      +----------------+-----------------------------------+---------+
 
             Table 8: Safe Prime keyVer Test Group JSON Object
 
-7.2.2.  SafePrime keyVer Test Case JSON Schema
+8.2.2.  SafePrime keyVer Test Case JSON Schema
 
    Each test group contains an array of one or more test cases.  Each
    test case is a JSON object that represents a single test vector to be
@@ -669,12 +725,12 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 12]
+Hammett                    Expires 22 May 2021                 [Page 13]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
 
-    +============+=======================================+===========+
+    +------------+---------------------------------------+-----------+
     | JSON Value | Description                           | JSON type |
     +============+=======================================+===========+
     | tcId       | Numeric identifier for the test case, | integer   |
@@ -692,7 +748,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
    [
        {
-           "acvVersion": <acvp-version>
+           "acvVersion": &lt;acvp-version&gt;
        },
        {
            "vsId": 0,
@@ -725,7 +781,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 13]
+Hammett                    Expires 22 May 2021                 [Page 14]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
@@ -758,14 +814,14 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
                                   Figure 6
 
-8.  Test Vector Responses
+9.  Test Vector Responses
 
    After the ACVP client downloads and processes a vector set, it must
    send the response vectors back to the ACVP server.  The following
    table describes the JSON object that represents a vector set
    response.
 
-        +===============+============================+===========+
+        +---------------+----------------------------+-----------+
         | JSON Property | Description                | JSON Type |
         +===============+============================+===========+
         | acvVersion    | The ACVP version used      | string    |
@@ -781,7 +837,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 14]
+Hammett                    Expires 22 May 2021                 [Page 15]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
@@ -801,7 +857,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
    mode / revision combinations might require that additional test group
    properties are provided in the response.
 
-        +==========+====================================+=========+
+        +----------+------------------------------------+---------+
         | JSON     | Description                        | JSON    |
         | Property |                                    | Type    |
         +==========+====================================+=========+
@@ -823,7 +879,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
                                   Figure 8
 
-8.1.  Safe Primes keyGen Test Vector Responses
+9.1.  Safe Primes keyGen Test Vector Responses
 
    The test groups for SafePrimes / keyGen / 1.0 contain public key
    properties.  The groups can be described using the following table.
@@ -837,12 +893,12 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 15]
+Hammett                    Expires 22 May 2021                 [Page 16]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
 
-   +============+=========================================+===========+
+   +------------+-----------------------------------------+-----------+
    | JSON Value | Description                             | JSON type |
    +============+=========================================+===========+
    | tgId       | The test group identifier               | integer   |
@@ -857,7 +913,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
    processed by the ACVP client.  The following table describes the JSON
    elements for each safePrimes / keyGen / 1.0 test vector.
 
-         +============+=============================+===========+
+         +------------+-----------------------------+-----------+
          | JSON Value | Description                 | JSON type |
          +============+=============================+===========+
          | tcId       | The test case identifier    | integer   |
@@ -893,14 +949,14 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 16]
+Hammett                    Expires 22 May 2021                 [Page 17]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
 
    [
        {
-           "acvVersion": <acvp-version>
+           "acvVersion": &lt;acvp-version&gt;
        },
        {
            "vsId": 0,
@@ -921,12 +977,12 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
                                   Figure 9
 
-8.2.  Safe Primes keyVer Test Vector Responses
+9.2.  Safe Primes keyVer Test Vector Responses
 
    The test groups for SafePrimes / keyVer / 1.0 contain public key
    properties.  The groups can be described using the following table.
 
-   +============+=========================================+===========+
+   +------------+-----------------------------------------+-----------+
    | JSON Value | Description                             | JSON type |
    +============+=========================================+===========+
    | tgId       | The test group identifier               | integer   |
@@ -949,12 +1005,12 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 17]
+Hammett                    Expires 22 May 2021                 [Page 18]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
 
-       +============+=================================+===========+
+       +------------+---------------------------------+-----------+
        | JSON Value | Description                     | JSON type |
        +============+=================================+===========+
        | tcId       | The test case identifier        | integer   |
@@ -969,7 +1025,7 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
    [
        {
-           "acvVersion": <acvp-version>
+           "acvVersion": &lt;acvp-version&gt;
        },
        {
            "vsId": 0,
@@ -989,23 +1045,23 @@ Internet-Draft               ACVP SafePrimes               November 2020
 
                                  Figure 10
 
-9.  Security Considerations
+10.  Security Considerations
 
    There are no additional security considerations outside of those
    outlined in the ACVP document.
 
-10.  IANA Considerations
+11.  IANA Considerations
 
    This document does not require any action by IANA.
 
-11.  Bibliography
+12.  Bibliography
 
 
 
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 18]
+Hammett                    Expires 22 May 2021                 [Page 19]
 
 Internet-Draft               ACVP SafePrimes               November 2020
 
@@ -1061,4 +1117,4 @@ Author's Address
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 19]
+Hammett                    Expires 22 May 2021                 [Page 20]

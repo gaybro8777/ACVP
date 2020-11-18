@@ -3,9 +3,9 @@
 
 
 Network Working Group                                   A. Vassilev, Ed.
-Internet-Draft                                          17 November 2020
+Internet-Draft                                          18 November 2020
 Intended status: Informational                                          
-Expires: 21 May 2021
+Expires: 22 May 2021
 
 
                            ACVP IANA Registry
@@ -34,7 +34,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2021.
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Vassilev                   Expires 21 May 2021                  [Page 1]
+Vassilev                   Expires 22 May 2021                  [Page 1]
 
 Internet-Draft                  ACVP IANA                  November 2020
 
@@ -70,7 +70,7 @@ Table of Contents
      6.1.  ACVP URN Sub-namespace  . . . . . . . . . . . . . . . . .   4
      6.2.  ACVP URN Parameters . . . . . . . . . . . . . . . . . . .   5
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .   5
-   8.  Normative references  . . . . . . . . . . . . . . . . . . . .   5
+   8.  Normative References  . . . . . . . . . . . . . . . . . . . .   5
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .   6
 
 1.  Acknowledgements
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Vassilev                   Expires 21 May 2021                  [Page 2]
+Vassilev                   Expires 22 May 2021                  [Page 2]
 
 Internet-Draft                  ACVP IANA                  November 2020
 
@@ -143,7 +143,7 @@ Internet-Draft                  ACVP IANA                  November 2020
 
 4.1.  Initial Algorithm Registry Names
 
-            +===================+==========+=================+
+            +-------------------+----------+-----------------+
             | Name              | Revision |    Reference    |
             +===================+==========+=================+
             | "ACVP-AES-ECB"    |  "1.0"   | [Sub-symmetric] |
@@ -165,7 +165,7 @@ Internet-Draft                  ACVP IANA                  November 2020
 
 
 
-Vassilev                   Expires 21 May 2021                  [Page 3]
+Vassilev                   Expires 22 May 2021                  [Page 3]
 
 Internet-Draft                  ACVP IANA                  November 2020
 
@@ -221,7 +221,7 @@ Internet-Draft                  ACVP IANA                  November 2020
 
 
 
-Vassilev                   Expires 21 May 2021                  [Page 4]
+Vassilev                   Expires 22 May 2021                  [Page 4]
 
 Internet-Draft                  ACVP IANA                  November 2020
 
@@ -266,7 +266,7 @@ Internet-Draft                  ACVP IANA                  November 2020
 
    Security considerations are addressed by the ACVP specification.
 
-8.  Normative references
+8.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", IETF RFC 2119, IETF RFC 2119,
@@ -277,7 +277,7 @@ Internet-Draft                  ACVP IANA                  November 2020
 
 
 
-Vassilev                   Expires 21 May 2021                  [Page 5]
+Vassilev                   Expires 22 May 2021                  [Page 5]
 
 Internet-Draft                  ACVP IANA                  November 2020
 
@@ -333,4 +333,4 @@ Author's Address
 
 
 
-Vassilev                   Expires 21 May 2021                  [Page 6]
+Vassilev                   Expires 22 May 2021                  [Page 6]

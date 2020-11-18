@@ -6,26 +6,8 @@
 <meta content="initial-scale=1.0" name="viewport">
 <title>ACVP Password-based Key Derivation Function JSON Specification</title>
 <meta content="Christopher Celi" name="author">
-<meta content="xml2rfc 3.4.0" name="generator">
+<meta content="xml2rfc 2.45.3" name="generator">
 <meta content="draft-gold-acvp-pbkdf-01" name="ietf.draft">
-<!-- Generator version information:
-  xml2rfc 3.4.0
-    Python 3.7.3
-    appdirs 1.4.4
-    ConfigArgParse 1.2.3
-    google-i18n-address 2.4.0
-    html5lib 1.1
-    intervaltree 3.1.0
-    Jinja2 2.11.2
-    kitchen 1.2.6
-    lxml 4.6.1
-    pycountry 20.7.3
-    pyflakes 2.2.0
-    PyYAML 5.3.1
-    requests 2.25.0
-    setuptools 50.3.2
-    six 1.15.0
--->
 <link href="draft-celi-acvp-pbkdf.rfc.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">/*
@@ -927,6 +909,12 @@ caption a[href] {
   }
 
 }
+/* Avoid wrapping of URLs in references */
+@media screen {
+  .references a {
+    white-space: nowrap;
+  }
+}
 /* Tweak the bcp14 keyword presentation */
 .bcp14 {
   font-variant: small-caps;
@@ -1076,7 +1064,6 @@ figure, pre, table, .artwork, .sourcecode  {
 }
 /* Avoid breaks between <dt> and <dd> */
 dl {
-  break-before: auto;
   break-inside: auto;
 }
 dt {
@@ -1089,7 +1076,7 @@ dd {
   orphans: 3;
   widows: 3
 }
-span.break, dd.break {
+dd.break {
   margin-bottom: 0;
   min-height: 0;
   break-before: auto;
@@ -1115,48 +1102,8 @@ section ol.compact,
 section .olCompact {
   margin-bottom: 1em;                    /* same as p not within ul.compact etc. */
 }
-/* The tt and code background above interferes with for instance table cell
-   backgrounds.  Changed to something a bit more selective. */
-tt, code {
-  background-color: transparent;
-}
-p tt, p code, li tt, li code {
-  background-color: #f8f8f8;
-}
-/* Tweak the pre margin -- 0px doesn't come out well */
-pre {
-   margin-top: 0.5px;
-}
-/* Tweak the comact list text */
-ul.compact, .ulCompact,
-ol.compact, .olCompact,
-dl.compact, .dlCompact {
-  line-height: normal;
-}
-/* Don't add top margin for nested lists */
-li > ul, li > ol, li > dl,
-dd > ul, dd > ol, dd > dl,
-dl > dd > dl {
-  margin-top: initial;
-}
-/* Elements that should not be rendered on the same line as a <dt> */
-/* This should match the element list in writer.text.TextWriter.render_dl() */
-dd > div.artwork:first-child,
-dd > aside:first-child,
-dd > figure:first-child,
-dd > ol:first-child,
-dd > div:first-child > pre.sourcecode,
-dd > table:first-child,
-dd > ul:first-child {
-  clear: left;
-}
-/* fix for weird browser behaviour when <dd/> is empty */
-dt+dd:empty::before{
-  content: "\00a0";
-}
 </style>
 <link href="rfc-local.css" rel="stylesheet" type="text/css">
-<script type="application/javascript">async function addMetadata(){try{const e=document.styleSheets[0].cssRules;for(let t=0;t<e.length;t++)if(/#identifiers/.exec(e[t].selectorText)){const a=e[t].cssText.replace("#identifiers","#external-updates");document.styleSheets[0].insertRule(a,document.styleSheets[0].cssRules.length)}}catch(e){console.log(e)}const e=document.getElementById("external-metadata");if(e)try{var t,a="",o=function(e){const t=document.getElementsByTagName("meta");for(let a=0;a<t.length;a++)if(t[a].getAttribute("name")===e)return t[a].getAttribute("content");return""}("rfc.number");if(o){t="https://www.rfc-editor.org/rfc/rfc"+o+".json";try{const e=await fetch(t);a=await e.json()}catch(e){t=document.URL.indexOf("html")>=0?document.URL.replace(/html$/,"json"):document.URL+".json";const o=await fetch(t);a=await o.json()}}if(!a)return;e.style.display="block";const s="",d="https://datatracker.ietf.org/doc",n="https://datatracker.ietf.org/ipr/search",c="https://www.rfc-editor.org/info",l=a.doc_id.toLowerCase(),i=a.doc_id.slice(0,3).toLowerCase(),f=a.doc_id.slice(3).replace(/^0+/,""),u={status:"Status",obsoletes:"Obsoletes",obsoleted_by:"Obsoleted By",updates:"Updates",updated_by:"Updated By",see_also:"See Also",errata_url:"Errata"};let h="<dl style='overflow:hidden' id='external-updates'>";["status","obsoletes","obsoleted_by","updates","updated_by","see_also","errata_url"].forEach(e=>{if("status"==e){a[e]=a[e].toLowerCase();var t=a[e].split(" "),o=t.length,w="",p=1;for(let e=0;e<o;e++)p<o?w=w+r(t[e])+" ":w+=r(t[e]),p++;a[e]=w}else if("obsoletes"==e||"obsoleted_by"==e||"updates"==e||"updated_by"==e){var g,m="",b=1;g=a[e].length;for(let t=0;t<g;t++)a[e][t]&&(a[e][t]=String(a[e][t]).toLowerCase(),m=b<g?m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>, ":m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>",b++);a[e]=m}else if("see_also"==e){var y,L="",C=1;y=a[e].length;for(let t=0;t<y;t++)if(a[e][t]){a[e][t]=String(a[e][t]);var _=a[e][t].slice(0,3),v=a[e][t].slice(3).replace(/^0+/,"");L=C<y?"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>, ":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>, ":"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>",C++}a[e]=L}else if("errata_url"==e){var R="";R=a[e]?R+"<a href='"+a[e]+"'>Errata exist</a> | <a href='"+d+"/"+l+"'>Datatracker</a>| <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>":"<a href='"+d+"/"+l+"'>Datatracker</a> | <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>",a[e]=R}""!=a[e]?"Errata"==u[e]?h+=`<dt>More info:</dt><dd>${a[e]}</dd>`:h+=`<dt>${u[e]}:</dt><dd>${a[e]}</dd>`:"Errata"==u[e]&&(h+=`<dt>More info:</dt><dd>${a[e]}</dd>`)}),h+="</dl>",e.innerHTML=h}catch(e){console.log(e)}else console.log("Could not locate metadata <div> element");function r(e){return e.charAt(0).toUpperCase()+e.slice(1)}}window.removeEventListener("load",addMetadata),window.addEventListener("load",addMetadata);</script>
 </head>
 <body>
 <script src="metadata.min.js"></script>
@@ -1168,7 +1115,7 @@ dt+dd:empty::before{
 </tr></thead>
 <tfoot><tr>
 <td class="left">Celi</td>
-<td class="center">Expires 21 May 2021</td>
+<td class="center">Expires 22 May 2021</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1183,12 +1130,12 @@ dt+dd:empty::before{
 <dd></dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2020-11-17" class="published">17 November 2020</time>
+<time datetime="2020-11-18" class="published">18 November 2020</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-05-21">21 May 2021</time></dd>
+<dd class="expires"><time datetime="2021-05-22">22 May 2021</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1218,7 +1165,7 @@ dt+dd:empty::before{
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 May 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 May 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1243,68 +1190,79 @@ dt+dd:empty::before{
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.1">
+<nav class="toc"><ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-acknowledgements" class="xref">Acknowledgements</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.2">
+<li class="compact ulEmpty toc" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="xref">2</a>.  <a href="#name-abstract" class="xref">Abstract</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.3">
+<li class="compact ulEmpty toc" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="xref">3</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.4">
+<li class="compact ulEmpty toc" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-terms-and-definitions" class="xref">Terms and definitions</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-test-types" class="xref">Test Types</a><a href="#section-toc.1-1.4.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-test-coverage" class="xref">Test Coverage</a><a href="#section-toc.1-1.4.2.2.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-supported-kdfs" class="xref">Supported KDFs</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
 </li>
-            </ul>
+<li class="compact ulEmpty toc" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-test-types-and-test-coverag" class="xref">Test Types and Test Coverage</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
+<ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-test-types" class="xref">Test Types</a><a href="#section-toc.1-1.6.2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-capabilities-registration" class="xref">Capabilities Registration</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-prerequisites" class="xref">Prerequisites</a><a href="#section-toc.1-1.5.2.1.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-test-coverage" class="xref">Test Coverage</a><a href="#section-toc.1-1.6.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="xref">5.2</a>.  <a href="#name-property-registration" class="xref">Property Registration</a><a href="#section-toc.1-1.5.2.2.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.5.2.3">
-                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="xref">5.3</a>.  <a href="#name-registration-example" class="xref">Registration Example</a><a href="#section-toc.1-1.5.2.3.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.5.2.3.2.1">
-                    <p id="section-toc.1-1.5.2.3.2.1.1"><a href="#section-5.3.1" class="xref">5.3.1</a>.  <a href="#name-valid-hash-functions" class="xref">Valid Hash Functions</a><a href="#section-toc.1-1.5.2.3.2.1.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-capabilities-registration" class="xref">Capabilities Registration</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
+<ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-prerequisites" class="xref">Prerequisites</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                </ul>
+<li class="compact ulEmpty toc" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-property-registration" class="xref">Property Registration</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.5.2.4">
-                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="xref">5.4</a>.  <a href="#name-test-groups" class="xref">Test Groups</a><a href="#section-toc.1-1.5.2.4.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.7.2.3">
+                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="xref">7.3</a>.  <a href="#name-registration-example" class="xref">Registration Example</a><a href="#section-toc.1-1.7.2.3.1" class="pilcrow">¶</a></p>
+<ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.7.2.3.2.1">
+                    <p id="section-toc.1-1.7.2.3.2.1.1"><a href="#section-7.3.1" class="xref">7.3.1</a>.  <a href="#name-valid-hash-functions" class="xref">Valid Hash Functions</a><a href="#section-toc.1-1.7.2.3.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.5.2.5">
-                <p id="section-toc.1-1.5.2.5.1"><a href="#section-5.5" class="xref">5.5</a>.  <a href="#name-test-cases" class="xref">Test Cases</a><a href="#section-toc.1-1.5.2.5.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-            </ul>
+</ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-responses" class="xref">Responses</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-test-vectors" class="xref">Test Vectors</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+<ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="xref">8.1</a>.  <a href="#name-test-groups" class="xref">Test Groups</a><a href="#section-toc.1-1.8.2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="xref">8.2</a>.  <a href="#name-test-cases" class="xref">Test Cases</a><a href="#section-toc.1-1.8.2.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-normative-references" class="xref">Normative references</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-responses" class="xref">Responses</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
 </li>
-        </ul>
+<li class="compact ulEmpty toc" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="xref">11</a>. <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
+</li>
+<li class="compact ulEmpty toc" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-12" class="xref">12</a>. <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
+</li>
+<li class="compact ulEmpty toc" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a><a href="#section-toc.1-1.13.1" class="pilcrow">¶</a></p>
+</li>
+</ul>
 </nav>
 </section>
 </div>
@@ -1313,7 +1271,7 @@ dt+dd:empty::before{
       <h2 id="name-acknowledgements">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
       </h2>
-<div id="_216aca2c-9dae-4282-b37b-ca3d5bee6078">
+<div id="_6b206ee9-00e2-42b3-88ce-303127389b8c">
 <p id="section-1-1">There are no acknowledgements.<a href="#section-1-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1323,7 +1281,7 @@ dt+dd:empty::before{
       <h2 id="name-abstract">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-abstract" class="section-name selfRef">Abstract</a>
       </h2>
-<div id="_817e628e-3a99-4210-bd8e-8cd4e7694132">
+<div id="_7fc6d60b-5ef6-4544-9a15-94d296fbd927">
 <p id="section-2-1">This document defines the JSON schema for testing Password-based KDF implementations with the ACVP specification.<a href="#section-2-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1333,7 +1291,7 @@ dt+dd:empty::before{
       <h2 id="name-introduction">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<div id="_3dd4393e-dac9-43fd-a99b-e076d1b810ae">
+<div id="_6c4e269d-2855-4070-9840-be0164c8bc20">
 <p id="section-3-1">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing Password-based KDF implementations using ACVP.<a href="#section-3-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1343,62 +1301,88 @@ dt+dd:empty::before{
       <h2 id="name-terms-and-definitions">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-terms-and-definitions" class="section-name selfRef">Terms and definitions</a>
       </h2>
-<div id="_9ac1e4d6-efff-4e16-9abd-518c55fc098d">
-<p id="section-4-1">For the purposes of this document,
-    the following terms and definitions apply.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<div id="_d587aa24-5bd4-44e9-93bf-e065f73bf237">
+<p id="section-4-1">No terms and definitions are listed in this document.<a href="#section-4-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_test_types">
-<section id="section-4.1">
-        <h3 id="name-test-types">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-test-types" class="section-name selfRef">Test Types</a>
-        </h3>
-<div id="_56963894-1532-4799-b273-fee38e11a5cf">
-<p id="section-4.1-1">There is only one test type: functional tests. Each has a specific value to be used in the testType field. The testType field definitions are:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="supported">
+<section id="section-5">
+      <h2 id="name-supported-kdfs">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-supported-kdfs" class="section-name selfRef">Supported KDFs</a>
+      </h2>
+<div id="_4d54ad94-652f-4177-91ab-6ce7151cd076">
+<p id="section-5-1">The following key derivation functions <span class="bcp14">MAY</span> be advertised by the ACVP compliant cryptographic module:<a href="#section-5-1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.1-2.1">
-            <div id="_6348c827-7db8-4a5b-8c9d-c4d7042098be">
-<p id="section-4.1-2.1.1">"AFT" - Algorithm Functional Test. These tests can be processed by the client using a normal <code>derive_key</code> operation. AFTs cause the implementation under test to exercise normal operations on a single block, multiple blocks, or partial blocks. In all cases, random data is used. The functional tests are designed to verify that the logical components of the key derivation process are operating correctly.<a href="#section-4.1-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5-2.1">
+          <div id="_13e90f85-ff01-4635-8ae5-8ae4323634d6">
+<p id="section-5-2.1.1">PBKDF / 1.0<a href="#section-5-2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-        </ul>
+</ul>
+</section>
+</div>
+<div id="testtypes">
+<section id="section-6">
+      <h2 id="name-test-types-and-test-coverag">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-test-types-and-test-coverag" class="section-name selfRef">Test Types and Test Coverage</a>
+      </h2>
+<div id="_1f845c32-ced6-40bf-9aa3-0c222bc4a4d1">
+<p id="section-6-1">This section describes the design of the tests used to validate Password-based KDF implementations.<a href="#section-6-1" class="pilcrow">¶</a></p>
+</div>
+<div id="_test_types">
+<section id="section-6.1">
+        <h3 id="name-test-types">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-test-types" class="section-name selfRef">Test Types</a>
+        </h3>
+<div id="_d7589ce5-83d1-42a7-98a8-83b780e16e77">
+<p id="section-6.1-1">There is only one test type: functional tests. Each has a specific value to be used in the testType field. The testType field definitions are:<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+</div>
+<ul class="normal">
+<li class="normal" id="section-6.1-2.1">
+            <div id="_3b70c92a-abfc-4c77-b601-8f87aa5f9e9d">
+<p id="section-6.1-2.1.1">"AFT" - Algorithm Functional Test. These tests can be processed by the client using a normal <code>derive_key</code> operation. AFTs cause the implementation under test to exercise normal operations on a single block, multiple blocks, or partial blocks. In all cases, random data is used. The functional tests are designed to verify that the logical components of the key derivation process are operating correctly.<a href="#section-6.1-2.1.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+</ul>
 </section>
 </div>
 <div id="_test_coverage">
-<section id="section-4.2">
+<section id="section-6.2">
         <h3 id="name-test-coverage">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-test-coverage" class="section-name selfRef">Test Coverage</a>
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-test-coverage" class="section-name selfRef">Test Coverage</a>
         </h3>
-<div id="_1cbbf263-18e6-4530-bd95-eaebf6edafc4">
-<p id="section-4.2-1">The tests described in this document have the intention of ensuring an implementation is conformant to XXX.<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<div id="_c2f1d9e6-fa0d-468f-9fa5-9f4f2fea1a36">
+<p id="section-6.2-1">The tests described in this document have the intention of ensuring an implementation is conformant to XXX.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 </section>
 </div>
 <div id="capabilities">
-<section id="section-5">
+<section id="section-7">
       <h2 id="name-capabilities-registration">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-capabilities-registration" class="section-name selfRef">Capabilities Registration</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-capabilities-registration" class="section-name selfRef">Capabilities Registration</a>
       </h2>
-<div id="_1e7fed60-ed52-4d83-9dfa-bcef79960319">
-<p id="section-5-1">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of PBKDF algorithms to the ACVP server.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<div id="_accc8bf8-7b63-497a-b274-5bd2f9e2f225">
+<p id="section-7-1">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of PBKDF algorithms to the ACVP server.<a href="#section-7-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_7751e508-6acb-4aa5-ba7a-9b6d6ee8b12e">
-<p id="section-5-2">The algorithm capabilities <span class="bcp14">MUST</span> be advertised as JSON objects within the 'algorithms' value of the ACVP registration message. The 'algorithms' value is an array, where each array element is an individual JSON object defined in this section. The 'algorithms' value is part of the 'capability_exchange' element of the ACVP JSON registration message. See the ACVP specification <span>[<a href="#ACVP" class="xref">ACVP</a>]</span> for more details on the registration message.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<div id="_98cd1f64-87b1-4e36-ab1d-065dc3676c63">
+<p id="section-7-2">The algorithm capabilities <span class="bcp14">MUST</span> be advertised as JSON objects within the 'algorithms' value of the ACVP registration message. The 'algorithms' value is an array, where each array element is an individual JSON object defined in this section. The 'algorithms' value is part of the 'capability_exchange' element of the ACVP JSON registration message. See the ACVP specification <span>[<a href="#ACVP" class="xref">ACVP</a>]</span> for more details on the registration message.<a href="#section-7-2" class="pilcrow">¶</a></p>
 </div>
 <div id="prerequisites">
-<section id="section-5.1">
+<section id="section-7.1">
         <h3 id="name-prerequisites">
-<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-prerequisites" class="section-name selfRef">Prerequisites</a>
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-prerequisites" class="section-name selfRef">Prerequisites</a>
         </h3>
-<div id="_86287487-d95e-4ee8-b575-d96325a09e3a">
-<p id="section-5.1-1">Each algorithm implementation <span class="bcp14">MAY</span> rely on other cryptographic primitives. For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<div id="_8404aef3-131d-4cfa-bb76-fc2528ef868c">
+<p id="section-7.1-1">Each algorithm implementation <span class="bcp14">MAY</span> rely on other cryptographic primitives. For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_8077fc40-78e5-46c5-958c-a0d86f8ff399">
-<p id="section-5.1-2">Prerequisites, if applicable, <span class="bcp14">MUST</span> be submitted in the registration as the <code>prereqVals</code> JSON property array inside each element of the <code>algorithms</code> array. Each element in the <code>prereqVals</code> array <span class="bcp14">MUST</span> contain the following properties<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<div id="_0e347ddc-351e-4a39-86db-843da9b72ebe">
+<p id="section-7.1-2">Prerequisites, if applicable, <span class="bcp14">MUST</span> be submitted in the registration as the <code>prereqVals</code> JSON property array inside each element of the <code>algorithms</code> array. Each element in the <code>prereqVals</code> array <span class="bcp14">MUST</span> contain the following properties<a href="#section-7.1-2" class="pilcrow">¶</a></p>
 </div>
-<span id="name-prerequisite-properties"></span><div id="_fee3be26-0f59-4985-b67e-a3b6bff971ed">
+<span id="name-prerequisite-properties"></span><div id="_6b2a7d93-ff75-4076-af13-dd9d8c322e9e">
 <table class="center" id="table-1">
           <caption>
 <a href="#table-1" class="selfRef">Table 1</a>:
@@ -1425,15 +1409,15 @@ dt+dd:empty::before{
           </tbody>
         </table>
 </div>
-<div id="_b4806f0f-b19c-4ade-a1c0-7a6d360979be">
-<p id="section-5.1-4">A "valValue" of "same" <span class="bcp14">SHALL</span> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.<a href="#section-5.1-4" class="pilcrow">¶</a></p>
+<div id="_a56ef9df-2700-4418-bf10-80c0bdf31c73">
+<p id="section-7.1-4">A "valValue" of "same" <span class="bcp14">SHALL</span> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
 </div>
-<div id="_3a8c6c05-dcf9-49c4-a756-ce30bbc13771">
-<p id="section-5.1-5">An example description of prerequisites within a single algorithm capability exchange looks like this<a href="#section-5.1-5" class="pilcrow">¶</a></p>
+<div id="_a841086c-9ff7-40af-8ff7-987b0debb9be">
+<p id="section-7.1-5">An example description of prerequisites within a single algorithm capability exchange looks like this<a href="#section-7.1-5" class="pilcrow">¶</a></p>
 </div>
-<div id="_255eb1ef-3f92-49e3-8a0b-b806e36a0735">
+<div id="_33a9508f-6ce9-458c-9774-73fd19d0a586">
 <figure id="figure-1">
-          <div id="section-5.1-6.1">
+          <div id="section-7.1-6.1">
 <pre class="sourcecode lang-json">"prereqVals":
 [
   {
@@ -1451,24 +1435,24 @@ dt+dd:empty::before{
 </section>
 </div>
 <div id="properties">
-<section id="section-5.2">
+<section id="section-7.2">
         <h3 id="name-property-registration">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-property-registration" class="section-name selfRef">Property Registration</a>
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-property-registration" class="section-name selfRef">Property Registration</a>
         </h3>
-<div id="_ca7f6409-c33a-4766-a5fb-d4d914b1ed38">
-<p id="section-5.2-1">The Password-based KDF mode capabilities are advertised as JSON objects within the 'capabilities_exchange' property.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<div id="_73e4fe29-121b-4d11-85ea-f234d4cc73fa">
+<p id="section-7.2-1">The Password-based KDF mode capabilities are advertised as JSON objects within the 'capabilities_exchange' property.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="_registration_example">
-<section id="section-5.3">
+<section id="section-7.3">
         <h3 id="name-registration-example">
-<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-registration-example" class="section-name selfRef">Registration Example</a>
+<a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-registration-example" class="section-name selfRef">Registration Example</a>
         </h3>
-<div id="_37ea450d-90d9-4e36-b02d-73df60941dde">
-<p id="section-5.3-1">A registration <span class="bcp14">SHALL</span> use these properties<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<div id="_e6fc2e75-763d-4443-ab99-74a081dba1ba">
+<p id="section-7.3-1">A registration <span class="bcp14">SHALL</span> use these properties<a href="#section-7.3-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-pbkdf-algorithm-capabilitie"></span><div id="_c047ee7c-3c6e-44b8-99c9-ea3b495c00a6">
+<span id="name-pbkdf-algorithm-capabilitie"></span><div id="_6c2f8330-68bf-4131-908f-f3be8f9e80eb">
 <table class="center" id="table-2">
           <caption>
 <a href="#table-2" class="selfRef">Table 2</a>:
@@ -1499,7 +1483,7 @@ dt+dd:empty::before{
               <td class="text-left" rowspan="1" colspan="1">prereqVals</td>
               <td class="text-left" rowspan="1" colspan="1">Prerequisites of the algorithm</td>
               <td class="text-left" rowspan="1" colspan="1">object</td>
-              <td class="text-left" rowspan="1" colspan="1">See <a href="#prerequisites" class="xref">Section 5.1</a>
+              <td class="text-left" rowspan="1" colspan="1">See <a href="#prerequisites" class="xref">Section 7.1</a>
 </td>
             </tr>
             <tr>
@@ -1536,18 +1520,18 @@ dt+dd:empty::before{
               <td class="text-left" rowspan="1" colspan="1">hmacAlg</td>
               <td class="text-left" rowspan="1" colspan="1">The supported hash algorithms used for HMAC</td>
               <td class="text-left" rowspan="1" colspan="1">array</td>
-              <td class="text-left" rowspan="1" colspan="1">See <a href="#valid-sha" class="xref">Section 5.3.1</a>
+              <td class="text-left" rowspan="1" colspan="1">See <a href="#valid-sha" class="xref">Section 7.3.1</a>
 </td>
             </tr>
           </tbody>
         </table>
 </div>
-<div id="_bfaa5387-5703-4b91-8eb1-c564d6a13e73">
-<p id="section-5.3-3">An example registration within an algorithm capability exchange looks like this<a href="#section-5.3-3" class="pilcrow">¶</a></p>
+<div id="_d3dab796-0ad0-4472-b087-b5220bd086f3">
+<p id="section-7.3-3">An example registration within an algorithm capability exchange looks like this<a href="#section-7.3-3" class="pilcrow">¶</a></p>
 </div>
-<div id="_5d943c24-27e8-41d5-a1e9-c55cf142b2e9">
+<div id="_604b62e3-ebec-4563-a7b2-21070bdfd417">
 <figure id="figure-2">
-          <div id="section-5.3-4.1">
+          <div id="section-7.3-4.1">
 <pre class="sourcecode lang-json">{
   "algorithm":"PBKDF",
   "revision":"1.0",
@@ -1605,131 +1589,141 @@ dt+dd:empty::before{
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a></figcaption></figure>
 </div>
 <div id="valid-sha">
-<section id="section-5.3.1">
+<section id="section-7.3.1">
           <h4 id="name-valid-hash-functions">
-<a href="#section-5.3.1" class="section-number selfRef">5.3.1. </a><a href="#name-valid-hash-functions" class="section-name selfRef">Valid Hash Functions</a>
+<a href="#section-7.3.1" class="section-number selfRef">7.3.1. </a><a href="#name-valid-hash-functions" class="section-name selfRef">Valid Hash Functions</a>
           </h4>
-<div id="_e4035ba6-c2be-4f24-9e1f-00cc3b51f372">
-<p id="section-5.3.1-1">The following hash functions <span class="bcp14">MAY</span> be advertised by an ACVP compliant client under the 'hmacAlg' property<a href="#section-5.3.1-1" class="pilcrow">¶</a></p>
+<div id="_038f02a7-0b7d-4846-b69f-1693f380a80e">
+<p id="section-7.3.1-1">The following hash functions <span class="bcp14">MAY</span> be advertised by an ACVP compliant client under the 'hmacAlg' property<a href="#section-7.3.1-1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-5.3.1-2.1">
-              <div id="_898a6a72-88e8-424a-be9c-3eb7aa95e872">
-<p id="section-5.3.1-2.1.1">SHA-1<a href="#section-5.3.1-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.3.1-2.1">
+              <div id="_cdd08430-3906-4b11-aed5-d6437b61d7a4">
+<p id="section-7.3.1-2.1.1">SHA-1<a href="#section-7.3.1-2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-5.3.1-2.2">
-              <div id="_7b7d1a38-565f-49e3-87f0-ae5f2d00d2aa">
-<p id="section-5.3.1-2.2.1">SHA2-224<a href="#section-5.3.1-2.2.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.3.1-2.2">
+              <div id="_16cccf13-667d-49df-8a5d-be40abc900a6">
+<p id="section-7.3.1-2.2.1">SHA2-224<a href="#section-7.3.1-2.2.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-5.3.1-2.3">
-              <div id="_32dd0d89-52bc-49d6-b821-46bdc9c1ed72">
-<p id="section-5.3.1-2.3.1">SHA2-256<a href="#section-5.3.1-2.3.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.3.1-2.3">
+              <div id="_84383dc6-fa84-44e5-abb6-d0b9a2d05da5">
+<p id="section-7.3.1-2.3.1">SHA2-256<a href="#section-7.3.1-2.3.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-5.3.1-2.4">
-              <div id="_2c3ced38-fc4b-4fd4-b45b-e70bb13d7d36">
-<p id="section-5.3.1-2.4.1">SHA2-384<a href="#section-5.3.1-2.4.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.3.1-2.4">
+              <div id="_e6b1813a-6b9c-43b5-9e28-7aea7c1cef6b">
+<p id="section-7.3.1-2.4.1">SHA2-384<a href="#section-7.3.1-2.4.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-5.3.1-2.5">
-              <div id="_a8aa30e9-36cd-49d0-9d10-d1a055b22e01">
-<p id="section-5.3.1-2.5.1">SHA2-512<a href="#section-5.3.1-2.5.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.3.1-2.5">
+              <div id="_372d7a38-9236-47e6-be6a-6fe2ad243638">
+<p id="section-7.3.1-2.5.1">SHA2-512<a href="#section-7.3.1-2.5.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-5.3.1-2.6">
-              <div id="_d689992d-a101-4749-b388-b051586122ef">
-<p id="section-5.3.1-2.6.1">SHA2-512/224<a href="#section-5.3.1-2.6.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.3.1-2.6">
+              <div id="_15bc3306-ef76-49f4-8f2e-24f03c9c2a7a">
+<p id="section-7.3.1-2.6.1">SHA2-512/224<a href="#section-7.3.1-2.6.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-5.3.1-2.7">
-              <div id="_a2c092bb-fc62-4d7f-8eb7-70c9902134a6">
-<p id="section-5.3.1-2.7.1">SHA2-512/256<a href="#section-5.3.1-2.7.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.3.1-2.7">
+              <div id="_2e6087d4-953e-4571-9704-7c44413fbdbe">
+<p id="section-7.3.1-2.7.1">SHA2-512/256<a href="#section-7.3.1-2.7.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-5.3.1-2.8">
-              <div id="_028bf537-a347-4a22-9447-1807c6255b2b">
-<p id="section-5.3.1-2.8.1">SHA3-224<a href="#section-5.3.1-2.8.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.3.1-2.8">
+              <div id="_01d7157b-5050-4dd8-a7a8-d0f55c9d9ce3">
+<p id="section-7.3.1-2.8.1">SHA3-224<a href="#section-7.3.1-2.8.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-5.3.1-2.9">
-              <div id="_f8b53e55-859d-4f7b-8129-8745203412dd">
-<p id="section-5.3.1-2.9.1">SHA3-256<a href="#section-5.3.1-2.9.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.3.1-2.9">
+              <div id="_752cdd36-f98c-4be2-b579-bb74e48ae84a">
+<p id="section-7.3.1-2.9.1">SHA3-256<a href="#section-7.3.1-2.9.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-5.3.1-2.10">
-              <div id="_7a6adf52-8992-446e-8e8a-8cb8e880fee1">
-<p id="section-5.3.1-2.10.1">SHA3-384<a href="#section-5.3.1-2.10.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.3.1-2.10">
+              <div id="_d2d1682a-12ef-4c3d-beea-be41217c3744">
+<p id="section-7.3.1-2.10.1">SHA3-384<a href="#section-7.3.1-2.10.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-5.3.1-2.11">
-              <div id="_1af4a540-b62b-4383-8e3b-9a318eda63d6">
-<p id="section-5.3.1-2.11.1">SHA3-512
-== Test Vectors<a href="#section-5.3.1-2.11.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.3.1-2.11">
+              <div id="_d20fa753-ad1d-4b80-b0b5-8a2d6debbc4f">
+<p id="section-7.3.1-2.11.1">SHA3-512<a href="#section-7.3.1-2.11.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          </ul>
-<div id="_8a70f007-3718-4943-926c-5fea253d698e">
-<p id="section-5.3.1-3">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with Password-based KDF algorithms.<a href="#section-5.3.1-3" class="pilcrow">¶</a></p>
+</ul>
+</section>
 </div>
-<div id="_72cd1d05-20af-4578-b7c3-1fccd5a68757">
-<p id="section-5.3.1-4">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.<a href="#section-5.3.1-4" class="pilcrow">¶</a></p>
+</section>
 </div>
-<span id="name-top-level-test-vector-json-"></span><div id="_3fce82c5-1106-4ccc-b168-7e2c05f32d4a">
+</section>
+</div>
+<div id="test-vectors">
+<section id="section-8">
+      <h2 id="name-test-vectors">
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-test-vectors" class="section-name selfRef">Test Vectors</a>
+      </h2>
+<div id="_c3d92d00-1077-4829-8205-439165c11489">
+<p id="section-8-1">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with Password-based KDF algorithms.<a href="#section-8-1" class="pilcrow">¶</a></p>
+</div>
+<div id="_0d88d49b-89e3-44e4-a478-bf19848da64a">
+<p id="section-8-2">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.<a href="#section-8-2" class="pilcrow">¶</a></p>
+</div>
+<span id="name-top-level-test-vector-json-"></span><div id="_f5ec51d1-1c9e-4342-a32c-8e70c91ac061">
 <table class="center" id="table-3">
-            <caption>
+        <caption>
 <a href="#table-3" class="selfRef">Table 3</a>:
 <a href="#name-top-level-test-vector-json-" class="selfRef">Top Level Test Vector JSON Elements</a>
-            </caption>
+        </caption>
 <thead>
-              <tr>
-                <th class="text-left" rowspan="1" colspan="1">JSON Values</th>
-                <th class="text-left" rowspan="1" colspan="1">Description</th>
-                <th class="text-left" rowspan="1" colspan="1">JSON Type</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">acvVersion</td>
-                <td class="text-left" rowspan="1" colspan="1">Protocol version identifier</td>
-                <td class="text-left" rowspan="1" colspan="1">string</td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">vsId</td>
-                <td class="text-left" rowspan="1" colspan="1">Unique numeric vector set identifier</td>
-                <td class="text-left" rowspan="1" colspan="1">integer</td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">algorithm</td>
-                <td class="text-left" rowspan="1" colspan="1">Algorithm defined in the capability exchange</td>
-                <td class="text-left" rowspan="1" colspan="1">string</td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">mode</td>
-                <td class="text-left" rowspan="1" colspan="1">Mode defined in the capability exchange</td>
-                <td class="text-left" rowspan="1" colspan="1">string</td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">revision</td>
-                <td class="text-left" rowspan="1" colspan="1">Protocol test revision selected</td>
-                <td class="text-left" rowspan="1" colspan="1">string</td>
-              </tr>
-              <tr>
-                <td class="text-left" rowspan="1" colspan="1">testGroups</td>
-                <td class="text-left" rowspan="1" colspan="1">Array of test groups containing test data, see <a href="#tgjs" class="xref">Section 5.4</a>
+          <tr>
+            <th class="text-left" rowspan="1" colspan="1">JSON Values</th>
+            <th class="text-left" rowspan="1" colspan="1">Description</th>
+            <th class="text-left" rowspan="1" colspan="1">JSON Type</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">acvVersion</td>
+            <td class="text-left" rowspan="1" colspan="1">Protocol version identifier</td>
+            <td class="text-left" rowspan="1" colspan="1">string</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">vsId</td>
+            <td class="text-left" rowspan="1" colspan="1">Unique numeric vector set identifier</td>
+            <td class="text-left" rowspan="1" colspan="1">integer</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">algorithm</td>
+            <td class="text-left" rowspan="1" colspan="1">Algorithm defined in the capability exchange</td>
+            <td class="text-left" rowspan="1" colspan="1">string</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">mode</td>
+            <td class="text-left" rowspan="1" colspan="1">Mode defined in the capability exchange</td>
+            <td class="text-left" rowspan="1" colspan="1">string</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">revision</td>
+            <td class="text-left" rowspan="1" colspan="1">Protocol test revision selected</td>
+            <td class="text-left" rowspan="1" colspan="1">string</td>
+          </tr>
+          <tr>
+            <td class="text-left" rowspan="1" colspan="1">testGroups</td>
+            <td class="text-left" rowspan="1" colspan="1">Array of test groups containing test data, see <a href="#tgjs" class="xref">Section 8.1</a>
 </td>
-                <td class="text-left" rowspan="1" colspan="1">array</td>
-              </tr>
-            </tbody>
-          </table>
+            <td class="text-left" rowspan="1" colspan="1">array</td>
+          </tr>
+        </tbody>
+      </table>
 </div>
-<div id="_0ffc94d1-6293-46b1-9ebc-623aa91ac165">
-<p id="section-5.3.1-6">An example of this would look like this<a href="#section-5.3.1-6" class="pilcrow">¶</a></p>
+<div id="_f6f54c4f-c66a-4bab-9b73-ad4657944658">
+<p id="section-8-4">An example of this would look like this<a href="#section-8-4" class="pilcrow">¶</a></p>
 </div>
-<div id="_bf473f76-f270-4ad6-87e7-aea02002b132">
+<div id="_457abad8-5971-4b1b-809c-99a1c965604e">
 <figure id="figure-3">
-            <div id="section-5.3.1-7.1">
+        <div id="section-8-5.1">
 <pre class="sourcecode lang-json">{
   "acvVersion": "version",
   "vsId": 1,
@@ -1741,19 +1735,15 @@ dt+dd:empty::before{
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a></figcaption></figure>
 </div>
-</section>
-</div>
-</section>
-</div>
 <div id="tgjs">
-<section id="section-5.4">
+<section id="section-8.1">
         <h3 id="name-test-groups">
-<a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-test-groups" class="section-name selfRef">Test Groups</a>
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-test-groups" class="section-name selfRef">Test Groups</a>
         </h3>
-<div id="_bd30f2f4-83f2-44ac-b74f-caf12ed2faae">
-<p id="section-5.4-1">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the Password-based KDF JSON elements of the Test Group JSON object<a href="#section-5.4-1" class="pilcrow">¶</a></p>
+<div id="_fa31cba9-6bc0-4fec-8641-4479fc5f8dbb">
+<p id="section-8.1-1">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the Password-based KDF JSON elements of the Test Group JSON object<a href="#section-8.1-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-test-group-json-object"></span><div id="_078f8a5b-cafc-4172-84c9-faf6baf55d35">
+<span id="name-test-group-json-object"></span><div id="_dafe9b1e-c031-409f-b8aa-7d61b9cdd934">
 <table class="center" id="table-4">
           <caption>
 <a href="#table-4" class="selfRef">Table 4</a>:
@@ -1790,20 +1780,20 @@ dt+dd:empty::before{
           </tbody>
         </table>
 </div>
-<div id="_2e6e703b-1735-42d6-a234-56674cabe48e">
-<p id="section-5.4-3">The 'tgId', 'testType' and 'tests' objects <span class="bcp14">MUST</span> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which 'testType' the group is addressing.<a href="#section-5.4-3" class="pilcrow">¶</a></p>
+<div id="_817a64c3-a13f-478f-8064-b104e8e9103c">
+<p id="section-8.1-3">The 'tgId', 'testType' and 'tests' objects <span class="bcp14">MUST</span> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which 'testType' the group is addressing.<a href="#section-8.1-3" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="_test_cases">
-<section id="section-5.5">
+<section id="section-8.2">
         <h3 id="name-test-cases">
-<a href="#section-5.5" class="section-number selfRef">5.5. </a><a href="#name-test-cases" class="section-name selfRef">Test Cases</a>
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-test-cases" class="section-name selfRef">Test Cases</a>
         </h3>
-<div id="_f4f19cba-e728-4320-9728-78f1d0bd86c9">
-<p id="section-5.5-1">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each Password-based KDF test vector.<a href="#section-5.5-1" class="pilcrow">¶</a></p>
+<div id="_e05671d8-4a23-4566-b376-1dc0be637948">
+<p id="section-8.2-1">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each Password-based KDF test vector.<a href="#section-8.2-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-test-case-json-object"></span><div id="_6e09112e-b558-4e91-b7a4-0760f0fc51d5">
+<span id="name-test-case-json-object"></span><div id="_f0b49fa9-5db0-4ec3-a324-67b15341eeae">
 <table class="center" id="table-5">
           <caption>
 <a href="#table-5" class="selfRef">Table 5</a>:
@@ -1845,12 +1835,12 @@ dt+dd:empty::before{
           </tbody>
         </table>
 </div>
-<div id="_cd86e8ae-cd34-4217-9cba-5eba0d6acf10">
-<p id="section-5.5-3">Here is an abbreviated yet fully constructed example of the prompt<a href="#section-5.5-3" class="pilcrow">¶</a></p>
+<div id="_74ddbfa3-0415-475f-a351-1fc12e11f281">
+<p id="section-8.2-3">Here is an abbreviated yet fully constructed example of the prompt<a href="#section-8.2-3" class="pilcrow">¶</a></p>
 </div>
-<div id="_378144e1-0d2b-4c40-8b6c-2a223b4ae8eb">
+<div id="_d01855e9-a950-4d72-b64e-db4e09ccbc24">
 <figure id="figure-4">
-          <div id="section-5.5-4.1">
+          <div id="section-8.2-4.1">
 <pre class="sourcecode lang-json">{
   "vsId": 1,
   "algorithm": "PBKDF",
@@ -1887,14 +1877,14 @@ dt+dd:empty::before{
 </section>
 </div>
 <div id="responses">
-<section id="section-6">
+<section id="section-9">
       <h2 id="name-responses">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-responses" class="section-name selfRef">Responses</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-responses" class="section-name selfRef">Responses</a>
       </h2>
-<div id="_6dda3c8d-eb8e-400c-80c3-2b82f2d4c50b">
-<p id="section-6-1">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<div id="_b493cc6f-55c4-43a8-97b0-b755c23cf082">
+<p id="section-9-1">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.<a href="#section-9-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-vector-set-response-json-ob"></span><div id="_b5cd8271-5bfa-4e65-a186-36ea871caeb8">
+<span id="name-vector-set-response-json-ob"></span><div id="_fd9bf025-e591-41be-9746-222a24d4be7c">
 <table class="center" id="table-6">
         <caption>
 <a href="#table-6" class="selfRef">Table 6</a>:
@@ -1926,12 +1916,12 @@ dt+dd:empty::before{
         </tbody>
       </table>
 </div>
-<div id="_fc791f8d-de13-49c6-8688-26e1b4639495">
-<p id="section-6-3">An example of this is the following<a href="#section-6-3" class="pilcrow">¶</a></p>
+<div id="_0bbad0dc-368a-48b6-8c37-30c62c046492">
+<p id="section-9-3">An example of this is the following<a href="#section-9-3" class="pilcrow">¶</a></p>
 </div>
-<div id="_d6f41273-4317-4e04-bf44-8fd0a580d4e6">
+<div id="_6195d746-94e7-4713-b56a-0bdd44152947">
 <figure id="figure-5">
-        <div id="section-6-4.1">
+        <div id="section-9-4.1">
 <pre class="sourcecode lang-json">{
         "acvVersion": "version",
         "vsId": 1,
@@ -1940,10 +1930,10 @@ dt+dd:empty::before{
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a></figcaption></figure>
 </div>
-<div id="_eeac3e94-37dd-4c66-a91d-b40e9bea8d59">
-<p id="section-6-5">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <span class="bcp14">SHALL</span> require the client to send back group level properties in their response. This structure helps accommodate that.<a href="#section-6-5" class="pilcrow">¶</a></p>
+<div id="_58522a71-51d9-4051-99f7-1de135f07b04">
+<p id="section-9-5">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <span class="bcp14">SHALL</span> require the client to send back group level properties in their response. This structure helps accommodate that.<a href="#section-9-5" class="pilcrow">¶</a></p>
 </div>
-<span id="name-vector-set-group-response-j"></span><div id="_1c481fdb-a453-4089-9d36-b19b98fa8c70">
+<span id="name-vector-set-group-response-j"></span><div id="_6b7e6656-6708-466f-9737-91d319c55632">
 <table class="center" id="table-7">
         <caption>
 <a href="#table-7" class="selfRef">Table 7</a>:
@@ -1970,12 +1960,12 @@ dt+dd:empty::before{
         </tbody>
       </table>
 </div>
-<div id="_5e1f8da0-8e2d-47a8-a1b4-9779157ca0de">
-<p id="section-6-7">An example of this is the following<a href="#section-6-7" class="pilcrow">¶</a></p>
+<div id="_b4bc2907-acb8-4319-a10c-603ec4776405">
+<p id="section-9-7">An example of this is the following<a href="#section-9-7" class="pilcrow">¶</a></p>
 </div>
-<div id="_86e23c5b-ccf0-4068-869c-74bf90c83239">
+<div id="_fac8c715-87c4-4455-ae3b-ba4b05370333">
 <figure id="figure-6">
-        <div id="section-6-8.1">
+        <div id="section-9-8.1">
 <pre class="sourcecode lang-json">{
         "tgId": 1,
         "tests": [ ... ]
@@ -1983,10 +1973,10 @@ dt+dd:empty::before{
 </div>
 <figcaption><a href="#figure-6" class="selfRef">Figure 6</a></figcaption></figure>
 </div>
-<div id="_58ccfb82-2ac7-42a1-8d80-9c5a99fc2aa7">
-<p id="section-6-9">The following table describes the JSON object that represents a test case response for a Password-based KDF.<a href="#section-6-9" class="pilcrow">¶</a></p>
+<div id="_6427cc74-159e-4087-92c3-7f60e54b6715">
+<p id="section-9-9">The following table describes the JSON object that represents a test case response for a Password-based KDF.<a href="#section-9-9" class="pilcrow">¶</a></p>
 </div>
-<span id="name-test-case-results-json-obje"></span><div id="_2feb677b-522f-4132-9bc4-af19ed843339">
+<span id="name-test-case-results-json-obje"></span><div id="_5c21cd90-4f0a-44fb-ab8c-47bdb1530b92">
 <table class="center" id="table-8">
         <caption>
 <a href="#table-8" class="selfRef">Table 8</a>:
@@ -2013,12 +2003,12 @@ dt+dd:empty::before{
         </tbody>
       </table>
 </div>
-<div id="_09a0cb87-7628-438c-a567-bb80c19abdb4">
-<p id="section-6-11">Here is an abbreviated example of the response<a href="#section-6-11" class="pilcrow">¶</a></p>
+<div id="_cd7f1ddd-2843-4275-b433-c36854d97686">
+<p id="section-9-11">Here is an abbreviated example of the response<a href="#section-9-11" class="pilcrow">¶</a></p>
 </div>
-<div id="_1de91e58-eb47-4b06-b073-2afd91fbf675">
+<div id="_72af691a-f05b-4596-9e5b-74809150e870">
 <figure id="figure-7">
-        <div id="section-6-12.1">
+        <div id="section-9-12.1">
 <pre class="sourcecode lang-json">{
   "vsId": 1,
   "algorithm": "PBKDF",
@@ -2045,46 +2035,46 @@ dt+dd:empty::before{
 </section>
 </div>
 <div id="security">
-<section id="section-7">
+<section id="section-10">
       <h2 id="name-security-considerations">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<div id="_7b3adc37-7e59-48cc-a294-fd9193e6e523">
-<p id="section-7-1">There are no additional security considerations outside of those outlined in the ACVP document.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<div id="_953aaaf7-32ae-483b-be51-e5d4439f35fe">
+<p id="section-10-1">There are no additional security considerations outside of those outlined in the ACVP document.<a href="#section-10-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="iana">
-<section id="section-8">
+<section id="section-11">
       <h2 id="name-iana-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<div id="_2e32e3ab-9a56-42a9-885c-c45e7d6de4bb">
-<p id="section-8-1">This document does not require any action by IANA.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<div id="_25ce9263-be46-489f-a3ef-394cb1993716">
+<p id="section-11-1">This document does not require any action by IANA.<a href="#section-11-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="_normative_references">
-<section id="section-9">
+<section id="section-12">
       <h2 id="name-normative-references">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-normative-references" class="section-name selfRef">Normative references</a>
+<a href="#section-12" class="section-number selfRef">12. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
       </h2>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="refContent">IETF RFC 2119</span>, <span class="seriesInfo">IETF RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="refContent">IETF RFC 2119</span>, <span class="seriesInfo">IETF RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7991">[RFC7991]</dt>
-      <dd>
-<span class="refAuthor">Hoffman, P.</span>, <span class="refTitle">"The "xml2rfc" Version 3 Vocabulary"</span>, <span class="refContent">IETF RFC 7991</span>, <span class="seriesInfo">IETF RFC 7991</span>, <span class="seriesInfo">DOI 10.17487/RFC7991</span>, <time datetime="2016-12" class="refDate">December 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7991">https://www.rfc-editor.org/info/rfc7991</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Hoffman, P.</span>, <span class="refTitle">"The "xml2rfc" Version 3 Vocabulary"</span>, <span class="refContent">IETF RFC 7991</span>, <span class="seriesInfo">IETF RFC 7991</span>, <span class="seriesInfo">DOI 10.17487/RFC7991</span>, <time datetime="2016-12">December 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7991">https://www.rfc-editor.org/info/rfc7991</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-      <dd>
-<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="refContent">IETF RFC 8174</span>, <span class="seriesInfo">IETF RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="refContent">IETF RFC 8174</span>, <span class="seriesInfo">IETF RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="ACVP">[ACVP]</dt>
-    <dd>
-<span class="refAuthor">NIST</span>, <span class="refTitle">"Automatic Cryptographic Validation Protocol"</span>, <span class="refContent">ACVP ACVP</span>, <time datetime="2019" class="refDate">2019</time>. </dd>
+<dd>
+<span class="refAuthor">NIST</span>, <span class="refTitle">"Automatic Cryptographic Validation Protocol"</span>, <span class="refContent">ACVP ACVP</span>, <time datetime="2019">2019</time>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

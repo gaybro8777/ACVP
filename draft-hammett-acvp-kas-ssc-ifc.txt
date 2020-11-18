@@ -3,9 +3,9 @@
 
 
 Network Working Group                                    R. Hammett, Ed.
-Internet-Draft                                          17 November 2020
+Internet-Draft                                          18 November 2020
 Intended status: Informational                                          
-Expires: 21 May 2021
+Expires: 22 May 2021
 
 
                      ACVP KAS IFC SSC Specification
@@ -26,7 +26,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2021.
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -44,38 +44,41 @@ Table of Contents
    1.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   2
    2.  Abstract  . . . . . . . . . . . . . . . . . . . . . . . . . .   2
    3.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
-   4.  Terms and definitions . . . . . . . . . . . . . . . . . . . .   2
-     4.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
-     4.2.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   3
-       4.2.1.  Requirements Covered  . . . . . . . . . . . . . . . .   3
-       4.2.2.  Requirements Not Covered  . . . . . . . . . . . . . .   4
-     4.3.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   4
+   4.  Terms and definitions . . . . . . . . . . . . . . . . . . . .   3
+   5.  Supported KAS-IFCs  . . . . . . . . . . . . . . . . . . . . .   3
+   6.  Test Types and Test Coverage  . . . . . . . . . . . . . . . .   3
+     6.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
+     6.2.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   3
+       6.2.1.  Requirements Covered  . . . . . . . . . . . . . . . .   3
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 1]
+Hammett                    Expires 22 May 2021                  [Page 1]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
-     4.4.  Prerequisite Algorithms . . . . . . . . . . . . . . . . .   5
-     4.5.  Algorithm Capabilities JSON Values  . . . . . . . . . . .   6
-     4.6.  Supported Key Generation Methods  . . . . . . . . . . . .   7
-     4.7.  Supported Common Modulo . . . . . . . . . . . . . . . . .   8
-       4.7.1.  Hash Function Z . . . . . . . . . . . . . . . . . . .   8
-     4.8.  KAS IFC Schemes . . . . . . . . . . . . . . . . . . . . .   8
-       4.8.1.  KAS IFC Scheme Capabilities JSON Values . . . . . . .   9
-     4.9.  Example Registration  . . . . . . . . . . . . . . . . . .   9
-   5.  Generation Requirements per Party per Scheme  . . . . . . . .  10
-   6.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  11
-     6.1.  Test Groups JSON Schema . . . . . . . . . . . . . . . . .  12
-     6.2.  Test Case JSON Schema . . . . . . . . . . . . . . . . . .  13
-     6.3.  Example Test Vectors JSON Object  . . . . . . . . . . . .  15
-   7.  Test Vector Responses . . . . . . . . . . . . . . . . . . . .  26
-     7.1.  Example Test Results JSON Object  . . . . . . . . . . . .  28
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  33
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  33
-   10. Bibliography  . . . . . . . . . . . . . . . . . . . . . . . .  33
+       6.2.2.  Requirements Not Covered  . . . . . . . . . . . . . .   4
+   7.  Capabilities Registration . . . . . . . . . . . . . . . . . .   4
+     7.1.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   5
+     7.2.  Prerequisite Algorithms . . . . . . . . . . . . . . . . .   6
+     7.3.  Algorithm Capabilities JSON Values  . . . . . . . . . . .   6
+     7.4.  Supported Key Generation Methods  . . . . . . . . . . . .   8
+     7.5.  Supported Common Modulo . . . . . . . . . . . . . . . . .   8
+       7.5.1.  Hash Function Z . . . . . . . . . . . . . . . . . . .   9
+     7.6.  KAS IFC Schemes . . . . . . . . . . . . . . . . . . . . .   9
+       7.6.1.  KAS IFC Scheme Capabilities JSON Values . . . . . . .   9
+     7.7.  Example Registration  . . . . . . . . . . . . . . . . . .  10
+   8.  Generation Requirements per Party per Scheme  . . . . . . . .  11
+   9.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  11
+     9.1.  Test Groups JSON Schema . . . . . . . . . . . . . . . . .  12
+     9.2.  Test Case JSON Schema . . . . . . . . . . . . . . . . . .  13
+     9.3.  Example Test Vectors JSON Object  . . . . . . . . . . . .  15
+   10. Test Vector Responses . . . . . . . . . . . . . . . . . . . .  26
+     10.1.  Example Test Results JSON Object . . . . . . . . . . . .  28
+   11. Security Considerations . . . . . . . . . . . . . . . . . . .  33
+   12. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  33
+   13. Bibliography  . . . . . . . . . . . . . . . . . . . . . . . .  33
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  34
 
 1.  Acknowledgements
@@ -102,19 +105,36 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
    sub-specification defines the JSON constructs for testing KAS-IFC-SSC
    SP800-56Br2 implementations using ACVP.
 
-4.  Terms and definitions
-
-   For the purposes of this document, the following terms and
-   definitions apply.
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 2]
+
+Hammett                    Expires 22 May 2021                  [Page 2]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
-4.1.  Test Types
+4.  Terms and definitions
+
+   No terms and definitions are listed in this document.
+
+5.  Supported KAS-IFCs
+
+   The following key derivation functions MAY be advertised by the ACVP
+   compliant cryptographic module:
+
+   *  KAS-IFC-SSC / null / SP800-56Br2
+
+6.  Test Types and Test Coverage
+
+   The ACVP server performs a set of tests on the KAS protocol in order
+   to assess the correctness and robustness of the implementation.  A
+   typical ACVP validation session SHALL require multiple tests to be
+   performed for every supported permutation of KAS capabilities.  This
+   section describes the design of the tests used to validate
+   implementations of KAS algorithms.
+
+6.1.  Test Types
 
    There are two test types for KAS testing:
 
@@ -132,13 +152,23 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
       key agreement process (changed Z, Z with leading zero nibble,
       etc), that the IUT MUST be able to detect and report on.
 
-4.2.  Test Coverage
+6.2.  Test Coverage
 
-4.2.1.  Requirements Covered
+   The tests described in this document have the intention of ensuring
+   an implementation is conformant to [SP800-56Br2].
+
+6.2.1.  Requirements Covered
 
    *  SP 800-56Br2 - 5.3 Random Bit Generators.  Though random values
       are used, the testing of the construction of those random values
       SHALL NOT be in scope of ACVP testing.
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 3]
+
+Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
+
 
    *  SP 800-56Br2 - 6.2 Criteria for RSA Key Pairs for Key
       Establishment.  The ACVP server SHALL support the three key
@@ -162,15 +192,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
       described in this document is specifically around the calculation
       of the shared secret "z".
 
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 3]
-
-Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
-
-
-4.2.2.  Requirements Not Covered
+6.2.2.  Requirements Not Covered
 
    *  SP 800-56Br2 - 5.3 Random Bit Generators.  Though random values
       are used, the testing of the construction of those random values
@@ -180,7 +202,9 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
       computation of a shared secret "z".  Additional functions of KAS
       as a whole such as KDF, KC, etc.  MAY be covered within the scope
       of the full KAS testing; please see that document for further
-      details. == Capabilities Registration
+      details.
+
+7.  Capabilities Registration
 
    ACVP requires crypto modules to register their capabilities.  This
    allows the crypto module to advertise support for specific
@@ -188,6 +212,19 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
    vectors generated for the validation process.  This section describes
    the constructs for advertising support of KAS-IFC-SSC SP800-56Br2
    algorithms to the ACVP server.
+
+
+
+
+
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 4]
+
+Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
+
 
    The algorithm capabilities MUST be advertised as JSON objects within
    the 'algorithms' value of the ACVP registration message.  The
@@ -197,7 +234,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
    registration message.  See the ACVP specification [ACVP] for more
    details on the registration message.
 
-4.3.  Prerequisites
+7.1.  Prerequisites
 
    Each algorithm implementation MAY rely on other cryptographic
    primitives.  For example, RSA Signature algorithms depend on an
@@ -211,6 +248,16 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
    "algorithms" array.  Each element in the "prereqVals" array MUST
    contain the following properties
 
+        +---------------+-----------------------------+-----------+
+        | JSON Property | Description                 | JSON Type |
+        +===============+=============================+===========+
+        | algorithm     | a prerequisite algorithm    | string    |
+        +---------------+-----------------------------+-----------+
+        | valValue      | algorithm validation number | string    |
+        +---------------+-----------------------------+-----------+
+
+                      Table 1: Prerequisite Properties
+
    A "valValue" of "same" SHALL be used to indicate that the
    prerequisite is being met by a different algorithm in the capability
    exchange in the same registration.
@@ -221,20 +268,19 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 4]
+
+
+
+
+
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 5]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
-
-        +===============+=============================+===========+
-        | JSON Property | Description                 | JSON Type |
-        +===============+=============================+===========+
-        | algorithm     | a prerequisite algorithm    | string    |
-        +---------------+-----------------------------+-----------+
-        | valValue      | algorithm validation number | string    |
-        +---------------+-----------------------------+-----------+
-
-                      Table 1: Prerequisite Properties
 
    "prereqVals":
    [
@@ -250,7 +296,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
                                   Figure 1
 
-4.4.  Prerequisite Algorithms
+7.2.  Prerequisite Algorithms
 
    Some algorithm implementations rely on other cryptographic
    primitives.  For example, IKEv2 uses an underlying SHA algorithm.
@@ -258,31 +304,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
    either separately or as part of the same submission.  ACVP provides a
    mechanism for specifying the required prerequisites:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 5]
-
-Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
-
-
-   +==============+==============+==============+===========+==========+
+   +--------------+--------------+--------------+-----------+----------+
    | JSON Value   | Description  | JSON Type    | Valid     | Optional |
    |              |              |              | Values    |          |
    +==============+==============+==============+===========+==========+
@@ -303,78 +325,86 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
                 Table 2: Prerequisite Algorithms JSON Values
 
-4.5.  Algorithm Capabilities JSON Values
+7.3.  Algorithm Capabilities JSON Values
 
    Each algorithm capability advertised is a self-contained JSON object
    using the following values.
 
-   Note: Some optional values are REQUIRED depending on the algorithm.
-   Failure to provide these values will result in the ACVP server
-   returning an error to the ACVP client during registration.
-
-   +====================+============+============+=============+========+
-   |JSON Value          |Description |JSON Type   |Valid Values |Optional|
-   +====================+============+============+=============+========+
-   |algorithm           |The         |value       |KAS-IFC-SSC  |No      |
-   |                    |algorithm   |            |             |        |
-   |                    |under test  |            |             |        |
-   +--------------------+------------+------------+-------------+--------+
-   |revision            |The         |value       |"Sp800-56Br2"|No      |
-   |                    |algorithm   |            |             |        |
-   |                    |testing     |            |             |        |
-   |                    |revision to |            |             |        |
-   |                    |use.        |            |             |        |
-   +--------------------+------------+------------+-------------+--------+
-   |prereqVals          |Prerequisite|array of    |See          |No      |
-   |                    |algorithm   |prereqAlgVal|Section 4.4  |        |
-   |                    |validations |objects     |             |        |
-   +--------------------+------------+------------+-------------+--------+
-   |keyGenerationMethods|The         |array of    |See          |No      |
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 6]
+Hammett                    Expires 22 May 2021                  [Page 6]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
-   |                    |supported   |string      |Section 4.6  |        |
-   |                    |key         |            |             |        |
-   |                    |generation  |            |             |        |
-   |                    |methods.    |            |             |        |
    +--------------------+------------+------------+-------------+--------+
-   |modulo              |The         |array of    |See          |No      |
-   |                    |supported   |integer     |Section 4.7  |        |
-   |                    |common      |            |             |        |
-   |                    |modulo      |            |             |        |
+   | JSON Value         |Description | JSON Type  |Valid Values |Optional|
+   +====================+============+============+=============+========+
+   | algorithm          | The        | value      | KAS-IFC-SSC | No     |
+   |                    | algorithm  |            |             |        |
+   |                    | under test |            |             |        |
    +--------------------+------------+------------+-------------+--------+
-   |fixedPubExp         |The fixed   |hex         |             |Yes     |
-   |                    |public      |            |             |        |
-   |                    |exponent    |            |             |        |
+   | revision           | The        | value      |"Sp800-56Br2"| No     |
+   |                    | algorithm  |            |             |        |
+   |                    | testing    |            |             |        |
+   |                    |revision to |            |             |        |
+   |                    | use.       |            |             |        |
+   +--------------------+------------+------------+-------------+--------+
+   | prereqVals         |Prerequisite| array of   | See         | No     |
+   |                    | algorithm  |prereqAlgVal| Section 7.2 |        |
+   |                    |validations | objects    |             |        |
+   +--------------------+------------+------------+-------------+--------+
+   |keyGenerationMethods| The        | array of   | See         | No     |
+   |                    | supported  | string     | Section 7.4 |        |
+   |                    | key        |            |             |        |
+   |                    | generation |            |             |        |
+   |                    | methods.   |            |             |        |
+   +--------------------+------------+------------+-------------+--------+
+   | modulo             | The        | array of   | See         | No     |
+   |                    | supported  | integer    | Section 7.5 |        |
+   |                    | common     |            |             |        |
+   |                    | modulo     |            |             |        |
+   +--------------------+------------+------------+-------------+--------+
+   | fixedPubExp        | The fixed  | hex        |             | Yes    |
+   |                    | public     |            |             |        |
+   |                    | exponent   |            |             |        |
    |                    |used for key|            |             |        |
    |                    |generation. |            |             |        |
    |                    |Required if |            |             |        |
-   |                    |using at    |            |             |        |
-   |                    |least 1     |            |             |        |
+   |                    | using at   |            |             |        |
+   |                    | least 1    |            |             |        |
    |                    |static fixed|            |             |        |
-   |                    |public      |            |             |        |
+   |                    | public     |            |             |        |
    |                    |exponent key|            |             |        |
-   |                    |generation  |            |             |        |
-   |                    |method.     |            |             |        |
+   |                    | generation |            |             |        |
+   |                    | method.    |            |             |        |
    +--------------------+------------+------------+-------------+--------+
-   |scheme              |Array of    |object      |See          |No      |
-   |                    |supported   |            |Section 4.8.1|        |
-   |                    |key         |            |             |        |
-   |                    |agreement   |            |             |        |
+   | scheme             | Array of   | object     | See         | No     |
+   |                    | supported  |            |Section 7.6.1|        |
+   |                    | key        |            |             |        |
+   |                    | agreement  |            |             |        |
    |                    |schemes each|            |             |        |
    |                    |having their|            |             |        |
-   |                    |own         |            |             |        |
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 7]
+
+Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
+
+
+   |                    | own        |            |             |        |
    |                    |capabilities|            |             |        |
    +--------------------+------------+------------+-------------+--------+
 
                  Table 3: KAS ECC Capabilities JSON Values
 
-4.6.  Supported Key Generation Methods
+   Note: Some optional values are REQUIRED depending on the algorithm.
+   Failure to provide these values will result in the ACVP server
+   returning an error to the ACVP client during registration.
+
+7.4.  Supported Key Generation Methods
 
    At least one key generation method is REQUIRED within the array.  The
    following types MAY be advertised by the ACVP compliant crypto
@@ -385,14 +415,6 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
    *  rsakpg1-prime-factor - An RSA key pair with a private key in the
       prime factor format, and with a fixed public exponent.
-
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 7]
-
-Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
-
 
    *  rsakpg1-crt - An RSA key pair with a private key in the Chinese
       Remainder Theorem format, and with a fixed public exponent.
@@ -406,14 +428,36 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
    *  rsakpg2-crt - An RSA key pair with a private key in the Chinese
       Remainder Theorem format, with a random public exponent.
 
-4.7.  Supported Common Modulo
+7.5.  Supported Common Modulo
 
-4.7.1.  Hash Function Z
+   At least one supported common modulo is REQUIRED within the array.
+   The following common modulo MAY be advertised by the ACVP compliant
+   crypto module:
+
+   *  2048 - estimated security strength 112
+
+   *  3072 - estimated security strength 128
+
+   *  4096 - estimated security strength 152
+
+   *  6144 - estimated security strength 176
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 8]
+
+Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
+
+
+   *  8192 - estimated security strength 200
+
+7.5.1.  Hash Function Z
 
    An optional hash function that should be applied to "z" from both the
    ACVP server and IUT for comparison purposes.  The provided
    `hashFunctionZ's security strength MUST be at least as strong as the
-   greatest security strength modulo selected from Section 4.7
+   greatest security strength modulo selected from Section 7.5
 
    The following hash functions MAY be advertised by an ACVP compliant
    server:
@@ -438,19 +482,13 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
    *  SHA3-512
 
-4.8.  KAS IFC Schemes
+7.6.  KAS IFC Schemes
 
+   All other scheme capabilities are advertised as a self-contained JSON
+   object using the following values.  Note that *AT LEAST* one valid
+   scheme must be registered.
 
-
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 8]
-
-Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
-
-
-4.8.1.  KAS IFC Scheme Capabilities JSON Values
+7.6.1.  KAS IFC Scheme Capabilities JSON Values
 
    KAS Schemes
 
@@ -458,7 +496,17 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
    *  KAS2
 
-    +=========+===================+=======+================+==========+
+
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 9]
+
+Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
+
+
+    +---------+-------------------+-------+----------------+----------+
     | JSON    | Description       | JSON  | Valid Values   | Optional |
     | Value   |                   | Type  |                |          |
     +=========+===================+=======+================+==========+
@@ -468,43 +516,10 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
                  Table 4: KAS IFC Capabilities JSON Values
 
-4.9.  Example Registration
+7.7.  Example Registration
 
    The following is a example JSON object advertising support for KAS
    IFC SSC.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 9]
-
-Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
-
 
    {
      "vsId": 0,
@@ -536,33 +551,24 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
                                   Figure 2
 
-5.  Generation Requirements per Party per Scheme
+
+
+
+
+
+
+Hammett                    Expires 22 May 2021                 [Page 10]
+
+Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
+
+
+8.  Generation Requirements per Party per Scheme
 
    The various schemes of KAS/KTS all have their own requirements as to
    keys and nonces per scheme, per party.  The below table demonstrates
    those generation requirements:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Hammett                    Expires 21 May 2021                 [Page 10]
-
-Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
-
-
-     +========+===========+=================+=========+=============+
+     +--------+-----------+-----------------+---------+-------------+
      | Scheme | KasMode   | KasRole         | KeyPair | Generates   |
      |        |           |                 |         | Cipher Text |
      +========+===========+=================+=========+=============+
@@ -577,7 +583,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
               Table 5: Required Party Generation Obligations
 
-6.  Test Vectors
+9.  Test Vectors
 
    The ACVP server provides test vectors to the ACVP client, which are
    then processed and returned to the ACVP server for validation.  A
@@ -607,18 +613,12 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-
-
-
-
-
-
-Hammett                    Expires 21 May 2021                 [Page 11]
+Hammett                    Expires 22 May 2021                 [Page 11]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
-    +=============+======================================+===========+
+    +-------------+--------------------------------------+-----------+
     | JSON Values | Description                          | JSON Type |
     +=============+======================================+===========+
     | acvVersion  | Protocol version identifier          | string    |
@@ -634,7 +634,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
     | revision    | Protocol test revision selected      | string    |
     +-------------+--------------------------------------+-----------+
     | testGroups  | Array of test groups containing test | array     |
-    |             | data, see Section 6.1                |           |
+    |             | data, see Section 9.1                |           |
     +-------------+--------------------------------------+-----------+
 
                Table 6: Top Level Test Vector JSON Elements
@@ -652,7 +652,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
                                   Figure 3
 
-6.1.  Test Groups JSON Schema
+9.1.  Test Groups JSON Schema
 
    The testGroups element at the top level in the test vector JSON
    object is an array of test groups.  Test vectors are grouped into
@@ -669,12 +669,12 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 12]
+Hammett                    Expires 22 May 2021                 [Page 12]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
-    +=====================+=====================+==========+==========+
+    +---------------------+---------------------+----------+----------+
     | JSON Value          | Description         | JSON     | Optional |
     |                     |                     | Type     |          |
     +=====================+=====================+==========+==========+
@@ -689,7 +689,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
     +---------------------+---------------------+----------+----------+
     | scheme              | The scheme in use   | value    | No       |
     |                     | for the group.  See |          |          |
-    |                     | Section 4.8.1 for   |          |          |
+    |                     | Section 7.6.1 for   |          |          |
     |                     | possible values.    |          |          |
     +---------------------+---------------------+----------+----------+
     | kasRole             | The group role from | value    | No       |
@@ -707,12 +707,12 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
     |                     | group.              | objects, |          |
     |                     |                     | See      |          |
     |                     |                     | Section  |          |
-    |                     |                     | 6.2.     |          |
+    |                     |                     | 9.2.     |          |
     +---------------------+---------------------+----------+----------+
 
                      Table 7: Vector Group JSON Object
 
-6.2.  Test Case JSON Schema
+9.2.  Test Case JSON Schema
 
    Each test group contains an array of one or more test cases.  Each
    test case is a JSON object that represents a single test vector to be
@@ -725,12 +725,12 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 13]
+Hammett                    Expires 22 May 2021                 [Page 13]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
-   +============+==================================+=======+==========+
+   +------------+----------------------------------+-------+----------+
    | JSON Value | Description                      | JSON  | Optional |
    |            |                                  | Type  |          |
    +============+==================================+=======+==========+
@@ -781,7 +781,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 14]
+Hammett                    Expires 22 May 2021                 [Page 14]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -806,7 +806,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
                       Table 8: Test Case JSON Object
 
-6.3.  Example Test Vectors JSON Object
+9.3.  Example Test Vectors JSON Object
 
    The following is a example JSON object for test vectors sent from the
    ACVP server to the crypto module.
@@ -837,7 +837,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 15]
+Hammett                    Expires 22 May 2021                 [Page 15]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -893,7 +893,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 16]
+Hammett                    Expires 22 May 2021                 [Page 16]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -949,7 +949,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 17]
+Hammett                    Expires 22 May 2021                 [Page 17]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1005,7 +1005,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 18]
+Hammett                    Expires 22 May 2021                 [Page 18]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1061,7 +1061,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 19]
+Hammett                    Expires 22 May 2021                 [Page 19]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1117,7 +1117,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 20]
+Hammett                    Expires 22 May 2021                 [Page 20]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1173,7 +1173,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 21]
+Hammett                    Expires 22 May 2021                 [Page 21]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1229,7 +1229,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 22]
+Hammett                    Expires 22 May 2021                 [Page 22]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1285,7 +1285,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 23]
+Hammett                    Expires 22 May 2021                 [Page 23]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1341,7 +1341,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 24]
+Hammett                    Expires 22 May 2021                 [Page 24]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1397,7 +1397,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 25]
+Hammett                    Expires 22 May 2021                 [Page 25]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1436,7 +1436,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
                                   Figure 4
 
-7.  Test Vector Responses
+10.  Test Vector Responses
 
    After the ACVP client downloads and processes a vector set, it MUST
    send the response vectors back to the ACVP server.  The following
@@ -1453,12 +1453,12 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 26]
+Hammett                    Expires 22 May 2021                 [Page 26]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
-      +============+============================+=======+==========+
+      +------------+----------------------------+-------+----------+
       | JSON Value | Description                | JSON  | Optional |
       |            |                            | type  |          |
       +============+============================+=======+==========+
@@ -1480,7 +1480,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
    SHALL require the client to send back group level properties in their
    response.  This structure helps accommodate that.
 
-   +=======+========================================+=======+==========+
+   +-------+----------------------------------------+-------+----------+
    | JSON  | Description                            | JSON  | Optional |
    | Value |                                        | type  |          |
    +=======+========================================+=======+==========+
@@ -1509,12 +1509,12 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 27]
+Hammett                    Expires 22 May 2021                 [Page 27]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
-   +============+================================+=========+==========+
+   +------------+--------------------------------+---------+----------+
    | JSON Value | Description                    | JSON    | Optional |
    |            |                                | type    |          |
    +============+================================+=========+==========+
@@ -1537,7 +1537,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
            Table 11: Vector Set Test Case Response JSON Object
 
-7.1.  Example Test Results JSON Object
+10.1.  Example Test Results JSON Object
 
    The following is an example JSON object for KAS-IFC test results sent
    from the crypto module to the ACVP server.
@@ -1565,7 +1565,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 28]
+Hammett                    Expires 22 May 2021                 [Page 28]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1621,7 +1621,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 29]
+Hammett                    Expires 22 May 2021                 [Page 29]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1677,7 +1677,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 30]
+Hammett                    Expires 22 May 2021                 [Page 30]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1733,7 +1733,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 31]
+Hammett                    Expires 22 May 2021                 [Page 31]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1789,7 +1789,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 32]
+Hammett                    Expires 22 May 2021                 [Page 32]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1809,16 +1809,16 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
                                   Figure 5
 
-8.  Security Considerations
+11.  Security Considerations
 
    There are no additional security considerations outside of those
    outlined in the ACVP document.
 
-9.  IANA Considerations
+12.  IANA Considerations
 
    This document does not require any action by IANA.
 
-10.  Bibliography
+13.  Bibliography
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", IETF RFC 2119, IETF RFC 2119,
@@ -1845,7 +1845,7 @@ Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 33]
+Hammett                    Expires 22 May 2021                 [Page 33]
 
 Internet-Draft        ACVP KAS SSC IFC SP800-56Br2         November 2020
 
@@ -1901,4 +1901,4 @@ Author's Address
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 34]
+Hammett                    Expires 22 May 2021                 [Page 34]

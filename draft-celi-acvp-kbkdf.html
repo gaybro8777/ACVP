@@ -6,26 +6,8 @@
 <meta content="initial-scale=1.0" name="viewport">
 <title>ACVP SP800-108 Key Derivation Function JSON Specification</title>
 <meta content="Christopher Celi" name="author">
-<meta content="xml2rfc 3.4.0" name="generator">
+<meta content="xml2rfc 2.45.3" name="generator">
 <meta content="draft-gold-acvp-kdf-01" name="ietf.draft">
-<!-- Generator version information:
-  xml2rfc 3.4.0
-    Python 3.7.3
-    appdirs 1.4.4
-    ConfigArgParse 1.2.3
-    google-i18n-address 2.4.0
-    html5lib 1.1
-    intervaltree 3.1.0
-    Jinja2 2.11.2
-    kitchen 1.2.6
-    lxml 4.6.1
-    pycountry 20.7.3
-    pyflakes 2.2.0
-    PyYAML 5.3.1
-    requests 2.25.0
-    setuptools 50.3.2
-    six 1.15.0
--->
 <link href="draft-celi-acvp-kbkdf.rfc.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">/*
@@ -927,6 +909,12 @@ caption a[href] {
   }
 
 }
+/* Avoid wrapping of URLs in references */
+@media screen {
+  .references a {
+    white-space: nowrap;
+  }
+}
 /* Tweak the bcp14 keyword presentation */
 .bcp14 {
   font-variant: small-caps;
@@ -1076,7 +1064,6 @@ figure, pre, table, .artwork, .sourcecode  {
 }
 /* Avoid breaks between <dt> and <dd> */
 dl {
-  break-before: auto;
   break-inside: auto;
 }
 dt {
@@ -1089,7 +1076,7 @@ dd {
   orphans: 3;
   widows: 3
 }
-span.break, dd.break {
+dd.break {
   margin-bottom: 0;
   min-height: 0;
   break-before: auto;
@@ -1115,48 +1102,8 @@ section ol.compact,
 section .olCompact {
   margin-bottom: 1em;                    /* same as p not within ul.compact etc. */
 }
-/* The tt and code background above interferes with for instance table cell
-   backgrounds.  Changed to something a bit more selective. */
-tt, code {
-  background-color: transparent;
-}
-p tt, p code, li tt, li code {
-  background-color: #f8f8f8;
-}
-/* Tweak the pre margin -- 0px doesn't come out well */
-pre {
-   margin-top: 0.5px;
-}
-/* Tweak the comact list text */
-ul.compact, .ulCompact,
-ol.compact, .olCompact,
-dl.compact, .dlCompact {
-  line-height: normal;
-}
-/* Don't add top margin for nested lists */
-li > ul, li > ol, li > dl,
-dd > ul, dd > ol, dd > dl,
-dl > dd > dl {
-  margin-top: initial;
-}
-/* Elements that should not be rendered on the same line as a <dt> */
-/* This should match the element list in writer.text.TextWriter.render_dl() */
-dd > div.artwork:first-child,
-dd > aside:first-child,
-dd > figure:first-child,
-dd > ol:first-child,
-dd > div:first-child > pre.sourcecode,
-dd > table:first-child,
-dd > ul:first-child {
-  clear: left;
-}
-/* fix for weird browser behaviour when <dd/> is empty */
-dt+dd:empty::before{
-  content: "\00a0";
-}
 </style>
 <link href="rfc-local.css" rel="stylesheet" type="text/css">
-<script type="application/javascript">async function addMetadata(){try{const e=document.styleSheets[0].cssRules;for(let t=0;t<e.length;t++)if(/#identifiers/.exec(e[t].selectorText)){const a=e[t].cssText.replace("#identifiers","#external-updates");document.styleSheets[0].insertRule(a,document.styleSheets[0].cssRules.length)}}catch(e){console.log(e)}const e=document.getElementById("external-metadata");if(e)try{var t,a="",o=function(e){const t=document.getElementsByTagName("meta");for(let a=0;a<t.length;a++)if(t[a].getAttribute("name")===e)return t[a].getAttribute("content");return""}("rfc.number");if(o){t="https://www.rfc-editor.org/rfc/rfc"+o+".json";try{const e=await fetch(t);a=await e.json()}catch(e){t=document.URL.indexOf("html")>=0?document.URL.replace(/html$/,"json"):document.URL+".json";const o=await fetch(t);a=await o.json()}}if(!a)return;e.style.display="block";const s="",d="https://datatracker.ietf.org/doc",n="https://datatracker.ietf.org/ipr/search",c="https://www.rfc-editor.org/info",l=a.doc_id.toLowerCase(),i=a.doc_id.slice(0,3).toLowerCase(),f=a.doc_id.slice(3).replace(/^0+/,""),u={status:"Status",obsoletes:"Obsoletes",obsoleted_by:"Obsoleted By",updates:"Updates",updated_by:"Updated By",see_also:"See Also",errata_url:"Errata"};let h="<dl style='overflow:hidden' id='external-updates'>";["status","obsoletes","obsoleted_by","updates","updated_by","see_also","errata_url"].forEach(e=>{if("status"==e){a[e]=a[e].toLowerCase();var t=a[e].split(" "),o=t.length,w="",p=1;for(let e=0;e<o;e++)p<o?w=w+r(t[e])+" ":w+=r(t[e]),p++;a[e]=w}else if("obsoletes"==e||"obsoleted_by"==e||"updates"==e||"updated_by"==e){var g,m="",b=1;g=a[e].length;for(let t=0;t<g;t++)a[e][t]&&(a[e][t]=String(a[e][t]).toLowerCase(),m=b<g?m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>, ":m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>",b++);a[e]=m}else if("see_also"==e){var y,L="",C=1;y=a[e].length;for(let t=0;t<y;t++)if(a[e][t]){a[e][t]=String(a[e][t]);var _=a[e][t].slice(0,3),v=a[e][t].slice(3).replace(/^0+/,"");L=C<y?"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>, ":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>, ":"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>",C++}a[e]=L}else if("errata_url"==e){var R="";R=a[e]?R+"<a href='"+a[e]+"'>Errata exist</a> | <a href='"+d+"/"+l+"'>Datatracker</a>| <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>":"<a href='"+d+"/"+l+"'>Datatracker</a> | <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>",a[e]=R}""!=a[e]?"Errata"==u[e]?h+=`<dt>More info:</dt><dd>${a[e]}</dd>`:h+=`<dt>${u[e]}:</dt><dd>${a[e]}</dd>`:"Errata"==u[e]&&(h+=`<dt>More info:</dt><dd>${a[e]}</dd>`)}),h+="</dl>",e.innerHTML=h}catch(e){console.log(e)}else console.log("Could not locate metadata <div> element");function r(e){return e.charAt(0).toUpperCase()+e.slice(1)}}window.removeEventListener("load",addMetadata),window.addEventListener("load",addMetadata);</script>
 </head>
 <body>
 <script src="metadata.min.js"></script>
@@ -1168,7 +1115,7 @@ dt+dd:empty::before{
 </tr></thead>
 <tfoot><tr>
 <td class="left">Celi</td>
-<td class="center">Expires 21 May 2021</td>
+<td class="center">Expires 22 May 2021</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1183,12 +1130,12 @@ dt+dd:empty::before{
 <dd></dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2020-11-17" class="published">17 November 2020</time>
+<time datetime="2020-11-18" class="published">18 November 2020</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-05-21">21 May 2021</time></dd>
+<dd class="expires"><time datetime="2021-05-22">22 May 2021</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1218,7 +1165,7 @@ dt+dd:empty::before{
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 May 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 May 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1243,78 +1190,87 @@ dt+dd:empty::before{
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.1">
+<nav class="toc"><ul class="compact toc ulEmpty">
+<li class="compact toc ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-acknowledgements" class="xref">Acknowledgements</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.2">
+<li class="compact toc ulEmpty" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="xref">2</a>.  <a href="#name-abstract" class="xref">Abstract</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.3">
+<li class="compact toc ulEmpty" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="xref">3</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.4">
+<li class="compact toc ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-terms-and-definitions" class="xref">Terms and definitions</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-prerequisites" class="xref">Prerequisites</a><a href="#section-toc.1-1.4.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-required-prerequisite-algor" class="xref">Required Prerequisite Algorithms for SP800-108 KDF Validations</a><a href="#section-toc.1-1.4.2.2.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-supported-sp800-108-kdfs" class="xref">Supported SP800-108 KDFs</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-sp800-108-kdf-algorithm-cap" class="xref">SP800-108 KDF Algorithm Capabilities Registration</a><a href="#section-toc.1-1.4.2.3.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-test-types-and-test-coverag" class="xref">Test Types and Test Coverage</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.4">
-                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="xref">4.4</a>.  <a href="#name-supported-sp800-108-kdf-mod" class="xref">Supported SP800-108 KDF Modes</a><a href="#section-toc.1-1.4.2.4.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-capabilities-registration" class="xref">Capabilities Registration</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
+<ul class="compact toc ulEmpty">
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-prerequisites" class="xref">Prerequisites</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.5">
-                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="xref">4.5</a>.  <a href="#name-supported-kdf-modes-capabil" class="xref">Supported KDF Modes Capabilities</a><a href="#section-toc.1-1.4.2.5.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-required-prerequisite-algor" class="xref">Required Prerequisite Algorithms for SP800-108 KDF Validations</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.6">
-                <p id="section-toc.1-1.4.2.6.1"><a href="#section-4.6" class="xref">4.6</a>.  <a href="#name-supported-sp800-108-kdf-mac" class="xref">Supported SP800-108 KDF MACs</a><a href="#section-toc.1-1.4.2.6.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.3">
+                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="xref">7.3</a>.  <a href="#name-sp800-108-kdf-algorithm-cap" class="xref">SP800-108 KDF Algorithm Capabilities Registration</a><a href="#section-toc.1-1.7.2.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.7">
-                <p id="section-toc.1-1.4.2.7.1"><a href="#section-4.7" class="xref">4.7</a>.  <a href="#name-registration-example" class="xref">Registration Example</a><a href="#section-toc.1-1.4.2.7.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.4">
+                <p id="section-toc.1-1.7.2.4.1"><a href="#section-7.4" class="xref">7.4</a>.  <a href="#name-supported-sp800-108-kdf-mod" class="xref">Supported SP800-108 KDF Modes</a><a href="#section-toc.1-1.7.2.4.1" class="pilcrow">¶</a></p>
 </li>
-            </ul>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.5">
+                <p id="section-toc.1-1.7.2.5.1"><a href="#section-7.5" class="xref">7.5</a>.  <a href="#name-supported-kdf-modes-capabil" class="xref">Supported KDF Modes Capabilities</a><a href="#section-toc.1-1.7.2.5.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-test-vectors" class="xref">Test Vectors</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-test-groups" class="xref">Test Groups</a><a href="#section-toc.1-1.5.2.1.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.6">
+                <p id="section-toc.1-1.7.2.6.1"><a href="#section-7.6" class="xref">7.6</a>.  <a href="#name-supported-sp800-108-kdf-mac" class="xref">Supported SP800-108 KDF MACs</a><a href="#section-toc.1-1.7.2.6.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="xref">5.2</a>.  <a href="#name-test-cases" class="xref">Test Cases</a><a href="#section-toc.1-1.5.2.2.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.7">
+                <p id="section-toc.1-1.7.2.7.1"><a href="#section-7.7" class="xref">7.7</a>.  <a href="#name-registration-example" class="xref">Registration Example</a><a href="#section-toc.1-1.7.2.7.1" class="pilcrow">¶</a></p>
 </li>
-            </ul>
+</ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-responses" class="xref">Responses</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-test-vectors" class="xref">Test Vectors</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+<ul class="compact toc ulEmpty">
+<li class="compact toc ulEmpty" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="xref">8.1</a>.  <a href="#name-test-groups" class="xref">Test Groups</a><a href="#section-toc.1-1.8.2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="xref">8.2</a>.  <a href="#name-test-cases" class="xref">Test Cases</a><a href="#section-toc.1-1.8.2.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-example-sp800-108-kdf-capab" class="xref">Example SP800-108 KDF Capabilities JSON Object</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-responses" class="xref">Responses</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-example-test-vectors-json-o" class="xref">Example Test Vectors JSON Object</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-11" class="xref">11</a>. <a href="#name-example-test-results-json-o" class="xref">Example Test Results JSON Object</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="xref">11</a>. <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#section-12" class="xref">12</a>. <a href="#name-normative-references" class="xref">Normative references</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-12" class="xref">12</a>. <a href="#name-example-sp800-108-kdf-capab" class="xref">Example SP800-108 KDF Capabilities JSON Object</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a><a href="#section-toc.1-1.13.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#section-13" class="xref">13</a>. <a href="#name-example-test-vectors-json-o" class="xref">Example Test Vectors JSON Object</a><a href="#section-toc.1-1.13.1" class="pilcrow">¶</a></p>
 </li>
-        </ul>
+<li class="compact toc ulEmpty" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#section-14" class="xref">14</a>. <a href="#name-example-test-results-json-o" class="xref">Example Test Results JSON Object</a><a href="#section-toc.1-1.14.1" class="pilcrow">¶</a></p>
+</li>
+<li class="compact toc ulEmpty" id="section-toc.1-1.15">
+            <p id="section-toc.1-1.15.1"><a href="#section-15" class="xref">15</a>. <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.15.1" class="pilcrow">¶</a></p>
+</li>
+<li class="compact toc ulEmpty" id="section-toc.1-1.16">
+            <p id="section-toc.1-1.16.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a><a href="#section-toc.1-1.16.1" class="pilcrow">¶</a></p>
+</li>
+</ul>
 </nav>
 </section>
 </div>
@@ -1323,7 +1279,7 @@ dt+dd:empty::before{
       <h2 id="name-acknowledgements">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
       </h2>
-<div id="_c07bab32-c918-4406-b279-ade1d1f0b12a">
+<div id="_536bf7e8-7af6-46a0-95c6-5185deadae8c">
 <p id="section-1-1">There are no acknowledgements.<a href="#section-1-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1333,7 +1289,7 @@ dt+dd:empty::before{
       <h2 id="name-abstract">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-abstract" class="section-name selfRef">Abstract</a>
       </h2>
-<div id="_4d976d17-166a-4c98-a453-aaf47922bf99">
+<div id="_e74efc3b-7147-4dd2-90da-450acd29bdca">
 <p id="section-2-1">This document defines the JSON schema for testing SP800-108 KDF implementations with the ACVP specification.<a href="#section-2-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1343,7 +1299,7 @@ dt+dd:empty::before{
       <h2 id="name-introduction">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<div id="_31adb974-d99c-42aa-a101-afc20e8a8d73">
+<div id="_632cb84b-d4c7-4b7b-ab45-720d60be7d8a">
 <p id="section-3-1">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing SP800-108 KDF implementations using ACVP.<a href="#section-3-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1353,28 +1309,58 @@ dt+dd:empty::before{
       <h2 id="name-terms-and-definitions">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-terms-and-definitions" class="section-name selfRef">Terms and definitions</a>
       </h2>
-<div id="_fbd35df0-bbf1-463c-b71e-2944cc9955d1">
-<p id="section-4-1">For the purposes of this document,
-    the following terms and definitions apply.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<div id="_b4ffb18e-94c9-4f06-a128-1545deb30c16">
+<p id="section-4-1">No terms and definitions are listed in this document.<a href="#section-4-1" class="pilcrow">¶</a></p>
+</div>
+</section>
+</div>
+<div id="supported">
+<section id="section-5">
+      <h2 id="name-supported-sp800-108-kdfs">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-supported-sp800-108-kdfs" class="section-name selfRef">Supported SP800-108 KDFs</a>
+      </h2>
+<div id="_fd14cc4a-c3b0-4e5f-9524-3a00159ce932">
+<p id="section-5-1">The following key derivation functions <span class="bcp14">MAY</span> be advertised by the ACVP compliant cryptographic module:<a href="#section-5-1" class="pilcrow">¶</a></p>
+</div>
+<ul class="normal">
+<li class="normal" id="section-5-2.1">
+          <div id="_a065115f-d8b6-4f42-86ba-513d4626dd3b">
+<p id="section-5-2.1.1">KDF / 1.0<a href="#section-5-2.1.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+</ul>
+</section>
+</div>
+<div id="testtypes">
+<section id="section-6">
+      <h2 id="name-test-types-and-test-coverag">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-test-types-and-test-coverag" class="section-name selfRef">Test Types and Test Coverage</a>
+    </h2>
+</section>
+</div>
+<div id="capabilities">
+<section id="section-7">
+      <h2 id="name-capabilities-registration">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-capabilities-registration" class="section-name selfRef">Capabilities Registration</a>
+      </h2>
+<div id="_4f1846d6-a286-4fa7-be44-36ae3b8dbf10">
+<p id="section-7-1">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of KDF 108 algorithms to the ACVP server.<a href="#section-7-1" class="pilcrow">¶</a></p>
+</div>
+<div id="_2f1f8e63-7f22-4c2b-8224-501a054b6ad7">
+<p id="section-7-2">The algorithm capabilities <span class="bcp14">MUST</span> be advertised as JSON objects within the 'algorithms' value of the ACVP registration message. The 'algorithms' value is an array, where each array element is an individual JSON object defined in this section. The 'algorithms' value is part of the 'capability_exchange' element of the ACVP JSON registration message. See the ACVP specification <span>[<a href="#ACVP" class="xref">ACVP</a>]</span> for more details on the registration message.<a href="#section-7-2" class="pilcrow">¶</a></p>
 </div>
 <div id="prerequisites">
-<section id="section-4.1">
+<section id="section-7.1">
         <h3 id="name-prerequisites">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-prerequisites" class="section-name selfRef">Prerequisites</a>
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-prerequisites" class="section-name selfRef">Prerequisites</a>
         </h3>
-<div id="_9e2c4607-5c1d-40b4-b785-3bfc5d952f47">
-<p id="section-4.1-1">Each algorithm implementation <span class="bcp14">MAY</span> rely on other cryptographic primitives. For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+<div id="_67cbc9c2-bcc8-48c4-b382-7ed32ac266f8">
+<p id="section-7.1-1">Each algorithm implementation <span class="bcp14">MAY</span> rely on other cryptographic primitives. For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_c1257161-3e73-44ac-ae34-6ac2fbfff178">
-<p id="section-4.1-2">Prerequisites, if applicable, <span class="bcp14">MUST</span> be submitted in the registration as the <code>prereqVals</code> JSON property array inside each element of the <code>algorithms</code> array. Each element in the <code>prereqVals</code> array <span class="bcp14">MUST</span> contain the following properties<a href="#section-4.1-2" class="pilcrow">¶</a></p>
+<div id="_4b5b84bd-cc2c-4b7b-9532-5d4121322e4b">
+<p id="section-7.1-2">Prerequisites, if applicable, <span class="bcp14">MUST</span> be submitted in the registration as the <code>prereqVals</code> JSON property array inside each element of the <code>algorithms</code> array. Each element in the <code>prereqVals</code> array <span class="bcp14">MUST</span> contain the following properties<a href="#section-7.1-2" class="pilcrow">¶</a></p>
 </div>
-<div id="_6223ffe5-ee84-4939-93e8-4809e2c9954e">
-<p id="section-4.1-3">A "valValue" of "same" <span class="bcp14">SHALL</span> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.<a href="#section-4.1-3" class="pilcrow">¶</a></p>
-</div>
-<div id="_485d23e5-db62-4ffc-b5cc-c115e37cd82c">
-<p id="section-4.1-4">An example description of prerequisites within a single algorithm capability exchange looks like this<a href="#section-4.1-4" class="pilcrow">¶</a></p>
-</div>
-<span id="name-prerequisite-properties"></span><div id="_618894d3-f46a-4b8e-b37b-1a5cb3fffd39">
+<span id="name-prerequisite-properties"></span><div id="_a429f0d8-12cd-4085-a31e-ff280e3d7687">
 <table class="center" id="table-1">
           <caption>
 <a href="#table-1" class="selfRef">Table 1</a>:
@@ -1401,9 +1387,15 @@ dt+dd:empty::before{
           </tbody>
         </table>
 </div>
-<div id="_17bf21fd-070a-40ab-96be-de622606e7ec">
+<div id="_f4e358d2-58f1-40b2-bd79-0c5cc342d9da">
+<p id="section-7.1-4">A "valValue" of "same" <span class="bcp14">SHALL</span> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
+</div>
+<div id="_7618b297-8296-4d5a-8f1a-4ba5991ee530">
+<p id="section-7.1-5">An example description of prerequisites within a single algorithm capability exchange looks like this<a href="#section-7.1-5" class="pilcrow">¶</a></p>
+</div>
+<div id="_0f0c93a7-6634-4e5a-a48c-85447a3db54b">
 <figure id="figure-1">
-          <div id="section-4.1-6.1">
+          <div id="section-7.1-6.1">
 <pre class="sourcecode lang-json">"prereqVals":
 [
   {
@@ -1421,14 +1413,14 @@ dt+dd:empty::before{
 </section>
 </div>
 <div id="reqpre">
-<section id="section-4.2">
+<section id="section-7.2">
         <h3 id="name-required-prerequisite-algor">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-required-prerequisite-algor" class="section-name selfRef">Required Prerequisite Algorithms for SP800-108 KDF Validations</a>
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-required-prerequisite-algor" class="section-name selfRef">Required Prerequisite Algorithms for SP800-108 KDF Validations</a>
         </h3>
-<div id="_772147fc-37f7-4a50-885b-60159a022948">
-<p id="section-4.2-1">Each SP800-108 KDF implementation relies on other cryptographic primitives. For example, the KDF must utilize an underlying MAC algorithm. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:<a href="#section-4.2-1" class="pilcrow">¶</a></p>
+<div id="_ae7316ee-9f65-44d8-ab04-5a5ccf260b31">
+<p id="section-7.2-1">Each SP800-108 KDF implementation relies on other cryptographic primitives. For example, the KDF must utilize an underlying MAC algorithm. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:<a href="#section-7.2-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-sp800-108-kdf-required-prer"></span><div id="_be698260-37ea-4a55-b254-2e577f8450dd">
+<span id="name-sp800-108-kdf-required-prer"></span><div id="_38a6c1e8-febe-4fcd-a495-40c09c91085f">
 <table class="center" id="table-2">
           <caption>
 <a href="#table-2" class="selfRef">Table 2</a>:
@@ -1473,14 +1465,14 @@ dt+dd:empty::before{
 </section>
 </div>
 <div id="kdfreg">
-<section id="section-4.3">
+<section id="section-7.3">
         <h3 id="name-sp800-108-kdf-algorithm-cap">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-sp800-108-kdf-algorithm-cap" class="section-name selfRef">SP800-108 KDF Algorithm Capabilities Registration</a>
+<a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-sp800-108-kdf-algorithm-cap" class="section-name selfRef">SP800-108 KDF Algorithm Capabilities Registration</a>
         </h3>
-<div id="_d0d48fee-fb7a-43db-8ae2-ec08370ecd58">
-<p id="section-4.3-1">Each algorithm capability advertised is a self-contained JSON object using the following values.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<div id="_6a8b536b-a139-4ffe-a10f-9b5f09a8ca74">
+<p id="section-7.3-1">Each algorithm capability advertised is a self-contained JSON object using the following values.<a href="#section-7.3-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-sp800-108-kdf-algorithm-capa"></span><div id="_6d12a230-8930-4040-a4e7-43865e4aa563">
+<span id="name-sp800-108-kdf-algorithm-capa"></span><div id="_e1bcc124-d786-4927-802b-4effa7336ba8">
 <table class="center" id="table-3">
           <caption>
 <a href="#table-3" class="selfRef">Table 3</a>:
@@ -1511,68 +1503,68 @@ dt+dd:empty::before{
               <td class="text-left" rowspan="1" colspan="1">prereqVals</td>
               <td class="text-left" rowspan="1" colspan="1">Prerequisite algorithm validations</td>
               <td class="text-left" rowspan="1" colspan="1">array of prereqAlgVal objects</td>
-              <td class="text-left" rowspan="1" colspan="1">See <a href="#reqpre" class="xref">Section 4.2</a>
+              <td class="text-left" rowspan="1" colspan="1">See <a href="#reqpre" class="xref">Section 7.2</a>
 </td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">capabilities</td>
               <td class="text-left" rowspan="1" colspan="1">Array of JSON objects, each with fields pertaining to the KDF mode identified uniquely by the combination of the "kdfMode" and indicated properties</td>
               <td class="text-left" rowspan="1" colspan="1">array of JSON objects</td>
-              <td class="text-left" rowspan="1" colspan="1">See <a href="#properties" class="xref">Section 4.5</a>
+              <td class="text-left" rowspan="1" colspan="1">See <a href="#properties" class="xref">Section 7.5</a>
 </td>
             </tr>
           </tbody>
         </table>
 </div>
-<div id="_9c705947-b5f4-4502-9183-d0f44ed5e9bb">
-<aside id="section-4.3-3">
-          <p id="section-4.3-3.1">NOTE: Some optional values are required depending on the algorithm. Failure to provide these values will result in the ACVP server returning an error to the ACVP client during registration.<a href="#section-4.3-3.1" class="pilcrow">¶</a></p>
+<div id="_327be981-9254-420c-8071-ab0bc8e9737a">
+<aside id="section-7.3-3">
+          <p id="section-7.3-3.1">NOTE: Some optional values are required depending on the algorithm. Failure to provide these values will result in the ACVP server returning an error to the ACVP client during registration.<a href="#section-7.3-3.1" class="pilcrow">¶</a></p>
 </aside>
 </div>
 </section>
 </div>
 <div id="kdfmodes">
-<section id="section-4.4">
+<section id="section-7.4">
         <h3 id="name-supported-sp800-108-kdf-mod">
-<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-supported-sp800-108-kdf-mod" class="section-name selfRef">Supported SP800-108 KDF Modes</a>
+<a href="#section-7.4" class="section-number selfRef">7.4. </a><a href="#name-supported-sp800-108-kdf-mod" class="section-name selfRef">Supported SP800-108 KDF Modes</a>
         </h3>
-<div id="_0b270d68-7ec0-47bd-9225-fc5cd705903f">
-<p id="section-4.4-1">The following SP800-108 KDF modes may be advertised by the ACVP compliant crypto module:<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<div id="_4333874f-cc1d-472f-a205-e9661cf7be16">
+<p id="section-7.4-1">The following SP800-108 KDF modes may be advertised by the ACVP compliant crypto module:<a href="#section-7.4-1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.4-2.1">
-            <div id="_569eefb1-c490-483c-a46b-69144640b13f">
-<p id="section-4.4-2.1.1">counter<a href="#section-4.4-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.4-2.1">
+            <div id="_f84fa3fc-d8ae-40b7-9962-acede1e535d6">
+<p id="section-7.4-2.1.1">counter<a href="#section-7.4-2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.4-2.2">
-            <div id="_4eeaa427-f356-4e42-8c8b-be7e2d5d50e9">
-<p id="section-4.4-2.2.1">feedback<a href="#section-4.4-2.2.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.4-2.2">
+            <div id="_08deb2c4-3627-4d6a-9626-cff3462cc09a">
+<p id="section-7.4-2.2.1">feedback<a href="#section-7.4-2.2.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.4-2.3">
-            <div id="_2f0330e5-2ca2-4795-bc7d-3c91f053c435">
-<p id="section-4.4-2.3.1">double pipeline iteration<a href="#section-4.4-2.3.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.4-2.3">
+            <div id="_a46fb713-c43f-4029-b1db-66c2c2fec1e7">
+<p id="section-7.4-2.3.1">double pipeline iteration<a href="#section-7.4-2.3.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-        </ul>
+</ul>
 </section>
 </div>
 <div id="properties">
-<section id="section-4.5">
+<section id="section-7.5">
         <h3 id="name-supported-kdf-modes-capabil">
-<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-supported-kdf-modes-capabil" class="section-name selfRef">Supported KDF Modes Capabilities</a>
+<a href="#section-7.5" class="section-number selfRef">7.5. </a><a href="#name-supported-kdf-modes-capabil" class="section-name selfRef">Supported KDF Modes Capabilities</a>
         </h3>
-<div id="_e35aef87-4387-4d22-a846-7989d3ec7eed">
-<p id="section-4.5-1">The KDF mode capabilities are advertised as JSON objects within the 'capabilities' value of the ACVP registration message - see Table 2. The 'capabilities' value is an array, where each array element is a JSON object corresponding to a particular KDF mode defined in this section. The 'capabilities' value is part of the 'capability_exchange' element of the ACVP JSON registration message. See the ACVP specification <span>[<a href="#ACVP" class="xref">ACVP</a>]</span> for details on the registration message.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
+<div id="_7127f995-d3b9-4e05-bc56-66ecfad02e54">
+<p id="section-7.5-1">The KDF mode capabilities are advertised as JSON objects within the 'capabilities' value of the ACVP registration message - see Table 2. The 'capabilities' value is an array, where each array element is a JSON object corresponding to a particular KDF mode defined in this section. The 'capabilities' value is part of the 'capability_exchange' element of the ACVP JSON registration message. See the ACVP specification <span>[<a href="#ACVP" class="xref">ACVP</a>]</span> for details on the registration message.<a href="#section-7.5-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_17506e5b-f62f-415e-9a4a-bc210c22de2a">
-<p id="section-4.5-2">Each KDF mode's capabilities are advertised as JSON objects.<a href="#section-4.5-2" class="pilcrow">¶</a></p>
+<div id="_ed8bb3df-27e3-4f86-ba79-665853b88525">
+<p id="section-7.5-2">Each KDF mode's capabilities are advertised as JSON objects.<a href="#section-7.5-2" class="pilcrow">¶</a></p>
 </div>
-<div id="_386e3076-7cdf-42e7-9c89-43e6caa0d376">
-<p id="section-4.5-3">The complete list of KDF key generation capabilities may be advertised by the ACVP compliant crypto module:<a href="#section-4.5-3" class="pilcrow">¶</a></p>
+<div id="_04eac67f-7001-4393-88ed-3d14e0dbd278">
+<p id="section-7.5-3">The complete list of KDF key generation capabilities may be advertised by the ACVP compliant crypto module:<a href="#section-7.5-3" class="pilcrow">¶</a></p>
 </div>
-<span id="name-kdf-mode-capabilities"></span><div id="_3afcbf38-0572-40fe-9859-171abc5251e6">
+<span id="name-kdf-mode-capabilities"></span><div id="_f66833fe-24a6-483e-9601-9fac6868676a">
 <table class="center" id="table-4">
           <caption>
 <a href="#table-4" class="selfRef">Table 4</a>:
@@ -1591,14 +1583,14 @@ dt+dd:empty::before{
               <td class="text-left" rowspan="1" colspan="1">kdfMode</td>
               <td class="text-left" rowspan="1" colspan="1">The type of SP800-108 KDF</td>
               <td class="text-left" rowspan="1" colspan="1">string</td>
-              <td class="text-left" rowspan="1" colspan="1">See <a href="#kdfmodes" class="xref">Section 4.4</a>
+              <td class="text-left" rowspan="1" colspan="1">See <a href="#kdfmodes" class="xref">Section 7.4</a>
 </td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">macMode</td>
               <td class="text-left" rowspan="1" colspan="1">The MAC algorithm used</td>
               <td class="text-left" rowspan="1" colspan="1">string</td>
-              <td class="text-left" rowspan="1" colspan="1">See <a href="#valid-mac" class="xref">Section 4.6</a>
+              <td class="text-left" rowspan="1" colspan="1">See <a href="#valid-mac" class="xref">Section 7.6</a>
 </td>
             </tr>
             <tr>
@@ -1634,114 +1626,114 @@ dt+dd:empty::before{
           </tbody>
         </table>
 </div>
-<div id="_4f3ac95a-8cd9-4100-9fc5-903c9143754b">
-<aside id="section-4.5-5">
-          <p id="section-4.5-5.1">NOTE  1: The 'fixedDataOrder' options "none" and "before iterator" are not valid for "counter" KDF. The 'fixedDataOrder' option "middle fixed data" is not valid for "feedback" nor "double pipeline iterator" KDF.<a href="#section-4.5-5.1" class="pilcrow">¶</a></p>
+<div id="_1fc62f03-0c70-4235-a87c-5c55926e0dbc">
+<aside id="section-7.5-5">
+          <p id="section-7.5-5.1">NOTE  1: The 'fixedDataOrder' options "none" and "before iterator" are not valid for "counter" KDF. The 'fixedDataOrder' option "middle fixed data" is not valid for "feedback" nor "double pipeline iterator" KDF.<a href="#section-7.5-5.1" class="pilcrow">¶</a></p>
 </aside>
 </div>
-<div id="_0ad9becb-54d6-4ad2-aa5a-d5fede03b028">
-<aside id="section-4.5-6">
-          <p id="section-4.5-6.1">NOTE  2: A 'counterLength' of 0 describes that there is no counter used. The 0 option is not valid for "counter"  KDF.<a href="#section-4.5-6.1" class="pilcrow">¶</a></p>
+<div id="_8d008800-526b-4fa5-b502-35a189cc7dc7">
+<aside id="section-7.5-6">
+          <p id="section-7.5-6.1">NOTE  2: A 'counterLength' of 0 describes that there is no counter used. The 0 option is not valid for "counter"  KDF.<a href="#section-7.5-6.1" class="pilcrow">¶</a></p>
 </aside>
 </div>
 </section>
 </div>
 <div id="valid-mac">
-<section id="section-4.6">
+<section id="section-7.6">
         <h3 id="name-supported-sp800-108-kdf-mac">
-<a href="#section-4.6" class="section-number selfRef">4.6. </a><a href="#name-supported-sp800-108-kdf-mac" class="section-name selfRef">Supported SP800-108 KDF MACs</a>
+<a href="#section-7.6" class="section-number selfRef">7.6. </a><a href="#name-supported-sp800-108-kdf-mac" class="section-name selfRef">Supported SP800-108 KDF MACs</a>
         </h3>
-<div id="_53383db5-aaf5-4325-b9cf-423cb47c90de">
-<p id="section-4.6-1">The following MAC functions <span class="bcp14">MAY</span> be advertised by an ACVP compliant client<a href="#section-4.6-1" class="pilcrow">¶</a></p>
+<div id="_3e521c21-cb5e-4b69-930a-9da6bf8b97f4">
+<p id="section-7.6-1">The following MAC functions <span class="bcp14">MAY</span> be advertised by an ACVP compliant client<a href="#section-7.6-1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.6-2.1">
-            <div id="_acb4d5d9-dca8-4694-b04e-16eefd586f71">
-<p id="section-4.6-2.1.1">CMAC-AES128<a href="#section-4.6-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.1">
+            <div id="_dcd6959e-1a88-4dd4-8b49-244fc0bdffc9">
+<p id="section-7.6-2.1.1">CMAC-AES128<a href="#section-7.6-2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.2">
-            <div id="_a1c8b4df-d8c7-4c33-b1ca-aabc4eea6213">
-<p id="section-4.6-2.2.1">CMAC-AES192<a href="#section-4.6-2.2.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.2">
+            <div id="_02e11f7a-50d9-4d67-80b2-f9255e7c2347">
+<p id="section-7.6-2.2.1">CMAC-AES192<a href="#section-7.6-2.2.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.3">
-            <div id="_e55105f5-bce4-4e2e-8886-c6ab8167f08e">
-<p id="section-4.6-2.3.1">CMAC-AES256<a href="#section-4.6-2.3.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.3">
+            <div id="_0397a90e-091b-4739-a75b-2ef1615f90eb">
+<p id="section-7.6-2.3.1">CMAC-AES256<a href="#section-7.6-2.3.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.4">
-            <div id="_ba88806f-e5ad-4886-bef7-adacc7da51c9">
-<p id="section-4.6-2.4.1">CMAC-TDES<a href="#section-4.6-2.4.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.4">
+            <div id="_7c824996-9f1a-4080-afe8-2c2fe156e026">
+<p id="section-7.6-2.4.1">CMAC-TDES<a href="#section-7.6-2.4.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.5">
-            <div id="_66da5f6f-7d3c-45cf-860d-863fdf118266">
-<p id="section-4.6-2.5.1">HMAC-SHA1<a href="#section-4.6-2.5.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.5">
+            <div id="_d55a8e06-d28c-4d93-a10a-da6320656365">
+<p id="section-7.6-2.5.1">HMAC-SHA1<a href="#section-7.6-2.5.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.6">
-            <div id="_6875ecef-9399-4037-bf97-bef95a93f928">
-<p id="section-4.6-2.6.1">HMAC-SHA2-224<a href="#section-4.6-2.6.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.6">
+            <div id="_df880623-de92-4e6b-a4c7-73f2ae851ecd">
+<p id="section-7.6-2.6.1">HMAC-SHA2-224<a href="#section-7.6-2.6.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.7">
-            <div id="_b2ed9b56-656b-46bf-99de-f9f4c04ac449">
-<p id="section-4.6-2.7.1">HMAC-SHA2-256<a href="#section-4.6-2.7.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.7">
+            <div id="_9318f09f-74de-4b51-913d-441c0fb56b61">
+<p id="section-7.6-2.7.1">HMAC-SHA2-256<a href="#section-7.6-2.7.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.8">
-            <div id="_b8643b49-d09e-4cfc-9fa7-3a183f1cdd49">
-<p id="section-4.6-2.8.1">HMAC-SHA2-384<a href="#section-4.6-2.8.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.8">
+            <div id="_bef5b868-53d8-49fb-9be8-b09a3023decd">
+<p id="section-7.6-2.8.1">HMAC-SHA2-384<a href="#section-7.6-2.8.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.9">
-            <div id="_056886d9-93bc-4261-9de0-e7ef7e094307">
-<p id="section-4.6-2.9.1">HMAC-SHA2-512<a href="#section-4.6-2.9.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.9">
+            <div id="_f973cd8f-2eae-4af5-84fd-8ef00a7b2cbb">
+<p id="section-7.6-2.9.1">HMAC-SHA2-512<a href="#section-7.6-2.9.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.10">
-            <div id="_fb97804f-9d36-40f7-9edd-f9a9fd4a2ab7">
-<p id="section-4.6-2.10.1">HMAC-SHA2-512/224<a href="#section-4.6-2.10.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.10">
+            <div id="_93cb54d4-88f6-4404-8fa3-e3d7ca3a3bbd">
+<p id="section-7.6-2.10.1">HMAC-SHA2-512/224<a href="#section-7.6-2.10.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.11">
-            <div id="_e374dfbc-cc24-4009-abba-02368750162c">
-<p id="section-4.6-2.11.1">HMAC-SHA2-512/256<a href="#section-4.6-2.11.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.11">
+            <div id="_c5e1a140-1e47-466a-86c8-c8d0cd15e0bd">
+<p id="section-7.6-2.11.1">HMAC-SHA2-512/256<a href="#section-7.6-2.11.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.12">
-            <div id="_f878b584-d3af-4a86-a44d-8b57580f0352">
-<p id="section-4.6-2.12.1">HMAC-SHA3-224<a href="#section-4.6-2.12.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.12">
+            <div id="_86a01d52-18ef-4701-bf3d-e24243350f3b">
+<p id="section-7.6-2.12.1">HMAC-SHA3-224<a href="#section-7.6-2.12.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.13">
-            <div id="_db702f53-840a-44ab-9699-c81d4254cc86">
-<p id="section-4.6-2.13.1">HMAC-SHA3-256<a href="#section-4.6-2.13.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.13">
+            <div id="_55cab31a-6f23-420a-b057-a8561811a8c2">
+<p id="section-7.6-2.13.1">HMAC-SHA3-256<a href="#section-7.6-2.13.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.14">
-            <div id="_e24e5c88-bb60-42af-bcc7-cd94574c079c">
-<p id="section-4.6-2.14.1">HMAC-SHA3-384<a href="#section-4.6-2.14.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.14">
+            <div id="_251131d0-f5fd-42f3-8e79-44dfe05b4bdb">
+<p id="section-7.6-2.14.1">HMAC-SHA3-384<a href="#section-7.6-2.14.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.15">
-            <div id="_7cb2910a-c984-4b6b-99fd-a17b0d8e1ccb">
-<p id="section-4.6-2.15.1">HMAC-SHA3-512<a href="#section-4.6-2.15.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.15">
+            <div id="_f599879d-0704-46f2-9763-1ebf33dcd188">
+<p id="section-7.6-2.15.1">HMAC-SHA3-512<a href="#section-7.6-2.15.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-        </ul>
+</ul>
 </section>
 </div>
 <div id="_registration_example">
-<section id="section-4.7">
+<section id="section-7.7">
         <h3 id="name-registration-example">
-<a href="#section-4.7" class="section-number selfRef">4.7. </a><a href="#name-registration-example" class="section-name selfRef">Registration Example</a>
+<a href="#section-7.7" class="section-number selfRef">7.7. </a><a href="#name-registration-example" class="section-name selfRef">Registration Example</a>
         </h3>
-<div id="_ba17f498-d3e8-4c3f-9862-7261ef81dd20">
-<p id="section-4.7-1">A registration <span class="bcp14">SHALL</span> use these properties<a href="#section-4.7-1" class="pilcrow">¶</a></p>
+<div id="_27289969-6b56-402c-b3fb-79d08bcae2fb">
+<p id="section-7.7-1">A registration <span class="bcp14">SHALL</span> use these properties<a href="#section-7.7-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-registration-properties"></span><div id="_d6450dfb-7e6a-4339-8fde-0bce0389df87">
+<span id="name-registration-properties"></span><div id="_db95c84c-671a-4597-9cb4-a5987ccdd201">
 <table class="center" id="table-5">
           <caption>
 <a href="#table-5" class="selfRef">Table 5</a>:
@@ -1772,14 +1764,14 @@ dt+dd:empty::before{
               <td class="text-left" rowspan="1" colspan="1">prereqVals</td>
               <td class="text-left" rowspan="1" colspan="1">Prerequisites of the algorithm</td>
               <td class="text-left" rowspan="1" colspan="1">object</td>
-              <td class="text-left" rowspan="1" colspan="1">See <a href="#prerequisites" class="xref">Section 4.1</a>
+              <td class="text-left" rowspan="1" colspan="1">See <a href="#prerequisites" class="xref">Section 7.1</a>
 </td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">capabilities</td>
               <td class="text-left" rowspan="1" colspan="1">Properties of the algorithm and mode the IUT supports</td>
               <td class="text-left" rowspan="1" colspan="1">array</td>
-              <td class="text-left" rowspan="1" colspan="1">See <a href="#properties" class="xref">Section 4.5</a>
+              <td class="text-left" rowspan="1" colspan="1">See <a href="#properties" class="xref">Section 7.5</a>
 </td>
             </tr>
           </tbody>
@@ -1790,17 +1782,17 @@ dt+dd:empty::before{
 </section>
 </div>
 <div id="test-vectors">
-<section id="section-5">
+<section id="section-8">
       <h2 id="name-test-vectors">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-test-vectors" class="section-name selfRef">Test Vectors</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-test-vectors" class="section-name selfRef">Test Vectors</a>
       </h2>
-<div id="_19c9adfd-32d5-46fd-bcf6-0e34e13d2621">
-<p id="section-5-1">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with SP800-108 KDF algorithms.<a href="#section-5-1" class="pilcrow">¶</a></p>
+<div id="_271f0177-229c-472b-bba9-605865ad164b">
+<p id="section-8-1">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with SP800-108 KDF algorithms.<a href="#section-8-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_55b403a7-2098-41cb-8536-15915a96a779">
-<p id="section-5-2">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.<a href="#section-5-2" class="pilcrow">¶</a></p>
+<div id="_de01eac5-682a-4922-8f40-59ec87bb3c60">
+<p id="section-8-2">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.<a href="#section-8-2" class="pilcrow">¶</a></p>
 </div>
-<span id="name-top-level-test-vector-json-"></span><div id="_ff7dec21-71c5-4f92-8bb5-4d1c090e6748">
+<span id="name-top-level-test-vector-json-"></span><div id="_e7a06417-ff6f-45b2-8f56-ef138fbc8ff3">
 <table class="center" id="table-6">
         <caption>
 <a href="#table-6" class="selfRef">Table 6</a>:
@@ -1841,19 +1833,19 @@ dt+dd:empty::before{
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">testGroups</td>
-            <td class="text-left" rowspan="1" colspan="1">Array of test groups containing test data, see <a href="#tgjs" class="xref">Section 5.1</a>
+            <td class="text-left" rowspan="1" colspan="1">Array of test groups containing test data, see <a href="#tgjs" class="xref">Section 8.1</a>
 </td>
             <td class="text-left" rowspan="1" colspan="1">array</td>
           </tr>
         </tbody>
       </table>
 </div>
-<div id="_558b1253-6794-46d7-8cf8-ee823f45c92c">
-<p id="section-5-4">An example of this would look like this<a href="#section-5-4" class="pilcrow">¶</a></p>
+<div id="_eaa41db5-f725-447d-b4cd-5a310f597b0b">
+<p id="section-8-4">An example of this would look like this<a href="#section-8-4" class="pilcrow">¶</a></p>
 </div>
-<div id="_c3b23964-66aa-44ad-9ece-4e31c065082a">
+<div id="_f3f9dd9b-6eb5-4ae6-b049-e1be35d0af6e">
 <figure id="figure-2">
-        <div id="section-5-5.1">
+        <div id="section-8-5.1">
 <pre class="sourcecode lang-json">{
   "acvVersion": "version",
   "vsId": 1,
@@ -1866,17 +1858,17 @@ dt+dd:empty::before{
 <figcaption><a href="#figure-2" class="selfRef">Figure 2</a></figcaption></figure>
 </div>
 <div id="tgjs">
-<section id="section-5.1">
+<section id="section-8.1">
         <h3 id="name-test-groups">
-<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-test-groups" class="section-name selfRef">Test Groups</a>
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-test-groups" class="section-name selfRef">Test Groups</a>
         </h3>
-<div id="_8e3bb013-eca8-4c5b-81db-528bd582de2e">
-<p id="section-5.1-1">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the the secure hash JSON elements of the Test Group JSON object.<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<div id="_aa917b4f-7ab8-40f2-8ff8-bf748e24f754">
+<p id="section-8.1-1">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the the secure hash JSON elements of the Test Group JSON object.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_7dbc0ca5-5a2c-4340-b180-58cd73af6b42">
-<p id="section-5.1-2">The prompt test group for KDF is as follows:<a href="#section-5.1-2" class="pilcrow">¶</a></p>
+<div id="_60502883-c37f-49fc-951c-d15ba1a43ac8">
+<p id="section-8.1-2">The prompt test group for KDF is as follows:<a href="#section-8.1-2" class="pilcrow">¶</a></p>
 </div>
-<span id="name-test-group-json-object"></span><div id="_33b76556-2baa-4e45-8779-bd45d6e04f95">
+<span id="name-test-group-json-object"></span><div id="_bbb81018-53af-438a-8d85-a873e8d2bd0f">
 <table class="center" id="table-7">
           <caption>
 <a href="#table-7" class="selfRef">Table 7</a>:
@@ -1938,25 +1930,25 @@ dt+dd:empty::before{
           </tbody>
         </table>
 </div>
-<div id="_850799d9-2a34-490e-9c98-f5675a6632c6">
-<aside id="section-5.1-4">
-          <p id="section-5.1-4.1">NOTE: The feedback mode KDF counter location of "counter after iterator" is referenced with the option "before fixed data" in the 'counterLocation' specification.<a href="#section-5.1-4.1" class="pilcrow">¶</a></p>
+<div id="_96311c5c-8b24-41d5-8b00-907d193f25af">
+<aside id="section-8.1-4">
+          <p id="section-8.1-4.1">NOTE: The feedback mode KDF counter location of "counter after iterator" is referenced with the option "before fixed data" in the 'counterLocation' specification.<a href="#section-8.1-4.1" class="pilcrow">¶</a></p>
 </aside>
 </div>
-<div id="_a16200b0-8e3b-4c0f-b970-5ab8f28bf489">
-<p id="section-5.1-5">The 'tgId', 'testType' and 'tests' objects <span class="bcp14">MUST</span> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which 'testType' the group is addressing.<a href="#section-5.1-5" class="pilcrow">¶</a></p>
+<div id="_aae634b6-adeb-47fc-a584-022f8fc1cbab">
+<p id="section-8.1-5">The 'tgId', 'testType' and 'tests' objects <span class="bcp14">MUST</span> appear in every test group element communicated from the server to the client as a part of a prompt. Other properties are dependent on which 'testType' the group is addressing.<a href="#section-8.1-5" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="_test_cases">
-<section id="section-5.2">
+<section id="section-8.2">
         <h3 id="name-test-cases">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-test-cases" class="section-name selfRef">Test Cases</a>
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-test-cases" class="section-name selfRef">Test Cases</a>
         </h3>
-<div id="_f5f1e3ba-8f02-4b35-96e4-8dcdee7347ee">
-<p id="section-5.2-1">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each SP800-108 KDF test vector.<a href="#section-5.2-1" class="pilcrow">¶</a></p>
+<div id="_706960a9-88f7-4dcf-8d71-2583fd4e5c91">
+<p id="section-8.2-1">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each SP800-108 KDF test vector.<a href="#section-8.2-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-test-case-json-object"></span><div id="_65bbd9d5-fed6-4b55-a32f-2dae45645b5d">
+<span id="name-test-case-json-object"></span><div id="_79ae32f5-7af8-4639-80ec-f93e4c5f5125">
 <table class="center" id="table-8">
           <caption>
 <a href="#table-8" class="selfRef">Table 8</a>:
@@ -1993,14 +1985,14 @@ dt+dd:empty::before{
           </tbody>
         </table>
 </div>
-<div id="_50d67323-6f7c-4b24-8d7c-198665bbbd69">
-<aside id="section-5.2-3">
-          <p id="section-5.2-3.1">NOTE  1: If the "middle fixed data" option is used for the 'counterLocation', then the test case is deferred from the server. In this case, the client <span class="bcp14">MUST</span> provide a 'breakLocation' integer value which is the length of the fixed data before the counter is inserted.<a href="#section-5.2-3.1" class="pilcrow">¶</a></p>
+<div id="_7f917394-1b98-4d7a-924d-dd5fbe4c049d">
+<aside id="section-8.2-3">
+          <p id="section-8.2-3.1">NOTE  1: If the "middle fixed data" option is used for the 'counterLocation', then the test case is deferred from the server. In this case, the client <span class="bcp14">MUST</span> provide a 'breakLocation' integer value which is the length of the fixed data before the counter is inserted.<a href="#section-8.2-3.1" class="pilcrow">¶</a></p>
 </aside>
 </div>
-<div id="_d1b106e5-587d-4b8b-8df1-b0f2262e6aa3">
-<aside id="section-5.2-4">
-          <p id="section-5.2-4.1">NOTE  2: If the 'deferred' property is not present, it <span class="bcp14">MAY</span> be assumed to be 'false'.<a href="#section-5.2-4.1" class="pilcrow">¶</a></p>
+<div id="_43599a70-5699-4841-9c0f-56c33ea7a739">
+<aside id="section-8.2-4">
+          <p id="section-8.2-4.1">NOTE  2: If the 'deferred' property is not present, it <span class="bcp14">MAY</span> be assumed to be 'false'.<a href="#section-8.2-4.1" class="pilcrow">¶</a></p>
 </aside>
 </div>
 </section>
@@ -2008,14 +2000,14 @@ dt+dd:empty::before{
 </section>
 </div>
 <div id="responses">
-<section id="section-6">
+<section id="section-9">
       <h2 id="name-responses">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-responses" class="section-name selfRef">Responses</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-responses" class="section-name selfRef">Responses</a>
       </h2>
-<div id="_ad14df0e-8868-4337-b699-39a81da19a58">
-<p id="section-6-1">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<div id="_c5d5404e-2926-4d42-9221-a8eaedf109e4">
+<p id="section-9-1">After the ACVP client downloads and processes a vector set, it must send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.<a href="#section-9-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-vector-set-response-json-ob"></span><div id="_c16080df-6220-4a12-93a6-6122aed778c2">
+<span id="name-vector-set-response-json-ob"></span><div id="_4793a0ed-7300-41a8-ac1b-a14db2333ab2">
 <table class="center" id="table-9">
         <caption>
 <a href="#table-9" class="selfRef">Table 9</a>:
@@ -2047,12 +2039,12 @@ dt+dd:empty::before{
         </tbody>
       </table>
 </div>
-<div id="_092e910c-f44f-4ea5-8ffe-2a83cce86c8c">
-<p id="section-6-3">An example of this is the following<a href="#section-6-3" class="pilcrow">¶</a></p>
+<div id="_aac9e2b7-93e9-422e-88cf-2cae0f5ac0d4">
+<p id="section-9-3">An example of this is the following<a href="#section-9-3" class="pilcrow">¶</a></p>
 </div>
-<div id="_6f08b885-81b4-473f-9709-a28de83180af">
+<div id="_a0c783e3-27fd-4241-b36a-f5c09be9b5be">
 <figure id="figure-3">
-        <div id="section-6-4.1">
+        <div id="section-9-4.1">
 <pre class="sourcecode lang-json">{
         "acvVersion": "version",
         "vsId": 1,
@@ -2061,10 +2053,10 @@ dt+dd:empty::before{
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a></figcaption></figure>
 </div>
-<div id="_2197f38e-f255-4469-b4ce-8b94a3083f65">
-<p id="section-6-5">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <span class="bcp14">SHALL</span> require the client to send back group level properties in their response. This structure helps accommodate that.<a href="#section-6-5" class="pilcrow">¶</a></p>
+<div id="_f4e0685f-c4dd-4a12-8ce6-57ec13484d89">
+<p id="section-9-5">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <span class="bcp14">SHALL</span> require the client to send back group level properties in their response. This structure helps accommodate that.<a href="#section-9-5" class="pilcrow">¶</a></p>
 </div>
-<span id="name-vector-set-group-response-j"></span><div id="_94432afd-31ac-4f22-8762-e15c2e6c94df">
+<span id="name-vector-set-group-response-j"></span><div id="_da09f638-bde7-4773-a09c-4fef717b227c">
 <table class="center" id="table-10">
         <caption>
 <a href="#table-10" class="selfRef">Table 10</a>:
@@ -2091,12 +2083,12 @@ dt+dd:empty::before{
         </tbody>
       </table>
 </div>
-<div id="_95b48277-45c4-4d0e-985d-6f73bc6024f0">
-<p id="section-6-7">An example of this is the following<a href="#section-6-7" class="pilcrow">¶</a></p>
+<div id="_fc182b27-fc8b-47ca-8eb0-c1f02da06a10">
+<p id="section-9-7">An example of this is the following<a href="#section-9-7" class="pilcrow">¶</a></p>
 </div>
-<div id="_56a176fb-f4c7-4fd6-864c-c1240219f590">
+<div id="_55694582-13ba-45c3-ba8b-85417ba7f789">
 <figure id="figure-4">
-        <div id="section-6-8.1">
+        <div id="section-9-8.1">
 <pre class="sourcecode lang-json">{
         "tgId": 1,
         "tests": [ ... ]
@@ -2104,10 +2096,10 @@ dt+dd:empty::before{
 </div>
 <figcaption><a href="#figure-4" class="selfRef">Figure 4</a></figcaption></figure>
 </div>
-<div id="_b41047d6-c793-420e-badd-84a2664a16a6">
-<p id="section-6-9">The following table describes the JSON object that represents a test case response for a SP800-108 KDF.<a href="#section-6-9" class="pilcrow">¶</a></p>
+<div id="_5c40fd12-1d40-4a46-9f5e-68a7d9ba5b3b">
+<p id="section-9-9">The following table describes the JSON object that represents a test case response for a SP800-108 KDF.<a href="#section-9-9" class="pilcrow">¶</a></p>
 </div>
-<span id="name-test-case-results-json-obje"></span><div id="_658a338d-2e70-4199-a109-85b8217da854">
+<span id="name-test-case-results-json-obje"></span><div id="_0867e2d9-4a52-4c21-8d03-490fecd7b78b">
 <table class="center" id="table-11">
         <caption>
 <a href="#table-11" class="selfRef">Table 11</a>:
@@ -2147,37 +2139,37 @@ dt+dd:empty::before{
 </section>
 </div>
 <div id="security">
-<section id="section-7">
+<section id="section-10">
       <h2 id="name-security-considerations">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<div id="_712aa316-226d-47c6-ad8e-5b99cf1dd756">
-<p id="section-7-1">There are no additional security considerations outside of those outlined in the ACVP document.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<div id="_b5294d2c-0436-4d2b-8464-1c9d57a54fdb">
+<p id="section-10-1">There are no additional security considerations outside of those outlined in the ACVP document.<a href="#section-10-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="iana">
-<section id="section-8">
+<section id="section-11">
       <h2 id="name-iana-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<div id="_f7f55c07-1a2b-4365-8c86-d904d9c87ce5">
-<p id="section-8-1">This document does not require any action by IANA.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<div id="_e636e242-db3d-45aa-ace0-b346d3457584">
+<p id="section-11-1">This document does not require any action by IANA.<a href="#section-11-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="app-reg-ex">
-<section id="section-9">
+<section id="section-12">
       <h2 id="name-example-sp800-108-kdf-capab">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-example-sp800-108-kdf-capab" class="section-name selfRef">Example SP800-108 KDF Capabilities JSON Object</a>
+<a href="#section-12" class="section-number selfRef">12. </a><a href="#name-example-sp800-108-kdf-capab" class="section-name selfRef">Example SP800-108 KDF Capabilities JSON Object</a>
       </h2>
-<div id="_401d012b-6591-4f31-a276-cfec5f03c3e6">
-<p id="section-9-1">The following is a example JSON object advertising support for KDF.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<div id="_fed6c13a-44fe-4039-9a68-b023e3230261">
+<p id="section-12-1">The following is a example JSON object advertising support for KDF.<a href="#section-12-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_4169efc1-8d3c-4ae1-9112-59ad68dd02b9">
+<div id="_6c9eeac6-50c6-4f8d-9054-d8f8d35bde47">
 <figure id="figure-5">
-        <div id="_debebdea-cbfd-42db-a515-2b252617fba6">
-<div class="artwork art-text alignLeft art-ascii-art" id="section-9-2.1">
+        <div id="_7be9a727-5630-4b1c-88f3-93aeb61fc2c0">
+<div class="artwork art-text alignLeft art-ascii-art" id="section-12-2.1">
 <pre>    {
        "algorithm": "KDF",
        "revision": "1.0",
@@ -2306,17 +2298,17 @@ dt+dd:empty::before{
 </section>
 </div>
 <div id="app-vs-ex">
-<section id="section-10">
+<section id="section-13">
       <h2 id="name-example-test-vectors-json-o">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-example-test-vectors-json-o" class="section-name selfRef">Example Test Vectors JSON Object</a>
+<a href="#section-13" class="section-number selfRef">13. </a><a href="#name-example-test-vectors-json-o" class="section-name selfRef">Example Test Vectors JSON Object</a>
       </h2>
-<div id="_51107dd4-5da0-4f62-b438-7ebb9da8396f">
-<p id="section-10-1">The following is a example JSON object for SP800-108 KDF test vectors sent from the ACVP server to the crypto module.<a href="#section-10-1" class="pilcrow">¶</a></p>
+<div id="_528e15d3-606f-4629-a296-5cc45feb9162">
+<p id="section-13-1">The following is a example JSON object for SP800-108 KDF test vectors sent from the ACVP server to the crypto module.<a href="#section-13-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_1a11f7c8-577a-41ae-aabb-070bc06bc5dd">
+<div id="_9e9031ac-8ccd-4c9e-a781-89c4966fb64e">
 <figure id="figure-6">
-        <div id="_7e2047e1-e870-4f38-8295-daa0443621bb">
-<div class="artwork art-text alignLeft art-ascii-art" id="section-10-2.1">
+        <div id="_5c211fec-ac6d-430d-a81a-669c4c4fbdb4">
+<div class="artwork art-text alignLeft art-ascii-art" id="section-13-2.1">
 <pre>[{
                 "acvVersion": "0..54"
         },
@@ -2354,17 +2346,17 @@ dt+dd:empty::before{
 </section>
 </div>
 <div id="app-resp-ex">
-<section id="section-11">
+<section id="section-14">
       <h2 id="name-example-test-results-json-o">
-<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-example-test-results-json-o" class="section-name selfRef">Example Test Results JSON Object</a>
+<a href="#section-14" class="section-number selfRef">14. </a><a href="#name-example-test-results-json-o" class="section-name selfRef">Example Test Results JSON Object</a>
       </h2>
-<div id="_27dc0eff-b81f-4886-9bff-9099afd7fa57">
-<p id="section-11-1">The following is a example JSON object for SP800-108 KDF test results sent from the crypto module to the ACVP server.<a href="#section-11-1" class="pilcrow">¶</a></p>
+<div id="_dfa16f93-8a83-40b4-95f8-4c47d868f20f">
+<p id="section-14-1">The following is a example JSON object for SP800-108 KDF test results sent from the crypto module to the ACVP server.<a href="#section-14-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_c2ccab7e-aabc-4e02-adc0-c6540d980ce5">
+<div id="_6ce4795a-823b-4235-893c-52dbe0c21cf5">
 <figure id="figure-7">
-        <div id="_93dcf76e-2272-40ec-8e7b-5fe99b131f75">
-<div class="artwork art-text alignLeft art-ascii-art" id="section-11-2.1">
+        <div id="_2a564ea4-9fa8-4e92-ac17-21ce4310812a">
+<div class="artwork art-text alignLeft art-ascii-art" id="section-14-2.1">
 <pre>[{
                 "acvVersion": &lt;acvp-version&gt;
         },
@@ -2389,26 +2381,26 @@ dt+dd:empty::before{
 </section>
 </div>
 <div id="_normative_references">
-<section id="section-12">
+<section id="section-15">
       <h2 id="name-normative-references">
-<a href="#section-12" class="section-number selfRef">12. </a><a href="#name-normative-references" class="section-name selfRef">Normative references</a>
+<a href="#section-15" class="section-number selfRef">15. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
       </h2>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="refContent">IETF RFC 2119</span>, <span class="seriesInfo">IETF RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="refContent">IETF RFC 2119</span>, <span class="seriesInfo">IETF RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7991">[RFC7991]</dt>
-      <dd>
-<span class="refAuthor">Hoffman, P.</span>, <span class="refTitle">"The "xml2rfc" Version 3 Vocabulary"</span>, <span class="refContent">IETF RFC 7991</span>, <span class="seriesInfo">IETF RFC 7991</span>, <span class="seriesInfo">DOI 10.17487/RFC7991</span>, <time datetime="2016-12" class="refDate">December 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7991">https://www.rfc-editor.org/info/rfc7991</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Hoffman, P.</span>, <span class="refTitle">"The "xml2rfc" Version 3 Vocabulary"</span>, <span class="refContent">IETF RFC 7991</span>, <span class="seriesInfo">IETF RFC 7991</span>, <span class="seriesInfo">DOI 10.17487/RFC7991</span>, <time datetime="2016-12">December 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7991">https://www.rfc-editor.org/info/rfc7991</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-      <dd>
-<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="refContent">IETF RFC 8174</span>, <span class="seriesInfo">IETF RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="refContent">IETF RFC 8174</span>, <span class="seriesInfo">IETF RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="ACVP">[ACVP]</dt>
-    <dd>
-<span class="refAuthor">NIST</span>, <span class="refTitle">"Automatic Cryptographic Validation Protocol"</span>, <span class="refContent">ACVP ACVP</span>, <time datetime="2019" class="refDate">2019</time>. </dd>
+<dd>
+<span class="refAuthor">NIST</span>, <span class="refTitle">"Automatic Cryptographic Validation Protocol"</span>, <span class="refContent">ACVP ACVP</span>, <time datetime="2019">2019</time>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

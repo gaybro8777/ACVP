@@ -3,9 +3,9 @@
 
 
 Network Working Group                                       C. Celi, Ed.
-Internet-Draft                                          17 November 2020
+Internet-Draft                                          18 November 2020
 Intended status: Informational                                          
-Expires: 21 May 2021
+Expires: 22 May 2021
 
 
           ACVP TPM Key Derivation Function JSON Specification
@@ -25,7 +25,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2021.
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -47,30 +47,32 @@ Table of Contents
    2.  Abstract  . . . . . . . . . . . . . . . . . . . . . . . . . .   2
    3.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    4.  Terms and definitions . . . . . . . . . . . . . . . . . . . .   2
-     4.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
-     4.2.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   3
-       4.2.1.  TPM Requirements Covered  . . . . . . . . . . . . . .   3
+   5.  Supported KDFs  . . . . . . . . . . . . . . . . . . . . . . .   3
+   6.  Test Types and Test Coverage  . . . . . . . . . . . . . . . .   3
+     6.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
 
 
 
-Celi                       Expires 21 May 2021                  [Page 1]
+Celi                       Expires 22 May 2021                  [Page 1]
 
 Internet-Draft                ACVP KDF TPM                 November 2020
 
 
-       4.2.2.  TPM Requirements Not Covered  . . . . . . . . . . . .   3
-   5.  Capabilities Registration . . . . . . . . . . . . . . . . . .   3
-     5.1.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   4
-     5.2.  Required Prerequisite Algorithms for KDF135 TPM
+     6.2.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   3
+       6.2.1.  TPM Requirements Covered  . . . . . . . . . . . . . .   3
+       6.2.2.  TPM Requirements Not Covered  . . . . . . . . . . . .   3
+   7.  Capabilities Registration . . . . . . . . . . . . . . . . . .   4
+     7.1.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   4
+     7.2.  Required Prerequisite Algorithms for KDF135 TPM
            Validations . . . . . . . . . . . . . . . . . . . . . . .   5
-     5.3.  KDF135 TPM Algorithm Capabilities JSON Values . . . . . .   5
-   6.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .   6
-     6.1.  Test Groups JSON Schema . . . . . . . . . . . . . . . . .   7
-     6.2.  Test Case JSON Schema . . . . . . . . . . . . . . . . . .   8
-   7.  Test Vector Responses . . . . . . . . . . . . . . . . . . . .   9
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  11
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  11
-   10. Bibliography  . . . . . . . . . . . . . . . . . . . . . . . .  11
+     7.3.  KDF135 TPM Algorithm Capabilities JSON Values . . . . . .   5
+   8.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .   6
+     8.1.  Test Groups JSON Schema . . . . . . . . . . . . . . . . .   7
+     8.2.  Test Case JSON Schema . . . . . . . . . . . . . . . . . .   8
+   9.  Test Vector Responses . . . . . . . . . . . . . . . . . . . .   9
+   10. Security Considerations . . . . . . . . . . . . . . . . . . .  11
+   11. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  11
+   12. Bibliography  . . . . . . . . . . . . . . . . . . . . . . . .  11
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  12
 
 1.  Acknowledgements
@@ -99,8 +101,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
 4.  Terms and definitions
 
-   For the purposes of this document, the following terms and
-   definitions apply.
+   No terms and definitions are listed in this document.
 
 
 
@@ -108,13 +109,24 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
 
 
-
-Celi                       Expires 21 May 2021                  [Page 2]
+Celi                       Expires 22 May 2021                  [Page 2]
 
 Internet-Draft                ACVP KDF TPM                 November 2020
 
 
-4.1.  Test Types
+5.  Supported KDFs
+
+   The following key derivation functions MAY be advertised by the ACVP
+   compliant cryptographic module:
+
+   *  kdf-components / tpm / 1.0
+
+6.  Test Types and Test Coverage
+
+   This section describes the design of the tests used to validate
+   SP800-135 TPM KDF implementations.
+
+6.1.  Test Types
 
    There is only one test type: functional tests.  Each has a specific
    value to be used in the testType field.  The testType field
@@ -128,19 +140,37 @@ Internet-Draft                ACVP KDF TPM                 November 2020
       that the logical components of the key deriviation process are
       operating correctly.
 
-4.2.  Test Coverage
+6.2.  Test Coverage
 
-4.2.1.  TPM Requirements Covered
+   The tests described in this document have the intention of ensuring
+   an implementation is conformant to [SP800-135].
+
+6.2.1.  TPM Requirements Covered
 
    In [SP800-135], TBD.
 
-4.2.2.  TPM Requirements Not Covered
+6.2.2.  TPM Requirements Not Covered
 
    Some requirements in the outlined specification are not easily
    tested.  Often they are not ideal for black-box testing such as the
    ACVP.In [SP800-135], TBD.
 
-5.  Capabilities Registration
+
+
+
+
+
+
+
+
+
+
+Celi                       Expires 22 May 2021                  [Page 3]
+
+Internet-Draft                ACVP KDF TPM                 November 2020
+
+
+7.  Capabilities Registration
 
    ACVP requires crypto modules to register their capabilities.  This
    allows the crypto module to advertise support for specific
@@ -157,20 +187,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
    registration message.  See the ACVP specification [ACVP] for more
    details on the registration message.
 
-
-
-
-
-
-
-
-
-Celi                       Expires 21 May 2021                  [Page 3]
-
-Internet-Draft                ACVP KDF TPM                 November 2020
-
-
-5.1.  Prerequisites
+7.1.  Prerequisites
 
    Each algorithm implementation MAY rely on other cryptographic
    primitives.  For example, RSA Signature algorithms depend on an
@@ -184,7 +201,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
    "algorithms" array.  Each element in the "prereqVals" array MUST
    contain the following properties
 
-        +===============+=============================+===========+
+        +---------------+-----------------------------+-----------+
         | JSON Property | Description                 | JSON Type |
         +===============+=============================+===========+
         | algorithm     | a prerequisite algorithm    | string    |
@@ -201,6 +218,14 @@ Internet-Draft                ACVP KDF TPM                 November 2020
    An example description of prerequisites within a single algorithm
    capability exchange looks like this
 
+
+
+
+Celi                       Expires 22 May 2021                  [Page 4]
+
+Internet-Draft                ACVP KDF TPM                 November 2020
+
+
    "prereqVals":
    [
      {
@@ -215,18 +240,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
                                   Figure 1
 
-
-
-
-
-
-
-Celi                       Expires 21 May 2021                  [Page 4]
-
-Internet-Draft                ACVP KDF TPM                 November 2020
-
-
-5.2.  Required Prerequisite Algorithms for KDF135 TPM Validations
+7.2.  Required Prerequisite Algorithms for KDF135 TPM Validations
 
    Some KDF135 algorithm implementations rely on other cryptographic
    primitives.  For example, TPM uses an underlying SHA algorithm.  Each
@@ -234,7 +248,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
    separately or as part of the same submission.  ACVP provides a
    mechanism for specifying the required prerequisites:
 
-    +==============+================+=====================+===========+
+    +--------------+----------------+---------------------+-----------+
     | JSON Value   | Description    | JSON type           | Valid     |
     |              |                |                     | Values    |
     +==============+================+=====================+===========+
@@ -252,7 +266,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
            Table 2: Required Prerequisite Algorithms JSON Values
 
-5.3.  KDF135 TPM Algorithm Capabilities JSON Values
+7.3.  KDF135 TPM Algorithm Capabilities JSON Values
 
    Each algorithm capability advertised is a self-contained JSON object
    using the following values.
@@ -263,26 +277,12 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Celi                       Expires 21 May 2021                  [Page 5]
+Celi                       Expires 22 May 2021                  [Page 5]
 
 Internet-Draft                ACVP KDF TPM                 November 2020
 
 
-    +============+=================+==============+==================+
+    +------------+-----------------+--------------+------------------+
     | JSON Value | Description     | JSON type    | Valid Values     |
     +============+=================+==============+==================+
     | algorithm  | The algorithm   | string       | "kdf-components" |
@@ -294,7 +294,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
     | revision   | The testing     | string       | "1.0"            |
     |            | revision used   |              |                  |
     +------------+-----------------+--------------+------------------+
-    | prereqVals | Prerequisite    | array of     | See Section 5.2  |
+    | prereqVals | Prerequisite    | array of     | See Section 7.2  |
     |            | algorithm       | prereqAlgVal |                  |
     |            | validations     | objects      |                  |
     +------------+-----------------+--------------+------------------+
@@ -312,7 +312,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
                                   Figure 2
 
-6.  Test Vectors
+8.  Test Vectors
 
    The ACVP server provides test vectors to the ACVP client, which are
    then processed and returned to the ACVP server for validation.  A
@@ -333,12 +333,12 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
 
 
-Celi                       Expires 21 May 2021                  [Page 6]
+Celi                       Expires 22 May 2021                  [Page 6]
 
 Internet-Draft                ACVP KDF TPM                 November 2020
 
 
-    +=============+======================================+===========+
+    +-------------+--------------------------------------+-----------+
     | JSON Values | Description                          | JSON Type |
     +=============+======================================+===========+
     | acvVersion  | Protocol version identifier          | string    |
@@ -354,7 +354,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
     | revision    | Protocol test revision selected      | string    |
     +-------------+--------------------------------------+-----------+
     | testGroups  | Array of test groups containing test | array     |
-    |             | data, see Section 6.1                |           |
+    |             | data, see Section 8.1                |           |
     +-------------+--------------------------------------+-----------+
 
                Table 4: Top Level Test Vector JSON Elements
@@ -372,7 +372,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
                                   Figure 3
 
-6.1.  Test Groups JSON Schema
+8.1.  Test Groups JSON Schema
 
    The testGroups element at the top level in the test vector JSON
    object is an array of test groups.  Test vectors are grouped into
@@ -389,12 +389,12 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
 
 
-Celi                       Expires 21 May 2021                  [Page 7]
+Celi                       Expires 22 May 2021                  [Page 7]
 
 Internet-Draft                ACVP KDF TPM                 November 2020
 
 
-    +=====================+=============+=======+=====================+
+    +---------------------+-------------+-------+---------------------+
     | JSON Value          | Description | JSON  | tgId                |
     |                     |             | type  |                     |
     +=====================+=============+=======+=====================+
@@ -402,19 +402,19 @@ Internet-Draft                ACVP KDF TPM                 November 2020
     | for the test group, |             |       | test vector JSON    |
     | unique across the   |             |       | objects, which are  |
     | entire vector set   |             |       | defined in          |
-    |                     |             |       | Section 6.2         |
+    |                     |             |       | Section 8.2         |
     +---------------------+-------------+-------+---------------------+
 
                      Table 5: Vector Group JSON Object
 
-6.2.  Test Case JSON Schema
+8.2.  Test Case JSON Schema
 
    Each test group contains an array of one or more test cases.  Each
    test case is a JSON object that represents a single test vector to be
    processed by the ACVP client.  The following table describes the JSON
    elements for each SP800-135 TPM KDF test vector.
 
-      +====================+=============+========+================+
+      +--------------------+-------------+--------+----------------+
       | JSON Value         | Description | JSON   | tcId           |
       |                    |             | type   |                |
       +====================+=============+========+================+
@@ -445,7 +445,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
 
 
-Celi                       Expires 21 May 2021                  [Page 8]
+Celi                       Expires 22 May 2021                  [Page 8]
 
 Internet-Draft                ACVP KDF TPM                 November 2020
 
@@ -477,14 +477,14 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
                                   Figure 4
 
-7.  Test Vector Responses
+9.  Test Vector Responses
 
    After the ACVP client downloads and processes a vector set, it MUST
    send the response vectors back to the ACVP server.  The following
    table describes the JSON object that represents a vector set
    response.
 
-     +============+======================================+===========+
+     +------------+--------------------------------------+-----------+
      | JSON Value | Description                          | JSON type |
      +============+======================================+===========+
      | acvVersion | Protocol version identifier          | string    |
@@ -501,7 +501,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
 
 
-Celi                       Expires 21 May 2021                  [Page 9]
+Celi                       Expires 22 May 2021                  [Page 9]
 
 Internet-Draft                ACVP KDF TPM                 November 2020
 
@@ -511,7 +511,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
    SHALL require the client to send back group level properties in their
    response.  This structure helps accommodate that.
 
-         +============+=============================+===========+
+         +------------+-----------------------------+-----------+
          | JSON Value | Description                 | JSON type |
          +============+=============================+===========+
          | tgId       | The test group Id           | integer   |
@@ -525,7 +525,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
    The following table describes the JSON object that represents a test
    results response from a TPM crypto module.
 
-    +============+=======================================+===========+
+    +------------+---------------------------------------+-----------+
     | JSON Value | Description                           | JSON type |
     +============+=======================================+===========+
     | tcId       | Numeric identifier for the test case, | integer   |
@@ -557,7 +557,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 10]
+Celi                       Expires 22 May 2021                 [Page 10]
 
 Internet-Draft                ACVP KDF TPM                 November 2020
 
@@ -584,16 +584,16 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
                                   Figure 5
 
-8.  Security Considerations
+10.  Security Considerations
 
    There are no additional security considerations outside of those
    outlined in the ACVP document.
 
-9.  IANA Considerations
+11.  IANA Considerations
 
    This document does not require any action by IANA.
 
-10.  Bibliography
+12.  Bibliography
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", IETF RFC 2119, IETF RFC 2119,
@@ -613,7 +613,7 @@ Internet-Draft                ACVP KDF TPM                 November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 11]
+Celi                       Expires 22 May 2021                 [Page 11]
 
 Internet-Draft                ACVP KDF TPM                 November 2020
 
@@ -669,4 +669,4 @@ Author's Address
 
 
 
-Celi                       Expires 21 May 2021                 [Page 12]
+Celi                       Expires 22 May 2021                 [Page 12]

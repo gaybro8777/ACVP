@@ -3,9 +3,9 @@
 
 
 Network Working Group                                       C. Celi, Ed.
-Internet-Draft                                          17 November 2020
+Internet-Draft                                          18 November 2020
 Intended status: Informational                                          
-Expires: 21 May 2021
+Expires: 22 May 2021
 
 
                  ACVP SHA3 and SHAKE JSON Specification
@@ -26,7 +26,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2021.
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -45,35 +45,36 @@ Table of Contents
    2.  Abstract  . . . . . . . . . . . . . . . . . . . . . . . . . .   2
    3.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    4.  Terms and definitions . . . . . . . . . . . . . . . . . . . .   2
-   5.  Test Types and Test Coverage  . . . . . . . . . . . . . . . .   3
-     5.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
-     5.2.  Monte Carlo tests for SHA3 and SHAKE  . . . . . . . . . .   4
-       5.2.1.  SHA3 Monte Carlo Test . . . . . . . . . . . . . . . .   4
-       5.2.2.  SHAKE Monte Carlo Test  . . . . . . . . . . . . . . .   4
+   5.  Supported Hash Algorithms . . . . . . . . . . . . . . . . . .   3
+   6.  Test Types and Test Coverage  . . . . . . . . . . . . . . . .   3
+     6.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
+     6.2.  Monte Carlo tests for SHA3 and SHAKE  . . . . . . . . . .   4
+       6.2.1.  SHA3 Monte Carlo Test . . . . . . . . . . . . . . . .   4
 
 
 
-Celi                       Expires 21 May 2021                  [Page 1]
+Celi                       Expires 22 May 2021                  [Page 1]
 
 Internet-Draft                  ACVP SHA3                  November 2020
 
 
-     5.3.  Large Data tests for SHA-3  . . . . . . . . . . . . . . .   5
-     5.4.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   6
-       5.4.1.  SHA3 Requirements Covered . . . . . . . . . . . . . .   6
-       5.4.2.  SHA3 Requirements Not Covered . . . . . . . . . . . .   6
-       5.4.3.  SHAKE Requirements Covered  . . . . . . . . . . . . .   6
-       5.4.4.  SHAKE Requirements Not Covered  . . . . . . . . . . .   7
-   6.  Capabilities Registration . . . . . . . . . . . . . . . . . .   7
-     6.1.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   7
-     6.2.  SHA3 and SHAKE Algorithm Capabilities Registration  . . .   8
-   7.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  12
-     7.1.  Test Groups . . . . . . . . . . . . . . . . . . . . . . .  13
-     7.2.  Test Case JSON Schema . . . . . . . . . . . . . . . . . .  14
-     7.3.  Test Vector Responses . . . . . . . . . . . . . . . . . .  18
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  21
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  22
-   10. Normative references  . . . . . . . . . . . . . . . . . . . .  22
+       6.2.2.  SHAKE Monte Carlo Test  . . . . . . . . . . . . . . .   5
+     6.3.  Large Data tests for SHA-3  . . . . . . . . . . . . . . .   5
+     6.4.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   6
+       6.4.1.  SHA3 Requirements Covered . . . . . . . . . . . . . .   6
+       6.4.2.  SHA3 Requirements Not Covered . . . . . . . . . . . .   7
+       6.4.3.  SHAKE Requirements Covered  . . . . . . . . . . . . .   7
+       6.4.4.  SHAKE Requirements Not Covered  . . . . . . . . . . .   7
+   7.  Capabilities Registration . . . . . . . . . . . . . . . . . .   7
+     7.1.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   8
+     7.2.  SHA3 and SHAKE Algorithm Capabilities Registration  . . .   9
+   8.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  12
+     8.1.  Test Groups . . . . . . . . . . . . . . . . . . . . . . .  13
+     8.2.  Test Case JSON Schema . . . . . . . . . . . . . . . . . .  14
+     8.3.  Test Vector Responses . . . . . . . . . . . . . . . . . .  18
+   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  21
+   10. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  22
+   11. Normative References  . . . . . . . . . . . . . . . . . . . .  22
    Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  22
 
 1.  Acknowledgements
@@ -108,18 +109,44 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
 
 
-
-Celi                       Expires 21 May 2021                  [Page 2]
+Celi                       Expires 22 May 2021                  [Page 2]
 
 Internet-Draft                  ACVP SHA3                  November 2020
 
 
-5.  Test Types and Test Coverage
+5.  Supported Hash Algorithms
+
+   The following SHA3-based hash algorithms MAY be advertised by this
+   ACVP compliant crypto module:
+
+   *  SHA3-224 / null / 1.0
+
+   *  SHA3-256 / null / 1.0
+
+   *  SHA3-384 / null / 1.0
+
+   *  SHA3-512 / null / 1.0
+
+   *  SHA3-224 / null / 2.0
+
+   *  SHA3-256 / null / 2.0
+
+   *  SHA3-384 / null / 2.0
+
+   *  SHA3-512 / null / 2.0
+
+   *  SHAKE-128 / null / 1.0
+
+   *  SHAKE-256 / null / 1.0
+
+   Other hash algorithms MAY be advertised by the ACVP module elsewhere.
+
+6.  Test Types and Test Coverage
 
    This section describes the design of the tests used to validate
    implementations of SHA3 and SHAKE.
 
-5.1.  Test Types
+6.1.  Test Types
 
    There are four types of tests for these hash functions: functional
    tests, Monte Carlo tests, Variable Output tests and Large Data tests.
@@ -135,6 +162,14 @@ Internet-Draft                  ACVP SHA3                  November 2020
       output function (block chunking, block padding etc.) are operating
       correctly.
 
+
+
+
+Celi                       Expires 22 May 2021                  [Page 3]
+
+Internet-Draft                  ACVP SHA3                  November 2020
+
+
    *  "MCT" - Monte Carlo Test.  These tests exercise the implementation
       under test under stenuous circumstances.  The implementation under
       test must process the test vectors according to the correct
@@ -143,7 +178,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
       resources, addressing variables, error handling, and generally
       improper behavior in response to random inputs.  Each MCT
       processes 100 pseudorandom tests.  Each algorithm and mode SHOULD
-      have at least one MCT group.  See Section 5.2 for implementation
+      have at least one MCT group.  See Section 6.2 for implementation
       details.
 
    *  "VOT" - Variable Output Test.  These tests are for SHAKE only, and
@@ -160,19 +195,11 @@ Internet-Draft                  ACVP SHA3                  November 2020
       to ensure an implementation can handle all types of data.  See
       [LDT] for more information motivating the LDT.  As a multiple
       gigabyte message cannot be communicated naturally via ACVP, a
-      specific structure is outlined in Section 5.3.
+      specific structure is outlined in Section 6.3.
 
+6.2.  Monte Carlo tests for SHA3 and SHAKE
 
-
-
-Celi                       Expires 21 May 2021                  [Page 3]
-
-Internet-Draft                  ACVP SHA3                  November 2020
-
-
-5.2.  Monte Carlo tests for SHA3 and SHAKE
-
-5.2.1.  SHA3 Monte Carlo Test
+6.2.1.  SHA3 Monte Carlo Test
 
    The MCTs start with an initial condition (SEED which is a single
    message) and perform a series of chained computations.  The algorithm
@@ -188,7 +215,18 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
                       Figure 1: SHA-3 Monte Carlo Test
 
-5.2.2.  SHAKE Monte Carlo Test
+
+
+
+
+
+
+Celi                       Expires 22 May 2021                  [Page 4]
+
+Internet-Draft                  ACVP SHA3                  November 2020
+
+
+6.2.2.  SHAKE Monte Carlo Test
 
    The MCTs start with an initial condition (SEED which is a single
    message) and perform a series of chained computations.  Some values
@@ -205,34 +243,13 @@ Internet-Draft                  ACVP SHA3                  November 2020
    digest was too short, append empty bits to the rightmost side of the
    digest.  The MCT algorithm is shown below.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Celi                       Expires 21 May 2021                  [Page 4]
-
-Internet-Draft                  ACVP SHA3                  November 2020
-
-
    Range = maxOutBytes - minOutBytes + 1
    OutputLen = maxOutBytes
    For j = 0 to 99
        MD[0] = SEED
        For i = 1 to 1000
            MSG[i] = 128 leftmost bits of MD[i-1]
-           if (MSG[i] < 128 bits)
+           if (MSG[i] &lt; 128 bits)
                Append 0 bits on rightmost side of MSG[i] til MSG[i] is 128 bits
            MD[i] = SHAKE(M[i], OutputLen * 8)
 
@@ -245,7 +262,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
                       Figure 2: SHAKE Monte Carlo Test
 
-5.3.  Large Data tests for SHA-3
+6.3.  Large Data tests for SHA-3
 
    The large data tests are intended to test the ability of a module to
    hash multiple gigabytes of data at once.  This much information
@@ -254,6 +271,16 @@ Internet-Draft                  ACVP SHA3                  November 2020
    an object that contains a small content hex string, a content length
    in bits, a full length in bits and an expansion technique string.
    The following is an example of this structure.
+
+
+
+
+
+
+Celi                       Expires 22 May 2021                  [Page 5]
+
+Internet-Draft                  ACVP SHA3                  November 2020
+
 
    "largeMsg": {
        "content": "DE26",
@@ -273,15 +300,6 @@ Internet-Draft                  ACVP SHA3                  November 2020
    There may be multiple 'expansionTechnique' types defined.  Here are
    the types defined for SHA-3 testing.
 
-
-
-
-
-Celi                       Expires 21 May 2021                  [Page 5]
-
-Internet-Draft                  ACVP SHA3                  November 2020
-
-
    *  "repeating" - Append the number of content bits specified in
       'contentLength' to itself as many times as needed until a hex
       string of exactly 'fullLength' bits is acquired.  In the example
@@ -296,12 +314,12 @@ Internet-Draft                  ACVP SHA3                  November 2020
    offered and accessible for testing, the IUT MUST only utilize a
    single Update() call for the large message.
 
-5.4.  Test Coverage
+6.4.  Test Coverage
 
    The tests described in this document have the intention of ensuring
    an implementation is conformant to [FIPS202].
 
-5.4.1.  SHA3 Requirements Covered
+6.4.1.  SHA3 Requirements Covered
 
    Sections 3 through 6 in [FIPS202] outline the Keccak construction and
    strucures needed to form a valid SHA3 implementation.  Normal AFTs
@@ -313,14 +331,21 @@ Internet-Draft                  ACVP SHA3                  November 2020
    available by special request which tests messages that are multiple
    gigabytes in size.
 
-5.4.2.  SHA3 Requirements Not Covered
+
+
+Celi                       Expires 22 May 2021                  [Page 6]
+
+Internet-Draft                  ACVP SHA3                  November 2020
+
+
+6.4.2.  SHA3 Requirements Not Covered
 
    It is noted that [FIPS202] states that "different procedures that
    produce the correct output for every input are permitted" and thus
    the internal states discussed in Sections 3 through 6 SHALL NOT be
    tested or tracked.
 
-5.4.3.  SHAKE Requirements Covered
+6.4.3.  SHAKE Requirements Covered
 
    Sections 3 through 6 in [FIPS202] outline the Keccak construction and
    strucures needed to form a valid SHAKE implementation.  Normal AFTs
@@ -328,27 +353,17 @@ Internet-Draft                  ACVP SHA3                  November 2020
    ability of the implementation to perform the algorithm as well by
    focusing on the sponge construction.
 
-
-
-
-
-
-Celi                       Expires 21 May 2021                  [Page 6]
-
-Internet-Draft                  ACVP SHA3                  November 2020
-
-
    Section 7 in [FIPS202] states that any input sizes or output sizes
    may be used within a SHAKE implementation.  The input sizes tested in
    this document range from 0 bits to 65536 bits.  The output sizes
    tested in this document range from 16 bits to 65536 bits.
 
-5.4.4.  SHAKE Requirements Not Covered
+6.4.4.  SHAKE Requirements Not Covered
 
    Again, the internal states discussed in Sections 3 through 6 SHALL
    NOT be tested or tracked.
 
-6.  Capabilities Registration
+7.  Capabilities Registration
 
    ACVP requires crypto modules to register their capabilities.  This
    allows the crypto module to advertise support for specific
@@ -365,7 +380,21 @@ Internet-Draft                  ACVP SHA3                  November 2020
    registration message.  See the ACVP specification [ACVP] for more
    details on the registration message.
 
-6.1.  Prerequisites
+
+
+
+
+
+
+
+
+
+Celi                       Expires 22 May 2021                  [Page 7]
+
+Internet-Draft                  ACVP SHA3                  November 2020
+
+
+7.1.  Prerequisites
 
    Each algorithm implementation MAY rely on other cryptographic
    primitives.  For example, RSA Signature algorithms depend on an
@@ -379,22 +408,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
    "algorithms" array.  Each element in the "prereqVals" array MUST
    contain the following properties
 
-
-
-
-
-
-
-
-
-
-
-Celi                       Expires 21 May 2021                  [Page 7]
-
-Internet-Draft                  ACVP SHA3                  November 2020
-
-
-        +===============+=============================+===========+
+        +---------------+-----------------------------+-----------+
         | JSON Property | Description                 | JSON Type |
         +===============+=============================+===========+
         | algorithm     | a prerequisite algorithm    | string    |
@@ -425,32 +439,24 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
                                   Figure 4
 
-6.2.  SHA3 and SHAKE Algorithm Capabilities Registration
+
+
+
+
+
+
+Celi                       Expires 22 May 2021                  [Page 8]
+
+Internet-Draft                  ACVP SHA3                  November 2020
+
+
+7.2.  SHA3 and SHAKE Algorithm Capabilities Registration
 
    Each SHA3 and SHAKE algorithm capability advertised SHALL be a self-
    contained JSON object.  The following JSON values are used for hash
    algorithm capabilities:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Celi                       Expires 21 May 2021                  [Page 8]
-
-Internet-Draft                  ACVP SHA3                  November 2020
-
-
-   +======================+=================================+=========+
+   +----------------------+---------------------------------+---------+
    | JSON Value           | Description                     | JSON    |
    |                      |                                 | type    |
    +======================+=================================+=========+
@@ -473,7 +479,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
    +----------------------+---------------------------------+---------+
    | performLargeDataTest | Determines if the server should | integer |
    |                      | include the large data test     | array   |
-   |                      | group defined in Section 5.3.   |         |
+   |                      | group defined in Section 6.3.   |         |
    |                      | This property is OPTIONAL, and  |         |
    |                      | shall include the lengths in    |         |
    |                      | GiB being tested.  Valid        |         |
@@ -495,44 +501,38 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
 
 
-
-
-
-
-
-
-Celi                       Expires 21 May 2021                  [Page 9]
+Celi                       Expires 22 May 2021                  [Page 9]
 
 Internet-Draft                  ACVP SHA3                  November 2020
 
 
+   +----------------------+-----------+---------+-----------+----------+
+   | algorithm            | inBit     | inEmpty | outputLen | outBit   |
    +======================+===========+=========+===========+==========+
-   | algorithm            |inBit      |inEmpty  |outputLen  |outBit    |
-   +======================+===========+=========+===========+==========+
-   | performLargeDataTest |SHA3-224   |true,    |true, false|          |
-   |                      |           |false    |           |          |
+   | performLargeDataTest | SHA3-224  | true,   |true, false|          |
+   |                      |           | false   |           |          |
    +----------------------+-----------+---------+-----------+----------+
-   |                      |true, false|SHA3-256 |true, false|true,     |
-   |                      |           |         |           |false     |
+   |                      |true, false|SHA3-256 |true, false| true,    |
+   |                      |           |         |           | false    |
    +----------------------+-----------+---------+-----------+----------+
-   |                      |           |true,    |SHA3-384   |true,     |
-   |                      |           |false    |           |false     |
+   |                      |           | true,   | SHA3-384  | true,    |
+   |                      |           | false   |           | false    |
    +----------------------+-----------+---------+-----------+----------+
-   | true, false          |           |         |true, false|SHA3-512  |
+   | true, false          |           |         |true, false| SHA3-512 |
    +----------------------+-----------+---------+-----------+----------+
-   | true, false          |true, false|         |           |true,     |
-   |                      |           |         |           |false     |
+   | true, false          |true, false|         |           | true,    |
+   |                      |           |         |           | false    |
    +----------------------+-----------+---------+-----------+----------+
-   | SHAKE-128            |true, false|true,    |{"Min": 16,|true,     |
-   |                      |           |false    |"Max":     |false     |
-   |                      |           |         |65536,     |          |
+   | SHAKE-128            |true, false| true,   |{"Min": 16,| true,    |
+   |                      |           | false   | "Max":    | false    |
+   |                      |           |         | 65536,    |          |
    |                      |           |         |"Inc": any}|          |
    +----------------------+-----------+---------+-----------+----------+
-   |                      |SHAKE-256  |true,    |true, false|{"Min":   |
-   |                      |           |false    |           |16, "Max":|
-   |                      |           |         |           |65536,    |
-   |                      |           |         |           |"Inc":    |
-   |                      |           |         |           |any}      |
+   |                      | SHAKE-256 | true,   |true, false| {"Min":  |
+   |                      |           | false   |           |16, "Max":|
+   |                      |           |         |           | 65536,   |
+   |                      |           |         |           | "Inc":   |
+   |                      |           |         |           | any}     |
    +----------------------+-----------+---------+-----------+----------+
 
           Table 3: SHA3 and SHAKE Capabilities Applicability Grid
@@ -557,7 +557,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 10]
+Celi                       Expires 22 May 2021                 [Page 10]
 
 Internet-Draft                  ACVP SHA3                  November 2020
 
@@ -578,45 +578,51 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
                                   Figure 6
 
-    +===============+==========================+======================+
-    | JSON Value    | Description              | JSON type            |
-    +===============+==========================+======================+
-    | algorithm     | The hash algorithm and   | string               |
-    |               | mode to be validated.    |                      |
-    +---------------+--------------------------+----------------------+
-    | revision      | The algorithm testing    | string               |
-    |               | revision to use.         |                      |
-    +---------------+--------------------------+----------------------+
-    | messageLength | Domain representing the  | performLargeDataTest |
-    |               | message lengths          |                      |
-    |               | supported.  The current  |                      |
-    |               | MCT implementation       |                      |
-    |               | requires that the digest |                      |
-    |               | size and 3x the digest   |                      |
-    |               | size of the registered   |                      |
-    |               | hash algorithm must be a |                      |
-    |               | valid value within the   |                      |
-    |               | registered domain.       |                      |
-    +---------------+--------------------------+----------------------+
+    +----------------------+--------------------------------+---------+
+    | JSON Value           | Description                    | JSON    |
+    |                      |                                | type    |
+    +======================+================================+=========+
+    | algorithm            | The hash algorithm and mode to | string  |
+    |                      | be validated.                  |         |
+    +----------------------+--------------------------------+---------+
+    | revision             | The algorithm testing revision | string  |
+    |                      | to use.                        |         |
+    +----------------------+--------------------------------+---------+
+    | messageLength        | Domain representing the        | domain  |
+    |                      | message lengths supported.     |         |
+    |                      | The current MCT implementation |         |
+    |                      | requires that the digest size  |         |
+    |                      | and 3x the digest size of the  |         |
+    |                      | registered hash algorithm must |         |
+    |                      | be a valid value within the    |         |
+    |                      | registered domain.             |         |
+    +----------------------+--------------------------------+---------+
+    | performLargeDataTest | Determines if the server       | integer |
+    |                      | should include the large data  | array   |
+    |                      | test group defined in          |         |
+    |                      | Section 6.3.  This property is |         |
+    |                      | OPTIONAL, and shall include    |         |
+    |                      | the lengths in GiB being       |         |
+    |                      | tested.  Valid options are {1, |         |
+    |                      | 2, 4, 8}.                      |         |
+    +----------------------+--------------------------------+---------+
 
             Table 4: SHA3 2.0 Algorithm Capabilities JSON Values
+
+
+
+
+
+Celi                       Expires 22 May 2021                 [Page 11]
+
+Internet-Draft                  ACVP SHA3                  November 2020
+
 
       |  NOTE: The lengths provided in the 'performLargeDataTest'
       |  property are in gibibytes. 1GiB is equivalent to 2^30 bytes.
 
    The following is a example JSON object advertising support for
    SHA3-256 for testing revision 2.0.
-
-
-
-
-
-
-
-Celi                       Expires 21 May 2021                 [Page 11]
-
-Internet-Draft                  ACVP SHA3                  November 2020
-
 
    {
        "algorithm": "SHA3-256",
@@ -635,7 +641,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
       |  testing.  If the implementation supports only byte length
       |  messages, you could use an increment of 8.
 
-7.  Test Vectors
+8.  Test Vectors
 
    The ACVP server provides test vectors to the ACVP client, which are
    then processed and returned to the ACVP server for validation.  A
@@ -663,18 +669,12 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
 
 
-
-
-
-
-
-
-Celi                       Expires 21 May 2021                 [Page 12]
+Celi                       Expires 22 May 2021                 [Page 12]
 
 Internet-Draft                  ACVP SHA3                  November 2020
 
 
-    +=============+======================================+===========+
+    +-------------+--------------------------------------+-----------+
     | JSON Values | Description                          | JSON Type |
     +=============+======================================+===========+
     | acvVersion  | Protocol version identifier          | string    |
@@ -690,7 +690,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
     | revision    | Protocol test revision selected      | string    |
     +-------------+--------------------------------------+-----------+
     | testGroups  | Array of test groups containing test | array     |
-    |             | data, see Section 7.1                |           |
+    |             | data, see Section 8.1                |           |
     +-------------+--------------------------------------+-----------+
 
                Table 5: Top Level Test Vector JSON Elements
@@ -708,7 +708,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
                                   Figure 8
 
-7.1.  Test Groups
+8.1.  Test Groups
 
    Test vector sets MUST contain one or many test groups, each sharing
    similar properties.  For instance, all test vectors that use the same
@@ -725,12 +725,12 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 13]
+Celi                       Expires 22 May 2021                 [Page 13]
 
 Internet-Draft                  ACVP SHA3                  November 2020
 
 
-    +==========+===========================================+==========+
+    +----------+-------------------------------------------+----------+
     | JSON     | Description                               | JSON     |
     | Value    |                                           | type     |
     +==========+===========================================+==========+
@@ -738,16 +738,16 @@ Internet-Draft                  ACVP SHA3                  November 2020
     |          | unique across the entire vector set.      |          |
     +----------+-------------------------------------------+----------+
     | testType | Test category type.  AFT, MCT or VOT as   | value    |
-    |          | defined in Section 5                      |          |
+    |          | defined in Section 6                      |          |
     +----------+-------------------------------------------+----------+
     | tests    | Array of individual test case JSON        | array of |
-    |          | objects, which are defined in Section 7.2 | testCase |
+    |          | objects, which are defined in Section 8.2 | testCase |
     |          |                                           | objects  |
     +----------+-------------------------------------------+----------+
 
                       Table 6: Test Group JSON Object
 
-7.2.  Test Case JSON Schema
+8.2.  Test Case JSON Schema
 
    Each test group SHALL contain an array of one or more test cases.
    Each test case is a JSON object that represents a single case to be
@@ -781,12 +781,12 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 14]
+Celi                       Expires 22 May 2021                 [Page 14]
 
 Internet-Draft                  ACVP SHA3                  November 2020
 
 
-   +==========+=====================================+==================+
+   +----------+-------------------------------------+------------------+
    | JSON     | Description                         | JSON type        |
    | Value    |                                     |                  |
    +==========+=====================================+==================+
@@ -806,7 +806,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
    +----------+-------------------------------------+------------------+
    | largeMsg | Object describing the               | large data       |
    |          | message for an LDT group            | object, see      |
-   |          |                                     | Section 5.3 for  |
+   |          |                                     | Section 6.3 for  |
    |          |                                     | more information |
    +----------+-------------------------------------+------------------+
 
@@ -823,7 +823,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
    order when associated with SHA3 or any of its variations.
 
    [
-       { "acvVersion": <acvp-version> },
+       { "acvVersion": &lt;acvp-version&gt; },
        {
            "vsId": 1564,
            "algorithm": "SHA3-512",
@@ -837,7 +837,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 15]
+Celi                       Expires 22 May 2021                 [Page 15]
 
 Internet-Draft                  ACVP SHA3                  November 2020
 
@@ -885,7 +885,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
    The following is an example JSON object for SHAKE.
 
    [
-       { "acvVersion": <acvp-version> },
+       { "acvVersion": &lt;acvp-version&gt; },
        {
            "vsId": 1564,
            "algorithm": "SHAKE-128",
@@ -893,7 +893,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 16]
+Celi                       Expires 22 May 2021                 [Page 16]
 
 Internet-Draft                  ACVP SHA3                  November 2020
 
@@ -949,7 +949,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 17]
+Celi                       Expires 22 May 2021                 [Page 17]
 
 Internet-Draft                  ACVP SHA3                  November 2020
 
@@ -959,14 +959,14 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
                                  Figure 10
 
-7.3.  Test Vector Responses
+8.3.  Test Vector Responses
 
    After the ACVP client downloads and processes a vector set, it SHALL
    send the response vectors back to the ACVP server within the alloted
    timeframe.  The following table describes the JSON object that
    represents a vector set response.
 
-       +============+==================================+===========+
+       +------------+----------------------------------+-----------+
        | JSON Value | Description                      | JSON Type |
        +============+==================================+===========+
        | acvVersion | Protocol version identifier      | string    |
@@ -977,7 +977,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
        | testGroups | Array of JSON objects that       | array of  |
        |            | represent each test vector       | testGroup |
        |            | result, which uses the same JSON | objects   |
-       |            | schema as defined in Section 7.2 |           |
+       |            | schema as defined in Section 8.2 |           |
        +------------+----------------------------------+-----------+
 
                   Table 8: Vector Set Response JSON Object
@@ -987,7 +987,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
    algorithms SHALL require the client to send back group level
    properties in its response.  This structure helps accommodate that.
 
-      +============+=============================+==================+
+      +------------+-----------------------------+------------------+
       | JSON Value | Description                 | JSON Type        |
       +============+=============================+==================+
       | tgId       | The test group identifier   | integer          |
@@ -1005,12 +1005,12 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 18]
+Celi                       Expires 22 May 2021                 [Page 18]
 
 Internet-Draft                  ACVP SHA3                  November 2020
 
 
-   +==============+=====================================+=============+
+   +--------------+-------------------------------------+-------------+
    | JSON Value   | Description                         | JSON Type   |
    +==============+=====================================+=============+
    | tcId         | Numeric identifier for the test     | integer     |
@@ -1061,7 +1061,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 19]
+Celi                       Expires 22 May 2021                 [Page 19]
 
 Internet-Draft                  ACVP SHA3                  November 2020
 
@@ -1117,7 +1117,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 20]
+Celi                       Expires 22 May 2021                 [Page 20]
 
 Internet-Draft                  ACVP SHA3                  November 2020
 
@@ -1164,7 +1164,7 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
                                  Figure 12
 
-8.  Security Considerations
+9.  Security Considerations
 
    There are no additional security considerations outside of those
    outlined in the ACVP document.
@@ -1173,16 +1173,16 @@ Internet-Draft                  ACVP SHA3                  November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 21]
+Celi                       Expires 22 May 2021                 [Page 21]
 
 Internet-Draft                  ACVP SHA3                  November 2020
 
 
-9.  IANA Considerations
+10.  IANA Considerations
 
    This document does not require any action by IANA.
 
-10.  Normative references
+11.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", IETF RFC 2119, IETF RFC 2119,
@@ -1229,4 +1229,4 @@ Author's Address
 
 
 
-Celi                       Expires 21 May 2021                 [Page 22]
+Celi                       Expires 22 May 2021                 [Page 22]

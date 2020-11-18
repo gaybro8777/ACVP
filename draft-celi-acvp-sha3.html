@@ -6,26 +6,8 @@
 <meta content="initial-scale=1.0" name="viewport">
 <title>ACVP SHA3 and SHAKE JSON Specification</title>
 <meta content="Christopher Celi" name="author">
-<meta content="xml2rfc 3.4.0" name="generator">
+<meta content="xml2rfc 2.45.3" name="generator">
 <meta content="draft-ietf-acvp-sub-sha3-01" name="ietf.draft">
-<!-- Generator version information:
-  xml2rfc 3.4.0
-    Python 3.7.3
-    appdirs 1.4.4
-    ConfigArgParse 1.2.3
-    google-i18n-address 2.4.0
-    html5lib 1.1
-    intervaltree 3.1.0
-    Jinja2 2.11.2
-    kitchen 1.2.6
-    lxml 4.6.1
-    pycountry 20.7.3
-    pyflakes 2.2.0
-    PyYAML 5.3.1
-    requests 2.25.0
-    setuptools 50.3.2
-    six 1.15.0
--->
 <link href="draft-celi-acvp-sha3.rfc.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">/*
@@ -927,6 +909,12 @@ caption a[href] {
   }
 
 }
+/* Avoid wrapping of URLs in references */
+@media screen {
+  .references a {
+    white-space: nowrap;
+  }
+}
 /* Tweak the bcp14 keyword presentation */
 .bcp14 {
   font-variant: small-caps;
@@ -1076,7 +1064,6 @@ figure, pre, table, .artwork, .sourcecode  {
 }
 /* Avoid breaks between <dt> and <dd> */
 dl {
-  break-before: auto;
   break-inside: auto;
 }
 dt {
@@ -1089,7 +1076,7 @@ dd {
   orphans: 3;
   widows: 3
 }
-span.break, dd.break {
+dd.break {
   margin-bottom: 0;
   min-height: 0;
   break-before: auto;
@@ -1115,48 +1102,8 @@ section ol.compact,
 section .olCompact {
   margin-bottom: 1em;                    /* same as p not within ul.compact etc. */
 }
-/* The tt and code background above interferes with for instance table cell
-   backgrounds.  Changed to something a bit more selective. */
-tt, code {
-  background-color: transparent;
-}
-p tt, p code, li tt, li code {
-  background-color: #f8f8f8;
-}
-/* Tweak the pre margin -- 0px doesn't come out well */
-pre {
-   margin-top: 0.5px;
-}
-/* Tweak the comact list text */
-ul.compact, .ulCompact,
-ol.compact, .olCompact,
-dl.compact, .dlCompact {
-  line-height: normal;
-}
-/* Don't add top margin for nested lists */
-li > ul, li > ol, li > dl,
-dd > ul, dd > ol, dd > dl,
-dl > dd > dl {
-  margin-top: initial;
-}
-/* Elements that should not be rendered on the same line as a <dt> */
-/* This should match the element list in writer.text.TextWriter.render_dl() */
-dd > div.artwork:first-child,
-dd > aside:first-child,
-dd > figure:first-child,
-dd > ol:first-child,
-dd > div:first-child > pre.sourcecode,
-dd > table:first-child,
-dd > ul:first-child {
-  clear: left;
-}
-/* fix for weird browser behaviour when <dd/> is empty */
-dt+dd:empty::before{
-  content: "\00a0";
-}
 </style>
 <link href="rfc-local.css" rel="stylesheet" type="text/css">
-<script type="application/javascript">async function addMetadata(){try{const e=document.styleSheets[0].cssRules;for(let t=0;t<e.length;t++)if(/#identifiers/.exec(e[t].selectorText)){const a=e[t].cssText.replace("#identifiers","#external-updates");document.styleSheets[0].insertRule(a,document.styleSheets[0].cssRules.length)}}catch(e){console.log(e)}const e=document.getElementById("external-metadata");if(e)try{var t,a="",o=function(e){const t=document.getElementsByTagName("meta");for(let a=0;a<t.length;a++)if(t[a].getAttribute("name")===e)return t[a].getAttribute("content");return""}("rfc.number");if(o){t="https://www.rfc-editor.org/rfc/rfc"+o+".json";try{const e=await fetch(t);a=await e.json()}catch(e){t=document.URL.indexOf("html")>=0?document.URL.replace(/html$/,"json"):document.URL+".json";const o=await fetch(t);a=await o.json()}}if(!a)return;e.style.display="block";const s="",d="https://datatracker.ietf.org/doc",n="https://datatracker.ietf.org/ipr/search",c="https://www.rfc-editor.org/info",l=a.doc_id.toLowerCase(),i=a.doc_id.slice(0,3).toLowerCase(),f=a.doc_id.slice(3).replace(/^0+/,""),u={status:"Status",obsoletes:"Obsoletes",obsoleted_by:"Obsoleted By",updates:"Updates",updated_by:"Updated By",see_also:"See Also",errata_url:"Errata"};let h="<dl style='overflow:hidden' id='external-updates'>";["status","obsoletes","obsoleted_by","updates","updated_by","see_also","errata_url"].forEach(e=>{if("status"==e){a[e]=a[e].toLowerCase();var t=a[e].split(" "),o=t.length,w="",p=1;for(let e=0;e<o;e++)p<o?w=w+r(t[e])+" ":w+=r(t[e]),p++;a[e]=w}else if("obsoletes"==e||"obsoleted_by"==e||"updates"==e||"updated_by"==e){var g,m="",b=1;g=a[e].length;for(let t=0;t<g;t++)a[e][t]&&(a[e][t]=String(a[e][t]).toLowerCase(),m=b<g?m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>, ":m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>",b++);a[e]=m}else if("see_also"==e){var y,L="",C=1;y=a[e].length;for(let t=0;t<y;t++)if(a[e][t]){a[e][t]=String(a[e][t]);var _=a[e][t].slice(0,3),v=a[e][t].slice(3).replace(/^0+/,"");L=C<y?"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>, ":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>, ":"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>",C++}a[e]=L}else if("errata_url"==e){var R="";R=a[e]?R+"<a href='"+a[e]+"'>Errata exist</a> | <a href='"+d+"/"+l+"'>Datatracker</a>| <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>":"<a href='"+d+"/"+l+"'>Datatracker</a> | <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>",a[e]=R}""!=a[e]?"Errata"==u[e]?h+=`<dt>More info:</dt><dd>${a[e]}</dd>`:h+=`<dt>${u[e]}:</dt><dd>${a[e]}</dd>`:"Errata"==u[e]&&(h+=`<dt>More info:</dt><dd>${a[e]}</dd>`)}),h+="</dl>",e.innerHTML=h}catch(e){console.log(e)}else console.log("Could not locate metadata <div> element");function r(e){return e.charAt(0).toUpperCase()+e.slice(1)}}window.removeEventListener("load",addMetadata),window.addEventListener("load",addMetadata);</script>
 </head>
 <body>
 <script src="metadata.min.js"></script>
@@ -1168,7 +1115,7 @@ dt+dd:empty::before{
 </tr></thead>
 <tfoot><tr>
 <td class="left">Celi</td>
-<td class="center">Expires 21 May 2021</td>
+<td class="center">Expires 22 May 2021</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1183,12 +1130,12 @@ dt+dd:empty::before{
 <dd></dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2020-11-17" class="published">17 November 2020</time>
+<time datetime="2020-11-18" class="published">18 November 2020</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-05-21">21 May 2021</time></dd>
+<dd class="expires"><time datetime="2021-05-22">22 May 2021</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1218,7 +1165,7 @@ dt+dd:empty::before{
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 May 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 May 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1243,96 +1190,99 @@ dt+dd:empty::before{
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.1">
+<nav class="toc"><ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-acknowledgements" class="xref">Acknowledgements</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.2">
+<li class="toc ulEmpty compact" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="xref">2</a>.  <a href="#name-abstract" class="xref">Abstract</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.3">
+<li class="toc ulEmpty compact" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="xref">3</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.4">
+<li class="toc ulEmpty compact" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-terms-and-definitions" class="xref">Terms and definitions</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-test-types-and-test-coverag" class="xref">Test Types and Test Coverage</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-test-types" class="xref">Test Types</a><a href="#section-toc.1-1.5.2.1.1" class="pilcrow">¶</a></p>
+<li class="toc ulEmpty compact" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-supported-hash-algorithms" class="xref">Supported Hash Algorithms</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="xref">5.2</a>.  <a href="#name-monte-carlo-tests-for-sha3-" class="xref">Monte Carlo tests for SHA3 and SHAKE</a><a href="#section-toc.1-1.5.2.2.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.5.2.2.2.1">
-                    <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="xref">5.2.1</a>.  <a href="#name-sha3-monte-carlo-test" class="xref">SHA3 Monte Carlo Test</a><a href="#section-toc.1-1.5.2.2.2.1.1" class="pilcrow">¶</a></p>
+<li class="toc ulEmpty compact" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-test-types-and-test-coverag" class="xref">Test Types and Test Coverage</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-test-types" class="xref">Test Types</a><a href="#section-toc.1-1.6.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="ulEmpty toc compact" id="section-toc.1-1.5.2.2.2.2">
-                    <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="xref">5.2.2</a>.  <a href="#name-shake-monte-carlo-test" class="xref">SHAKE Monte Carlo Test</a><a href="#section-toc.1-1.5.2.2.2.2.1" class="pilcrow">¶</a></p>
+<li class="toc ulEmpty compact" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-monte-carlo-tests-for-sha3-" class="xref">Monte Carlo tests for SHA3 and SHAKE</a><a href="#section-toc.1-1.6.2.2.1" class="pilcrow">¶</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.6.2.2.2.1">
+                    <p id="section-toc.1-1.6.2.2.2.1.1"><a href="#section-6.2.1" class="xref">6.2.1</a>.  <a href="#name-sha3-monte-carlo-test" class="xref">SHA3 Monte Carlo Test</a><a href="#section-toc.1-1.6.2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                </ul>
+<li class="toc ulEmpty compact" id="section-toc.1-1.6.2.2.2.2">
+                    <p id="section-toc.1-1.6.2.2.2.2.1"><a href="#section-6.2.2" class="xref">6.2.2</a>.  <a href="#name-shake-monte-carlo-test" class="xref">SHAKE Monte Carlo Test</a><a href="#section-toc.1-1.6.2.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.5.2.3">
-                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="xref">5.3</a>.  <a href="#name-large-data-tests-for-sha-3" class="xref">Large Data tests for SHA-3</a><a href="#section-toc.1-1.5.2.3.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.5.2.4">
-                <p id="section-toc.1-1.5.2.4.1"><a href="#section-5.4" class="xref">5.4</a>.  <a href="#name-test-coverage" class="xref">Test Coverage</a><a href="#section-toc.1-1.5.2.4.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.5.2.4.2.1">
-                    <p id="section-toc.1-1.5.2.4.2.1.1"><a href="#section-5.4.1" class="xref">5.4.1</a>.  <a href="#name-sha3-requirements-covered" class="xref">SHA3 Requirements Covered</a><a href="#section-toc.1-1.5.2.4.2.1.1" class="pilcrow">¶</a></p>
+<li class="toc ulEmpty compact" id="section-toc.1-1.6.2.3">
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="xref">6.3</a>.  <a href="#name-large-data-tests-for-sha-3" class="xref">Large Data tests for SHA-3</a><a href="#section-toc.1-1.6.2.3.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="ulEmpty toc compact" id="section-toc.1-1.5.2.4.2.2">
-                    <p id="section-toc.1-1.5.2.4.2.2.1"><a href="#section-5.4.2" class="xref">5.4.2</a>.  <a href="#name-sha3-requirements-not-cover" class="xref">SHA3 Requirements Not Covered</a><a href="#section-toc.1-1.5.2.4.2.2.1" class="pilcrow">¶</a></p>
+<li class="toc ulEmpty compact" id="section-toc.1-1.6.2.4">
+                <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="xref">6.4</a>.  <a href="#name-test-coverage" class="xref">Test Coverage</a><a href="#section-toc.1-1.6.2.4.1" class="pilcrow">¶</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.6.2.4.2.1">
+                    <p id="section-toc.1-1.6.2.4.2.1.1"><a href="#section-6.4.1" class="xref">6.4.1</a>.  <a href="#name-sha3-requirements-covered" class="xref">SHA3 Requirements Covered</a><a href="#section-toc.1-1.6.2.4.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="ulEmpty toc compact" id="section-toc.1-1.5.2.4.2.3">
-                    <p id="section-toc.1-1.5.2.4.2.3.1"><a href="#section-5.4.3" class="xref">5.4.3</a>.  <a href="#name-shake-requirements-covered" class="xref">SHAKE Requirements Covered</a><a href="#section-toc.1-1.5.2.4.2.3.1" class="pilcrow">¶</a></p>
+<li class="toc ulEmpty compact" id="section-toc.1-1.6.2.4.2.2">
+                    <p id="section-toc.1-1.6.2.4.2.2.1"><a href="#section-6.4.2" class="xref">6.4.2</a>.  <a href="#name-sha3-requirements-not-cover" class="xref">SHA3 Requirements Not Covered</a><a href="#section-toc.1-1.6.2.4.2.2.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="ulEmpty toc compact" id="section-toc.1-1.5.2.4.2.4">
-                    <p id="section-toc.1-1.5.2.4.2.4.1"><a href="#section-5.4.4" class="xref">5.4.4</a>.  <a href="#name-shake-requirements-not-cove" class="xref">SHAKE Requirements Not Covered</a><a href="#section-toc.1-1.5.2.4.2.4.1" class="pilcrow">¶</a></p>
+<li class="toc ulEmpty compact" id="section-toc.1-1.6.2.4.2.3">
+                    <p id="section-toc.1-1.6.2.4.2.3.1"><a href="#section-6.4.3" class="xref">6.4.3</a>.  <a href="#name-shake-requirements-covered" class="xref">SHAKE Requirements Covered</a><a href="#section-toc.1-1.6.2.4.2.3.1" class="pilcrow">¶</a></p>
 </li>
-                </ul>
+<li class="toc ulEmpty compact" id="section-toc.1-1.6.2.4.2.4">
+                    <p id="section-toc.1-1.6.2.4.2.4.1"><a href="#section-6.4.4" class="xref">6.4.4</a>.  <a href="#name-shake-requirements-not-cove" class="xref">SHAKE Requirements Not Covered</a><a href="#section-toc.1-1.6.2.4.2.4.1" class="pilcrow">¶</a></p>
 </li>
-            </ul>
+</ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-capabilities-registration" class="xref">Capabilities Registration</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-prerequisites" class="xref">Prerequisites</a><a href="#section-toc.1-1.6.2.1.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-sha3-and-shake-algorithm-ca" class="xref">SHA3 and SHAKE Algorithm Capabilities Registration</a><a href="#section-toc.1-1.6.2.2.1" class="pilcrow">¶</a></p>
+<li class="toc ulEmpty compact" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-capabilities-registration" class="xref">Capabilities Registration</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-prerequisites" class="xref">Prerequisites</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            </ul>
+<li class="toc ulEmpty compact" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-sha3-and-shake-algorithm-ca" class="xref">SHA3 and SHAKE Algorithm Capabilities Registration</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-test-vectors" class="xref">Test Vectors</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-test-groups" class="xref">Test Groups</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.7.2.2">
-                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-test-case-json-schema" class="xref">Test Case JSON Schema</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
+<li class="toc ulEmpty compact" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-test-vectors" class="xref">Test Vectors</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+<ul class="toc ulEmpty compact">
+<li class="toc ulEmpty compact" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="xref">8.1</a>.  <a href="#name-test-groups" class="xref">Test Groups</a><a href="#section-toc.1-1.8.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.7.2.3">
-                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="xref">7.3</a>.  <a href="#name-test-vector-responses" class="xref">Test Vector Responses</a><a href="#section-toc.1-1.7.2.3.1" class="pilcrow">¶</a></p>
+<li class="toc ulEmpty compact" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="xref">8.2</a>.  <a href="#name-test-case-json-schema" class="xref">Test Case JSON Schema</a><a href="#section-toc.1-1.8.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            </ul>
+<li class="toc ulEmpty compact" id="section-toc.1-1.8.2.3">
+                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="xref">8.3</a>.  <a href="#name-test-vector-responses" class="xref">Test Vector Responses</a><a href="#section-toc.1-1.8.2.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
+<li class="toc ulEmpty compact" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-normative-references" class="xref">Normative references</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
+<li class="toc ulEmpty compact" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
+<li class="toc ulEmpty compact" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="xref">11</a>. <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
 </li>
-        </ul>
+<li class="toc ulEmpty compact" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
+</li>
+</ul>
 </nav>
 </section>
 </div>
@@ -1341,7 +1291,7 @@ dt+dd:empty::before{
       <h2 id="name-acknowledgements">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
       </h2>
-<div id="_5603a9fb-b43a-4893-8b21-5916318df792">
+<div id="_bc344e8e-d880-4097-9cf1-1ad30ad7727e">
 <p id="section-1-1">There are no acknowledgements.<a href="#section-1-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1351,7 +1301,7 @@ dt+dd:empty::before{
       <h2 id="name-abstract">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-abstract" class="section-name selfRef">Abstract</a>
       </h2>
-<div id="_4863f1df-3c6a-4054-ba0c-10c567ffd70a">
+<div id="_db6b2aac-ff5d-48ab-8679-9fc3f7ef0340">
 <p id="section-2-1">This document defines the JSON schema for testing SHA3 and SHAKE implementations with the ACVP specification.<a href="#section-2-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1361,7 +1311,7 @@ dt+dd:empty::before{
       <h2 id="name-introduction">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<div id="_2d504e1b-545b-4db6-8c9c-e0967e938948">
+<div id="_1dd27ec9-0f0e-4d5b-9b02-536908d81c4f">
 <p id="section-3-1">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing SHA3 and SHAKE implementations using ACVP.<a href="#section-3-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1371,67 +1321,132 @@ dt+dd:empty::before{
       <h2 id="name-terms-and-definitions">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-terms-and-definitions" class="section-name selfRef">Terms and definitions</a>
       </h2>
-<div id="_48edfb7a-3ff2-4e65-bb6f-3f196bc2c3c3">
+<div id="_ceb2a8f0-f23a-433a-bed9-5c6b5a7f0817">
 <p id="section-4-1">No terms and definitions are listed in this document.<a href="#section-4-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
-<div id="testtypes">
+<div id="supported_algs">
 <section id="section-5">
-      <h2 id="name-test-types-and-test-coverag">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-test-types-and-test-coverag" class="section-name selfRef">Test Types and Test Coverage</a>
+      <h2 id="name-supported-hash-algorithms">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-supported-hash-algorithms" class="section-name selfRef">Supported Hash Algorithms</a>
       </h2>
-<div id="_ca95b42a-a41d-48c5-a341-18c3d5dbbf12">
-<p id="section-5-1">This section describes the design of the tests used to validate implementations of SHA3 and SHAKE.<a href="#section-5-1" class="pilcrow">¶</a></p>
-</div>
-<div id="_test_types">
-<section id="section-5.1">
-        <h3 id="name-test-types">
-<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-test-types" class="section-name selfRef">Test Types</a>
-        </h3>
-<div id="_fdf4a42a-1fbd-40f9-9bb7-b5c83a766539">
-<p id="section-5.1-1">There are four types of tests for these hash functions: functional tests, Monte Carlo tests, Variable Output tests and Large Data tests. Each has a specific value to be used in the testType field. The testType field definitions are:<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<div id="_8e71c2b3-a1a4-4894-af59-0b54f14de4d9">
+<p id="section-5-1">The following SHA3-based hash algorithms <span class="bcp14">MAY</span> be advertised by this ACVP compliant crypto module:<a href="#section-5-1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-5.1-2.1">
-            <div id="_4269e16e-8e1f-4aff-9ac3-e9cdbf912d7a">
-<p id="section-5.1-2.1.1">"AFT" - Algorithm Functional Test. These tests can be processed by the client using a normal 'hash' operation.  AFTs cause the implementation under test to exercise normal operations on a single block, multiple blocks, or partial blocks. In all cases, random data is used. The functional tests are designed to verify that the logical components of the hash function or extenable output function (block chunking, block padding etc.) are operating correctly.<a href="#section-5.1-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5-2.1">
+          <div id="_b50e333a-bfdd-4318-a32f-6a4b25499199">
+<p id="section-5-2.1.1">SHA3-224 / null / 1.0<a href="#section-5-2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-5.1-2.2">
-            <div id="_8b70fe12-2df3-4c72-94a2-acf69837beb7">
-<p id="section-5.1-2.2.1">"MCT" - Monte Carlo Test. These tests exercise the implementation under test under stenuous circumstances. The implementation under test must process the test vectors according to the correct algorithm and mode in this document. MCTs can help detect potential memory leaks over time, and problems in allocation of resources, addressing variables, error handling, and generally improper behavior in response to random inputs. Each MCT processes 100 pseudorandom tests. Each algorithm and mode SHOULD have at least one MCT group. See <a href="#MC_test" class="xref">Section 5.2</a> for implementation details.<a href="#section-5.1-2.2.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5-2.2">
+          <div id="_9438b476-13a6-49bf-a478-c920f6143c67">
+<p id="section-5-2.2.1">SHA3-256 / null / 1.0<a href="#section-5-2.2.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-5.1-2.3">
-            <div id="_d06a50b7-7c88-4303-8777-f5bca56445d9">
-<p id="section-5.1-2.3.1">"VOT" - Variable Output Test. These tests are for SHAKE only, and ensure that an IUT can properly perform the extendable output function to produce digests of specifc lengths. These tests differ from the AFTs for SHAKE in that the AFTs all produce a single digest size, matching the security strength of the extendable output function. The VOTs SHALL produce varying digest sizes based on the capabilities of the IUT.<a href="#section-5.1-2.3.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5-2.3">
+          <div id="_360e45d3-ce5e-4a6c-b039-b5f2fbdd85b7">
+<p id="section-5-2.3.1">SHA3-384 / null / 1.0<a href="#section-5-2.3.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-5.1-2.4">
-            <div id="_43389362-9140-4ac1-9ac0-1bf21043371d">
-<p id="section-5.1-2.4.1">"LDT" - Large Data Test. These tests are for SHA3 only. This test performs the hash function on a message that is multiple gigabytes in length. This pushes the bounds of 32-bit data types to ensure an implementation can handle all types of data. See <span>[<a href="#LDT" class="xref">LDT</a>]</span> for more information motivating the LDT. As a multiple gigabyte message cannot be communicated naturally via ACVP, a specific structure is outlined in <a href="#LD_test" class="xref">Section 5.3</a>.<a href="#section-5.1-2.4.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5-2.4">
+          <div id="_e96c6bc9-93cc-42e5-bfde-911603490f20">
+<p id="section-5-2.4.1">SHA3-512 / null / 1.0<a href="#section-5-2.4.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-        </ul>
+<li class="normal" id="section-5-2.5">
+          <div id="_71711b23-cf17-45f7-83e1-8bca0beb24cc">
+<p id="section-5-2.5.1">SHA3-224 / null / 2.0<a href="#section-5-2.5.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-5-2.6">
+          <div id="_3b48f245-04e0-4bfb-9345-c42e91ebdbd1">
+<p id="section-5-2.6.1">SHA3-256 / null / 2.0<a href="#section-5-2.6.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-5-2.7">
+          <div id="_22bd0fe7-6d3e-4ca0-9218-a174f3bb3d2b">
+<p id="section-5-2.7.1">SHA3-384 / null / 2.0<a href="#section-5-2.7.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-5-2.8">
+          <div id="_d4e7bc94-8d73-4d21-b1a8-b8ee7223c75c">
+<p id="section-5-2.8.1">SHA3-512 / null / 2.0<a href="#section-5-2.8.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-5-2.9">
+          <div id="_66ff5d35-01fd-4270-bc35-838f5afabffb">
+<p id="section-5-2.9.1">SHAKE-128 / null / 1.0<a href="#section-5-2.9.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-5-2.10">
+          <div id="_4adf43be-7956-450c-9941-62201b51595f">
+<p id="section-5-2.10.1">SHAKE-256 / null / 1.0<a href="#section-5-2.10.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+</ul>
+<div id="_16f57388-7a43-4ec0-933e-667ad6661bf8">
+<p id="section-5-3">Other hash algorithms <span class="bcp14">MAY</span> be advertised by the ACVP module elsewhere.<a href="#section-5-3" class="pilcrow">¶</a></p>
+</div>
+</section>
+</div>
+<div id="testtypes">
+<section id="section-6">
+      <h2 id="name-test-types-and-test-coverag">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-test-types-and-test-coverag" class="section-name selfRef">Test Types and Test Coverage</a>
+      </h2>
+<div id="_3ef73b20-cd83-4aa3-a8e4-24f54926fc9c">
+<p id="section-6-1">This section describes the design of the tests used to validate implementations of SHA3 and SHAKE.<a href="#section-6-1" class="pilcrow">¶</a></p>
+</div>
+<div id="_test_types">
+<section id="section-6.1">
+        <h3 id="name-test-types">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-test-types" class="section-name selfRef">Test Types</a>
+        </h3>
+<div id="_a0fe1d81-3a96-49d0-8c44-c2f57e3ef176">
+<p id="section-6.1-1">There are four types of tests for these hash functions: functional tests, Monte Carlo tests, Variable Output tests and Large Data tests. Each has a specific value to be used in the testType field. The testType field definitions are:<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+</div>
+<ul class="normal">
+<li class="normal" id="section-6.1-2.1">
+            <div id="_ae5c3441-910b-41db-bf7e-ae96b3f34210">
+<p id="section-6.1-2.1.1">"AFT" - Algorithm Functional Test. These tests can be processed by the client using a normal 'hash' operation.  AFTs cause the implementation under test to exercise normal operations on a single block, multiple blocks, or partial blocks. In all cases, random data is used. The functional tests are designed to verify that the logical components of the hash function or extenable output function (block chunking, block padding etc.) are operating correctly.<a href="#section-6.1-2.1.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-6.1-2.2">
+            <div id="_d63f7357-fcd5-4e43-99cc-7031f4234719">
+<p id="section-6.1-2.2.1">"MCT" - Monte Carlo Test. These tests exercise the implementation under test under stenuous circumstances. The implementation under test must process the test vectors according to the correct algorithm and mode in this document. MCTs can help detect potential memory leaks over time, and problems in allocation of resources, addressing variables, error handling, and generally improper behavior in response to random inputs. Each MCT processes 100 pseudorandom tests. Each algorithm and mode SHOULD have at least one MCT group. See <a href="#MC_test" class="xref">Section 6.2</a> for implementation details.<a href="#section-6.1-2.2.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-6.1-2.3">
+            <div id="_a83deb9d-09bd-44d3-aaa8-91a468155d6e">
+<p id="section-6.1-2.3.1">"VOT" - Variable Output Test. These tests are for SHAKE only, and ensure that an IUT can properly perform the extendable output function to produce digests of specifc lengths. These tests differ from the AFTs for SHAKE in that the AFTs all produce a single digest size, matching the security strength of the extendable output function. The VOTs SHALL produce varying digest sizes based on the capabilities of the IUT.<a href="#section-6.1-2.3.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-6.1-2.4">
+            <div id="_d371cfe4-5b44-462c-9549-6bb19c3e941b">
+<p id="section-6.1-2.4.1">"LDT" - Large Data Test. These tests are for SHA3 only. This test performs the hash function on a message that is multiple gigabytes in length. This pushes the bounds of 32-bit data types to ensure an implementation can handle all types of data. See <span>[<a href="#LDT" class="xref">LDT</a>]</span> for more information motivating the LDT. As a multiple gigabyte message cannot be communicated naturally via ACVP, a specific structure is outlined in <a href="#LD_test" class="xref">Section 6.3</a>.<a href="#section-6.1-2.4.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+</ul>
 </section>
 </div>
 <div id="MC_test">
-<section id="section-5.2">
+<section id="section-6.2">
         <h3 id="name-monte-carlo-tests-for-sha3-">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-monte-carlo-tests-for-sha3-" class="section-name selfRef">Monte Carlo tests for SHA3 and SHAKE</a>
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-monte-carlo-tests-for-sha3-" class="section-name selfRef">Monte Carlo tests for SHA3 and SHAKE</a>
         </h3>
 <div id="SHA3-MCT">
-<section id="section-5.2.1">
+<section id="section-6.2.1">
           <h4 id="name-sha3-monte-carlo-test">
-<a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-sha3-monte-carlo-test" class="section-name selfRef">SHA3 Monte Carlo Test</a>
+<a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-sha3-monte-carlo-test" class="section-name selfRef">SHA3 Monte Carlo Test</a>
           </h4>
-<div id="_80902cbc-0a1a-41c7-96bd-ada23ea99d5c">
-<p id="section-5.2.1-1">The MCTs start with an initial condition (SEED which is a single message) and perform a series of chained computations. The algorithm is shown below.<a href="#section-5.2.1-1" class="pilcrow">¶</a></p>
+<div id="_e868bd7c-1a21-41eb-be91-1050b0cb4277">
+<p id="section-6.2.1-1">The MCTs start with an initial condition (SEED which is a single message) and perform a series of chained computations. The algorithm is shown below.<a href="#section-6.2.1-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-sha-3-monte-carlo-test"></span><div id="_0c560666-87af-43c0-b02e-2dd3f0bd1a92">
+<span id="name-sha-3-monte-carlo-test"></span><div id="_8cb6ab1b-3ed8-474b-89f5-04b228117d40">
 <figure id="figure-1">
-            <div id="section-5.2.1-2.1">
+            <div id="section-6.2.1-2.1">
 <pre class="sourcecode lang-code">For j = 0 to 99
 MD[0] = SEED;
     For i = 1 to 1000
@@ -1447,38 +1462,38 @@ MD[0] = SEED;
 </section>
 </div>
 <div id="SHAKE-MCT">
-<section id="section-5.2.2">
+<section id="section-6.2.2">
           <h4 id="name-shake-monte-carlo-test">
-<a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-shake-monte-carlo-test" class="section-name selfRef">SHAKE Monte Carlo Test</a>
+<a href="#section-6.2.2" class="section-number selfRef">6.2.2. </a><a href="#name-shake-monte-carlo-test" class="section-name selfRef">SHAKE Monte Carlo Test</a>
           </h4>
-<div id="_b2e8fc83-b6ba-428b-a0ed-037c8e4e19a8">
-<p id="section-5.2.2-1">The MCTs start with an initial condition (SEED which is a single message) and perform a series of chained computations. Some values used in the algorithm are based on properties provided during the registration. They are as follows.<a href="#section-5.2.2-1" class="pilcrow">¶</a></p>
+<div id="_8e5ab42c-0587-4f2c-90db-011adcc85c5b">
+<p id="section-6.2.2-1">The MCTs start with an initial condition (SEED which is a single message) and perform a series of chained computations. Some values used in the algorithm are based on properties provided during the registration. They are as follows.<a href="#section-6.2.2-1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-5.2.2-2.1">
-              <div id="_5ec364d7-9d4f-4f3a-bb15-245211646851">
-<p id="section-5.2.2-2.1.1">minOutBytes = smallest number of bytes supported<a href="#section-5.2.2-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-2.1">
+              <div id="_3e05227a-fc78-405a-8bc2-bb1189bbd736">
+<p id="section-6.2.2-2.1.1">minOutBytes = smallest number of bytes supported<a href="#section-6.2.2-2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-5.2.2-2.2">
-              <div id="_23e022ca-98c5-4173-b070-f1066a3ebd7e">
-<p id="section-5.2.2-2.2.1">maxOutBytes = largest number of bytes supported<a href="#section-5.2.2-2.2.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-2.2">
+              <div id="_f8bf8df6-46de-4f61-a23d-7e5c10204cbf">
+<p id="section-6.2.2-2.2.1">maxOutBytes = largest number of bytes supported<a href="#section-6.2.2-2.2.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          </ul>
-<div id="_94aefbb5-2182-4ea2-884f-f6e6a4dec35f">
-<p id="section-5.2.2-3">The SHAKE function used in the pseudocode takes in a bitstring and a desired output length in bits. The M[i] input to SHAKE MUST always contain at least 128 bits. If this is not the case as the previous digest was too short, append empty bits to the rightmost side of the digest. The MCT algorithm is shown below.<a href="#section-5.2.2-3" class="pilcrow">¶</a></p>
+</ul>
+<div id="_5f8d6da3-a91c-4cc0-8bf8-9aa81195d288">
+<p id="section-6.2.2-3">The SHAKE function used in the pseudocode takes in a bitstring and a desired output length in bits. The M[i] input to SHAKE MUST always contain at least 128 bits. If this is not the case as the previous digest was too short, append empty bits to the rightmost side of the digest. The MCT algorithm is shown below.<a href="#section-6.2.2-3" class="pilcrow">¶</a></p>
 </div>
-<span id="name-shake-monte-carlo-test-2"></span><div id="_e137a31f-8d54-4bf9-a143-127285ddbd7a">
+<span id="name-shake-monte-carlo-test-2"></span><div id="_059687cd-0119-4beb-a4ae-f989e9e752d7">
 <figure id="figure-2">
-            <div id="section-5.2.2-4.1">
+            <div id="section-6.2.2-4.1">
 <pre class="sourcecode lang-code">Range = maxOutBytes - minOutBytes + 1
 OutputLen = maxOutBytes
 For j = 0 to 99
     MD[0] = SEED
     For i = 1 to 1000
         MSG[i] = 128 leftmost bits of MD[i-1]
-        if (MSG[i] &lt; 128 bits)
+        if (MSG[i] &amp;lt; 128 bits)
             Append 0 bits on rightmost side of MSG[i] til MSG[i] is 128 bits
         MD[i] = SHAKE(M[i], OutputLen * 8)
 
@@ -1498,16 +1513,16 @@ For j = 0 to 99
 </section>
 </div>
 <div id="LD_test">
-<section id="section-5.3">
+<section id="section-6.3">
         <h3 id="name-large-data-tests-for-sha-3">
-<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-large-data-tests-for-sha-3" class="section-name selfRef">Large Data tests for SHA-3</a>
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-large-data-tests-for-sha-3" class="section-name selfRef">Large Data tests for SHA-3</a>
         </h3>
-<div id="_f2e03798-d7b1-4486-a5a0-33fb991b67bc">
-<p id="section-5.3-1">The large data tests are intended to test the ability of a module to hash multiple gigabytes of data at once. This much information cannot be communicated via the JSON files as a normal message property. Instead a new type is defined as a large data type. It is an object that contains a small content hex string, a content length in bits, a full length in bits and an expansion technique string. The following is an example of this structure.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<div id="_98f07453-9030-4735-a83a-4278e08b11bc">
+<p id="section-6.3-1">The large data tests are intended to test the ability of a module to hash multiple gigabytes of data at once. This much information cannot be communicated via the JSON files as a normal message property. Instead a new type is defined as a large data type. It is an object that contains a small content hex string, a content length in bits, a full length in bits and an expansion technique string. The following is an example of this structure.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_8ff67a96-f1c6-4c48-9d9d-e5f310fc210e">
+<div id="_16b7a363-6bf9-4dd6-a974-dad8c270927f">
 <figure id="figure-3">
-          <div id="section-5.3-2.1">
+          <div id="section-6.3-2.1">
 <pre class="sourcecode lang-json">"largeMsg": {
     "content": "DE26",
     "contentLength": 16,
@@ -1517,75 +1532,75 @@ For j = 0 to 99
 </div>
 <figcaption><a href="#figure-3" class="selfRef">Figure 3</a></figcaption></figure>
 </div>
-<div id="_2f605a4a-bd11-4c04-839e-83f7fd5546b6">
-<p id="section-5.3-3">The 'contentLength' property describes the number of bits in the 'content' property. The 'content' property is the hex string that can be expanded to the full large message. The 'expansionTechnique' describes the process used to obtain the full large message. The 'fullLength' is the final length of the full large message.<a href="#section-5.3-3" class="pilcrow">¶</a></p>
+<div id="_f630f89d-37ad-4612-8c5d-5a950a7d4f1b">
+<p id="section-6.3-3">The 'contentLength' property describes the number of bits in the 'content' property. The 'content' property is the hex string that can be expanded to the full large message. The 'expansionTechnique' describes the process used to obtain the full large message. The 'fullLength' is the final length of the full large message.<a href="#section-6.3-3" class="pilcrow">¶</a></p>
 </div>
-<div id="_55bc5b26-90a7-42e8-b854-159e5079c241">
-<p id="section-5.3-4">There may be multiple 'expansionTechnique' types defined. Here are the types defined for SHA-3 testing.<a href="#section-5.3-4" class="pilcrow">¶</a></p>
+<div id="_a25e776b-745e-4ee8-8331-9735185ba82d">
+<p id="section-6.3-4">There may be multiple 'expansionTechnique' types defined. Here are the types defined for SHA-3 testing.<a href="#section-6.3-4" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-5.3-5.1">
-            <div id="_ee420b22-10a8-45d9-8c3a-b2e3fd174441">
-<p id="section-5.3-5.1.1">"repeating" - Append the number of content bits specified in 'contentLength' to itself as many times as needed until a hex string of exactly 'fullLength' bits is acquired. In the example shown, the final large message would have the form "DE26DE26DE26...​DE26".<a href="#section-5.3-5.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.3-5.1">
+            <div id="_5da99580-2445-420a-b1b3-488a896f7f85">
+<p id="section-6.3-5.1.1">"repeating" - Append the number of content bits specified in 'contentLength' to itself as many times as needed until a hex string of exactly 'fullLength' bits is acquired. In the example shown, the final large message would have the form "DE26DE26DE26...​DE26".<a href="#section-6.3-5.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-        </ul>
-<div id="_182048c1-349c-46be-92ee-0ed3fb2a7c8a">
-<p id="section-5.3-6">There are multiple ways hash functions can be implemented in an IUT. The most common are via a single Hash() call on the message or via a series of Init(), any number of Update(), Final() calls. As noted in <span>[<a href="#LDT" class="xref">LDT</a>]</span>, the difference between these hashing techniques can have consequences in the cryptographic module. If both interfaces are offered and accessible for testing, the IUT <span class="bcp14">MUST</span> only utilize a single Update() call for the large message.<a href="#section-5.3-6" class="pilcrow">¶</a></p>
+</ul>
+<div id="_702a449f-6f85-483d-a744-b028acaa14a6">
+<p id="section-6.3-6">There are multiple ways hash functions can be implemented in an IUT. The most common are via a single Hash() call on the message or via a series of Init(), any number of Update(), Final() calls. As noted in <span>[<a href="#LDT" class="xref">LDT</a>]</span>, the difference between these hashing techniques can have consequences in the cryptographic module. If both interfaces are offered and accessible for testing, the IUT <span class="bcp14">MUST</span> only utilize a single Update() call for the large message.<a href="#section-6.3-6" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="test_coverage">
-<section id="section-5.4">
+<section id="section-6.4">
         <h3 id="name-test-coverage">
-<a href="#section-5.4" class="section-number selfRef">5.4. </a><a href="#name-test-coverage" class="section-name selfRef">Test Coverage</a>
+<a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-test-coverage" class="section-name selfRef">Test Coverage</a>
         </h3>
-<div id="_55a986a0-79f9-4c4a-9121-ad82dc7bb5bf">
-<p id="section-5.4-1">The tests described in this document have the intention of ensuring an implementation is conformant to <span>[<a href="#FIPS202" class="xref">FIPS202</a>]</span>.<a href="#section-5.4-1" class="pilcrow">¶</a></p>
+<div id="_53425cd0-16e1-46ab-80a7-a659b0c78331">
+<p id="section-6.4-1">The tests described in this document have the intention of ensuring an implementation is conformant to <span>[<a href="#FIPS202" class="xref">FIPS202</a>]</span>.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
 </div>
 <div id="sha3-coverage">
-<section id="section-5.4.1">
+<section id="section-6.4.1">
           <h4 id="name-sha3-requirements-covered">
-<a href="#section-5.4.1" class="section-number selfRef">5.4.1. </a><a href="#name-sha3-requirements-covered" class="section-name selfRef">SHA3 Requirements Covered</a>
+<a href="#section-6.4.1" class="section-number selfRef">6.4.1. </a><a href="#name-sha3-requirements-covered" class="section-name selfRef">SHA3 Requirements Covered</a>
           </h4>
-<div id="_f329e01c-0538-4b48-9edf-cdc8217bcd59">
-<p id="section-5.4.1-1">Sections 3 through 6 in <span>[<a href="#FIPS202" class="xref">FIPS202</a>]</span> outline the Keccak construction and strucures needed to form a valid SHA3 implementation. Normal AFTs test these operations by running the algorithm.<a href="#section-5.4.1-1" class="pilcrow">¶</a></p>
+<div id="_8bce98d4-1e55-417c-8bfc-0bdb1d4787ce">
+<p id="section-6.4.1-1">Sections 3 through 6 in <span>[<a href="#FIPS202" class="xref">FIPS202</a>]</span> outline the Keccak construction and strucures needed to form a valid SHA3 implementation. Normal AFTs test these operations by running the algorithm.<a href="#section-6.4.1-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_b2262075-9e7a-43e3-ba92-eaa578c8873f">
-<p id="section-5.4.1-2">Section 7 in <span>[<a href="#FIPS202" class="xref">FIPS202</a>]</span> states that any input sizes may be used within a SHA3 hash implementation. The input sizes tested in this document range from 0 bits to 65536 bits. In addition a large data test is available by special request which tests messages that are multiple gigabytes in size.<a href="#section-5.4.1-2" class="pilcrow">¶</a></p>
+<div id="_4f5c83e3-a695-42b0-a8a4-d64555742154">
+<p id="section-6.4.1-2">Section 7 in <span>[<a href="#FIPS202" class="xref">FIPS202</a>]</span> states that any input sizes may be used within a SHA3 hash implementation. The input sizes tested in this document range from 0 bits to 65536 bits. In addition a large data test is available by special request which tests messages that are multiple gigabytes in size.<a href="#section-6.4.1-2" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="sha3-not-coverage">
-<section id="section-5.4.2">
+<section id="section-6.4.2">
           <h4 id="name-sha3-requirements-not-cover">
-<a href="#section-5.4.2" class="section-number selfRef">5.4.2. </a><a href="#name-sha3-requirements-not-cover" class="section-name selfRef">SHA3 Requirements Not Covered</a>
+<a href="#section-6.4.2" class="section-number selfRef">6.4.2. </a><a href="#name-sha3-requirements-not-cover" class="section-name selfRef">SHA3 Requirements Not Covered</a>
           </h4>
-<div id="_1e452416-d2b4-49ec-8b36-90f4c0b86d7b">
-<p id="section-5.4.2-1">It is noted that <span>[<a href="#FIPS202" class="xref">FIPS202</a>]</span> states that "different procedures that produce the correct output for every input are permitted" and thus the internal states discussed in Sections 3 through 6 <span class="bcp14">SHALL NOT</span> be tested or tracked.<a href="#section-5.4.2-1" class="pilcrow">¶</a></p>
+<div id="_31b1495c-6157-49b1-ad18-fb24c571ba4d">
+<p id="section-6.4.2-1">It is noted that <span>[<a href="#FIPS202" class="xref">FIPS202</a>]</span> states that "different procedures that produce the correct output for every input are permitted" and thus the internal states discussed in Sections 3 through 6 <span class="bcp14">SHALL NOT</span> be tested or tracked.<a href="#section-6.4.2-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="shake-coverage">
-<section id="section-5.4.3">
+<section id="section-6.4.3">
           <h4 id="name-shake-requirements-covered">
-<a href="#section-5.4.3" class="section-number selfRef">5.4.3. </a><a href="#name-shake-requirements-covered" class="section-name selfRef">SHAKE Requirements Covered</a>
+<a href="#section-6.4.3" class="section-number selfRef">6.4.3. </a><a href="#name-shake-requirements-covered" class="section-name selfRef">SHAKE Requirements Covered</a>
           </h4>
-<div id="_afa473ee-8530-4ab7-a054-160710da4806">
-<p id="section-5.4.3-1">Sections 3 through 6 in <span>[<a href="#FIPS202" class="xref">FIPS202</a>]</span> outline the Keccak construction and strucures needed to form a valid SHAKE implementation. Normal AFTs test these operations by running the algorithm. VOTs exercise the ability of the implementation to perform the algorithm as well by focusing on the sponge construction.<a href="#section-5.4.3-1" class="pilcrow">¶</a></p>
+<div id="_90458366-1099-41a9-908e-4cce01cf9df7">
+<p id="section-6.4.3-1">Sections 3 through 6 in <span>[<a href="#FIPS202" class="xref">FIPS202</a>]</span> outline the Keccak construction and strucures needed to form a valid SHAKE implementation. Normal AFTs test these operations by running the algorithm. VOTs exercise the ability of the implementation to perform the algorithm as well by focusing on the sponge construction.<a href="#section-6.4.3-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_ca6ad8d6-3265-49d9-ac39-e7416938b05c">
-<p id="section-5.4.3-2">Section 7 in <span>[<a href="#FIPS202" class="xref">FIPS202</a>]</span> states that any input sizes or output sizes may be used within a SHAKE implementation. The input sizes tested in this document range from 0 bits to 65536 bits. The output sizes tested in this document range from 16 bits to 65536 bits.<a href="#section-5.4.3-2" class="pilcrow">¶</a></p>
+<div id="_69ba0c5b-d930-4513-98e1-5715b9985191">
+<p id="section-6.4.3-2">Section 7 in <span>[<a href="#FIPS202" class="xref">FIPS202</a>]</span> states that any input sizes or output sizes may be used within a SHAKE implementation. The input sizes tested in this document range from 0 bits to 65536 bits. The output sizes tested in this document range from 16 bits to 65536 bits.<a href="#section-6.4.3-2" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="shake-not-coverage">
-<section id="section-5.4.4">
+<section id="section-6.4.4">
           <h4 id="name-shake-requirements-not-cove">
-<a href="#section-5.4.4" class="section-number selfRef">5.4.4. </a><a href="#name-shake-requirements-not-cove" class="section-name selfRef">SHAKE Requirements Not Covered</a>
+<a href="#section-6.4.4" class="section-number selfRef">6.4.4. </a><a href="#name-shake-requirements-not-cove" class="section-name selfRef">SHAKE Requirements Not Covered</a>
           </h4>
-<div id="_d333896b-06f0-40ca-88c8-ac23884f0118">
-<p id="section-5.4.4-1">Again, the internal states discussed in Sections 3 through 6 <span class="bcp14">SHALL NOT</span> be tested or tracked.<a href="#section-5.4.4-1" class="pilcrow">¶</a></p>
+<div id="_24006a44-c93f-4037-a71a-256e77da8984">
+<p id="section-6.4.4-1">Again, the internal states discussed in Sections 3 through 6 <span class="bcp14">SHALL NOT</span> be tested or tracked.<a href="#section-6.4.4-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
@@ -1594,28 +1609,28 @@ For j = 0 to 99
 </section>
 </div>
 <div id="capabilities">
-<section id="section-6">
+<section id="section-7">
       <h2 id="name-capabilities-registration">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-capabilities-registration" class="section-name selfRef">Capabilities Registration</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-capabilities-registration" class="section-name selfRef">Capabilities Registration</a>
       </h2>
-<div id="_c91553dc-e3f7-4cae-91c6-de4471f24c2b">
-<p id="section-6-1">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of SHA3 and SHAKE algorithms to the ACVP server.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<div id="_e0336377-39f3-4474-823d-d5e8300b1d6d">
+<p id="section-7-1">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of SHA3 and SHAKE algorithms to the ACVP server.<a href="#section-7-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_778fc035-0339-45a4-80a2-779d2ab31bea">
-<p id="section-6-2">The algorithm capabilities <span class="bcp14">MUST</span> be advertised as JSON objects within the 'algorithms' value of the ACVP registration message. The 'algorithms' value is an array, where each array element is an individual JSON object defined in this section. The 'algorithms' value is part of the 'capability_exchange' element of the ACVP JSON registration message. See the ACVP specification <span>[<a href="#ACVP" class="xref">ACVP</a>]</span> for more details on the registration message.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<div id="_df064793-a9c8-4937-bbab-64201e96a87f">
+<p id="section-7-2">The algorithm capabilities <span class="bcp14">MUST</span> be advertised as JSON objects within the 'algorithms' value of the ACVP registration message. The 'algorithms' value is an array, where each array element is an individual JSON object defined in this section. The 'algorithms' value is part of the 'capability_exchange' element of the ACVP JSON registration message. See the ACVP specification <span>[<a href="#ACVP" class="xref">ACVP</a>]</span> for more details on the registration message.<a href="#section-7-2" class="pilcrow">¶</a></p>
 </div>
 <div id="prerequisites">
-<section id="section-6.1">
+<section id="section-7.1">
         <h3 id="name-prerequisites">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-prerequisites" class="section-name selfRef">Prerequisites</a>
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-prerequisites" class="section-name selfRef">Prerequisites</a>
         </h3>
-<div id="_15ea866a-3078-446a-b9cd-9604e7be85b9">
-<p id="section-6.1-1">Each algorithm implementation <span class="bcp14">MAY</span> rely on other cryptographic primitives. For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<div id="_fc34ec20-227d-4ff1-8647-a964a49656ae">
+<p id="section-7.1-1">Each algorithm implementation <span class="bcp14">MAY</span> rely on other cryptographic primitives. For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_eaedf377-02c4-4f28-bb39-83752c834c4d">
-<p id="section-6.1-2">Prerequisites, if applicable, <span class="bcp14">MUST</span> be submitted in the registration as the <code>prereqVals</code> JSON property array inside each element of the <code>algorithms</code> array. Each element in the <code>prereqVals</code> array <span class="bcp14">MUST</span> contain the following properties<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+<div id="_1c82e0a5-2ef3-4a5f-b375-9da583941ee5">
+<p id="section-7.1-2">Prerequisites, if applicable, <span class="bcp14">MUST</span> be submitted in the registration as the <code>prereqVals</code> JSON property array inside each element of the <code>algorithms</code> array. Each element in the <code>prereqVals</code> array <span class="bcp14">MUST</span> contain the following properties<a href="#section-7.1-2" class="pilcrow">¶</a></p>
 </div>
-<span id="name-prerequisite-properties"></span><div id="_d6060a99-810f-487b-9f23-ff9aef31ec08">
+<span id="name-prerequisite-properties"></span><div id="_b29dfe58-3ca4-47e9-adea-6d723db85ac6">
 <table class="center" id="table-1">
           <caption>
 <a href="#table-1" class="selfRef">Table 1</a>:
@@ -1642,15 +1657,15 @@ For j = 0 to 99
           </tbody>
         </table>
 </div>
-<div id="_6c29f714-6bee-414f-9b00-6b660b435479">
-<p id="section-6.1-4">A "valValue" of "same" <span class="bcp14">SHALL</span> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
+<div id="_982abb95-7db4-484b-8180-02887441d369">
+<p id="section-7.1-4">A "valValue" of "same" <span class="bcp14">SHALL</span> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
 </div>
-<div id="_9267fcac-bb7a-45f7-bf77-f1c483d9fefa">
-<p id="section-6.1-5">An example description of prerequisites within a single algorithm capability exchange looks like this<a href="#section-6.1-5" class="pilcrow">¶</a></p>
+<div id="_2055dd16-bbaa-4804-b9ec-8d7ad8682041">
+<p id="section-7.1-5">An example description of prerequisites within a single algorithm capability exchange looks like this<a href="#section-7.1-5" class="pilcrow">¶</a></p>
 </div>
-<div id="_bc6b867b-17ca-402c-88db-255a5d3583bd">
+<div id="_d4c75652-5995-49bb-b431-c6087aa30d35">
 <figure id="figure-4">
-          <div id="section-6.1-6.1">
+          <div id="section-7.1-6.1">
 <pre class="sourcecode lang-json">"prereqVals":
 [
   {
@@ -1668,12 +1683,12 @@ For j = 0 to 99
 </section>
 </div>
 <div id="hash_caps_reg">
-<section id="section-6.2">
+<section id="section-7.2">
         <h3 id="name-sha3-and-shake-algorithm-ca">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-sha3-and-shake-algorithm-ca" class="section-name selfRef">SHA3 and SHAKE Algorithm Capabilities Registration</a>
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-sha3-and-shake-algorithm-ca" class="section-name selfRef">SHA3 and SHAKE Algorithm Capabilities Registration</a>
         </h3>
-<div id="_658551c9-5b2d-4be1-be6e-7ee94c9599da">
-<p id="section-6.2-1">Each SHA3 and SHAKE algorithm capability advertised <span class="bcp14">SHALL</span> be a self-contained JSON object. The following JSON values are used for hash algorithm capabilities:<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<div id="_3537bcbe-9530-4f25-8e01-3799b2511c66">
+<p id="section-7.2-1">Each SHA3 and SHAKE algorithm capability advertised <span class="bcp14">SHALL</span> be a self-contained JSON object. The following JSON values are used for hash algorithm capabilities:<a href="#section-7.2-1" class="pilcrow">¶</a></p>
 </div>
 <span id="name-sha3-10-and-shake-10-algori"></span><div id="caps_table">
 <table class="center" id="table-2">
@@ -1721,19 +1736,19 @@ For j = 0 to 99
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">performLargeDataTest</td>
-              <td class="text-left" rowspan="1" colspan="1">Determines if the server should include the large data test group defined in <a href="#LD_test" class="xref">Section 5.3</a>. This property is <span class="bcp14">OPTIONAL</span>, and shall include the lengths in GiB being tested. Valid options are {1, 2, 4, 8}.</td>
+              <td class="text-left" rowspan="1" colspan="1">Determines if the server should include the large data test group defined in <a href="#LD_test" class="xref">Section 6.3</a>. This property is <span class="bcp14">OPTIONAL</span>, and shall include the lengths in GiB being tested. Valid options are {1, 2, 4, 8}.</td>
               <td class="text-left" rowspan="1" colspan="1">integer array</td>
             </tr>
           </tbody>
         </table>
 </div>
-<div id="_98372764-f8ab-4984-aa68-8471fd6720a1">
-<aside id="section-6.2-3">
-          <p id="section-6.2-3.1">NOTE: The lengths provided in the 'performLargeDataTest' property are in gibibytes. 1GiB is equivalent to 2^30 bytes.<a href="#section-6.2-3.1" class="pilcrow">¶</a></p>
+<div id="_df5178c2-f643-4a84-935a-2f39a44dcf20">
+<aside id="section-7.2-3">
+          <p id="section-7.2-3.1">NOTE: The lengths provided in the 'performLargeDataTest' property are in gibibytes. 1GiB is equivalent to 2^30 bytes.<a href="#section-7.2-3.1" class="pilcrow">¶</a></p>
 </aside>
 </div>
-<div id="_e315cd14-a1b9-4a21-9144-2b69e03d2ec4">
-<p id="section-6.2-4">The following grid outlines which properties are <span class="bcp14">REQUIRED</span>, as well as all the possible values a server <span class="bcp14">MAY</span> support for SHA3 and SHAKE algorithms:<a href="#section-6.2-4" class="pilcrow">¶</a></p>
+<div id="_f0a5e06f-969c-484c-8aa4-d63879541400">
+<p id="section-7.2-4">The following grid outlines which properties are <span class="bcp14">REQUIRED</span>, as well as all the possible values a server <span class="bcp14">MAY</span> support for SHA3 and SHAKE algorithms:<a href="#section-7.2-4" class="pilcrow">¶</a></p>
 </div>
 <span id="name-sha3-and-shake-capabilities"></span><div id="property_grid">
 <table class="center" id="table-3">
@@ -1803,12 +1818,12 @@ For j = 0 to 99
           </tbody>
         </table>
 </div>
-<div id="_0c533b4c-f38a-452e-957c-f96a8de7d90b">
-<p id="section-6.2-6">The following is a example JSON object advertising support for SHA3-256 for testing revision 1.0.<a href="#section-6.2-6" class="pilcrow">¶</a></p>
+<div id="_57151ad3-49c3-4d71-b91e-4cad3125d6cc">
+<p id="section-7.2-6">The following is a example JSON object advertising support for SHA3-256 for testing revision 1.0.<a href="#section-7.2-6" class="pilcrow">¶</a></p>
 </div>
-<div id="_e253162e-d767-41c4-ab92-fb7176b9cc88">
+<div id="_6cea9916-05bc-42e5-bb76-87db0e2d803c">
 <figure id="figure-5">
-          <div id="section-6.2-7.1">
+          <div id="section-7.2-7.1">
 <pre class="sourcecode lang-json">{
     "algorithm": "SHA3-256",
     "revision": "1.0",
@@ -1819,12 +1834,12 @@ For j = 0 to 99
 </div>
 <figcaption><a href="#figure-5" class="selfRef">Figure 5</a></figcaption></figure>
 </div>
-<div id="_10ca0d5d-e086-43d9-a5ef-00facb9676b2">
-<p id="section-6.2-8">The following is an example JSON object advertising support for SHAKE-128.<a href="#section-6.2-8" class="pilcrow">¶</a></p>
+<div id="_d8c3f17e-21de-403f-833e-68f2fb799034">
+<p id="section-7.2-8">The following is an example JSON object advertising support for SHAKE-128.<a href="#section-7.2-8" class="pilcrow">¶</a></p>
 </div>
-<div id="_7384abe5-f639-4265-93f2-9cdf19e05212">
+<div id="_53db1df6-0839-4f26-9530-b98bd25787a0">
 <figure id="figure-6">
-          <div id="section-6.2-9.1">
+          <div id="section-7.2-9.1">
 <pre class="sourcecode lang-json">{
     "algorithm": "SHAKE-128",
     "revision": "1.0",
@@ -1841,7 +1856,7 @@ For j = 0 to 99
 </div>
 <figcaption><a href="#figure-6" class="selfRef">Figure 6</a></figcaption></figure>
 </div>
-<span id="name-sha3-20-algorithm-capabilit"></span><div id="_7cba1763-de31-408d-a6ac-8c4848c0c389">
+<span id="name-sha3-20-algorithm-capabilit"></span><div id="_7c1f7c9d-8ab5-43c0-bbf6-1ecad49b9db0">
 <table class="center" id="table-4">
           <caption>
 <a href="#table-4" class="selfRef">Table 4</a>:
@@ -1868,22 +1883,27 @@ For j = 0 to 99
             <tr>
               <td class="text-left" rowspan="1" colspan="1">messageLength</td>
               <td class="text-left" rowspan="1" colspan="1">Domain representing the message lengths supported. The current MCT implementation requires that the digest size and 3x the digest size of the registered hash algorithm must be a valid value within the registered domain.</td>
+              <td class="text-left" rowspan="1" colspan="1">domain</td>
+            </tr>
+            <tr>
               <td class="text-left" rowspan="1" colspan="1">performLargeDataTest</td>
+              <td class="text-left" rowspan="1" colspan="1">Determines if the server should include the large data test group defined in <a href="#LD_test" class="xref">Section 6.3</a>. This property is <span class="bcp14">OPTIONAL</span>, and shall include the lengths in GiB being tested. Valid options are {1, 2, 4, 8}.</td>
+              <td class="text-left" rowspan="1" colspan="1">integer array</td>
             </tr>
           </tbody>
         </table>
 </div>
-<div id="_dafaf475-7725-4b5e-beac-40cf9f395b63">
-<aside id="section-6.2-11">
-          <p id="section-6.2-11.1">NOTE: The lengths provided in the 'performLargeDataTest' property are in gibibytes. 1GiB is equivalent to 2^30 bytes.<a href="#section-6.2-11.1" class="pilcrow">¶</a></p>
+<div id="_22e7988d-0ae6-4c14-862d-fe0de3cbf09c">
+<aside id="section-7.2-11">
+          <p id="section-7.2-11.1">NOTE: The lengths provided in the 'performLargeDataTest' property are in gibibytes. 1GiB is equivalent to 2^30 bytes.<a href="#section-7.2-11.1" class="pilcrow">¶</a></p>
 </aside>
 </div>
-<div id="_385d43ba-03e0-401e-8c8f-f479c1b9e64b">
-<p id="section-6.2-12">The following is a example JSON object advertising support for SHA3-256 for testing revision 2.0.<a href="#section-6.2-12" class="pilcrow">¶</a></p>
+<div id="_78a2c574-9652-47b2-ad5b-27e2160f578d">
+<p id="section-7.2-12">The following is a example JSON object advertising support for SHA3-256 for testing revision 2.0.<a href="#section-7.2-12" class="pilcrow">¶</a></p>
 </div>
-<div id="_35119cd1-da88-461b-afef-642bbfc0af00">
+<div id="_25170e44-b3a8-44d2-a747-728b0f460637">
 <figure id="figure-7">
-          <div id="section-6.2-13.1">
+          <div id="section-7.2-13.1">
 <pre class="sourcecode lang-json">{
     "algorithm": "SHA3-256",
     "revision": "2.0",
@@ -1895,9 +1915,9 @@ For j = 0 to 99
 </div>
 <figcaption><a href="#figure-7" class="selfRef">Figure 7</a></figcaption></figure>
 </div>
-<div id="_2afb1831-89b4-4a3a-86ed-2d05d5196945">
-<aside id="section-6.2-14">
-          <p id="section-6.2-14.1">NOTE  1: Since the increment is 1 in the above, and the minimum value within the message length is zero, this is effectively an "inBit" and "inEmpty" registration from the 1.0 revision testing.  If the implementation supports only byte length messages, you could use an increment of 8.<a href="#section-6.2-14.1" class="pilcrow">¶</a></p>
+<div id="_54a036fa-086d-4cff-9894-c460c19bb193">
+<aside id="section-7.2-14">
+          <p id="section-7.2-14.1">NOTE  1: Since the increment is 1 in the above, and the minimum value within the message length is zero, this is effectively an "inBit" and "inEmpty" registration from the 1.0 revision testing.  If the implementation supports only byte length messages, you could use an increment of 8.<a href="#section-7.2-14.1" class="pilcrow">¶</a></p>
 </aside>
 </div>
 </section>
@@ -1905,17 +1925,17 @@ For j = 0 to 99
 </section>
 </div>
 <div id="test-vectors">
-<section id="section-7">
+<section id="section-8">
       <h2 id="name-test-vectors">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-test-vectors" class="section-name selfRef">Test Vectors</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-test-vectors" class="section-name selfRef">Test Vectors</a>
       </h2>
-<div id="_fc1e5734-ef83-4329-b620-41dca4cb1792">
-<p id="section-7-1">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with SHA3 and SHAKE algorithms.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<div id="_278e199d-5f88-4ca8-ae6a-5e1b30707680">
+<p id="section-8-1">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with SHA3 and SHAKE algorithms.<a href="#section-8-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_639fea43-41c2-41f2-bfbd-aed95de83668">
-<p id="section-7-2">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<div id="_8bed5a9e-42cd-4a09-9b6a-bf84c4940fef">
+<p id="section-8-2">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.<a href="#section-8-2" class="pilcrow">¶</a></p>
 </div>
-<span id="name-top-level-test-vector-json-"></span><div id="_490b0efe-1e81-4aea-8117-a81473fb4777">
+<span id="name-top-level-test-vector-json-"></span><div id="_eb8d6a21-4d8a-445c-9403-ed24a974d41c">
 <table class="center" id="table-5">
         <caption>
 <a href="#table-5" class="selfRef">Table 5</a>:
@@ -1956,19 +1976,19 @@ For j = 0 to 99
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">testGroups</td>
-            <td class="text-left" rowspan="1" colspan="1">Array of test groups containing test data, see <a href="#tgjs" class="xref">Section 7.1</a>
+            <td class="text-left" rowspan="1" colspan="1">Array of test groups containing test data, see <a href="#tgjs" class="xref">Section 8.1</a>
 </td>
             <td class="text-left" rowspan="1" colspan="1">array</td>
           </tr>
         </tbody>
       </table>
 </div>
-<div id="_9d2bdb30-9c4e-4e60-9314-fbf2be4eede3">
-<p id="section-7-4">An example of this would look like this<a href="#section-7-4" class="pilcrow">¶</a></p>
+<div id="_e036bd70-b5be-45b8-a7bb-7f738cff5553">
+<p id="section-8-4">An example of this would look like this<a href="#section-8-4" class="pilcrow">¶</a></p>
 </div>
-<div id="_4f8ec116-f722-419b-8515-84ebefbd7b10">
+<div id="_4f662d40-27b2-4000-a144-b4ce64b908de">
 <figure id="figure-8">
-        <div id="section-7-5.1">
+        <div id="section-8-5.1">
 <pre class="sourcecode lang-json">{
   "acvVersion": "version",
   "vsId": 1,
@@ -1981,12 +2001,12 @@ For j = 0 to 99
 <figcaption><a href="#figure-8" class="selfRef">Figure 8</a></figcaption></figure>
 </div>
 <div id="tgjs">
-<section id="section-7.1">
+<section id="section-8.1">
         <h3 id="name-test-groups">
-<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-test-groups" class="section-name selfRef">Test Groups</a>
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-test-groups" class="section-name selfRef">Test Groups</a>
         </h3>
-<div id="_1e997028-2ff4-461d-a703-98e2f6002c5c">
-<p id="section-7.1-1">Test vector sets <span class="bcp14">MUST</span> contain one or many test groups, each sharing similar properties. For instance, all test vectors that use the same key size would be grouped together. The testGroups element at the top level of the test vector JSON object SHALL be the array of test groups. The Test Group JSON object <span class="bcp14">MUST</span> contain meta-data that applies to all test cases within the group. The following table describes the JSON elements that <span class="bcp14">MUST</span> appear from the server in the Test Group JSON object:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<div id="_aa5f4c11-2f46-433c-8009-2db15314cf20">
+<p id="section-8.1-1">Test vector sets <span class="bcp14">MUST</span> contain one or many test groups, each sharing similar properties. For instance, all test vectors that use the same key size would be grouped together. The testGroups element at the top level of the test vector JSON object SHALL be the array of test groups. The Test Group JSON object <span class="bcp14">MUST</span> contain meta-data that applies to all test cases within the group. The following table describes the JSON elements that <span class="bcp14">MUST</span> appear from the server in the Test Group JSON object:<a href="#section-8.1-1" class="pilcrow">¶</a></p>
 </div>
 <span id="name-test-group-json-object"></span><div id="vs_tg_table">
 <table class="center" id="table-6">
@@ -2009,13 +2029,13 @@ For j = 0 to 99
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">testType</td>
-              <td class="text-left" rowspan="1" colspan="1">Test category type. AFT, MCT or VOT as defined in <a href="#testtypes" class="xref">Section 5</a>
+              <td class="text-left" rowspan="1" colspan="1">Test category type. AFT, MCT or VOT as defined in <a href="#testtypes" class="xref">Section 6</a>
 </td>
               <td class="text-left" rowspan="1" colspan="1">value</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">tests</td>
-              <td class="text-left" rowspan="1" colspan="1">Array of individual test case JSON objects, which are defined in <a href="#tcjs" class="xref">Section 7.2</a>
+              <td class="text-left" rowspan="1" colspan="1">Array of individual test case JSON objects, which are defined in <a href="#tcjs" class="xref">Section 8.2</a>
 </td>
               <td class="text-left" rowspan="1" colspan="1">array of testCase objects</td>
             </tr>
@@ -2025,12 +2045,12 @@ For j = 0 to 99
 </section>
 </div>
 <div id="tcjs">
-<section id="section-7.2">
+<section id="section-8.2">
         <h3 id="name-test-case-json-schema">
-<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-test-case-json-schema" class="section-name selfRef">Test Case JSON Schema</a>
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-test-case-json-schema" class="section-name selfRef">Test Case JSON Schema</a>
         </h3>
-<div id="_dc0e8c52-1a59-4db4-819c-5e09274602ba">
-<p id="section-7.2-1">Each test group <span class="bcp14">SHALL</span> contain an array of one or more test cases.  Each test case is a JSON object that represents a single case to be processed by the ACVP client.  The following table describes the JSON elements for each test case.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+<div id="_e054cba4-dcc5-4b52-9a98-2b8dbc1b78a2">
+<p id="section-8.2-1">Each test group <span class="bcp14">SHALL</span> contain an array of one or more test cases.  Each test case is a JSON object that represents a single case to be processed by the ACVP client.  The following table describes the JSON elements for each test case.<a href="#section-8.2-1" class="pilcrow">¶</a></p>
 </div>
 <span id="name-test-case-json-object"></span><div id="vs_tc_table">
 <table class="center" id="table-7">
@@ -2069,24 +2089,24 @@ For j = 0 to 99
             <tr>
               <td class="text-left" rowspan="1" colspan="1">largeMsg</td>
               <td class="text-left" rowspan="1" colspan="1">Object describing the message for an LDT group</td>
-              <td class="text-left" rowspan="1" colspan="1">large data object, see <a href="#LD_test" class="xref">Section 5.3</a> for more information</td>
+              <td class="text-left" rowspan="1" colspan="1">large data object, see <a href="#LD_test" class="xref">Section 6.3</a> for more information</td>
             </tr>
           </tbody>
         </table>
 </div>
-<div id="_b88066b4-7e75-4d71-bb49-b0938df2a1ad">
-<aside id="section-7.2-3">
-          <p id="section-7.2-3.1">NOTE: All properties listed in the above table are <span class="bcp14">REQUIRED</span> except for outLen which is only <span class="bcp14">REQUIRED</span> when the algorithm is SHAKE-128 or SHAKE-256.<a href="#section-7.2-3.1" class="pilcrow">¶</a></p>
+<div id="_3cec66f3-14a0-4f61-b66e-ed25f8772c56">
+<aside id="section-8.2-3">
+          <p id="section-8.2-3.1">NOTE: All properties listed in the above table are <span class="bcp14">REQUIRED</span> except for outLen which is only <span class="bcp14">REQUIRED</span> when the algorithm is SHAKE-128 or SHAKE-256.<a href="#section-8.2-3.1" class="pilcrow">¶</a></p>
 </aside>
 </div>
-<div id="_0299b81e-4226-4385-91ea-1a5928962f43">
-<p id="section-7.2-4">The following is an example JSON object for secure hash test vectors sent from the ACVP server to the crypto module. Notice that the single bit message is represented as "01". This complies with the little-endian nature of SHA3. All hex displayed is little-endian bit order when associated with SHA3 or any of its variations.<a href="#section-7.2-4" class="pilcrow">¶</a></p>
+<div id="_19d1afa5-51ea-4825-8a06-4714a847cf44">
+<p id="section-8.2-4">The following is an example JSON object for secure hash test vectors sent from the ACVP server to the crypto module. Notice that the single bit message is represented as "01". This complies with the little-endian nature of SHA3. All hex displayed is little-endian bit order when associated with SHA3 or any of its variations.<a href="#section-8.2-4" class="pilcrow">¶</a></p>
 </div>
-<div id="_0e3febdb-7194-4de0-9047-821108f1c9c1">
+<div id="_648728de-bd0d-45cf-ba21-259d7c5fd2d3">
 <figure id="figure-9">
-          <div id="section-7.2-5.1">
+          <div id="section-8.2-5.1">
 <pre class="sourcecode lang-json">[
-    { "acvVersion": &lt;acvp-version&gt; },
+    { "acvVersion": &amp;lt;acvp-version&amp;gt; },
     {
         "vsId": 1564,
         "algorithm": "SHA3-512",
@@ -2137,14 +2157,14 @@ For j = 0 to 99
 </div>
 <figcaption><a href="#figure-9" class="selfRef">Figure 9</a></figcaption></figure>
 </div>
-<div id="_2e4c853b-3415-4dc6-9e7a-927f5cbe087c">
-<p id="section-7.2-6">The following is an example JSON object for SHAKE.<a href="#section-7.2-6" class="pilcrow">¶</a></p>
+<div id="_55c2b0f3-55f9-45ae-aa75-d8a2b4279a5a">
+<p id="section-8.2-6">The following is an example JSON object for SHAKE.<a href="#section-8.2-6" class="pilcrow">¶</a></p>
 </div>
-<div id="_00656468-1acb-4868-b7b6-131b145ed6a7">
+<div id="_4d676f5d-563d-437f-bc11-9f8272f7f2fc">
 <figure id="figure-10">
-          <div id="section-7.2-7.1">
+          <div id="section-8.2-7.1">
 <pre class="sourcecode lang-json">[
-    { "acvVersion": &lt;acvp-version&gt; },
+    { "acvVersion": &amp;lt;acvp-version&amp;gt; },
     {
         "vsId": 1564,
         "algorithm": "SHAKE-128",
@@ -2205,12 +2225,12 @@ For j = 0 to 99
 </section>
 </div>
 <div id="vector_responses">
-<section id="section-7.3">
+<section id="section-8.3">
         <h3 id="name-test-vector-responses">
-<a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-test-vector-responses" class="section-name selfRef">Test Vector Responses</a>
+<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-test-vector-responses" class="section-name selfRef">Test Vector Responses</a>
         </h3>
-<div id="_c4aca517-303d-47bb-bfa9-81cb2991624c">
-<p id="section-7.3-1">After the ACVP client downloads and processes a vector set, it <span class="bcp14">SHALL</span> send the response vectors back to the ACVP server within the alloted timeframe. The following table describes the JSON object that represents a vector set response.<a href="#section-7.3-1" class="pilcrow">¶</a></p>
+<div id="_79de3b51-6150-48b4-a842-a39ecccc1863">
+<p id="section-8.3-1">After the ACVP client downloads and processes a vector set, it <span class="bcp14">SHALL</span> send the response vectors back to the ACVP server within the alloted timeframe. The following table describes the JSON object that represents a vector set response.<a href="#section-8.3-1" class="pilcrow">¶</a></p>
 </div>
 <span id="name-vector-set-response-json-ob"></span><div id="vr_top_table">
 <table class="center" id="table-8">
@@ -2238,15 +2258,15 @@ For j = 0 to 99
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">testGroups</td>
-              <td class="text-left" rowspan="1" colspan="1">Array of JSON objects that represent each test vector result, which uses the same JSON schema as defined in <a href="#tcjs" class="xref">Section 7.2</a>
+              <td class="text-left" rowspan="1" colspan="1">Array of JSON objects that represent each test vector result, which uses the same JSON schema as defined in <a href="#tcjs" class="xref">Section 8.2</a>
 </td>
               <td class="text-left" rowspan="1" colspan="1">array of testGroup objects</td>
             </tr>
           </tbody>
         </table>
 </div>
-<div id="_5aea62c6-5afc-487c-b55c-b1b9baff6268">
-<p id="section-7.3-3">The testGroup Response section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <span class="bcp14">SHALL</span> require the client to send back group level properties in its response. This structure helps accommodate that.<a href="#section-7.3-3" class="pilcrow">¶</a></p>
+<div id="_594b79b8-7e8b-4b61-8671-aede100b92a0">
+<p id="section-8.3-3">The testGroup Response section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <span class="bcp14">SHALL</span> require the client to send back group level properties in its response. This structure helps accommodate that.<a href="#section-8.3-3" class="pilcrow">¶</a></p>
 </div>
 <span id="name-vector-set-group-response-j"></span><div id="vr_group_table">
 <table class="center" id="table-9">
@@ -2275,9 +2295,9 @@ For j = 0 to 99
           </tbody>
         </table>
 </div>
-<div id="_1c6db33b-8b07-48a0-8ff2-7ff505001686">
-<p id="section-7.3-5">Each test case is a JSON object that represents a single test object to be processed by the ACVP client.
-The following table describes the JSON elements for each test case object.<a href="#section-7.3-5" class="pilcrow">¶</a></p>
+<div id="_7c69520a-a1fc-4698-ab7b-c08af259a4b7">
+<p id="section-8.3-5">Each test case is a JSON object that represents a single test object to be processed by the ACVP client.
+The following table describes the JSON elements for each test case object.<a href="#section-8.3-5" class="pilcrow">¶</a></p>
 </div>
 <span id="name-test-case-results-json-obje"></span><div id="vs_tr_table">
 <table class="center" id="table-10">
@@ -2311,17 +2331,17 @@ The following table describes the JSON elements for each test case object.<a hre
           </tbody>
         </table>
 </div>
-<div id="_585800c6-e039-488d-bc83-ed1f5c2759d3">
-<aside id="section-7.3-7">
-          <p id="section-7.3-7.1">NOTE: The 'tcId' <span class="bcp14">MUST</span> be included in every test case object sent between the client and the server.<a href="#section-7.3-7.1" class="pilcrow">¶</a></p>
+<div id="_44610d60-962a-4b54-9e39-b640731cc0a0">
+<aside id="section-8.3-7">
+          <p id="section-8.3-7.1">NOTE: The 'tcId' <span class="bcp14">MUST</span> be included in every test case object sent between the client and the server.<a href="#section-8.3-7.1" class="pilcrow">¶</a></p>
 </aside>
 </div>
-<div id="_efc6588c-23fa-49f3-b0d0-78057f29bf75">
-<p id="section-7.3-8">The following is a example JSON object for secure hash test results sent from the crypto module to the ACVP server. The group identified by tgId 1 is a group of AFTs. The group identified by tgId 2 is a group of MCTs. The group identified by tgId 3 is a group of LDTs.<a href="#section-7.3-8" class="pilcrow">¶</a></p>
+<div id="_b7e2c545-ca16-4c80-966f-192e69622aff">
+<p id="section-8.3-8">The following is a example JSON object for secure hash test results sent from the crypto module to the ACVP server. The group identified by tgId 1 is a group of AFTs. The group identified by tgId 2 is a group of MCTs. The group identified by tgId 3 is a group of LDTs.<a href="#section-8.3-8" class="pilcrow">¶</a></p>
 </div>
-<div id="_b31b107c-2bda-405c-9bea-8e404117c559">
+<div id="_f596d99d-c60d-45c0-aca2-d7b33ed2b6a1">
 <figure id="figure-11">
-          <div id="section-7.3-9.1">
+          <div id="section-8.3-9.1">
 <pre class="sourcecode lang-json">{
     "vsId": 0,
     "algorithm": "SHA3-224",
@@ -2373,12 +2393,12 @@ The following table describes the JSON elements for each test case object.<a hre
 </div>
 <figcaption><a href="#figure-11" class="selfRef">Figure 11</a></figcaption></figure>
 </div>
-<div id="_d23d6fa5-d40f-4e31-83ba-deb0838b40e7">
-<p id="section-7.3-10">The following is an example JSON object response for SHAKE-128. The group identified by tgId 1 is a group of AFTs. The group identified by tgId 2 is a group of MCTs. The group identified by tgId 3 is a group of VOTs.<a href="#section-7.3-10" class="pilcrow">¶</a></p>
+<div id="_e96ba227-4239-4106-a67d-c16957aa5404">
+<p id="section-8.3-10">The following is an example JSON object response for SHAKE-128. The group identified by tgId 1 is a group of AFTs. The group identified by tgId 2 is a group of MCTs. The group identified by tgId 3 is a group of VOTs.<a href="#section-8.3-10" class="pilcrow">¶</a></p>
 </div>
-<div id="_b439d767-2314-4549-9514-2bd34e3217e9">
+<div id="_d110bdd4-b067-4983-88e2-823aa37beb1e">
 <figure id="figure-12">
-          <div id="section-7.3-11.1">
+          <div id="section-8.3-11.1">
 <pre class="sourcecode lang-json">{
     "vsId": 0,
     "algorithm": "SHAKE-128",
@@ -2438,57 +2458,57 @@ The following table describes the JSON elements for each test case object.<a hre
 </section>
 </div>
 <div id="security">
-<section id="section-8">
+<section id="section-9">
       <h2 id="name-security-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<div id="_2326e082-30a9-4735-b512-11d4ed0b2487">
-<p id="section-8-1">There are no additional security considerations outside of those outlined in the ACVP document.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<div id="_e50569bd-7c9f-4ecc-83e8-a2b23a8ddf4a">
+<p id="section-9-1">There are no additional security considerations outside of those outlined in the ACVP document.<a href="#section-9-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="iana">
-<section id="section-9">
+<section id="section-10">
       <h2 id="name-iana-considerations">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<div id="_b7fd66b4-c23b-45aa-8356-ec2c53a3cd3f">
-<p id="section-9-1">This document does not require any action by IANA.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<div id="_70be0e0c-86e1-4c8f-8116-eaadf2bbb62b">
+<p id="section-10-1">This document does not require any action by IANA.<a href="#section-10-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="_normative_references">
-<section id="section-10">
+<section id="section-11">
       <h2 id="name-normative-references">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-normative-references" class="section-name selfRef">Normative references</a>
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
       </h2>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="refContent">IETF RFC 2119</span>, <span class="seriesInfo">IETF RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="refContent">IETF RFC 2119</span>, <span class="seriesInfo">IETF RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7991">[RFC7991]</dt>
-      <dd>
-<span class="refAuthor">Hoffman, P.</span>, <span class="refTitle">"The "xml2rfc" Version 3 Vocabulary"</span>, <span class="refContent">IETF RFC 7991</span>, <span class="seriesInfo">IETF RFC 7991</span>, <span class="seriesInfo">DOI 10.17487/RFC7991</span>, <time datetime="2016-12" class="refDate">December 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7991">https://www.rfc-editor.org/info/rfc7991</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Hoffman, P.</span>, <span class="refTitle">"The "xml2rfc" Version 3 Vocabulary"</span>, <span class="refContent">IETF RFC 7991</span>, <span class="seriesInfo">IETF RFC 7991</span>, <span class="seriesInfo">DOI 10.17487/RFC7991</span>, <time datetime="2016-12">December 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7991">https://www.rfc-editor.org/info/rfc7991</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-      <dd>
-<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="refContent">IETF RFC 8174</span>, <span class="seriesInfo">IETF RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="refContent">IETF RFC 8174</span>, <span class="seriesInfo">IETF RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="ACVP">[ACVP]</dt>
-      <dd>
-<span class="refAuthor">NIST</span>, <span class="refTitle">"Automatic Cryptographic Validation Protocol"</span>, <span class="refContent">ACVP ACVP</span>, <time datetime="2019" class="refDate">2019</time>. </dd>
+<dd>
+<span class="refAuthor">NIST</span>, <span class="refTitle">"Automatic Cryptographic Validation Protocol"</span>, <span class="refContent">ACVP ACVP</span>, <time datetime="2019">2019</time>. </dd>
 <dd class="break"></dd>
 <dt id="SHAVS">[SHAVS]</dt>
-      <dd>
+<dd>
 <span class="refTitle">"The Secure Hash Algorithm Validation System (SHAVS)"</span>, <span class="refContent">NIST NIST SHAVS</span>. </dd>
 <dd class="break"></dd>
 <dt id="FIPS202">[FIPS202]</dt>
-      <dd>
+<dd>
 <span class="refTitle">"SHA-3 Standard: Permutation-Based Hash and Extendable-Output Functions"</span>, <span class="refContent">FIPS202 FIPS202</span>. </dd>
 <dd class="break"></dd>
 <dt id="LDT">[LDT]</dt>
-    <dd>
+<dd>
 <span class="refTitle">"Extending NIST's CAVP Testing of Cryptographic Hash Function Implementations"</span>, <span class="refContent">LDT LDT</span>. </dd>
 <dd class="break"></dd>
 </dl>

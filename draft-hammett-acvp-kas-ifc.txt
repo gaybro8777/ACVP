@@ -3,9 +3,9 @@
 
 
 Network Working Group                                    R. Hammett, Ed.
-Internet-Draft                                          17 November 2020
-Intended status: Informational                                          
-Expires: 21 May 2021
+Internet-Draft                                          18 November 2020
+Intended status: Standards Track                                        
+Expires: 22 May 2021
 
 
                     ACVP KAS IFC JSON Specification
@@ -25,7 +25,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2021.
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -45,47 +45,50 @@ Table of Contents
 
    1.  Acknowledgements  . . . . . . . . . . . . . . . . . . . . . .   2
    2.  Abstract  . . . . . . . . . . . . . . . . . . . . . . . . . .   2
-   3.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
+   3.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
    4.  Terms and definitions . . . . . . . . . . . . . . . . . . . .   3
-     4.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
-     4.2.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   3
-       4.2.1.  KAS-IFC Requirements Covered  . . . . . . . . . . . .   3
+   5.  Supported KAS-IFC-SSC . . . . . . . . . . . . . . . . . . . .   3
+   6.  Test Types and Test Coverage  . . . . . . . . . . . . . . . .   3
+     6.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 1]
+Hammett                    Expires 22 May 2021                  [Page 1]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
-       4.2.2.  KAS-IFC Requirements Not Covered  . . . . . . . . . .   5
-     4.3.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   7
-     4.4.  Prerequisite Algorithms for KAS IFC Validations . . . . .   8
-     4.5.  KAS IFC Algorithm Capabilities JSON Values  . . . . . . .   8
-     4.6.  Supported KAS IFC Functions . . . . . . . . . . . . . . .  10
-     4.7.  Supported Key Generation Methods  . . . . . . . . . . . .  10
-     4.8.  Supported Common Modulo . . . . . . . . . . . . . . . . .  11
-     4.9.  KAS IFC Schemes . . . . . . . . . . . . . . . . . . . . .  11
-       4.9.1.  KAS IFC Scheme Capabilities JSON Values . . . . . . .  11
-     4.10. Example KAS-IFC Registration  . . . . . . . . . . . . . .  20
-     4.11. Example KTS-IFC Registration  . . . . . . . . . . . . . .  23
-   5.  Generation Requirements per Party per Scheme  . . . . . . . .  24
-   6.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  26
-     6.1.  Test Groups JSON Schema . . . . . . . . . . . . . . . . .  27
-       6.1.1.  KDF Configuration JSON Schema . . . . . . . . . . . .  28
-       6.1.2.  KTS Configuration JSON Schema . . . . . . . . . . . .  29
-       6.1.3.  MAC Configuration JSON Schema . . . . . . . . . . . .  30
-     6.2.  Test Case JSON Schema . . . . . . . . . . . . . . . . . .  31
-       6.2.1.  KDF Parameter JSON Schema . . . . . . . . . . . . . .  33
-     6.3.  Example Test Vectors JSON Object KAS-IFC  . . . . . . . .  34
-     6.4.  Example Test Vectors JSON Object KTS-IFC  . . . . . . . .  49
-   7.  Test Vector Responses . . . . . . . . . . . . . . . . . . . .  53
-     7.1.  Example Test Results KAS-IFC JSON Object  . . . . . . . .  55
-     7.2.  Example Test Results KTS-IFC JSON Object  . . . . . . . .  59
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  61
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  61
-   10. Bibliography  . . . . . . . . . . . . . . . . . . . . . . . .  61
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  62
+     6.2.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   4
+       6.2.1.  KAS-IFC Requirements Covered  . . . . . . . . . . . .   4
+       6.2.2.  KAS-IFC Requirements Not Covered  . . . . . . . . . .   5
+   7.  Capabilities Registration . . . . . . . . . . . . . . . . . .   7
+     7.1.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   7
+     7.2.  Prerequisite Algorithms for KAS IFC Validations . . . . .   8
+     7.3.  KAS IFC Algorithm Capabilities JSON Values  . . . . . . .   9
+     7.4.  Supported KAS IFC Functions . . . . . . . . . . . . . . .  11
+     7.5.  Supported Key Generation Methods  . . . . . . . . . . . .  11
+     7.6.  Supported Common Modulo . . . . . . . . . . . . . . . . .  11
+     7.7.  KAS IFC Schemes . . . . . . . . . . . . . . . . . . . . .  12
+       7.7.1.  KAS IFC Scheme Capabilities JSON Values . . . . . . .  12
+     7.8.  Example KAS-IFC Registration  . . . . . . . . . . . . . .  22
+     7.9.  Example KTS-IFC Registration  . . . . . . . . . . . . . .  24
+   8.  Generation Requirements per Party per Scheme  . . . . . . . .  25
+   9.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  27
+     9.1.  Test Groups JSON Schema . . . . . . . . . . . . . . . . .  28
+       9.1.1.  KDF Configuration JSON Schema . . . . . . . . . . . .  29
+       9.1.2.  KTS Configuration JSON Schema . . . . . . . . . . . .  30
+       9.1.3.  MAC Configuration JSON Schema . . . . . . . . . . . .  31
+     9.2.  Test Case JSON Schema . . . . . . . . . . . . . . . . . .  32
+       9.2.1.  KDF Parameter JSON Schema . . . . . . . . . . . . . .  34
+     9.3.  Example Test Vectors JSON Object KAS-IFC  . . . . . . . .  35
+     9.4.  Example Test Vectors JSON Object KTS-IFC  . . . . . . . .  50
+   10. Test Vector Responses . . . . . . . . . . . . . . . . . . . .  54
+     10.1.  Example Test Results KAS-IFC JSON Object . . . . . . . .  56
+     10.2.  Example Test Results KTS-IFC JSON Object . . . . . . . .  60
+   11. Security Considerations . . . . . . . . . . . . . . . . . . .  62
+   12. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  62
+   13. Bibliography  . . . . . . . . . . . . . . . . . . . . . . . .  62
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  63
 
 1.  Acknowledgements
 
@@ -95,6 +98,21 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
    This document defines the JSON schema for testing SP800-56Br2 KAS IFC
    implementations with the ACVP specification.
+
+
+
+
+
+
+
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 2]
+
+Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
+
 
 3.  Introduction
 
@@ -106,14 +124,6 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    vector processing and more.  The ACVP specification does not define
    algorithm specific JSON constructs for performing the crypto
    validation.  A series of ACVP sub-specifications define the
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 2]
-
-Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
-
-
    constructs for testing individual crypto algorithms.  Each sub-
    specification addresses a specific class of crypto algorithms.  This
    sub-specification defines the JSON constructs for testing SP800-56Br2
@@ -121,10 +131,25 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 4.  Terms and definitions
 
-   For the purposes of this document, the following terms and
-   definitions apply.
+   No terms and definitions are listed in this document.
 
-4.1.  Test Types
+5.  Supported KAS-IFC-SSC
+
+   The following key derivation functions MAY be advertised by the ACVP
+   compliant cryptographic module:
+
+   *  KAS-IFC-SSC / null / SP800-56Br2
+
+6.  Test Types and Test Coverage
+
+   The ACVP server performs a set of tests on the KAS protocol in order
+   to assess the correctness and robustness of the implementation.  A
+   typical ACVP validation session SHALL require multiple tests to be
+   performed for every supported permutation of KAS capabilities.  This
+   section describes the design of the tests used to validate
+   implementations of KAS algorithms.
+
+6.1.  Test Types
 
    There are two test types for KAS testing:
 
@@ -135,6 +160,16 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
       and IUT MAY act as party U/V, as well as recipient/provider to key
       confirmation.
 
+
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 3]
+
+Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
+
+
    *  "VAL" - Validation Test (KAS only).  In the VAL test mode, The
       ACVP server MUST generate a complete (from both party U and party
       V's perspectives) key agreement, and expects the IUT to be able to
@@ -143,9 +178,12 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
       process (changed DKM, changed key, changed hash digest, etc), that
       the IUT MUST be able to detect and report on.
 
-4.2.  Test Coverage
+6.2.  Test Coverage
 
-4.2.1.  KAS-IFC Requirements Covered
+   The tests described in this document have the intention of ensuring
+   an implementation is conformant to [SP800-56Br2].
+
+6.2.1.  KAS-IFC Requirements Covered
 
    *  SP 800-56Br2 - 5.1 Cryptographic Hash Functions.  SHA1, SHA2, and
       SHA3 hash functions SHALL be available for the various pieces of
@@ -162,13 +200,6 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    *  SP 800-56Br2 - 5.4 Nonces.  Though nonces are used, the testing of
       the construction of those nonces SHALL NOT be in scope of ACVP
       testing.
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 3]
-
-Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
-
 
    *  SP 800-56Br2 - 5.5 Key-Derivation Methods for Key-Establishment
       Schemes.  The ACVP server SHALL make various KDFs available for
@@ -187,6 +218,13 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
       utilize IUT provided RSA public keys, and generate key pairs to
       accomodate testing.  The ACVP server SHALL support both fixed and
       random public exponents.
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 4]
+
+Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
+
 
    *  SP 800-56Br2 - 7 Primitives and Operations.  All primitives (save
       the previously mentioned RBG) SHALL be in the scope of the ACVP
@@ -218,14 +256,6 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
       tailored to the IUTs needs.  ASN.1 format of fixedInfo
       construction (currently) is *NOT* supported.
 
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 4]
-
-Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
-
-
    *  SP 800-56Cr1 - 6 Application-Specific Key-Derivation Methods.
       Several additional from SP800-135 KDFs SHALL be available for
       testing with the ACVP server.
@@ -239,11 +269,18 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
       implementations of KDFs in SP800-108 SHALL be available for
       testing through the ACVP Server.
 
-4.2.2.  KAS-IFC Requirements Not Covered
+6.2.2.  KAS-IFC Requirements Not Covered
 
    *  SP 800-56Br2 - 5.3 Random Bit Generators.  Though random values
       are used, the testing of the construction of those random values
       SHALL NOT be in scope of ACVP testing.
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 5]
+
+Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
+
 
    *  SP 800-56Br2 - 5.4 Nonces.  Though nonces are used, the testing of
       the construction of those nonces SHALL NOT be in scope of ACVP
@@ -272,16 +309,6 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
       validity SHALL NOT be within scope of testing under this document
       testing.
 
-
-
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 5]
-
-Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
-
-
    *  SP 800-56Br2 - 7 Primitives and Operations.  The RBG SHALL be
       used, but testing of the RBG's validity SHALL NOT be within the
       scope of testing.
@@ -302,17 +329,26 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    *  SP 800-56Cr1 - 5 Two-Step Key Derivation.  ASN.1 format of
       fixedInfo construction (currently) is *NOT* supported.
 
-   *  SP 800-56Cr1 - 7 Selecting Hash Functions and MAC Algorithms.  The
-      process that goes into the selection of Hash functions and MAC
-      algorithms SHALL NOT be in scope of ACVP testing, though the ACVP
-      server SHALL support all indicated Hash and MAC functions.
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 6]
+
+Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
+
 
    *  SP 800-56Cr1 - 7 Selecting Hash Functions and MAC Algorithms.  The
       process that goes into the selection of Hash functions and MAC
       algorithms SHALL NOT be in scope of ACVP testing, though the ACVP
       server SHALL support all indicated Hash and MAC functions.
 
-      == Capabilities Registration
+   *  SP 800-56Cr1 - 7 Selecting Hash Functions and MAC Algorithms.  The
+      process that goes into the selection of Hash functions and MAC
+      algorithms SHALL NOT be in scope of ACVP testing, though the ACVP
+      server SHALL support all indicated Hash and MAC functions.
+
+7.  Capabilities Registration
 
    ACVP requires crypto modules to register their capabilities.  This
    allows the crypto module to advertise support for specific
@@ -329,16 +365,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    registration message.  See the ACVP specification [ACVP] for more
    details on the registration message.
 
-
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 6]
-
-Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
-
-
-4.3.  Prerequisites
+7.1.  Prerequisites
 
    Each algorithm implementation MAY rely on other cryptographic
    primitives.  For example, RSA Signature algorithms depend on an
@@ -352,14 +379,22 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    "algorithms" array.  Each element in the "prereqVals" array MUST
    contain the following properties
 
-   A "valValue" of "same" SHALL be used to indicate that the
-   prerequisite is being met by a different algorithm in the capability
-   exchange in the same registration.
 
-   An example description of prerequisites within a single algorithm
-   capability exchange looks like this
 
-        +===============+=============================+===========+
+
+
+
+
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 7]
+
+Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
+
+
+        +---------------+-----------------------------+-----------+
         | JSON Property | Description                 | JSON Type |
         +===============+=============================+===========+
         | algorithm     | a prerequisite algorithm    | string    |
@@ -368,6 +403,13 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
         +---------------+-----------------------------+-----------+
 
                       Table 1: Prerequisite Properties
+
+   A "valValue" of "same" SHALL be used to indicate that the
+   prerequisite is being met by a different algorithm in the capability
+   exchange in the same registration.
+
+   An example description of prerequisites within a single algorithm
+   capability exchange looks like this
 
    "prereqVals":
    [
@@ -383,18 +425,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
                                   Figure 1
 
-
-
-
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 7]
-
-Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
-
-
-4.4.  Prerequisite Algorithms for KAS IFC Validations
+7.2.  Prerequisite Algorithms for KAS IFC Validations
 
    Some algorithm implementations rely on other cryptographic
    primitives.  For example, IKEv2 uses an underlying SHA algorithm.
@@ -402,7 +433,24 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    either separately or as part of the same submission.  ACVP provides a
    mechanism for specifying the required prerequisites:
 
-   +==============+==============+============+=============+==========+
+
+
+
+
+
+
+
+
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 8]
+
+Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
+
+
+   +--------------+--------------+------------+-------------+----------+
    | JSON Value   | Description  | JSON Type  | Valid       | Optional |
    |              |              |            | Values      |          |
    +==============+==============+============+=============+==========+
@@ -429,98 +477,96 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
                 Table 2: Prerequisite Algorithms JSON Values
 
-4.5.  KAS IFC Algorithm Capabilities JSON Values
+7.3.  KAS IFC Algorithm Capabilities JSON Values
 
    Each algorithm capability advertised is a self-contained JSON object
    using the following values.
 
-   Note: Some optional values are REQUIRED depending on the algorithm.
-   Failure to provide these values will result in the ACVP server
-   returning an error to the ACVP client during registration.
+   +--------------------+------------+------------+-------------+--------+
+   | JSON Value         |Description | JSON Type  |Valid Values |Optional|
+   +====================+============+============+=============+========+
+   | algorithm          | The        | value      |KAS-IFC, KTS-| No     |
+   |                    | algorithm  |            | IFC         |        |
+   |                    | under test |            |             |        |
+   +--------------------+------------+------------+-------------+--------+
+   | revision           | The        | value      |"Sp800-56Br2"| No     |
+   |                    | algorithm  |            |             |        |
+   |                    | testing    |            |             |        |
+   |                    |revision to |            |             |        |
+   |                    | use.       |            |             |        |
+   +--------------------+------------+------------+-------------+--------+
+   | prereqVals         |Prerequisite| array of   | See         | No     |
+   |                    | algorithm  |prereqAlgVal| Section 7.2 |        |
+   |                    |validations | objects    |             |        |
 
 
 
-
-
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 8]
+Hammett                    Expires 22 May 2021                  [Page 9]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
-   +====================+============+============+=============+========+
-   |JSON Value          |Description |JSON Type   |Valid Values |Optional|
-   +====================+============+============+=============+========+
-   |algorithm           |The         |value       |KAS-IFC, KTS-|No      |
-   |                    |algorithm   |            |IFC          |        |
-   |                    |under test  |            |             |        |
    +--------------------+------------+------------+-------------+--------+
-   |revision            |The         |value       |"Sp800-56Br2"|No      |
-   |                    |algorithm   |            |             |        |
-   |                    |testing     |            |             |        |
-   |                    |revision to |            |             |        |
-   |                    |use.        |            |             |        |
+   | function           | Type of    | array of   | See         | Yes    |
+   |                    | function   | string     | Section 7.4 |        |
+   |                    | supported  |            |             |        |
    +--------------------+------------+------------+-------------+--------+
-   |prereqVals          |Prerequisite|array of    |See          |No      |
-   |                    |algorithm   |prereqAlgVal|Section 4.4  |        |
-   |                    |validations |objects     |             |        |
-   +--------------------+------------+------------+-------------+--------+
-   |function            |Type of     |array of    |See          |Yes     |
-   |                    |function    |string      |Section 4.6  |        |
-   |                    |supported   |            |             |        |
-   +--------------------+------------+------------+-------------+--------+
-   |iutId               |The         |hex         |             |No      |
-   |                    |identifier  |            |             |        |
+   | iutId              | The        | hex        |             | No     |
+   |                    | identifier |            |             |        |
    |                    |of the IUT. |            |             |        |
    +--------------------+------------+------------+-------------+--------+
-   |keyGenerationMethods|The         |array of    |See          |No      |
-   |                    |supported   |string      |Section 4.7  |        |
-   |                    |key         |            |             |        |
-   |                    |generation  |            |             |        |
-   |                    |methods.    |            |             |        |
+   |keyGenerationMethods| The        | array of   | See         | No     |
+   |                    | supported  | string     | Section 7.5 |        |
+   |                    | key        |            |             |        |
+   |                    | generation |            |             |        |
+   |                    | methods.   |            |             |        |
    +--------------------+------------+------------+-------------+--------+
-   |modulo              |The         |array of    |See          |No      |
-   |                    |supported   |integer     |Section 4.8  |        |
-   |                    |common      |            |             |        |
-   |                    |modulo      |            |             |        |
+   | modulo             | The        | array of   | See         | No     |
+   |                    | supported  | integer    | Section 7.6 |        |
+   |                    | common     |            |             |        |
+   |                    | modulo     |            |             |        |
    +--------------------+------------+------------+-------------+--------+
-   |fixedPubExp         |The fixed   |hex         |             |Yes     |
-   |                    |public      |            |             |        |
-   |                    |exponent    |            |             |        |
+   | fixedPubExp        | The fixed  | hex        |             | Yes    |
+   |                    | public     |            |             |        |
+   |                    | exponent   |            |             |        |
    |                    |used for key|            |             |        |
    |                    |generation. |            |             |        |
    |                    |Required if |            |             |        |
-   |                    |using at    |            |             |        |
-   |                    |least 1     |            |             |        |
+   |                    | using at   |            |             |        |
+   |                    | least 1    |            |             |        |
    |                    |static fixed|            |             |        |
-   |                    |public      |            |             |        |
+   |                    | public     |            |             |        |
    |                    |exponent key|            |             |        |
-   |                    |generation  |            |             |        |
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 9]
-
-Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
-
-
-   |                    |method.     |            |             |        |
+   |                    | generation |            |             |        |
+   |                    | method.    |            |             |        |
    +--------------------+------------+------------+-------------+--------+
-   |scheme              |Array of    |object      |See          |No      |
-   |                    |supported   |            |Section 4.9.1|        |
-   |                    |key         |            |             |        |
-   |                    |agreement   |            |             |        |
+   | scheme             | Array of   | object     | See         | No     |
+   |                    | supported  |            |Section 7.7.1|        |
+   |                    | key        |            |             |        |
+   |                    | agreement  |            |             |        |
    |                    |schemes each|            |             |        |
    |                    |having their|            |             |        |
-   |                    |own         |            |             |        |
+   |                    | own        |            |             |        |
    |                    |capabilities|            |             |        |
    +--------------------+------------+------------+-------------+--------+
 
                  Table 3: KAS ECC Capabilities JSON Values
 
-4.6.  Supported KAS IFC Functions
+
+
+
+
+
+Hammett                    Expires 22 May 2021                 [Page 10]
+
+Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
+
+
+   Note: Some optional values are REQUIRED depending on the algorithm.
+   Failure to provide these values will result in the ACVP server
+   returning an error to the ACVP client during registration.
+
+7.4.  Supported KAS IFC Functions
 
    The following function types MAY be advertised by the ACVP compliant
    crypto module:
@@ -530,7 +576,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    *  partialVal - IUT can perform partial public key validation
       ([SP800-56Br2] section 6.4.2.2).
 
-4.7.  Supported Key Generation Methods
+7.5.  Supported Key Generation Methods
 
    At least one key generation method is REQUIRED within the array.  The
    following types MAY be advertised by the ACVP compliant crypto
@@ -554,15 +600,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    *  rsakpg2-crt - An RSA key pair with a private key in the Chinese
       Remainder Theorem format, with a random public exponent.
 
-
-
-
-Hammett                    Expires 21 May 2021                 [Page 10]
-
-Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
-
-
-4.8.  Supported Common Modulo
+7.6.  Supported Common Modulo
 
    At least one supported common modulo is REQUIRED within the array.
    The following common modulo MAY be advertised by the ACVP compliant
@@ -572,89 +610,138 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
    *  3072 - estimated security strength 128
 
+
+
+
+Hammett                    Expires 22 May 2021                 [Page 11]
+
+Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
+
+
    *  4096 - estimated security strength 152
 
    *  6144 - estimated security strength 176
 
    *  8192 - estimated security strength 200
 
-4.9.  KAS IFC Schemes
+7.7.  KAS IFC Schemes
 
-4.9.1.  KAS IFC Scheme Capabilities JSON Values
+   All other scheme capabilities are advertised as a self-contained JSON
+   object using the following values.  Note that *AT LEAST* one valid
+   scheme must be registered.
 
+7.7.1.  KAS IFC Scheme Capabilities JSON Values
+
+   KAS Schemes
+
+   *  KAS1-basic - requires kdfMethods
+
+   *  KAS1-Party_V-confirmation - requires kdfMethods, macMethods
+
+   *  KAS2-basic - requires kdfMethods
+
+   *  KAS2-bilateral-confirmation - requires kdfMethods, macMethods
+
+   *  KAS2-Party_U-confirmation - requires kdfMethods, macMethods
+
+   *  KAS2-Party_V-confirmation - requires kdfMethods, macMethods
+
+   KTS Schemes
+
+   *  KTS-OAEP-basic - requires ktsMethod
+
+   *  KTS-OAEP-Party_V-confirmation - requires ktsMethod, macMethods
+
+   +------------+-----------------+--------+-----------+---------------+
+   | JSON Value | Description     | JSON   | Valid     | Optional      |
+   |            |                 | Type   | Values    |               |
    +============+=================+========+===========+===============+
-   | JSON Value |Description      |JSON    |Valid      |Optional       |
-   |            |                 |Type    |Values     |               |
-   +============+=================+========+===========+===============+
-   | kasRole    |Roles supported  |array   |initiator  |No             |
-   |            |for key agreement|        |and/or     |               |
-   |            |                 |        |responder  |               |
+   | kasRole    | Roles supported | array  | initiator | No            |
+   |            |for key agreement|        | and/or    |               |
+   |            |                 |        | responder |               |
    +------------+-----------------+--------+-----------+---------------+
-   | kdfMethods |The KDF methods  |object  |Section    |Not optional   |
-   |            |to use when      |        |4.9.1.1    |for KAS        |
-   |            |testing KAS      |        |           |schemes.       |
-   |            |schemes.         |        |           |               |
+   | kdfMethods | The KDF methods | object | Section   | Not optional  |
+   |            | to use when     |        | 7.7.1.1   | for KAS       |
+   |            | testing KAS     |        |           | schemes.      |
+   |            | schemes.        |        |           |               |
    +------------+-----------------+--------+-----------+---------------+
-   | ktsMethods |The KTS methods  |object  |Section    |Not optional   |
-   |            |to use when      |        |4.9.1.2    |for KTS        |
-   |            |testing KTS      |        |           |schemes.       |
-   |            |schemes.         |        |           |               |
-   +------------+-----------------+--------+-----------+---------------+
-   | macMethods |The MAC methods  |object  |Section    |Not optional   |
-   |            |to use when      |        |4.9.1.4    |for KAS/KTS    |
-   |            |testing KAS or   |        |           |schemes making |
-   |            |KTS schemes with |        |           |use of key     |
-   |            |key confirmation.|        |           |confirmation.  |
-   +------------+-----------------+--------+-----------+---------------+
-   | l          |The length of the|integer |128 minimum|No             |
-   |            |key to derive    |        |without KC,|               |
-   |            |(using a KDF) or |        |136 minimum|               |
-   |            |transport (using |        |with KC,   |               |
+   | ktsMethods | The KTS methods | object | Section   | Not optional  |
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 11]
+Hammett                    Expires 22 May 2021                 [Page 12]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
-   |            |a KTS scheme).   |        |maximum    |               |
-   |            |This value should|        |1024.      |               |
-   |            |be large enough  |        |           |               |
-   |            |to accommodate   |        |           |               |
-   |            |the key length   |        |           |               |
+   |            | to use when     |        | 7.7.1.2   | for KTS       |
+   |            | testing KTS     |        |           | schemes.      |
+   |            | schemes.        |        |           |               |
+   +------------+-----------------+--------+-----------+---------------+
+   | macMethods | The MAC methods | object | Section   | Not optional  |
+   |            | to use when     |        | 7.7.1.4   | for KAS/KTS   |
+   |            | testing KAS or  |        |           |schemes making |
+   |            |KTS schemes with |        |           | use of key    |
+   |            |key confirmation.|        |           | confirmation. |
+   +------------+-----------------+--------+-----------+---------------+
+   | l          |The length of the|integer |128 minimum| No            |
+   |            | key to derive   |        |without KC,|               |
+   |            |(using a KDF) or |        |136 minimum|               |
+   |            |transport (using |        | with KC,  |               |
+   |            | a KTS scheme).  |        | maximum   |               |
+   |            |This value should|        | 1024.     |               |
+   |            | be large enough |        |           |               |
+   |            | to accommodate  |        |           |               |
+   |            | the key length  |        |           |               |
    |            |used for the mac |        |           |               |
    |            |algorithms in use|        |           |               |
-   |            |for key          |        |           |               |
-   |            |confirmation,    |        |           |               |
-   |            |ideally the      |        |           |               |
+   |            | for key         |        |           |               |
+   |            | confirmation,   |        |           |               |
+   |            | ideally the     |        |           |               |
    |            |maximum value the|        |           |               |
-   |            |IUT can support  |        |           |               |
-   |            |with their KAS/  |        |           |               |
-   |            |KTS              |        |           |               |
-   |            |implementation.  |        |           |               |
-   |            |Maximum value    |        |           |               |
-   |            |(for testing     |        |           |               |
-   |            |purposes) is     |        |           |               |
-   |            |1024.            |        |           |               |
+   |            | IUT can support |        |           |               |
+   |            | with their KAS/ |        |           |               |
+   |            | KTS             |        |           |               |
+   |            | implementation. |        |           |               |
+   |            | Maximum value   |        |           |               |
+   |            | (for testing    |        |           |               |
+   |            | purposes) is    |        |           |               |
+   |            | 1024.           |        |           |               |
    +------------+-----------------+--------+-----------+---------------+
 
                  Table 4: KAS IFC Capabilities JSON Values
 
-4.9.1.1.  Supported KDF Methods
+7.7.1.1.  Supported KDF Methods
 
-   +============+=====================+========+===========+==========+
+   Note that *AT LEAST* one KDF Method is required for KAS schemes.  The
+   following MAY be advertised by the ACVP compliant crypto module:
+
+
+
+
+
+
+
+
+
+
+Hammett                    Expires 22 May 2021                 [Page 13]
+
+Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
+
+
+   +------------+---------------------+--------+-----------+----------+
    | JSON Value | Description         | JSON   | Valid     | Optional |
    |            |                     | Type   | Values    |          |
    +============+=====================+========+===========+==========+
    | oneStepKdf | Indicates the IUT   | object | Section   | Yes      |
-   |            | will be testing key |        | 4.9.1.1.1 |          |
+   |            | will be testing key |        | 7.7.1.1.1 |          |
    |            | derivation using    |        |           |          |
    |            | the SP800-56Cr1     |        |           |          |
    |            | OneStepKdf.         |        |           |          |
    +------------+---------------------+--------+-----------+----------+
    | twoStepKdf | Indicates the IUT   | object | Section   | Yes      |
-   |            | will be testing key |        | 4.9.1.1.2 |          |
+   |            | will be testing key |        | 7.7.1.1.2 |          |
    |            | derivation using    |        |           |          |
    |            | the SP800-56Cr1     |        |           |          |
    |            | TwoStepKdf.         |        |           |          |
@@ -662,112 +749,81 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
                            Table 5: KDF Options
 
+7.7.1.1.1.  One Step KDF Capabilities
 
-
-
-
-
-
-
-Hammett                    Expires 21 May 2021                 [Page 12]
-
-Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
-
-
-4.9.1.1.1.  One Step KDF Capabilities
-
-   +==================+===============+======+===============+=========+
-   | JSON Value       |Description    |JSON  |Valid Values   |Optional |
-   |                  |               |Type  |               |         |
-   +==================+===============+======+===============+=========+
-   | auxFunctions     |The auxiliary  |array |See Table 7    |No       |
-   |                  |functions to   |of    |               |         |
-   |                  |use with the   |Table |               |         |
-   |                  |KDF.           |7     |               |         |
    +------------------+---------------+------+---------------+---------+
-   | fixedInfoPattern |The pattern    |string|See            |No       |
-   |                  |used for       |      |Section 4.9.1.3|         |
-   |                  |fixedInfo      |      |               |         |
-   |                  |construction.  |      |               |         |
+   | JSON Value       | Description   | JSON | Valid Values  |Optional |
+   |                  |               | Type |               |         |
+   +==================+===============+======+===============+=========+
+   | auxFunctions     | The auxiliary |array | See Table 7   | No      |
+   |                  | functions to  | of   |               |         |
+   |                  | use with the  |Table |               |         |
+   |                  | KDF.          | 7    |               |         |
    +------------------+---------------+------+---------------+---------+
-   | encoding         |The encoding   |array |concatenation  |No       |
-   |                  |type to use    |of    |               |         |
+   | fixedInfoPattern | The pattern   |string| See           | No      |
+   |                  | used for      |      |Section 7.7.1.3|         |
+   |                  | fixedInfo     |      |               |         |
+   |                  | construction. |      |               |         |
+   +------------------+---------------+------+---------------+---------+
+   | encoding         | The encoding  |array | concatenation | No      |
+   |                  | type to use   | of   |               |         |
    |                  |with fixedInfo |string|               |         |
-   |                  |construction.  |      |               |         |
-   |                  |Note           |      |               |         |
-   |                  |concatenation  |      |               |         |
-   |                  |is currently   |      |               |         |
-   |                  |supported.     |      |               |         |
+   |                  | construction. |      |               |         |
+   |                  | Note          |      |               |         |
+   |                  | concatenation |      |               |         |
+   |                  | is currently  |      |               |         |
+   |                  | supported.    |      |               |         |
    |                  |ASN.1 should be|      |               |         |
-   |                  |coming.        |      |               |         |
+   |                  | coming.       |      |               |         |
    +------------------+---------------+------+---------------+---------+
 
                        Table 6: One Step KDF Options
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Hammett                    Expires 21 May 2021                 [Page 13]
+Hammett                    Expires 22 May 2021                 [Page 14]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
+   +----------------+-----------+------+--------------------+----------+
+   | JSON Value     |Description| JSON | Valid Values       | Optional |
+   |                |           | Type |                    |          |
    +================+===========+======+====================+==========+
-   |JSON Value      |Description|JSON  |Valid Values        |Optional  |
-   |                |           |Type  |                    |          |
-   +================+===========+======+====================+==========+
-   |auxFunctionName |The        |string|SHA2-224, SHA2-256, |No        |
-   |                |auxiliary  |      |SHA2-384, SHA2-512, |          |
-   |                |function to|      |SHA2-512/224,       |          |
-   |                |use.       |      |SHA2-512/256,       |          |
+   |auxFunctionName | The       |string|SHA2-224, SHA2-256, | No       |
+   |                | auxiliary |      |SHA2-384, SHA2-512, |          |
+   |                |function to|      | SHA2-512/224,      |          |
+   |                | use.      |      | SHA2-512/256,      |          |
    |                |           |      |SHA3-224, SHA3-256, |          |
    |                |           |      |SHA3-384, SHA3-512, |          |
    |                |           |      |HMAC-SHA2-224, HMAC-|          |
-   |                |           |      |SHA2-256, HMAC-     |          |
-   |                |           |      |SHA2-384, HMAC-     |          |
-   |                |           |      |SHA2-512, HMAC-     |          |
+   |                |           |      | SHA2-256, HMAC-    |          |
+   |                |           |      | SHA2-384, HMAC-    |          |
+   |                |           |      | SHA2-512, HMAC-    |          |
    |                |           |      |SHA2-512/224, HMAC- |          |
    |                |           |      |SHA2-512/256, HMAC- |          |
-   |                |           |      |SHA3-224, HMAC-     |          |
-   |                |           |      |SHA3-256, HMAC-     |          |
-   |                |           |      |SHA3-384, HMAC-     |          |
+   |                |           |      | SHA3-224, HMAC-    |          |
+   |                |           |      | SHA3-256, HMAC-    |          |
+   |                |           |      | SHA3-384, HMAC-    |          |
    |                |           |      |SHA3-512, KMAC-128, |          |
-   |                |           |      |KMAC-256            |          |
+   |                |           |      | KMAC-256           |          |
    +----------------+-----------+------+--------------------+----------+
-   |macSaltMethods  |How the    |array |default, random     |Not       |
-   |                |salt is    |of    |                    |optional  |
-   |                |determined |string|                    |for mac   |
-   |                |(default   |      |                    |based     |
-   |                |being all  |      |                    |auxiliary |
+   | macSaltMethods | How the   |array | default, random    | Not      |
+   |                | salt is   | of   |                    | optional |
+   |                |determined |string|                    | for mac  |
+   |                | (default  |      |                    | based    |
+   |                | being all |      |                    |auxiliary |
    |                |00s, random|      |                    |functions.|
-   |                |being a    |      |                    |          |
-   |                |random     |      |                    |          |
-   |                |salt).     |      |                    |          |
+   |                | being a   |      |                    |          |
+   |                | random    |      |                    |          |
+   |                | salt).    |      |                    |          |
    +----------------+-----------+------+--------------------+----------+
 
                         Table 7: AuxFunction Options
 
-4.9.1.1.2.  Two Step KDF Capabilities
+7.7.1.1.2.  Two Step KDF Capabilities
 
-    +==============+===================+=========+========+==========+
+    +--------------+-------------------+---------+--------+----------+
     | JSON Value   | Description       | JSON    | Valid  | Optional |
     |              |                   | Type    | Values |          |
     +==============+===================+=========+========+==========+
@@ -781,7 +837,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 14]
+Hammett                    Expires 22 May 2021                 [Page 15]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -789,101 +845,101 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    Note this capabilities object is very similar to the capability
    object from SP800-108.
 
+   +------------------+-------------+-------+---------------+----------+
+   | JSON Value       | Description | JSON  | Valid Values  | Optional |
+   |                  |             | Type  |               |          |
    +==================+=============+=======+===============+==========+
-   | JSON Value       |Description  |JSON   |Valid Values   |Optional  |
-   |                  |             |Type   |               |          |
-   +==================+=============+=======+===============+==========+
-   | macSaltMethod    |How the salt |array  |default, random|Not       |
-   |                  |is determined|of     |               |optional  |
-   |                  |(default     |string |               |for mac   |
-   |                  |being all    |       |               |based     |
-   |                  |00s, random  |       |               |auxiliary |
-   |                  |being a      |       |               |functions.|
+   | macSaltMethod    |How the salt | array |default, random| Not      |
+   |                  |is determined| of    |               | optional |
+   |                  | (default    |string |               | for mac  |
+   |                  | being all   |       |               | based    |
+   |                  | 00s, random |       |               |auxiliary |
+   |                  | being a     |       |               |functions.|
    |                  |random salt).|       |               |          |
    +------------------+-------------+-------+---------------+----------+
-   | fixedInfoPattern |The pattern  |string |See            |No        |
-   |                  |used for     |       |Section 4.9.1.3|          |
-   |                  |fixedInfo    |       |               |          |
+   | fixedInfoPattern | The pattern |string | See           | No       |
+   |                  | used for    |       |Section 7.7.1.3|          |
+   |                  | fixedInfo   |       |               |          |
    |                  |construction.|       |               |          |
    +------------------+-------------+-------+---------------+----------+
-   | encoding         |The encoding |array  |concatenation  |No        |
-   |                  |type to use  |of     |               |          |
-   |                  |with         |string |               |          |
-   |                  |fixedInfo    |       |               |          |
+   | encoding         |The encoding | array | concatenation | No       |
+   |                  | type to use | of    |               |          |
+   |                  | with        |string |               |          |
+   |                  | fixedInfo   |       |               |          |
    |                  |construction.|       |               |          |
-   |                  |Note         |       |               |          |
+   |                  | Note        |       |               |          |
    |                  |concatenation|       |               |          |
    |                  |is currently |       |               |          |
-   |                  |supported.   |       |               |          |
+   |                  | supported.  |       |               |          |
    |                  |ASN.1 should |       |               |          |
-   |                  |be coming.   |       |               |          |
+   |                  | be coming.  |       |               |          |
    +------------------+-------------+-------+---------------+----------+
-   | kdfMode          |The strategy |string |counter,       |No        |
-   |                  |for running  |       |fedback, double|          |
-   |                  |the KDF.     |       |pipeline       |          |
-   |                  |             |       |iteration      |          |
+   | kdfMode          |The strategy |string | counter,      | No       |
+   |                  | for running |       |fedback, double|          |
+   |                  | the KDF.    |       | pipeline      |          |
+   |                  |             |       | iteration     |          |
    +------------------+-------------+-------+---------------+----------+
-   | macMode          |The macMode  |array  |CMAC-AES128,   |No        |
-   |                  |supported by |of     |CMAC-AES192,   |          |
-   |                  |the KDF.     |string |CMAC-AES256,   |          |
-   |                  |             |       |HMAC-SHA-1,    |          |
+   | macMode          | The macMode | array | CMAC-AES128,  | No       |
+   |                  |supported by | of    | CMAC-AES192,  |          |
+   |                  | the KDF.    |string | CMAC-AES256,  |          |
+   |                  |             |       | HMAC-SHA-1,   |          |
    |                  |             |       |HMAC-SHA2-224, |          |
    |                  |             |       |HMAC-SHA2-256, |          |
    |                  |             |       |HMAC-SHA2-384, |          |
    |                  |             |       |HMAC-SHA2-512, |          |
-   |                  |             |       |HMAC-          |          |
-   |                  |             |       |SHA2-512/224,  |          |
-   |                  |             |       |HMAC-          |          |
+   |                  |             |       | HMAC-         |          |
+   |                  |             |       | SHA2-512/224, |          |
+   |                  |             |       | HMAC-         |          |
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 15]
+Hammett                    Expires 22 May 2021                 [Page 16]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
-   |                  |             |       |SHA2-512/256,  |          |
+   |                  |             |       | SHA2-512/256, |          |
    |                  |             |       |HMAC-SHA3-224, |          |
    |                  |             |       |HMAC-SHA3-256, |          |
    |                  |             |       |HMAC-SHA3-384, |          |
-   |                  |             |       |HMAC-SHA3-512  |          |
+   |                  |             |       | HMAC-SHA3-512 |          |
    +------------------+-------------+-------+---------------+----------+
-   | fixedDataOrder   |The counter  |array  |none, before   |No        |
-   |                  |locations    |of     |fixed data,    |          |
-   |                  |supported by |string |after fixed    |          |
-   |                  |the KDF.     |       |data, before   |          |
-   |                  |             |       |iterator       |          |
+   | fixedDataOrder   | The counter | array | none, before  | No       |
+   |                  | locations   | of    | fixed data,   |          |
+   |                  |supported by |string | after fixed   |          |
+   |                  | the KDF.    |       | data, before  |          |
+   |                  |             |       | iterator      |          |
    +------------------+-------------+-------+---------------+----------+
-   | counterLength    |The counter  |array  |8, 16, 24, 32  |Not       |
-   |                  |lengths      |of     |               |optional  |
-   |                  |supported for|integer|               |for       |
-   |                  |the KDF.     |       |               |counter   |
-   |                  |             |       |               |mode.     |
+   | counterLength    | The counter | array | 8, 16, 24, 32 | Not      |
+   |                  | lengths     | of    |               | optional |
+   |                  |supported for|integer|               | for      |
+   |                  | the KDF.    |       |               | counter  |
+   |                  |             |       |               | mode.    |
    +------------------+-------------+-------+---------------+----------+
-   | supportedLengths |The supported|domain |Single range   |No        |
-   |                  |derivation   |       |(of literal)   |          |
-   |                  |lengths.     |       |expected.      |          |
-   |                  |             |       |Registered     |          |
-   |                  |             |       |value must     |          |
-   |                  |             |       |support the L  |          |
+   | supportedLengths |The supported|domain | Single range  | No       |
+   |                  | derivation  |       | (of literal)  |          |
+   |                  | lengths.    |       | expected.     |          |
+   |                  |             |       | Registered    |          |
+   |                  |             |       | value must    |          |
+   |                  |             |       | support the L |          |
    |                  |             |       |value provided.|          |
    +------------------+-------------+-------+---------------+----------+
-   | supportsEmptyIv  |The KDF      |boolean|true, false    |No        |
-   |                  |supports an  |       |               |          |
-   |                  |empty IV     |       |               |          |
-   |                  |(feedback    |       |               |          |
-   |                  |mode).       |       |               |          |
+   | supportsEmptyIv  | The KDF     |boolean| true, false   | No       |
+   |                  | supports an |       |               |          |
+   |                  | empty IV    |       |               |          |
+   |                  | (feedback   |       |               |          |
+   |                  | mode).      |       |               |          |
    +------------------+-------------+-------+---------------+----------+
-   | requiresEmptyIv  |The KDF      |boolean|true, false    |Yes       |
-   |                  |requires an  |       |               |          |
-   |                  |empty IV     |       |               |          |
-   |                  |(feedback    |       |               |          |
-   |                  |mode).       |       |               |          |
+   | requiresEmptyIv  | The KDF     |boolean| true, false   | Yes      |
+   |                  | requires an |       |               |          |
+   |                  | empty IV    |       |               |          |
+   |                  | (feedback   |       |               |          |
+   |                  | mode).      |       |               |          |
    +------------------+-------------+-------+---------------+----------+
 
                     Table 9: TwoStepCapabilities Options
 
-4.9.1.2.  Supported KTS Method
+7.7.1.2.  Supported KTS Method
 
    Note that this method is REQUIRED when testing KTS schemes.
 
@@ -893,51 +949,51 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 16]
+Hammett                    Expires 22 May 2021                 [Page 17]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
+   +--------------------------+-------------+-------+-------------+----------+
+   | JSON Value               | Description | JSON  |Valid Values | Optional |
+   |                          |             | Type  |             |          |
    +==========================+=============+=======+=============+==========+
-   |JSON Value                |Description  |JSON   |Valid Values |Optional  |
-   |                          |             |Type   |             |          |
-   +==========================+=============+=======+=============+==========+
-   |hashAlgs                  |The hash     |array  |SHA2-224,    |No        |
-   |                          |algorithms   |of     |SHA2-256,    |          |
-   |                          |available to |string |SHA2-384,    |          |
-   |                          |the IUT.     |       |SHA2-512,    |          |
+   | hashAlgs                 | The hash    | array | SHA2-224,   | No       |
+   |                          | algorithms  | of    | SHA2-256,   |          |
+   |                          |available to |string | SHA2-384,   |          |
+   |                          | the IUT.    |       | SHA2-512,   |          |
    |                          |             |       |SHA2-512/224,|          |
    |                          |             |       |SHA2-512/256,|          |
-   |                          |             |       |SHA3-224,    |          |
-   |                          |             |       |SHA3-256,    |          |
-   |                          |             |       |SHA3-384,    |          |
-   |                          |             |       |SHA3-512     |          |
+   |                          |             |       | SHA3-224,   |          |
+   |                          |             |       | SHA3-256,   |          |
+   |                          |             |       | SHA3-384,   |          |
+   |                          |             |       | SHA3-512    |          |
    +--------------------------+-------------+-------+-------------+----------+
-   |supportsNullAssociatedData|Does the IUT |boolean|true, false  |No        |
-   |                          |support a    |       |             |          |
-   |                          |null         |       |             |          |
-   |                          |associated   |       |             |          |
-   |                          |data         |       |             |          |
+   |supportsNullAssociatedData|Does the IUT |boolean| true, false | No       |
+   |                          | support a   |       |             |          |
+   |                          | null        |       |             |          |
+   |                          | associated  |       |             |          |
+   |                          | data        |       |             |          |
    |                          |(fixedInfo)? |       |             |          |
    +--------------------------+-------------+-------+-------------+----------+
-   |associatedDataPattern     |The patten   |string |Section      |Yes       |
-   |                          |used to      |       |4.9.1.3      |          |
+   | associatedDataPattern    | The patten  |string | Section     | Yes      |
+   |                          | used to     |       | 7.7.1.3     |          |
    |                          |construct the|       |             |          |
-   |                          |associated   |       |             |          |
-   |                          |data.        |       |             |          |
+   |                          | associated  |       |             |          |
+   |                          | data.       |       |             |          |
    +--------------------------+-------------+-------+-------------+----------+
-   |encoding                  |The encoding |string |concatenation|Not       |
-   |                          |type to use  |       |             |optional  |
-   |                          |for          |       |             |when using|
-   |                          |associated   |       |             |an        |
-   |                          |data         |       |             |associated|
-   |                          |construction.|       |             |data      |
-   |                          |             |       |             |pattern.  |
+   | encoding                 |The encoding |string |concatenation| Not      |
+   |                          | type to use |       |             | optional |
+   |                          | for         |       |             |when using|
+   |                          | associated  |       |             | an       |
+   |                          | data        |       |             |associated|
+   |                          |construction.|       |             | data     |
+   |                          |             |       |             | pattern. |
    +--------------------------+-------------+-------+-------------+----------+
 
                         Table 10: KTS Method Options
 
-4.9.1.3.  FixedInfoPatternConstruction
+7.7.1.3.  FixedInfoPatternConstruction
 
    IUTs MUST be capable of specifying how the FixedInfo is constructed
    for the KAS/KTS negotiation.  Note that for the purposes of testing
@@ -949,15 +1005,10 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 17]
+Hammett                    Expires 22 May 2021                 [Page 18]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
-
-   Example (Note that party U is the server in this case "434156536964",
-   party V is the IUT "a1b2c3d4e5"):
-
-   Evaluated as:
 
    *  literal[0123456789ABCDEF]
 
@@ -998,95 +1049,103 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
       -  The length of the derived keying material in bits, MUST be
          represented in 32 bits for ACVP testing.
 
+   Example (Note that party U is the server in this case "434156536964",
+   party V is the IUT "a1b2c3d4e5"):
+
    *  "concatenation" :
       "literal[123456789CAFECAFE]||uPartyInfo||vPartyInfo"
+
+   Evaluated as:
 
    *  "123456789CAFECAFE434156536964a1b2c3d4e5"
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 18]
+Hammett                    Expires 22 May 2021                 [Page 19]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
-4.9.1.4.  Supported MAC Methods
+7.7.1.4.  Supported MAC Methods
 
+   Note that *AT LEAST* one mac method must be supplied when making use
+   of Key Confirmation.
+
+   +-------------------+-------------------+------+-----------+--------+
+   | JSON Value        | Description       | JSON | Valid     |Optional|
+   |                   |                   | Type | Values    |        |
    +===================+===================+======+===========+========+
-   | JSON Value        |Description        |JSON  |Valid      |Optional|
-   |                   |                   |Type  |Values     |        |
-   +===================+===================+======+===========+========+
-   | CMAC              |Utilizes CMAC as   |object|See Section|Yes     |
-   |                   |the MAC algorithm. |      |4.9.1.4.1. |        |
-   |                   |                   |      |Note that  |        |
+   | CMAC              | Utilizes CMAC as  |object|See Section| Yes    |
+   |                   |the MAC algorithm. |      |7.7.1.4.1. |        |
+   |                   |                   |      | Note that |        |
    |                   |                   |      |the keyLen |        |
-   |                   |                   |      |must be    |        |
-   |                   |                   |      |128, 192,  |        |
+   |                   |                   |      | must be   |        |
+   |                   |                   |      | 128, 192, |        |
    |                   |                   |      |or 256 for |        |
-   |                   |                   |      |this MAC.  |        |
+   |                   |                   |      | this MAC. |        |
    +-------------------+-------------------+------+-----------+--------+
-   | HMAC-SHA2-224     |Utilizes HMAC-     |object|See Section|Yes     |
-   |                   |SHA2-224 as the MAC|      |4.9.1.4.1  |        |
-   |                   |algorithm.         |      |           |        |
+   | HMAC-SHA2-224     | Utilizes HMAC-    |object|See Section| Yes    |
+   |                   |SHA2-224 as the MAC|      | 7.7.1.4.1 |        |
+   |                   | algorithm.        |      |           |        |
    +-------------------+-------------------+------+-----------+--------+
-   | HMAC-SHA2-256     |Utilizes HMAC-     |object|See Section|Yes     |
-   |                   |SHA2-256 as the MAC|      |4.9.1.4.1  |        |
-   |                   |algorithm.         |      |           |        |
+   | HMAC-SHA2-256     | Utilizes HMAC-    |object|See Section| Yes    |
+   |                   |SHA2-256 as the MAC|      | 7.7.1.4.1 |        |
+   |                   | algorithm.        |      |           |        |
    +-------------------+-------------------+------+-----------+--------+
-   | HMAC-SHA2-384     |Utilizes HMAC-     |object|See Section|Yes     |
-   |                   |SHA2-384 as the MAC|      |4.9.1.4.1  |        |
-   |                   |algorithm.         |      |           |        |
+   | HMAC-SHA2-384     | Utilizes HMAC-    |object|See Section| Yes    |
+   |                   |SHA2-384 as the MAC|      | 7.7.1.4.1 |        |
+   |                   | algorithm.        |      |           |        |
    +-------------------+-------------------+------+-----------+--------+
-   | HMAC-SHA2-512     |Utilizes HMAC-     |object|See Section|Yes     |
-   |                   |SHA2-512 as the MAC|      |4.9.1.4.1  |        |
-   |                   |algorithm.         |      |           |        |
+   | HMAC-SHA2-512     | Utilizes HMAC-    |object|See Section| Yes    |
+   |                   |SHA2-512 as the MAC|      | 7.7.1.4.1 |        |
+   |                   | algorithm.        |      |           |        |
    +-------------------+-------------------+------+-----------+--------+
-   | HMAC-SHA2-512/224 |Utilizes HMAC-     |object|See Section|Yes     |
-   |                   |SHA2-512/224 as the|      |4.9.1.4.1  |        |
-   |                   |MAC algorithm.     |      |           |        |
+   | HMAC-SHA2-512/224 | Utilizes HMAC-    |object|See Section| Yes    |
+   |                   |SHA2-512/224 as the|      | 7.7.1.4.1 |        |
+   |                   | MAC algorithm.    |      |           |        |
    +-------------------+-------------------+------+-----------+--------+
-   | HMAC-SHA2-512/256 |Utilizes HMAC-     |object|See Section|Yes     |
-   |                   |SHA2-512/256 as the|      |4.9.1.4.1  |        |
-   |                   |MAC algorithm.     |      |           |        |
+   | HMAC-SHA2-512/256 | Utilizes HMAC-    |object|See Section| Yes    |
+   |                   |SHA2-512/256 as the|      | 7.7.1.4.1 |        |
+   |                   | MAC algorithm.    |      |           |        |
    +-------------------+-------------------+------+-----------+--------+
-   | HMAC-SHA3-224     |Utilizes HMAC-     |object|See Section|Yes     |
-   |                   |SHA3-224 as the MAC|      |4.9.1.4.1  |        |
-   |                   |algorithm.         |      |           |        |
+   | HMAC-SHA3-224     | Utilizes HMAC-    |object|See Section| Yes    |
+   |                   |SHA3-224 as the MAC|      | 7.7.1.4.1 |        |
+   |                   | algorithm.        |      |           |        |
    +-------------------+-------------------+------+-----------+--------+
-   | HMAC-SHA3-256     |Utilizes HMAC-     |object|See Section|Yes     |
-   |                   |SHA3-256 as the MAC|      |4.9.1.4.1  |        |
-   |                   |algorithm.         |      |           |        |
-   +-------------------+-------------------+------+-----------+--------+
-   | HMAC-SHA3-384     |Utilizes HMAC-     |object|See Section|Yes     |
+   | HMAC-SHA3-256     | Utilizes HMAC-    |object|See Section| Yes    |
+   |                   |SHA3-256 as the MAC|      | 7.7.1.4.1 |        |
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 19]
+Hammett                    Expires 22 May 2021                 [Page 20]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
-   |                   |SHA3-384 as the MAC|      |4.9.1.4.1  |        |
-   |                   |algorithm.         |      |           |        |
+   |                   | algorithm.        |      |           |        |
    +-------------------+-------------------+------+-----------+--------+
-   | HMAC-SHA3-512     |Utilizes HMAC-     |object|See Section|Yes     |
-   |                   |SHA3-512 as the MAC|      |4.9.1.4.1  |        |
-   |                   |algorithm.         |      |           |        |
+   | HMAC-SHA3-384     | Utilizes HMAC-    |object|See Section| Yes    |
+   |                   |SHA3-384 as the MAC|      | 7.7.1.4.1 |        |
+   |                   | algorithm.        |      |           |        |
    +-------------------+-------------------+------+-----------+--------+
-   | KMAC-128          |Utilizes KMAC-128  |object|See Section|Yes     |
-   |                   |as the MAC         |      |4.9.1.4.1  |        |
-   |                   |algorithm.         |      |           |        |
+   | HMAC-SHA3-512     | Utilizes HMAC-    |object|See Section| Yes    |
+   |                   |SHA3-512 as the MAC|      | 7.7.1.4.1 |        |
+   |                   | algorithm.        |      |           |        |
    +-------------------+-------------------+------+-----------+--------+
-   | KMAC-256          |Utilizes KMAC-256  |object|See Section|Yes     |
-   |                   |as the MAC         |      |4.9.1.4.1  |        |
-   |                   |algorithm.         |      |           |        |
+   | KMAC-128          | Utilizes KMAC-128 |object|See Section| Yes    |
+   |                   | as the MAC        |      | 7.7.1.4.1 |        |
+   |                   | algorithm.        |      |           |        |
+   +-------------------+-------------------+------+-----------+--------+
+   | KMAC-256          | Utilizes KMAC-256 |object|See Section| Yes    |
+   |                   | as the MAC        |      | 7.7.1.4.1 |        |
+   |                   | algorithm.        |      |           |        |
    +-------------------+-------------------+------+-----------+--------+
 
                         Table 11: MAC Method Options
 
-4.9.1.4.1.  Supported MAC Options
+7.7.1.4.1.  Supported MAC Options
 
-   +========+=================+=========+===================+==========+
+   +--------+-----------------+---------+-------------------+----------+
    | JSON   | Description     | JSON    | Valid Values      | Optional |
    | Value  |                 | Type    |                   |          |
    +========+=================+=========+===================+==========+
@@ -1108,19 +1167,21 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
                      Table 12: MAC Method Base Options
 
-4.10.  Example KAS-IFC Registration
-
-   The following is a example JSON object advertising support for KAS
-   IFC.
 
 
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 20]
+
+Hammett                    Expires 22 May 2021                 [Page 21]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
+
+7.8.  Example KAS-IFC Registration
+
+   The following is a example JSON object advertising support for KAS
+   IFC.
 
    {
      "algorithm": "KAS-IFC",
@@ -1165,19 +1226,19 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
              "auxFunctions": [
                {
                  "auxFunctionName": "KMAC-128",
+
+
+
+Hammett                    Expires 22 May 2021                 [Page 22]
+
+Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
+
+
                  "macSaltMethods": [
                    "default",
                    "random"
                  ]
                }
-
-
-
-Hammett                    Expires 21 May 2021                 [Page 21]
-
-Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
-
-
              ],
              "fixedInfoPattern": "algorithmId||l||uPartyInfo||vPartyInfo",
              "encoding": [
@@ -1221,20 +1282,19 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
          "l": 512
        }
      }
-   }
-
-                                  Figure 2
 
 
 
-
-
-Hammett                    Expires 21 May 2021                 [Page 22]
+Hammett                    Expires 22 May 2021                 [Page 23]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
-4.11.  Example KTS-IFC Registration
+   }
+
+                                  Figure 2
+
+7.9.  Example KTS-IFC Registration
 
    The following is a example JSON object advertising support for KTS
    IFC.
@@ -1278,18 +1338,18 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
            "responder"
          ],
          "ktsMethod": {
-           "hashAlgs": [
-             "SHA2-224"
-           ],
-           "supportsNullAssociatedData": true,
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 23]
+Hammett                    Expires 22 May 2021                 [Page 24]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
+           "hashAlgs": [
+             "SHA2-224"
+           ],
+           "supportsNullAssociatedData": true,
            "associatedDataPattern": "l||uPartyInfo||vPartyInfo",
            "encoding": [
              "concatenation"
@@ -1308,101 +1368,99 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
                                   Figure 3
 
-5.  Generation Requirements per Party per Scheme
+8.  Generation Requirements per Party per Scheme
 
    The various schemes of KAS/KTS all have their own requirements as to
    keys and nonces per scheme, per party.  The below table demonstrates
    those generation requirements:
 
+   +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
+   | Scheme     |KasMode| KasRole       |KeyConfirmationRole|KeyConfirmationDirection|KeyPair|Nonce|Generates|
+   |            |       |               |                   |                        |       |     | Cipher  |
+   |            |       |               |                   |                        |       |     | Text    |
    +============+=======+===============+===================+========================+=======+=====+=========+
-   |Scheme      |KasMode|KasRole        |KeyConfirmationRole|KeyConfirmationDirection|KeyPair|Nonce|Generates|
-   |            |       |               |                   |                        |       |     |Cipher   |
-   |            |       |               |                   |                        |       |     |Text     |
-   +============+=======+===============+===================+========================+=======+=====+=========+
-   |KAS1-basic  |KdfNoKc|InitiatorPartyU|None               |None                    |False  |False|True     |
+   | KAS1-basic |KdfNoKc|InitiatorPartyU| None              | None                   | False |False| True    |
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KAS1-basic  |KdfNoKc|ResponderPartyV|None               |None                    |True   |True |False    |
+   | KAS1-basic |KdfNoKc|ResponderPartyV| None              | None                   | True  |True | False   |
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KAS1-       |KdfKc  |InitiatorPartyU|Recipient          |Unilateral              |False  |False|True     |
-   |Party_V-    |       |               |                   |                        |       |     |         |
+   | KAS1-      | KdfKc |InitiatorPartyU| Recipient         | Unilateral             | False |False| True    |
+   | Party_V-   |       |               |                   |                        |       |     |         |
    |confirmation|       |               |                   |                        |       |     |         |
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KAS1-       |KdfKc  |ResponderPartyV|Provider           |Unilateral              |True   |True |False    |
-   |Party_V-    |       |               |                   |                        |       |     |         |
+   | KAS1-      | KdfKc |ResponderPartyV| Provider          | Unilateral             | True  |True | False   |
+   | Party_V-   |       |               |                   |                        |       |     |         |
    |confirmation|       |               |                   |                        |       |     |         |
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KAS2-basic  |KdfNoKc|InitiatorPartyU|None               |None                    |True   |True |True     |
+   | KAS2-basic |KdfNoKc|InitiatorPartyU| None              | None                   | True  |True | True    |
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KAS2-basic  |KdfNoKc|ResponderPartyV|None               |None                    |True   |True |True     |
-   +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KAS1-       |KdfKc  |ResponderPartyV|Recipient          |Bilateral               |True   |True |True     |
-   |bilateral-  |       |               |                   |                        |       |     |         |
-   |confirmation|       |               |                   |                        |       |     |         |
+   | KAS2-basic |KdfNoKc|ResponderPartyV| None              | None                   | True  |True | True    |
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 24]
+Hammett                    Expires 22 May 2021                 [Page 25]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KAS1-       |KdfKc  |ResponderPartyV|Provider           |Bilateral               |True   |True |True     |
-   |bilateral-  |       |               |                   |                        |       |     |         |
+   | KAS1-      | KdfKc |ResponderPartyV| Recipient         | Bilateral              | True  |True | True    |
+   | bilateral- |       |               |                   |                        |       |     |         |
    |confirmation|       |               |                   |                        |       |     |         |
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KAS2-       |KdfKc  |InitiatorPartyU|Recipient          |Bilateral               |True   |True |True     |
-   |bilateral-  |       |               |                   |                        |       |     |         |
+   | KAS1-      | KdfKc |ResponderPartyV| Provider          | Bilateral              | True  |True | True    |
+   | bilateral- |       |               |                   |                        |       |     |         |
    |confirmation|       |               |                   |                        |       |     |         |
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KAS2-       |KdfKc  |InitiatorPartyU|Provider           |Bilateral               |True   |True |True     |
-   |bilateral-  |       |               |                   |                        |       |     |         |
+   | KAS2-      | KdfKc |InitiatorPartyU| Recipient         | Bilateral              | True  |True | True    |
+   | bilateral- |       |               |                   |                        |       |     |         |
    |confirmation|       |               |                   |                        |       |     |         |
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KAS2-       |KdfKc  |ResponderPartyV|Recipient          |Unilateral              |True   |True |True     |
-   |Party_U-    |       |               |                   |                        |       |     |         |
+   | KAS2-      | KdfKc |InitiatorPartyU| Provider          | Bilateral              | True  |True | True    |
+   | bilateral- |       |               |                   |                        |       |     |         |
    |confirmation|       |               |                   |                        |       |     |         |
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KAS2-       |KdfKc  |InitiatorPartyU|Provider           |Unilateral              |True   |True |True     |
-   |Party_U-    |       |               |                   |                        |       |     |         |
+   | KAS2-      | KdfKc |ResponderPartyV| Recipient         | Unilateral             | True  |True | True    |
+   | Party_U-   |       |               |                   |                        |       |     |         |
    |confirmation|       |               |                   |                        |       |     |         |
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KAS2-       |KdfKc  |InitiatorPartyU|Recipient          |Unilateral              |True   |True |True     |
-   |Party_V-    |       |               |                   |                        |       |     |         |
+   | KAS2-      | KdfKc |InitiatorPartyU| Provider          | Unilateral             | True  |True | True    |
+   | Party_U-   |       |               |                   |                        |       |     |         |
    |confirmation|       |               |                   |                        |       |     |         |
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KAS2-       |KdfKc  |ResponderPartyV|Provider           |Unilateral              |True   |True |True     |
-   |Party_V-    |       |               |                   |                        |       |     |         |
+   | KAS2-      | KdfKc |InitiatorPartyU| Recipient         | Unilateral             | True  |True | True    |
+   | Party_V-   |       |               |                   |                        |       |     |         |
    |confirmation|       |               |                   |                        |       |     |         |
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KTS-OAEP-   |NoKdfKc|InitiatorPartyU|None               |None                    |False  |False|True     |
-   |basic       |       |               |                   |                        |       |     |         |
-   +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KTS-OAEP-   |NoKdfKc|ResponderPartyV|None               |None                    |True   |False|False    |
-   |basic       |       |               |                   |                        |       |     |         |
-   +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KTS-OAEP-   |NoKdfKc|InitiatorPartyU|Recipient          |Unilateral              |False  |False|True     |
-   |Party_V-    |       |               |                   |                        |       |     |         |
+   | KAS2-      | KdfKc |ResponderPartyV| Provider          | Unilateral             | True  |True | True    |
+   | Party_V-   |       |               |                   |                        |       |     |         |
    |confirmation|       |               |                   |                        |       |     |         |
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
-   |KTS-OAEP-   |NoKdfKc|ResponderPartyV|Provider           |Unilateral              |True   |False|False    |
-   |Party_V-    |       |               |                   |                        |       |     |         |
+   | KTS-OAEP-  |NoKdfKc|InitiatorPartyU| None              | None                   | False |False| True    |
+   | basic      |       |               |                   |                        |       |     |         |
+   +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
+   | KTS-OAEP-  |NoKdfKc|ResponderPartyV| None              | None                   | True  |False| False   |
+   | basic      |       |               |                   |                        |       |     |         |
+   +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
+   | KTS-OAEP-  |NoKdfKc|InitiatorPartyU| Recipient         | Unilateral             | False |False| True    |
+   | Party_V-   |       |               |                   |                        |       |     |         |
    |confirmation|       |               |                   |                        |       |     |         |
    +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
+   | KTS-OAEP-  |NoKdfKc|ResponderPartyV| Provider          | Unilateral             | True  |False| False   |
+   | Party_V-   |       |               |                   |                        |       |     |         |
+   |confirmation|       |               |                   |                        |       |     |         |
+   +------------+-------+---------------+-------------------+------------------------+-------+-----+---------+
+
+
+
+
+Hammett                    Expires 22 May 2021                 [Page 26]
+
+Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
+
 
               Table 13: Required Party Generation Obligations
 
-
-
-
-
-
-Hammett                    Expires 21 May 2021                 [Page 25]
-
-Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
-
-
-6.  Test Vectors
+9.  Test Vectors
 
    The ACVP server provides test vectors to the ACVP client, which are
    then processed and returned to the ACVP server for validation.  A
@@ -1417,7 +1475,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    test vectors to be processed by the ACVP client.  The following table
    describes the JSON elements at the top level of the hierarchy.
 
-    +=============+======================================+===========+
+    +-------------+--------------------------------------+-----------+
     | JSON Values | Description                          | JSON Type |
     +=============+======================================+===========+
     | acvVersion  | Protocol version identifier          | string    |
@@ -1433,7 +1491,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
     | revision    | Protocol test revision selected      | string    |
     +-------------+--------------------------------------+-----------+
     | testGroups  | Array of test groups containing test | array     |
-    |             | data, see Section 6.1                |           |
+    |             | data, see Section 9.1                |           |
     +-------------+--------------------------------------+-----------+
 
               Table 14: Top Level Test Vector JSON Elements
@@ -1449,16 +1507,16 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
      "testGroups": [ ... ]
    }
 
-                                  Figure 4
 
 
-
-Hammett                    Expires 21 May 2021                 [Page 26]
+Hammett                    Expires 22 May 2021                 [Page 27]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
-6.1.  Test Groups JSON Schema
+                                  Figure 4
+
+9.1.  Test Groups JSON Schema
 
    The testGroups element at the top level in the test vector JSON
    object is an array of test groups.  Test vectors are grouped into
@@ -1471,7 +1529,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
    The test group for KAS/KTS IFC is as follows:
 
-   +=====================+=================+==========+===============+
+   +---------------------+-----------------+----------+---------------+
    | JSON Value          | Description     | JSON     | Optional      |
    |                     |                 | Type     |               |
    +=====================+=================+==========+===============+
@@ -1490,7 +1548,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    | scheme              | The scheme in   | value    | No            |
    |                     | use for the     |          |               |
    |                     | group.  See     |          |               |
-   |                     | Section 4.9.1   |          |               |
+   |                     | Section 7.7.1   |          |               |
    |                     | for possible    |          |               |
    |                     | values.         |          |               |
    +---------------------+-----------------+----------+---------------+
@@ -1504,16 +1562,16 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    |                     | method for the  |          |               |
    |                     | group.          |          |               |
    +---------------------+-----------------+----------+---------------+
-   | modulo              | The modulo in   | value    | No            |
-   |                     | use for key     |          |               |
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 27]
+Hammett                    Expires 22 May 2021                 [Page 28]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
+   | modulo              | The modulo in   | value    | No            |
+   |                     | use for key     |          |               |
    |                     | generation.     |          |               |
    +---------------------+-----------------+----------+---------------+
    | l                   | The length of   | value    | No            |
@@ -1530,29 +1588,29 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    | kdfConfiguration    | The KDF         | Object,  | Not optional  |
    |                     | configuration   | See      | for KAS       |
    |                     | for the group.  | Section  | schemes.      |
-   |                     |                 | 6.1.1    |               |
+   |                     |                 | 9.1.1    |               |
    +---------------------+-----------------+----------+---------------+
    | ktsConfiguration    | The KTS         | Object,  | Not optional  |
    |                     | configuration   | See      | for KTS       |
    |                     | for the group.  | Section  | schemes.      |
-   |                     |                 | 6.1.2    |               |
+   |                     |                 | 9.1.2    |               |
    +---------------------+-----------------+----------+---------------+
    | macConfiguration    | The MAC         | Object,  | Not optional  |
    |                     | configuration   | See      | for KAS/KTS   |
    |                     | for the group.  | Section  | schemes using |
-   |                     |                 | 6.1.3    | key           |
+   |                     |                 | 9.1.3    | key           |
    |                     |                 |          | confirmation. |
    +---------------------+-----------------+----------+---------------+
    | tests               | The tests for   | Array of | No            |
    |                     | the group.      | objects, |               |
    |                     |                 | See      |               |
    |                     |                 | Section  |               |
-   |                     |                 | 6.2.     |               |
+   |                     |                 | 9.2.     |               |
    +---------------------+-----------------+----------+---------------+
 
                     Table 15: Vector Group JSON Object
 
-6.1.1.  KDF Configuration JSON Schema
+9.1.1.  KDF Configuration JSON Schema
 
    Describes the KDF configuration for use under the test group.
 
@@ -1563,14 +1621,12 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-
-
-Hammett                    Expires 21 May 2021                 [Page 28]
+Hammett                    Expires 22 May 2021                 [Page 29]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
-   +===================+==================+==============+=============+
+   +-------------------+------------------+--------------+-------------+
    | JSON Value        | Description      | JSON Type    | Optional    |
    +===================+==================+==============+=============+
    | kdfType           | The type of      | value -      | No          |
@@ -1583,12 +1639,12 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    +-------------------+------------------+--------------+-------------+
    | fixedInfoPattern  | The pattern      | value - See  | No          |
    |                   | used for         | Section      |             |
-   |                   | constructing     | 4.9.1.3.     |             |
+   |                   | constructing     | 7.7.1.3.     |             |
    |                   | the fixedInfo.   |              |             |
    +-------------------+------------------+--------------+-------------+
    | fixedInfoEncoding | The encoding     | value - See  | No          |
    |                   | type used when   | Section      |             |
-   |                   | constructing     | 4.9.1.3.     |             |
+   |                   | constructing     | 7.7.1.3.     |             |
    |                   | the fixedInfo.   |              |             |
    +-------------------+------------------+--------------+-------------+
    | auxFunction       | The auxiliary    | value - See  | Not         |
@@ -1612,7 +1668,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
                    Table 16: KdfConfiguration JSON Object
 
-6.1.2.  KTS Configuration JSON Schema
+9.1.2.  KTS Configuration JSON Schema
 
    Describes the KTS configuration for use under the test group.
 
@@ -1621,34 +1677,34 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 29]
+Hammett                    Expires 22 May 2021                 [Page 30]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
-    +=======================+==================+==========+==========+
+    +-----------------------+------------------+----------+----------+
     | JSON Value            | Description      | JSON     | Optional |
     |                       |                  | Type     |          |
     +=======================+==================+==========+==========+
     | associatedDataPattern | The pattern used | value -  | Yes      |
     |                       | for constructing | see      |          |
     |                       | the associated   | Section  |          |
-    |                       | data.            | 4.9.1.3. |          |
+    |                       | data.            | 7.7.1.3. |          |
     +-----------------------+------------------+----------+----------+
     | encoding              | The encoding     | value -  | Yes      |
     |                       | type used when   | see      |          |
     |                       | constructing the | Section  |          |
-    |                       | data.            | 4.9.1.3. |          |
+    |                       | data.            | 7.7.1.3. |          |
     +-----------------------+------------------+----------+----------+
     | hashAlg               | The hash         | value -  | No       |
     |                       | algorithm used   | see      |          |
     |                       | for the OAEP     | Section  |          |
-    |                       | function.        | 4.9.1.2. |          |
+    |                       | function.        | 7.7.1.2. |          |
     +-----------------------+------------------+----------+----------+
 
                   Table 17: KtsConfiguration JSON Object
 
-6.1.3.  MAC Configuration JSON Schema
+9.1.3.  MAC Configuration JSON Schema
 
    Describes the key confirmation MAC configuration for use under the
    test group.
@@ -1677,12 +1733,12 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 30]
+Hammett                    Expires 22 May 2021                 [Page 31]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
-   +=========+===============+==============================+==========+
+   +---------+---------------+------------------------------+----------+
    | JSON    | Description   | JSON Type                    | Optional |
    | Value   |               |                              |          |
    +=========+===============+==============================+==========+
@@ -1712,14 +1768,14 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
                    Table 18: MacConfiguration JSON Object
 
-6.2.  Test Case JSON Schema
+9.2.  Test Case JSON Schema
 
    Each test group contains an array of one or more test cases.  Each
    test case is a JSON object that represents a single test vector to be
    processed by the ACVP client.  The following table describes the JSON
    elements for each KAS/KTS IFC test vector.
 
-   +==============+==============================+=========+==========+
+   +--------------+------------------------------+---------+----------+
    | JSON Value   | Description                  | JSON    | Optional |
    |              |                              | Type    |          |
    +==============+==============================+=========+==========+
@@ -1733,7 +1789,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 31]
+Hammett                    Expires 22 May 2021                 [Page 32]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -1789,7 +1845,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 32]
+Hammett                    Expires 22 May 2021                 [Page 33]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -1799,7 +1855,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    | kdfParameter | The KDF parameters for this  | value - | Yes      |
    |              | test case.                   | See     |          |
    |              |                              | Section |          |
-   |              |                              | 6.2.1.  |          |
+   |              |                              | 9.2.1.  |          |
    +--------------+------------------------------+---------+----------+
    | serverC      | The ciphertext generated by  | value   | Yes      |
    |              | the ACVP server, encrypted   |         |          |
@@ -1819,7 +1875,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
                      Table 19: Test Case JSON Object
 
-6.2.1.  KDF Parameter JSON Schema
+9.2.1.  KDF Parameter JSON Schema
 
    KDF specific options used for the test case.
 
@@ -1845,12 +1901,12 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 33]
+Hammett                    Expires 22 May 2021                 [Page 34]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
-   +=============+==================================+=======+==========+
+   +-------------+----------------------------------+-------+----------+
    | JSON Value  | Description                      | JSON  | Optional |
    |             |                                  | Type  |          |
    +=============+==================================+=======+==========+
@@ -1881,7 +1937,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
                     Table 20: KDF Parameter JSON Object
 
-6.3.  Example Test Vectors JSON Object KAS-IFC
+9.3.  Example Test Vectors JSON Object KAS-IFC
 
    The following is a example JSON object for KAS-IFC test vectors sent
    from the ACVP server to the crypto module.
@@ -1901,7 +1957,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 34]
+Hammett                    Expires 22 May 2021                 [Page 35]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -1957,7 +2013,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 35]
+Hammett                    Expires 22 May 2021                 [Page 36]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2013,7 +2069,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 36]
+Hammett                    Expires 22 May 2021                 [Page 37]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2069,7 +2125,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 37]
+Hammett                    Expires 22 May 2021                 [Page 38]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2125,7 +2181,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 38]
+Hammett                    Expires 22 May 2021                 [Page 39]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2181,7 +2237,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 39]
+Hammett                    Expires 22 May 2021                 [Page 40]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2237,7 +2293,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 40]
+Hammett                    Expires 22 May 2021                 [Page 41]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2293,7 +2349,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 41]
+Hammett                    Expires 22 May 2021                 [Page 42]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2349,7 +2405,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 42]
+Hammett                    Expires 22 May 2021                 [Page 43]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2405,7 +2461,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 43]
+Hammett                    Expires 22 May 2021                 [Page 44]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2461,7 +2517,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 44]
+Hammett                    Expires 22 May 2021                 [Page 45]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2517,7 +2573,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 45]
+Hammett                    Expires 22 May 2021                 [Page 46]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2573,7 +2629,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 46]
+Hammett                    Expires 22 May 2021                 [Page 47]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2629,7 +2685,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 47]
+Hammett                    Expires 22 May 2021                 [Page 48]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2685,7 +2741,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 48]
+Hammett                    Expires 22 May 2021                 [Page 49]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2726,7 +2782,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
                                   Figure 5
 
-6.4.  Example Test Vectors JSON Object KTS-IFC
+9.4.  Example Test Vectors JSON Object KTS-IFC
 
    The following is a example JSON object for KTS-IFC test vectors sent
    from the ACVP server to the crypto module.
@@ -2741,7 +2797,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 49]
+Hammett                    Expires 22 May 2021                 [Page 50]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2797,7 +2853,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 50]
+Hammett                    Expires 22 May 2021                 [Page 51]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2853,7 +2909,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 51]
+Hammett                    Expires 22 May 2021                 [Page 52]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2909,7 +2965,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 52]
+Hammett                    Expires 22 May 2021                 [Page 53]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2935,14 +2991,14 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
                                   Figure 6
 
-7.  Test Vector Responses
+10.  Test Vector Responses
 
    After the ACVP client downloads and processes a vector set, it MUST
    send the response vectors back to the ACVP server.  The following
    table describes the JSON object that represents a vector set
    response.
 
-      +============+============================+=======+==========+
+      +------------+----------------------------+-------+----------+
       | JSON Value | Description                | JSON  | Optional |
       |            |                            | type  |          |
       +============+============================+=======+==========+
@@ -2965,7 +3021,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 53]
+Hammett                    Expires 22 May 2021                 [Page 54]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -2975,7 +3031,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
    SHALL require the client to send back group level properties in their
    response.  This structure helps accommodate that.
 
-   +=======+========================================+=======+==========+
+   +-------+----------------------------------------+-------+----------+
    | JSON  | Description                            | JSON  | Optional |
    | Value |                                        | type  |          |
    +=======+========================================+=======+==========+
@@ -3021,12 +3077,12 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 54]
+Hammett                    Expires 22 May 2021                 [Page 55]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
-     +============+=============================+=========+==========+
+     +------------+-----------------------------+---------+----------+
      | JSON Value | Description                 | JSON    | Optional |
      |            |                             | type    |          |
      +============+=============================+=========+==========+
@@ -3055,7 +3111,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
             Table 23: Vector Set Test Case Response JSON Object
 
-7.1.  Example Test Results KAS-IFC JSON Object
+10.1.  Example Test Results KAS-IFC JSON Object
 
    The following is an example JSON object for KAS-IFC test results sent
    from the crypto module to the ACVP server.
@@ -3077,7 +3133,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 55]
+Hammett                    Expires 22 May 2021                 [Page 56]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -3133,7 +3189,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 56]
+Hammett                    Expires 22 May 2021                 [Page 57]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -3189,7 +3245,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 57]
+Hammett                    Expires 22 May 2021                 [Page 58]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -3245,7 +3301,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 58]
+Hammett                    Expires 22 May 2021                 [Page 59]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -3276,7 +3332,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
                                   Figure 7
 
-7.2.  Example Test Results KTS-IFC JSON Object
+10.2.  Example Test Results KTS-IFC JSON Object
 
    The following is an example JSON object for KTS-IFC test results sent
    from the crypto module to the ACVP server.
@@ -3301,7 +3357,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 59]
+Hammett                    Expires 22 May 2021                 [Page 60]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -3357,7 +3413,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 60]
+Hammett                    Expires 22 May 2021                 [Page 61]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -3377,16 +3433,16 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
                                   Figure 8
 
-8.  Security Considerations
+11.  Security Considerations
 
    There are no additional security considerations outside of those
    outlined in the ACVP document.
 
-9.  IANA Considerations
+12.  IANA Considerations
 
    This document does not require any action by IANA.
 
-10.  Bibliography
+13.  Bibliography
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", IETF RFC 2119, IETF RFC 2119,
@@ -3413,7 +3469,7 @@ Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 61]
+Hammett                    Expires 22 May 2021                 [Page 62]
 
 Internet-Draft          ACVP KAS IFC SP800-56Br2           November 2020
 
@@ -3469,4 +3525,4 @@ Author's Address
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 62]
+Hammett                    Expires 22 May 2021                 [Page 63]

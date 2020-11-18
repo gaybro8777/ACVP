@@ -6,26 +6,8 @@
 <meta content="initial-scale=1.0" name="viewport">
 <title>ACVP KAS IFC JSON Specification</title>
 <meta content="Russell Hammett" name="author">
-<meta content="xml2rfc 3.4.0" name="generator">
+<meta content="xml2rfc 2.45.3" name="generator">
 <meta name="ietf.draft">
-<!-- Generator version information:
-  xml2rfc 3.4.0
-    Python 3.7.3
-    appdirs 1.4.4
-    ConfigArgParse 1.2.3
-    google-i18n-address 2.4.0
-    html5lib 1.1
-    intervaltree 3.1.0
-    Jinja2 2.11.2
-    kitchen 1.2.6
-    lxml 4.6.1
-    pycountry 20.7.3
-    pyflakes 2.2.0
-    PyYAML 5.3.1
-    requests 2.25.0
-    setuptools 50.3.2
-    six 1.15.0
--->
 <link href="draft-hammett-acvp-kas-ifc.rfc.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">/*
@@ -927,6 +909,12 @@ caption a[href] {
   }
 
 }
+/* Avoid wrapping of URLs in references */
+@media screen {
+  .references a {
+    white-space: nowrap;
+  }
+}
 /* Tweak the bcp14 keyword presentation */
 .bcp14 {
   font-variant: small-caps;
@@ -1076,7 +1064,6 @@ figure, pre, table, .artwork, .sourcecode  {
 }
 /* Avoid breaks between <dt> and <dd> */
 dl {
-  break-before: auto;
   break-inside: auto;
 }
 dt {
@@ -1089,7 +1076,7 @@ dd {
   orphans: 3;
   widows: 3
 }
-span.break, dd.break {
+dd.break {
   margin-bottom: 0;
   min-height: 0;
   break-before: auto;
@@ -1115,48 +1102,8 @@ section ol.compact,
 section .olCompact {
   margin-bottom: 1em;                    /* same as p not within ul.compact etc. */
 }
-/* The tt and code background above interferes with for instance table cell
-   backgrounds.  Changed to something a bit more selective. */
-tt, code {
-  background-color: transparent;
-}
-p tt, p code, li tt, li code {
-  background-color: #f8f8f8;
-}
-/* Tweak the pre margin -- 0px doesn't come out well */
-pre {
-   margin-top: 0.5px;
-}
-/* Tweak the comact list text */
-ul.compact, .ulCompact,
-ol.compact, .olCompact,
-dl.compact, .dlCompact {
-  line-height: normal;
-}
-/* Don't add top margin for nested lists */
-li > ul, li > ol, li > dl,
-dd > ul, dd > ol, dd > dl,
-dl > dd > dl {
-  margin-top: initial;
-}
-/* Elements that should not be rendered on the same line as a <dt> */
-/* This should match the element list in writer.text.TextWriter.render_dl() */
-dd > div.artwork:first-child,
-dd > aside:first-child,
-dd > figure:first-child,
-dd > ol:first-child,
-dd > div:first-child > pre.sourcecode,
-dd > table:first-child,
-dd > ul:first-child {
-  clear: left;
-}
-/* fix for weird browser behaviour when <dd/> is empty */
-dt+dd:empty::before{
-  content: "\00a0";
-}
 </style>
 <link href="rfc-local.css" rel="stylesheet" type="text/css">
-<script type="application/javascript">async function addMetadata(){try{const e=document.styleSheets[0].cssRules;for(let t=0;t<e.length;t++)if(/#identifiers/.exec(e[t].selectorText)){const a=e[t].cssText.replace("#identifiers","#external-updates");document.styleSheets[0].insertRule(a,document.styleSheets[0].cssRules.length)}}catch(e){console.log(e)}const e=document.getElementById("external-metadata");if(e)try{var t,a="",o=function(e){const t=document.getElementsByTagName("meta");for(let a=0;a<t.length;a++)if(t[a].getAttribute("name")===e)return t[a].getAttribute("content");return""}("rfc.number");if(o){t="https://www.rfc-editor.org/rfc/rfc"+o+".json";try{const e=await fetch(t);a=await e.json()}catch(e){t=document.URL.indexOf("html")>=0?document.URL.replace(/html$/,"json"):document.URL+".json";const o=await fetch(t);a=await o.json()}}if(!a)return;e.style.display="block";const s="",d="https://datatracker.ietf.org/doc",n="https://datatracker.ietf.org/ipr/search",c="https://www.rfc-editor.org/info",l=a.doc_id.toLowerCase(),i=a.doc_id.slice(0,3).toLowerCase(),f=a.doc_id.slice(3).replace(/^0+/,""),u={status:"Status",obsoletes:"Obsoletes",obsoleted_by:"Obsoleted By",updates:"Updates",updated_by:"Updated By",see_also:"See Also",errata_url:"Errata"};let h="<dl style='overflow:hidden' id='external-updates'>";["status","obsoletes","obsoleted_by","updates","updated_by","see_also","errata_url"].forEach(e=>{if("status"==e){a[e]=a[e].toLowerCase();var t=a[e].split(" "),o=t.length,w="",p=1;for(let e=0;e<o;e++)p<o?w=w+r(t[e])+" ":w+=r(t[e]),p++;a[e]=w}else if("obsoletes"==e||"obsoleted_by"==e||"updates"==e||"updated_by"==e){var g,m="",b=1;g=a[e].length;for(let t=0;t<g;t++)a[e][t]&&(a[e][t]=String(a[e][t]).toLowerCase(),m=b<g?m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>, ":m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>",b++);a[e]=m}else if("see_also"==e){var y,L="",C=1;y=a[e].length;for(let t=0;t<y;t++)if(a[e][t]){a[e][t]=String(a[e][t]);var _=a[e][t].slice(0,3),v=a[e][t].slice(3).replace(/^0+/,"");L=C<y?"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>, ":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>, ":"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>",C++}a[e]=L}else if("errata_url"==e){var R="";R=a[e]?R+"<a href='"+a[e]+"'>Errata exist</a> | <a href='"+d+"/"+l+"'>Datatracker</a>| <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>":"<a href='"+d+"/"+l+"'>Datatracker</a> | <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>",a[e]=R}""!=a[e]?"Errata"==u[e]?h+=`<dt>More info:</dt><dd>${a[e]}</dd>`:h+=`<dt>${u[e]}:</dt><dd>${a[e]}</dd>`:"Errata"==u[e]&&(h+=`<dt>More info:</dt><dd>${a[e]}</dd>`)}),h+="</dl>",e.innerHTML=h}catch(e){console.log(e)}else console.log("Could not locate metadata <div> element");function r(e){return e.charAt(0).toUpperCase()+e.slice(1)}}window.removeEventListener("load",addMetadata),window.addEventListener("load",addMetadata);</script>
 </head>
 <body>
 <script src="metadata.min.js"></script>
@@ -1168,7 +1115,7 @@ dt+dd:empty::before{
 </tr></thead>
 <tfoot><tr>
 <td class="left">Hammett</td>
-<td class="center">Expires 21 May 2021</td>
+<td class="center">Expires 22 May 2021</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1183,12 +1130,12 @@ dt+dd:empty::before{
 <dd></dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2020-11-17" class="published">17 November 2020</time>
+<time datetime="2020-11-18" class="published">18 November 2020</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
-<dd class="intended-status">Informational</dd>
+<dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-05-21">21 May 2021</time></dd>
+<dd class="expires"><time datetime="2021-05-22">22 May 2021</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1218,7 +1165,7 @@ dt+dd:empty::before{
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 May 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 May 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1246,127 +1193,138 @@ dt+dd:empty::before{
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.1">
+<nav class="toc"><ul class="compact toc ulEmpty">
+<li class="compact toc ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-acknowledgements" class="xref">Acknowledgements</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.2">
+<li class="compact toc ulEmpty" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="xref">2</a>.  <a href="#name-abstract" class="xref">Abstract</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.3">
+<li class="compact toc ulEmpty" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="xref">3</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.4">
+<li class="compact toc ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-terms-and-definitions" class="xref">Terms and definitions</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.4.2.1">
-                <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-test-types" class="xref">Test Types</a><a href="#section-toc.1-1.4.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.2">
-                <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-test-coverage" class="xref">Test Coverage</a><a href="#section-toc.1-1.4.2.2.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.4.2.2.2.1">
-                    <p id="section-toc.1-1.4.2.2.2.1.1"><a href="#section-4.2.1" class="xref">4.2.1</a>.  <a href="#name-kas-ifc-requirements-covere" class="xref">KAS-IFC Requirements Covered</a><a href="#section-toc.1-1.4.2.2.2.1.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-supported-kas-ifc-ssc" class="xref">Supported KAS-IFC-SSC</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.2.2.2">
-                    <p id="section-toc.1-1.4.2.2.2.2.1"><a href="#section-4.2.2" class="xref">4.2.2</a>.  <a href="#name-kas-ifc-requirements-not-co" class="xref">KAS-IFC Requirements Not Covered</a><a href="#section-toc.1-1.4.2.2.2.2.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-test-types-and-test-coverag" class="xref">Test Types and Test Coverage</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
+<ul class="compact toc ulEmpty">
+<li class="compact toc ulEmpty" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-test-types" class="xref">Test Types</a><a href="#section-toc.1-1.6.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                </ul>
+<li class="compact toc ulEmpty" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-test-coverage" class="xref">Test Coverage</a><a href="#section-toc.1-1.6.2.2.1" class="pilcrow">¶</a></p>
+<ul class="compact toc ulEmpty">
+<li class="compact toc ulEmpty" id="section-toc.1-1.6.2.2.2.1">
+                    <p id="section-toc.1-1.6.2.2.2.1.1"><a href="#section-6.2.1" class="xref">6.2.1</a>.  <a href="#name-kas-ifc-requirements-covere" class="xref">KAS-IFC Requirements Covered</a><a href="#section-toc.1-1.6.2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.3">
-                <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-prerequisites" class="xref">Prerequisites</a><a href="#section-toc.1-1.4.2.3.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.6.2.2.2.2">
+                    <p id="section-toc.1-1.6.2.2.2.2.1"><a href="#section-6.2.2" class="xref">6.2.2</a>.  <a href="#name-kas-ifc-requirements-not-co" class="xref">KAS-IFC Requirements Not Covered</a><a href="#section-toc.1-1.6.2.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.4">
-                <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="xref">4.4</a>.  <a href="#name-prerequisite-algorithms-for" class="xref">Prerequisite Algorithms for KAS IFC Validations</a><a href="#section-toc.1-1.4.2.4.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.5">
-                <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="xref">4.5</a>.  <a href="#name-kas-ifc-algorithm-capabilit" class="xref">KAS IFC Algorithm Capabilities JSON Values</a><a href="#section-toc.1-1.4.2.5.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.6">
-                <p id="section-toc.1-1.4.2.6.1"><a href="#section-4.6" class="xref">4.6</a>.  <a href="#name-supported-kas-ifc-functions" class="xref">Supported KAS IFC Functions</a><a href="#section-toc.1-1.4.2.6.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-capabilities-registration" class="xref">Capabilities Registration</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
+<ul class="compact toc ulEmpty">
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-prerequisites" class="xref">Prerequisites</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.7">
-                <p id="section-toc.1-1.4.2.7.1"><a href="#section-4.7" class="xref">4.7</a>.  <a href="#name-supported-key-generation-me" class="xref">Supported Key Generation Methods</a><a href="#section-toc.1-1.4.2.7.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-prerequisite-algorithms-for" class="xref">Prerequisite Algorithms for KAS IFC Validations</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.8">
-                <p id="section-toc.1-1.4.2.8.1"><a href="#section-4.8" class="xref">4.8</a>.  <a href="#name-supported-common-modulo" class="xref">Supported Common Modulo</a><a href="#section-toc.1-1.4.2.8.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.3">
+                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="xref">7.3</a>.  <a href="#name-kas-ifc-algorithm-capabilit" class="xref">KAS IFC Algorithm Capabilities JSON Values</a><a href="#section-toc.1-1.7.2.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.9">
-                <p id="section-toc.1-1.4.2.9.1"><a href="#section-4.9" class="xref">4.9</a>.  <a href="#name-kas-ifc-schemes" class="xref">KAS IFC Schemes</a><a href="#section-toc.1-1.4.2.9.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.4.2.9.2.1">
-                    <p id="section-toc.1-1.4.2.9.2.1.1"><a href="#section-4.9.1" class="xref">4.9.1</a>.  <a href="#name-kas-ifc-scheme-capabilities" class="xref">KAS IFC Scheme Capabilities JSON Values</a><a href="#section-toc.1-1.4.2.9.2.1.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.4">
+                <p id="section-toc.1-1.7.2.4.1"><a href="#section-7.4" class="xref">7.4</a>.  <a href="#name-supported-kas-ifc-functions" class="xref">Supported KAS IFC Functions</a><a href="#section-toc.1-1.7.2.4.1" class="pilcrow">¶</a></p>
 </li>
-                </ul>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.5">
+                <p id="section-toc.1-1.7.2.5.1"><a href="#section-7.5" class="xref">7.5</a>.  <a href="#name-supported-key-generation-me" class="xref">Supported Key Generation Methods</a><a href="#section-toc.1-1.7.2.5.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.10">
-                <p id="section-toc.1-1.4.2.10.1"><a href="#section-4.10" class="xref">4.10</a>. <a href="#name-example-kas-ifc-registratio" class="xref">Example KAS-IFC Registration</a><a href="#section-toc.1-1.4.2.10.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.6">
+                <p id="section-toc.1-1.7.2.6.1"><a href="#section-7.6" class="xref">7.6</a>.  <a href="#name-supported-common-modulo" class="xref">Supported Common Modulo</a><a href="#section-toc.1-1.7.2.6.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.4.2.11">
-                <p id="section-toc.1-1.4.2.11.1"><a href="#section-4.11" class="xref">4.11</a>. <a href="#name-example-kts-ifc-registratio" class="xref">Example KTS-IFC Registration</a><a href="#section-toc.1-1.4.2.11.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.7">
+                <p id="section-toc.1-1.7.2.7.1"><a href="#section-7.7" class="xref">7.7</a>.  <a href="#name-kas-ifc-schemes" class="xref">KAS IFC Schemes</a><a href="#section-toc.1-1.7.2.7.1" class="pilcrow">¶</a></p>
+<ul class="compact toc ulEmpty">
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.7.2.1">
+                    <p id="section-toc.1-1.7.2.7.2.1.1"><a href="#section-7.7.1" class="xref">7.7.1</a>.  <a href="#name-kas-ifc-scheme-capabilities" class="xref">KAS IFC Scheme Capabilities JSON Values</a><a href="#section-toc.1-1.7.2.7.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            </ul>
+</ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-generation-requirements-per" class="xref">Generation Requirements per Party per Scheme</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.8">
+                <p id="section-toc.1-1.7.2.8.1"><a href="#section-7.8" class="xref">7.8</a>.  <a href="#name-example-kas-ifc-registratio" class="xref">Example KAS-IFC Registration</a><a href="#section-toc.1-1.7.2.8.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-test-vectors" class="xref">Test Vectors</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-test-groups-json-schema" class="xref">Test Groups JSON Schema</a><a href="#section-toc.1-1.6.2.1.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.6.2.1.2.1">
-                    <p id="section-toc.1-1.6.2.1.2.1.1"><a href="#section-6.1.1" class="xref">6.1.1</a>.  <a href="#name-kdf-configuration-json-sche" class="xref">KDF Configuration JSON Schema</a><a href="#section-toc.1-1.6.2.1.2.1.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.7.2.9">
+                <p id="section-toc.1-1.7.2.9.1"><a href="#section-7.9" class="xref">7.9</a>.  <a href="#name-example-kts-ifc-registratio" class="xref">Example KTS-IFC Registration</a><a href="#section-toc.1-1.7.2.9.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="ulEmpty toc compact" id="section-toc.1-1.6.2.1.2.2">
-                    <p id="section-toc.1-1.6.2.1.2.2.1"><a href="#section-6.1.2" class="xref">6.1.2</a>.  <a href="#name-kts-configuration-json-sche" class="xref">KTS Configuration JSON Schema</a><a href="#section-toc.1-1.6.2.1.2.2.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-                  <li class="ulEmpty toc compact" id="section-toc.1-1.6.2.1.2.3">
-                    <p id="section-toc.1-1.6.2.1.2.3.1"><a href="#section-6.1.3" class="xref">6.1.3</a>.  <a href="#name-mac-configuration-json-sche" class="xref">MAC Configuration JSON Schema</a><a href="#section-toc.1-1.6.2.1.2.3.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-generation-requirements-per" class="xref">Generation Requirements per Party per Scheme</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
 </li>
-                </ul>
+<li class="compact toc ulEmpty" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-test-vectors" class="xref">Test Vectors</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
+<ul class="compact toc ulEmpty">
+<li class="compact toc ulEmpty" id="section-toc.1-1.9.2.1">
+                <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="xref">9.1</a>.  <a href="#name-test-groups-json-schema" class="xref">Test Groups JSON Schema</a><a href="#section-toc.1-1.9.2.1.1" class="pilcrow">¶</a></p>
+<ul class="compact toc ulEmpty">
+<li class="compact toc ulEmpty" id="section-toc.1-1.9.2.1.2.1">
+                    <p id="section-toc.1-1.9.2.1.2.1.1"><a href="#section-9.1.1" class="xref">9.1.1</a>.  <a href="#name-kdf-configuration-json-sche" class="xref">KDF Configuration JSON Schema</a><a href="#section-toc.1-1.9.2.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-test-case-json-schema" class="xref">Test Case JSON Schema</a><a href="#section-toc.1-1.6.2.2.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.6.2.2.2.1">
-                    <p id="section-toc.1-1.6.2.2.2.1.1"><a href="#section-6.2.1" class="xref">6.2.1</a>.  <a href="#name-kdf-parameter-json-schema" class="xref">KDF Parameter JSON Schema</a><a href="#section-toc.1-1.6.2.2.2.1.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.9.2.1.2.2">
+                    <p id="section-toc.1-1.9.2.1.2.2.1"><a href="#section-9.1.2" class="xref">9.1.2</a>.  <a href="#name-kts-configuration-json-sche" class="xref">KTS Configuration JSON Schema</a><a href="#section-toc.1-1.9.2.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
-                </ul>
+<li class="compact toc ulEmpty" id="section-toc.1-1.9.2.1.2.3">
+                    <p id="section-toc.1-1.9.2.1.2.3.1"><a href="#section-9.1.3" class="xref">9.1.3</a>.  <a href="#name-mac-configuration-json-sche" class="xref">MAC Configuration JSON Schema</a><a href="#section-toc.1-1.9.2.1.2.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.6.2.3">
-                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="xref">6.3</a>.  <a href="#name-example-test-vectors-json-o" class="xref">Example Test Vectors JSON Object KAS-IFC</a><a href="#section-toc.1-1.6.2.3.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.6.2.4">
-                <p id="section-toc.1-1.6.2.4.1"><a href="#section-6.4" class="xref">6.4</a>.  <a href="#name-example-test-vectors-json-ob" class="xref">Example Test Vectors JSON Object KTS-IFC</a><a href="#section-toc.1-1.6.2.4.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.9.2.2">
+                <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="xref">9.2</a>.  <a href="#name-test-case-json-schema" class="xref">Test Case JSON Schema</a><a href="#section-toc.1-1.9.2.2.1" class="pilcrow">¶</a></p>
+<ul class="compact toc ulEmpty">
+<li class="compact toc ulEmpty" id="section-toc.1-1.9.2.2.2.1">
+                    <p id="section-toc.1-1.9.2.2.2.1.1"><a href="#section-9.2.1" class="xref">9.2.1</a>.  <a href="#name-kdf-parameter-json-schema" class="xref">KDF Parameter JSON Schema</a><a href="#section-toc.1-1.9.2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            </ul>
+</ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-test-vector-responses" class="xref">Test Vector Responses</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
-<ul class="ulEmpty toc compact">
-<li class="ulEmpty toc compact" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-example-test-results-kas-if" class="xref">Example Test Results KAS-IFC JSON Object</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.9.2.3">
+                <p id="section-toc.1-1.9.2.3.1"><a href="#section-9.3" class="xref">9.3</a>.  <a href="#name-example-test-vectors-json-o" class="xref">Example Test Vectors JSON Object KAS-IFC</a><a href="#section-toc.1-1.9.2.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="ulEmpty toc compact" id="section-toc.1-1.7.2.2">
-                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-example-test-results-kts-if" class="xref">Example Test Results KTS-IFC JSON Object</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.9.2.4">
+                <p id="section-toc.1-1.9.2.4.1"><a href="#section-9.4" class="xref">9.4</a>.  <a href="#name-example-test-vectors-json-ob" class="xref">Example Test Vectors JSON Object KTS-IFC</a><a href="#section-toc.1-1.9.2.4.1" class="pilcrow">¶</a></p>
 </li>
-            </ul>
+</ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-test-vector-responses" class="xref">Test Vector Responses</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
+<ul class="compact toc ulEmpty">
+<li class="compact toc ulEmpty" id="section-toc.1-1.10.2.1">
+                <p id="section-toc.1-1.10.2.1.1"><a href="#section-10.1" class="xref">10.1</a>.  <a href="#name-example-test-results-kas-if" class="xref">Example Test Results KAS-IFC JSON Object</a><a href="#section-toc.1-1.10.2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.10.2.2">
+                <p id="section-toc.1-1.10.2.2.1"><a href="#section-10.2" class="xref">10.2</a>.  <a href="#name-example-test-results-kts-if" class="xref">Example Test Results KTS-IFC JSON Object</a><a href="#section-toc.1-1.10.2.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-bibliography" class="xref">Bibliography</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-          <li class="ulEmpty toc compact" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
+<li class="compact toc ulEmpty" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="xref">11</a>. <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
 </li>
-        </ul>
+<li class="compact toc ulEmpty" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-12" class="xref">12</a>. <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
+</li>
+<li class="compact toc ulEmpty" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#section-13" class="xref">13</a>. <a href="#name-bibliography" class="xref">Bibliography</a><a href="#section-toc.1-1.13.1" class="pilcrow">¶</a></p>
+</li>
+<li class="compact toc ulEmpty" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#section-appendix.a" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a><a href="#section-toc.1-1.14.1" class="pilcrow">¶</a></p>
+</li>
+</ul>
 </nav>
 </section>
 </div>
@@ -1375,7 +1333,7 @@ dt+dd:empty::before{
       <h2 id="name-acknowledgements">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
       </h2>
-<div id="_99319282-42cc-4212-92d0-263e70b4b266">
+<div id="_1fc34684-aaea-455b-aa8a-d3334c7aa576">
 <p id="section-1-1">There are no acknowledgements.<a href="#section-1-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1385,7 +1343,7 @@ dt+dd:empty::before{
       <h2 id="name-abstract">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-abstract" class="section-name selfRef">Abstract</a>
       </h2>
-<div id="_1b8d6d79-1088-4c7c-8a29-c5197fea7ab6">
+<div id="_1cc39fa9-f29c-4864-a3aa-ce71782ddc93">
 <p id="section-2-1">This document defines the JSON schema for testing SP800-56Br2 KAS IFC implementations with the ACVP specification.<a href="#section-2-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1395,7 +1353,7 @@ dt+dd:empty::before{
       <h2 id="name-introduction">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<div id="_6e54f6bf-c043-492c-975a-1cfdbea900c7">
+<div id="_13d2ed0c-c63e-44cd-bbb2-5ce990dbae24">
 <p id="section-3-1">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing SP800-56Br2 KAS IFC implementations using ACVP.<a href="#section-3-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1405,275 +1363,302 @@ dt+dd:empty::before{
       <h2 id="name-terms-and-definitions">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-terms-and-definitions" class="section-name selfRef">Terms and definitions</a>
       </h2>
-<div id="_d539f88f-6a14-4661-a2c8-a2cba194dc40">
-<p id="section-4-1">For the purposes of this document,
-    the following terms and definitions apply.<a href="#section-4-1" class="pilcrow">¶</a></p>
+<div id="_ef1d9c04-39a4-4235-b546-0ea22bf21755">
+<p id="section-4-1">No terms and definitions are listed in this document.<a href="#section-4-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_test_types">
-<section id="section-4.1">
-        <h3 id="name-test-types">
-<a href="#section-4.1" class="section-number selfRef">4.1. </a><a href="#name-test-types" class="section-name selfRef">Test Types</a>
-        </h3>
-<div id="_014f4f6e-7f29-4b0e-bb67-06c2320c9131">
-<p id="section-4.1-1">There are two test types for KAS testing:<a href="#section-4.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="supported">
+<section id="section-5">
+      <h2 id="name-supported-kas-ifc-ssc">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-supported-kas-ifc-ssc" class="section-name selfRef">Supported KAS-IFC-SSC</a>
+      </h2>
+<div id="_b5da2a78-3a3c-4920-95de-09aedb4fb1ee">
+<p id="section-5-1">The following key derivation functions <span class="bcp14">MAY</span> be advertised by the ACVP compliant cryptographic module:<a href="#section-5-1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.1-2.1">
-            <div id="_a8f46383-df91-41a0-8c9e-9509b4b24ca6">
-<p id="section-4.1-2.1.1">"AFT" - Algorithm Function Test. In the AFT test mode, the IUT <span class="bcp14">SHALL</span> act as a party in the Key Agreement with the ACVP server. The server <span class="bcp14">SHALL</span> generate and provide all necessary information for the IUT to perform a successful key agreement; both the server and IUT <span class="bcp14">MAY</span> act as party U/V, as well as recipient/provider to key confirmation.<a href="#section-4.1-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5-2.1">
+          <div id="_9d417193-1ebd-45cb-935a-c3991420242f">
+<p id="section-5-2.1.1">KAS-IFC-SSC / null / SP800-56Br2<a href="#section-5-2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.1-2.2">
-            <div id="_d1bd8e02-5ea1-4a75-b6ed-2fed51b3f5f1">
-<p id="section-4.1-2.2.1">"VAL" - Validation Test (KAS only). In the VAL test mode, The ACVP server <span class="bcp14">MUST</span> generate a complete (from both party U and party V's perspectives) key agreement, and expects the IUT to be able to determine if that agreement is valid. Various types of errors <strong>MSUT</strong> be introduced in varying portions of the key agreement process (changed DKM, changed key, changed hash digest, etc), that the IUT <span class="bcp14">MUST</span> be able to detect and report on.<a href="#section-4.1-2.2.1" class="pilcrow">¶</a></p>
+</ul>
+</section>
+</div>
+<div id="testtypes">
+<section id="section-6">
+      <h2 id="name-test-types-and-test-coverag">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-test-types-and-test-coverag" class="section-name selfRef">Test Types and Test Coverage</a>
+      </h2>
+<div id="_18c83c73-f661-4eba-bbd6-2cf169c4ae57">
+<p id="section-6-1">The ACVP server performs a set of tests on the KAS protocol in order to assess the correctness and robustness of the implementation. A typical ACVP validation session <span class="bcp14">SHALL</span> require multiple tests to be performed for every supported permutation of KAS capabilities. This section describes the design of the tests used to validate implementations of KAS algorithms.<a href="#section-6-1" class="pilcrow">¶</a></p>
+</div>
+<div id="_test_types">
+<section id="section-6.1">
+        <h3 id="name-test-types">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-test-types" class="section-name selfRef">Test Types</a>
+        </h3>
+<div id="_7e80c18b-70eb-4c3a-81e7-a453d1fea9a9">
+<p id="section-6.1-1">There are two test types for KAS testing:<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+</div>
+<ul class="normal">
+<li class="normal" id="section-6.1-2.1">
+            <div id="_fd0e353c-9d1a-441c-a058-6fa2966cb6d6">
+<p id="section-6.1-2.1.1">"AFT" - Algorithm Function Test. In the AFT test mode, the IUT <span class="bcp14">SHALL</span> act as a party in the Key Agreement with the ACVP server. The server <span class="bcp14">SHALL</span> generate and provide all necessary information for the IUT to perform a successful key agreement; both the server and IUT <span class="bcp14">MAY</span> act as party U/V, as well as recipient/provider to key confirmation.<a href="#section-6.1-2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-        </ul>
+<li class="normal" id="section-6.1-2.2">
+            <div id="_c6c4db76-8d7d-47ed-a0f7-1f265e967abe">
+<p id="section-6.1-2.2.1">"VAL" - Validation Test (KAS only). In the VAL test mode, The ACVP server <span class="bcp14">MUST</span> generate a complete (from both party U and party V's perspectives) key agreement, and expects the IUT to be able to determine if that agreement is valid. Various types of errors <strong>MSUT</strong> be introduced in varying portions of the key agreement process (changed DKM, changed key, changed hash digest, etc), that the IUT <span class="bcp14">MUST</span> be able to detect and report on.<a href="#section-6.1-2.2.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+</ul>
 </section>
 </div>
 <div id="_test_coverage">
-<section id="section-4.2">
+<section id="section-6.2">
         <h3 id="name-test-coverage">
-<a href="#section-4.2" class="section-number selfRef">4.2. </a><a href="#name-test-coverage" class="section-name selfRef">Test Coverage</a>
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-test-coverage" class="section-name selfRef">Test Coverage</a>
         </h3>
+<div id="_040e5413-ace3-4e2b-adfb-9a51cf5bb774">
+<p id="section-6.2-1">The tests described in this document have the intention of ensuring an implementation is conformant to <span>[<a href="#SP800-56Br2" class="xref">SP800-56Br2</a>]</span>.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+</div>
 <div id="requirements_covered_kas_ecc">
-<section id="section-4.2.1">
+<section id="section-6.2.1">
           <h4 id="name-kas-ifc-requirements-covere">
-<a href="#section-4.2.1" class="section-number selfRef">4.2.1. </a><a href="#name-kas-ifc-requirements-covere" class="section-name selfRef">KAS-IFC Requirements Covered</a>
+<a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-kas-ifc-requirements-covere" class="section-name selfRef">KAS-IFC Requirements Covered</a>
           </h4>
 <ul class="normal">
-<li class="normal" id="section-4.2.1-1.1">
-              <div id="_7df4afaf-8789-47db-ae1f-ead946152921">
-<p id="section-4.2.1-1.1.1">SP 800-56Br2 - 5.1 Cryptographic Hash Functions.  SHA1, SHA2, and SHA3 hash functions <span class="bcp14">SHALL</span> be available for the various pieces of
-KAS/KTS requiring use of a hash function.<a href="#section-4.2.1-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.1-1.1">
+              <div id="_c7559bb5-3c34-42f6-9152-3eae139ca92d">
+<p id="section-6.2.1-1.1.1">SP 800-56Br2 - 5.1 Cryptographic Hash Functions.  SHA1, SHA2, and SHA3 hash functions <span class="bcp14">SHALL</span> be available for the various pieces of
+KAS/KTS requiring use of a hash function.<a href="#section-6.2.1-1.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.2">
-              <div id="_5adef44e-5eda-4aaf-8315-a7b8ece9f087">
-<p id="section-4.2.1-1.2.1">SP 800-56Br2 - 5.2 Message Authentication Code (MAC) Algorithms.  AES-CMAC, HMAC, and KMAC algorithms <span class="bcp14">SHALL</span> be available for testing
-under KDFs and KC as the specification states.<a href="#section-4.2.1-1.2.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.1-1.2">
+              <div id="_a40d97d4-018e-475a-adec-5884de068ce8">
+<p id="section-6.2.1-1.2.1">SP 800-56Br2 - 5.2 Message Authentication Code (MAC) Algorithms.  AES-CMAC, HMAC, and KMAC algorithms <span class="bcp14">SHALL</span> be available for testing
+under KDFs and KC as the specification states.<a href="#section-6.2.1-1.2.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.3">
-              <div id="_1b0451d0-be0f-4bda-aebc-28656549fa16">
-<p id="section-4.2.1-1.3.1">SP 800-56Br2 - 5.3 Random Bit Generators.  Though random values are used, the testing of the construction of those random values
-<span class="bcp14">SHALL NOT</span> be in scope of ACVP testing.<a href="#section-4.2.1-1.3.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.1-1.3">
+              <div id="_15a7f617-a34c-4f16-a03d-7225d45c6c81">
+<p id="section-6.2.1-1.3.1">SP 800-56Br2 - 5.3 Random Bit Generators.  Though random values are used, the testing of the construction of those random values
+<span class="bcp14">SHALL NOT</span> be in scope of ACVP testing.<a href="#section-6.2.1-1.3.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.4">
-              <div id="_1a4dfa76-82c4-4eff-9c59-5820f2341990">
-<p id="section-4.2.1-1.4.1">SP 800-56Br2 - 5.4 Nonces.  Though nonces are used, the testing of the construction of those nonces <span class="bcp14">SHALL NOT</span> be in scope of ACVP
-testing.<a href="#section-4.2.1-1.4.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.1-1.4">
+              <div id="_2bfdc81b-89dc-4321-92f5-a4107afe3092">
+<p id="section-6.2.1-1.4.1">SP 800-56Br2 - 5.4 Nonces.  Though nonces are used, the testing of the construction of those nonces <span class="bcp14">SHALL NOT</span> be in scope of ACVP
+testing.<a href="#section-6.2.1-1.4.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.5">
-              <div id="_105adab1-ec0c-4407-8fae-60ec9850cc2d">
-<p id="section-4.2.1-1.5.1">SP 800-56Br2 - 5.5 Key-Derivation Methods for Key-Establishment Schemes.  The ACVP server <span class="bcp14">SHALL</span> make various KDFs available for
+<li class="normal" id="section-6.2.1-1.5">
+              <div id="_b95eb249-dc14-4553-a305-4e252ec1e2aa">
+<p id="section-6.2.1-1.5.1">SP 800-56Br2 - 5.5 Key-Derivation Methods for Key-Establishment Schemes.  The ACVP server <span class="bcp14">SHALL</span> make various KDFs available for
 testing.  The KDFs covered under ACVP server testing <span class="bcp14">SHALL</span> include the KDFs specified in SP800-56B, SP800-56C, SP800-108, and
-SP800-135 (where applicable).<a href="#section-4.2.1-1.5.1" class="pilcrow">¶</a></p>
+SP800-135 (where applicable).<a href="#section-6.2.1-1.5.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.6">
-              <div id="_63fee83d-12fe-4d99-a9b7-20fd6cbd78cd">
-<p id="section-4.2.1-1.6.1">SP 800-56Br2 - 5.6 KeyConfirmation.  The ACVP server <span class="bcp14">SHALL</span> support key confirmation for applicable KAS and KTS schemes.<a href="#section-4.2.1-1.6.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.1-1.6">
+              <div id="_51de97c9-a2c0-406d-9e64-59d44451638c">
+<p id="section-6.2.1-1.6.1">SP 800-56Br2 - 5.6 KeyConfirmation.  The ACVP server <span class="bcp14">SHALL</span> support key confirmation for applicable KAS and KTS schemes.<a href="#section-6.2.1-1.6.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.7">
-              <div id="_65ca8e4d-0f01-4976-b1c5-f3114d7a2a38">
-<p id="section-4.2.1-1.7.1">SP 800-56Br2 - 6.2 Criteria for RSA Key Pairs for Key Establishment.  The ACVP server <span class="bcp14">SHALL</span> support the three key generation methods of "basic", "prime factor", and "CRT".<a href="#section-4.2.1-1.7.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.1-1.7">
+              <div id="_42573e09-b311-4aab-805f-eb91a1774cff">
+<p id="section-6.2.1-1.7.1">SP 800-56Br2 - 6.2 Criteria for RSA Key Pairs for Key Establishment.  The ACVP server <span class="bcp14">SHALL</span> support the three key generation methods of "basic", "prime factor", and "CRT".<a href="#section-6.2.1-1.7.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.8">
-              <div id="_34a933a0-d9ad-4c16-b365-d66dd1d13a22">
-<p id="section-4.2.1-1.8.1">SP 800-56Br2 - 6.3 RSA Key-Pair Generators.  The ACVP server <span class="bcp14">SHALL</span> utilize IUT provided RSA public keys, and generate key pairs to
-accomodate testing.  The ACVP server <span class="bcp14">SHALL</span> support both fixed and random public exponents.<a href="#section-4.2.1-1.8.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.1-1.8">
+              <div id="_4cdfc973-eeba-4801-93c6-07e5595fd1b9">
+<p id="section-6.2.1-1.8.1">SP 800-56Br2 - 6.3 RSA Key-Pair Generators.  The ACVP server <span class="bcp14">SHALL</span> utilize IUT provided RSA public keys, and generate key pairs to
+accomodate testing.  The ACVP server <span class="bcp14">SHALL</span> support both fixed and random public exponents.<a href="#section-6.2.1-1.8.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.9">
-              <div id="_d5d83251-8009-4d6b-9c78-ba28c6ed5fed">
-<p id="section-4.2.1-1.9.1">SP 800-56Br2 - 7 Primitives and Operations.  All primitives (save the previously mentioned RBG) <span class="bcp14">SHALL</span> be in the scope of the ACVP
+<li class="normal" id="section-6.2.1-1.9">
+              <div id="_cfb7b697-ceca-4ed6-a630-7fc213248d0c">
+<p id="section-6.2.1-1.9.1">SP 800-56Br2 - 7 Primitives and Operations.  All primitives (save the previously mentioned RBG) <span class="bcp14">SHALL</span> be in the scope of the ACVP
 server testing.  There are several situations where errors <span class="bcp14">MAY</span> be injected into varying portions of inputs for these primitives, the
-IUT is expected to be able to detect these errors.<a href="#section-4.2.1-1.9.1" class="pilcrow">¶</a></p>
+IUT is expected to be able to detect these errors.<a href="#section-6.2.1-1.9.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.10">
-              <div id="_acf19711-a32e-4bdd-90a0-73d3c8dc6ff0">
-<p id="section-4.2.1-1.10.1">SP 800-56Br2 - 8 Key-Agreement Schemes.  The ACVP server <span class="bcp14">SHALL</span> support testing for all KAS schemes specified in the SP800-56b
-document.<a href="#section-4.2.1-1.10.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.1-1.10">
+              <div id="_72dbe421-b61c-4677-988e-38fcabbdb1ca">
+<p id="section-6.2.1-1.10.1">SP 800-56Br2 - 8 Key-Agreement Schemes.  The ACVP server <span class="bcp14">SHALL</span> support testing for all KAS schemes specified in the SP800-56b
+document.<a href="#section-6.2.1-1.10.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.11">
-              <div id="_5c9b58c2-c595-484b-b64e-f8a45432f0e6">
-<p id="section-4.2.1-1.11.1">SP 800-56Br2 - 9 Key-Transport Schemes.  The ACVP server <span class="bcp14">SHALL</span> support testing for all KTS schemes specified in the SP800-56b
-document.<a href="#section-4.2.1-1.11.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.1-1.11">
+              <div id="_20701ce7-eba3-47a4-8e42-8ec545ed4920">
+<p id="section-6.2.1-1.11.1">SP 800-56Br2 - 9 Key-Transport Schemes.  The ACVP server <span class="bcp14">SHALL</span> support testing for all KTS schemes specified in the SP800-56b
+document.<a href="#section-6.2.1-1.11.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.12">
-              <div id="_04b63114-deba-4b01-bfd0-64d72dd70fef">
-<p id="section-4.2.1-1.12.1">SP 800-56Br2 - 10 Implementation Validation.  The ACVP server <span class="bcp14">SHALL</span> support the testing of the specification described in this
-section.<a href="#section-4.2.1-1.12.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.1-1.12">
+              <div id="_69df1f44-322d-4639-ab72-12d81c404fa7">
+<p id="section-6.2.1-1.12.1">SP 800-56Br2 - 10 Implementation Validation.  The ACVP server <span class="bcp14">SHALL</span> support the testing of the specification described in this
+section.<a href="#section-6.2.1-1.12.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.13">
-              <div id="_781790c4-5c63-4417-b072-5c9010af7210">
-<p id="section-4.2.1-1.13.1">SP 800-56Cr1 - 4 One-Step Key Derivation.  One-Step Key Derivation testing <span class="bcp14">SHALL</span> be supported by the ACVP server.  FixedInfo
+<li class="normal" id="section-6.2.1-1.13">
+              <div id="_91d07314-5b9d-4748-9e3a-0e45a165bbc5">
+<p id="section-6.2.1-1.13.1">SP 800-56Cr1 - 4 One-Step Key Derivation.  One-Step Key Derivation testing <span class="bcp14">SHALL</span> be supported by the ACVP server.  FixedInfo
 construction is covered within the ACVP specification, and can be tailored to the IUTs needs.  ASN.1 format of fixedInfo
-construction (currently) is <strong>NOT</strong> supported.<a href="#section-4.2.1-1.13.1" class="pilcrow">¶</a></p>
+construction (currently) is <strong>NOT</strong> supported.<a href="#section-6.2.1-1.13.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.14">
-              <div id="_d444aaa4-2e85-44a9-ab25-56b366514b89">
-<p id="section-4.2.1-1.14.1">SP 800-56Cr1 - 5 Two-Step Key Derivation.  Two-Step Key Derivation testing <span class="bcp14">SHALL</span> be supported by the ACVP server.  FixedInfo
+<li class="normal" id="section-6.2.1-1.14">
+              <div id="_77dc0fdb-fccc-48c9-a923-8a61f0fca9a2">
+<p id="section-6.2.1-1.14.1">SP 800-56Cr1 - 5 Two-Step Key Derivation.  Two-Step Key Derivation testing <span class="bcp14">SHALL</span> be supported by the ACVP server.  FixedInfo
 construction is covered within the ACVP specification, and can be tailored to the IUTs needs.  ASN.1 format of fixedInfo
-construction (currently) is <strong>NOT</strong> supported.<a href="#section-4.2.1-1.14.1" class="pilcrow">¶</a></p>
+construction (currently) is <strong>NOT</strong> supported.<a href="#section-6.2.1-1.14.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.15">
-              <div id="_07933630-cd04-4720-80ad-5ee23594c2c5">
-<p id="section-4.2.1-1.15.1">SP 800-56Cr1 - 6 Application-Specific Key-Derivation Methods.  Several additional from SP800-135 KDFs <span class="bcp14">SHALL</span> be available for
-testing with the ACVP server.<a href="#section-4.2.1-1.15.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.1-1.15">
+              <div id="_1b9f27f6-a7eb-43a9-87e1-049a9f8789f2">
+<p id="section-6.2.1-1.15.1">SP 800-56Cr1 - 6 Application-Specific Key-Derivation Methods.  Several additional from SP800-135 KDFs <span class="bcp14">SHALL</span> be available for
+testing with the ACVP server.<a href="#section-6.2.1-1.15.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.16">
-              <div id="_e960ce6d-0c4e-4d43-9112-83e719fe9598">
-<p id="section-4.2.1-1.16.1">SP 800-108 - 4 Pseudorandom Function (PRF).  All iterations of the KDF described in SP800-108 use a separate PRF.  All
-implementations of the PRF <span class="bcp14">SHALL</span> be available for testing through the ACVP server generated tests.<a href="#section-4.2.1-1.16.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.1-1.16">
+              <div id="_47e33816-5b38-4704-af7a-1558b9a7f56a">
+<p id="section-6.2.1-1.16.1">SP 800-108 - 4 Pseudorandom Function (PRF).  All iterations of the KDF described in SP800-108 use a separate PRF.  All
+implementations of the PRF <span class="bcp14">SHALL</span> be available for testing through the ACVP server generated tests.<a href="#section-6.2.1-1.16.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.1-1.17">
-              <div id="_247f55c9-c2d1-4927-ac0d-8802b5958b2d">
-<p id="section-4.2.1-1.17.1">SP 800-108 - 5 Key Derivation Functions (KDF).  The three implementations of KDFs in SP800-108 <span class="bcp14">SHALL</span> be available for
-testing through the ACVP Server.<a href="#section-4.2.1-1.17.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.1-1.17">
+              <div id="_e4897e39-8f55-426e-aea1-73bd12733eda">
+<p id="section-6.2.1-1.17.1">SP 800-108 - 5 Key Derivation Functions (KDF).  The three implementations of KDFs in SP800-108 <span class="bcp14">SHALL</span> be available for
+testing through the ACVP Server.<a href="#section-6.2.1-1.17.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          </ul>
+</ul>
 </section>
 </div>
 <div id="requirements_not_covered_kas_ecc">
-<section id="section-4.2.2">
+<section id="section-6.2.2">
           <h4 id="name-kas-ifc-requirements-not-co">
-<a href="#section-4.2.2" class="section-number selfRef">4.2.2. </a><a href="#name-kas-ifc-requirements-not-co" class="section-name selfRef">KAS-IFC Requirements Not Covered</a>
+<a href="#section-6.2.2" class="section-number selfRef">6.2.2. </a><a href="#name-kas-ifc-requirements-not-co" class="section-name selfRef">KAS-IFC Requirements Not Covered</a>
           </h4>
 <ul class="normal">
-<li class="normal" id="section-4.2.2-1.1">
-              <div id="_e97245bc-98eb-466a-893b-315adbfaed02">
-<p id="section-4.2.2-1.1.1">SP 800-56Br2 - 5.3 Random Bit Generators.  Though random values are used, the testing of the construction of those random values
-<span class="bcp14">SHALL NOT</span> be in scope of ACVP testing.<a href="#section-4.2.2-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-1.1">
+              <div id="_b4ca2997-913c-4e78-b988-06316e109edb">
+<p id="section-6.2.2-1.1.1">SP 800-56Br2 - 5.3 Random Bit Generators.  Though random values are used, the testing of the construction of those random values
+<span class="bcp14">SHALL NOT</span> be in scope of ACVP testing.<a href="#section-6.2.2-1.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.2-1.2">
-              <div id="_d5f264cd-00c0-434a-b3a8-a5f21e227c7f">
-<p id="section-4.2.2-1.2.1">SP 800-56Br2 - 5.4 Nonces.  Though nonces are used, the testing of the construction of those nonces <span class="bcp14">SHALL NOT</span> be in scope of ACVP
-testing.<a href="#section-4.2.2-1.2.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-1.2">
+              <div id="_8ef636fe-0d16-4e71-a6b7-0c815527bae8">
+<p id="section-6.2.2-1.2.1">SP 800-56Br2 - 5.4 Nonces.  Though nonces are used, the testing of the construction of those nonces <span class="bcp14">SHALL NOT</span> be in scope of ACVP
+testing.<a href="#section-6.2.2-1.2.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.2-1.3">
-              <div id="_6bbb1c9c-dd81-4eec-b298-3ba651fbe854">
-<p id="section-4.2.2-1.3.1">SP 800-56Br2 - 5.5.2.1.2 The ASN.1 Format for FixedInfo.  The ACVP server (currently) <span class="bcp14">SHALL NOT</span> support the testing of this format of
-fixed info.<a href="#section-4.2.2-1.3.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-1.3">
+              <div id="_471133cf-307a-4aab-92c0-bce3cfd50f80">
+<p id="section-6.2.2-1.3.1">SP 800-56Br2 - 5.5.2.1.2 The ASN.1 Format for FixedInfo.  The ACVP server (currently) <span class="bcp14">SHALL NOT</span> support the testing of this format of
+fixed info.<a href="#section-6.2.2-1.3.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.2-1.4">
-              <div id="_6e07a7d6-e361-4202-aecf-4eecac3cd3a3">
-<p id="section-4.2.2-1.4.1">SP 800-56Br2 - 6.1 (RSA Key Pairs) General Requirements.  Testing for unauthorized modification of key information and other
-protections <span class="bcp14">SHALL NOT</span> be within scope of ACVP testing.<a href="#section-4.2.2-1.4.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-1.4">
+              <div id="_8d44122e-d770-4c86-97b5-c1969fc8f24f">
+<p id="section-6.2.2-1.4.1">SP 800-56Br2 - 6.1 (RSA Key Pairs) General Requirements.  Testing for unauthorized modification of key information and other
+protections <span class="bcp14">SHALL NOT</span> be within scope of ACVP testing.<a href="#section-6.2.2-1.4.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.2-1.5">
-              <div id="_bd244f62-2c97-4d8b-9e90-8e5f7b31b470">
-<p id="section-4.2.2-1.5.1">SP 800-56Br2 - 6.3 RSA Key-Pair Generators.  The ACVP server <span class="bcp14">SHALL</span> utilize IUT provided RSA public keys, and generate key pairs to
+<li class="normal" id="section-6.2.2-1.5">
+              <div id="_5d3c48f7-cd22-4249-83e9-13079eacc58f">
+<p id="section-6.2.2-1.5.1">SP 800-56Br2 - 6.3 RSA Key-Pair Generators.  The ACVP server <span class="bcp14">SHALL</span> utilize IUT provided RSA public keys, and generate key pairs to
 accomodate testing, though the key pair generation process itself's testing <span class="bcp14">SHALL NOT</span> be in scope of testing covered under
-this document.<a href="#section-4.2.2-1.5.1" class="pilcrow">¶</a></p>
+this document.<a href="#section-6.2.2-1.5.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.2-1.6">
-              <div id="_80959445-05e7-4d03-a358-1704b313f50b">
-<p id="section-4.2.2-1.6.1">SP 800-56Br2 - 6.3 RSA Key-Pair Generators.  Though key pairs are used and generated for testing, the key pair generation process
-itself's testing <span class="bcp14">SHALL NOT</span> be in scope of testing covered under this document.<a href="#section-4.2.2-1.6.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-1.6">
+              <div id="_aeb83e60-6b8f-45e3-80ab-b59bd6f09074">
+<p id="section-6.2.2-1.6.1">SP 800-56Br2 - 6.3 RSA Key-Pair Generators.  Though key pairs are used and generated for testing, the key pair generation process
+itself's testing <span class="bcp14">SHALL NOT</span> be in scope of testing covered under this document.<a href="#section-6.2.2-1.6.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.2-1.7">
-              <div id="_674aa0e3-634e-44fe-af46-823dc4706eff">
-<p id="section-4.2.2-1.7.1">SP 800-56Br2 - 6.4 Required Assurances.  Assurances of key pair validity <span class="bcp14">SHALL NOT</span> be within scope of testing under this document
-testing.<a href="#section-4.2.2-1.7.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-1.7">
+              <div id="_59fcc419-4634-4386-9f68-16a5934575f5">
+<p id="section-6.2.2-1.7.1">SP 800-56Br2 - 6.4 Required Assurances.  Assurances of key pair validity <span class="bcp14">SHALL NOT</span> be within scope of testing under this document
+testing.<a href="#section-6.2.2-1.7.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.2-1.8">
-              <div id="_0b9f4195-0806-44ee-bb0e-cd7472b45511">
-<p id="section-4.2.2-1.8.1">SP 800-56Br2 - 7 Primitives and Operations.  The RBG <span class="bcp14">SHALL</span> be used, but testing of the RBG's validity <span class="bcp14">SHALL NOT</span> be within the
-scope of testing.<a href="#section-4.2.2-1.8.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-1.8">
+              <div id="_30916a51-ebe2-4d01-9e98-fdc13c378a52">
+<p id="section-6.2.2-1.8.1">SP 800-56Br2 - 7 Primitives and Operations.  The RBG <span class="bcp14">SHALL</span> be used, but testing of the RBG's validity <span class="bcp14">SHALL NOT</span> be within the
+scope of testing.<a href="#section-6.2.2-1.8.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.2-1.9">
-              <div id="_e2eb21e6-81ad-46d6-9b11-56315c729c1c">
-<p id="section-4.2.2-1.9.1">SP 800-56Br2 - 8 Key-Agreement Schemes.  The ASN.1 format of FixedInfo <span class="bcp14">SHALL NOT</span> be in the scope of ACVP testing.<a href="#section-4.2.2-1.9.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-1.9">
+              <div id="_7a92d825-8221-43d7-b744-fea05a7e0611">
+<p id="section-6.2.2-1.9.1">SP 800-56Br2 - 8 Key-Agreement Schemes.  The ASN.1 format of FixedInfo <span class="bcp14">SHALL NOT</span> be in the scope of ACVP testing.<a href="#section-6.2.2-1.9.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.2-1.10">
-              <div id="_f7214d58-cb33-44cf-83d0-fd3e04aaf2cc">
-<p id="section-4.2.2-1.10.1">SP 800-56Br2 - 10 Rationale for Selecting a Specific Scheme.  There is no testing associated with the IUT's choice of selecting
-a specific scheme.<a href="#section-4.2.2-1.10.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-1.10">
+              <div id="_268337ca-d106-4350-92bc-87914c1fcd86">
+<p id="section-6.2.2-1.10.1">SP 800-56Br2 - 10 Rationale for Selecting a Specific Scheme.  There is no testing associated with the IUT's choice of selecting
+a specific scheme.<a href="#section-6.2.2-1.10.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.2-1.11">
-              <div id="_28c9e5fb-8dae-4868-a74a-32c9ba89357d">
-<p id="section-4.2.2-1.11.1">SP 800-56Br2 - 11 Key Recovery.  Key Recovery <span class="bcp14">SHALL NOT</span> be within the scope of ACVP testing.<a href="#section-4.2.2-1.11.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-1.11">
+              <div id="_7572f69a-9b56-463a-a965-e8f07525c7fb">
+<p id="section-6.2.2-1.11.1">SP 800-56Br2 - 11 Key Recovery.  Key Recovery <span class="bcp14">SHALL NOT</span> be within the scope of ACVP testing.<a href="#section-6.2.2-1.11.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.2-1.12">
-              <div id="_9af7f32d-5a95-4eac-a837-7e2468059523">
-<p id="section-4.2.2-1.12.1">SP 800-56Cr1 - 4 One-Step Key Derivation.  ASN.1 format of fixedInfo construction (currently) is <strong>NOT</strong> supported.<a href="#section-4.2.2-1.12.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-1.12">
+              <div id="_6f81afb5-dbed-45e7-b409-ff7309ba8f84">
+<p id="section-6.2.2-1.12.1">SP 800-56Cr1 - 4 One-Step Key Derivation.  ASN.1 format of fixedInfo construction (currently) is <strong>NOT</strong> supported.<a href="#section-6.2.2-1.12.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.2-1.13">
-              <div id="_edbdd27c-2bf1-4238-a2f9-03fedaa8b792">
-<p id="section-4.2.2-1.13.1">SP 800-56Cr1 - 5 Two-Step Key Derivation.  ASN.1 format of fixedInfo construction (currently) is <strong>NOT</strong> supported.<a href="#section-4.2.2-1.13.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-1.13">
+              <div id="_c76a1aa2-cab3-4c96-842b-a4a080d487b8">
+<p id="section-6.2.2-1.13.1">SP 800-56Cr1 - 5 Two-Step Key Derivation.  ASN.1 format of fixedInfo construction (currently) is <strong>NOT</strong> supported.<a href="#section-6.2.2-1.13.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.2-1.14">
-              <div id="_ebdb5c27-fc07-4d09-9477-0986d3479125">
-<p id="section-4.2.2-1.14.1">SP 800-56Cr1 - 7 Selecting Hash Functions and MAC Algorithms.  The process that goes into the selection of Hash functions and MAC
-algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, though the ACVP server <span class="bcp14">SHALL</span> support all indicated Hash and MAC functions.<a href="#section-4.2.2-1.14.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-1.14">
+              <div id="_9b50a5d8-1ad5-4e5b-95cf-f88f692f80c0">
+<p id="section-6.2.2-1.14.1">SP 800-56Cr1 - 7 Selecting Hash Functions and MAC Algorithms.  The process that goes into the selection of Hash functions and MAC
+algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, though the ACVP server <span class="bcp14">SHALL</span> support all indicated Hash and MAC functions.<a href="#section-6.2.2-1.14.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            <li class="normal" id="section-4.2.2-1.15">
-              <div id="_14702074-ab14-497a-ac04-38f706519df6">
-<p id="section-4.2.2-1.15.1">SP 800-56Cr1 - 7 Selecting Hash Functions and MAC Algorithms.  The process that goes into the selection of Hash functions and MAC
-algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, though the ACVP server <span class="bcp14">SHALL</span> support all indicated Hash and MAC functions.<a href="#section-4.2.2-1.15.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-6.2.2-1.15">
+              <div id="_c7b04f69-8493-408f-92f0-7b5e2cb55579">
+<p id="section-6.2.2-1.15.1">SP 800-56Cr1 - 7 Selecting Hash Functions and MAC Algorithms.  The process that goes into the selection of Hash functions and MAC
+algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, though the ACVP server <span class="bcp14">SHALL</span> support all indicated Hash and MAC functions.<a href="#section-6.2.2-1.15.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+</ul>
+</section>
+</div>
+</section>
+</div>
+</section>
 </div>
 <div id="capabilities">
-<p id="section-4.2.2-1.15.2">== Capabilities Registration<a href="#section-4.2.2-1.15.2" class="pilcrow">¶</a></p>
+<section id="section-7">
+      <h2 id="name-capabilities-registration">
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-capabilities-registration" class="section-name selfRef">Capabilities Registration</a>
+      </h2>
+<div id="_aeb59b0b-e6ae-4c7d-a90a-d9d422516c15">
+<p id="section-7-1">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of KAS IFC algorithms to the ACVP server.<a href="#section-7-1" class="pilcrow">¶</a></p>
 </div>
-</li>
-          </ul>
-<div id="_4e26cba0-1323-4dc0-85f8-a82ab168f837">
-<p id="section-4.2.2-2">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of KAS IFC algorithms to the ACVP server.<a href="#section-4.2.2-2" class="pilcrow">¶</a></p>
-</div>
-<div id="_f6c215c3-28ad-4802-99e2-4d72e219ba14">
-<p id="section-4.2.2-3">The algorithm capabilities <span class="bcp14">MUST</span> be advertised as JSON objects within the 'algorithms' value of the ACVP registration message. The 'algorithms' value is an array, where each array element is an individual JSON object defined in this section. The 'algorithms' value is part of the 'capability_exchange' element of the ACVP JSON registration message. See the ACVP specification <span>[<a href="#ACVP" class="xref">ACVP</a>]</span> for more details on the registration message.<a href="#section-4.2.2-3" class="pilcrow">¶</a></p>
-</div>
-</section>
-</div>
-</section>
+<div id="_afa83d3c-1533-41e9-abeb-98684544892e">
+<p id="section-7-2">The algorithm capabilities <span class="bcp14">MUST</span> be advertised as JSON objects within the 'algorithms' value of the ACVP registration message. The 'algorithms' value is an array, where each array element is an individual JSON object defined in this section. The 'algorithms' value is part of the 'capability_exchange' element of the ACVP JSON registration message. See the ACVP specification <span>[<a href="#ACVP" class="xref">ACVP</a>]</span> for more details on the registration message.<a href="#section-7-2" class="pilcrow">¶</a></p>
 </div>
 <div id="prerequisites">
-<section id="section-4.3">
+<section id="section-7.1">
         <h3 id="name-prerequisites">
-<a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-prerequisites" class="section-name selfRef">Prerequisites</a>
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-prerequisites" class="section-name selfRef">Prerequisites</a>
         </h3>
-<div id="_8a0f78e8-8421-4ac2-bf58-16d5bf46cf79">
-<p id="section-4.3-1">Each algorithm implementation <span class="bcp14">MAY</span> rely on other cryptographic primitives. For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<div id="_77d954ff-17bb-4219-9a5f-eba5c77621b5">
+<p id="section-7.1-1">Each algorithm implementation <span class="bcp14">MAY</span> rely on other cryptographic primitives. For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_6cc6a62c-d007-4324-ba06-2271a480e7db">
-<p id="section-4.3-2">Prerequisites, if applicable, <span class="bcp14">MUST</span> be submitted in the registration as the <code>prereqVals</code> JSON property array inside each element of the <code>algorithms</code> array. Each element in the <code>prereqVals</code> array <span class="bcp14">MUST</span> contain the following properties<a href="#section-4.3-2" class="pilcrow">¶</a></p>
+<div id="_ec5cce52-13f0-4af7-b51d-aeea6704ddf7">
+<p id="section-7.1-2">Prerequisites, if applicable, <span class="bcp14">MUST</span> be submitted in the registration as the <code>prereqVals</code> JSON property array inside each element of the <code>algorithms</code> array. Each element in the <code>prereqVals</code> array <span class="bcp14">MUST</span> contain the following properties<a href="#section-7.1-2" class="pilcrow">¶</a></p>
 </div>
-<div id="_56e43272-4e79-4c38-ab4a-4a1c5395fc78">
-<p id="section-4.3-3">A "valValue" of "same" <span class="bcp14">SHALL</span> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.<a href="#section-4.3-3" class="pilcrow">¶</a></p>
-</div>
-<div id="_cbe20df3-3a5e-4692-8a20-fcaf5ee7a03b">
-<p id="section-4.3-4">An example description of prerequisites within a single algorithm capability exchange looks like this<a href="#section-4.3-4" class="pilcrow">¶</a></p>
-</div>
-<span id="name-prerequisite-properties"></span><div id="_d241adc4-749b-4b7d-a617-6c86d87ed02b">
+<span id="name-prerequisite-properties"></span><div id="_3333611e-2ded-4b2b-95ce-7105c0d663dc">
 <table class="center" id="table-1">
           <caption>
 <a href="#table-1" class="selfRef">Table 1</a>:
@@ -1700,9 +1685,15 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
           </tbody>
         </table>
 </div>
-<div id="_c0de2087-96b7-49d1-b755-fcacaf8f4e80">
+<div id="_1edb9cb2-eab3-4885-a887-5f9d1be23084">
+<p id="section-7.1-4">A "valValue" of "same" <span class="bcp14">SHALL</span> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
+</div>
+<div id="_ca488a27-c533-4e1d-a001-3eca2bc7660a">
+<p id="section-7.1-5">An example description of prerequisites within a single algorithm capability exchange looks like this<a href="#section-7.1-5" class="pilcrow">¶</a></p>
+</div>
+<div id="_14c77dd3-1792-4013-bda1-0e48bff771e7">
 <figure id="figure-1">
-          <div id="section-4.3-6.1">
+          <div id="section-7.1-6.1">
 <pre class="sourcecode lang-json">"prereqVals":
 [
   {
@@ -1720,12 +1711,12 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
 </section>
 </div>
 <div id="prereq_algs">
-<section id="section-4.4">
+<section id="section-7.2">
         <h3 id="name-prerequisite-algorithms-for">
-<a href="#section-4.4" class="section-number selfRef">4.4. </a><a href="#name-prerequisite-algorithms-for" class="section-name selfRef">Prerequisite Algorithms for KAS IFC Validations</a>
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-prerequisite-algorithms-for" class="section-name selfRef">Prerequisite Algorithms for KAS IFC Validations</a>
         </h3>
-<div id="_fda4d873-7357-4702-aceb-3a4fe1d793cb">
-<p id="section-4.4-1">Some algorithm implementations rely on other cryptographic primitives. For example, IKEv2 uses an underlying SHA algorithm. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:<a href="#section-4.4-1" class="pilcrow">¶</a></p>
+<div id="_eb06d1b2-1b0a-479e-82e2-f875f4a4b8a2">
+<p id="section-7.2-1">Some algorithm implementations rely on other cryptographic primitives. For example, IKEv2 uses an underlying SHA algorithm. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:<a href="#section-7.2-1" class="pilcrow">¶</a></p>
 </div>
 <span id="name-prerequisite-algorithms-jso"></span><div id="rereqs_table">
 <table class="center" id="table-2">
@@ -1770,15 +1761,12 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
 </section>
 </div>
 <div id="cap_ex">
-<section id="section-4.5">
+<section id="section-7.3">
         <h3 id="name-kas-ifc-algorithm-capabilit">
-<a href="#section-4.5" class="section-number selfRef">4.5. </a><a href="#name-kas-ifc-algorithm-capabilit" class="section-name selfRef">KAS IFC Algorithm Capabilities JSON Values</a>
+<a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-kas-ifc-algorithm-capabilit" class="section-name selfRef">KAS IFC Algorithm Capabilities JSON Values</a>
         </h3>
-<div id="_63ae4771-125e-42e0-8ca4-11d1818044f1">
-<p id="section-4.5-1">Each algorithm capability advertised is a self-contained JSON object using the following values.<a href="#section-4.5-1" class="pilcrow">¶</a></p>
-</div>
-<div id="_d32544d4-24f3-4a8f-bc24-825c3f8de9a5">
-<p id="section-4.5-2">Note: Some optional values are <span class="bcp14">REQUIRED</span> depending on the algorithm. Failure to provide these values will result in the ACVP server returning an error to the ACVP client during registration.<a href="#section-4.5-2" class="pilcrow">¶</a></p>
+<div id="_409901b1-0b23-4699-9505-bea0e3f946dc">
+<p id="section-7.3-1">Each algorithm capability advertised is a self-contained JSON object using the following values.<a href="#section-7.3-1" class="pilcrow">¶</a></p>
 </div>
 <span id="name-kas-ecc-capabilities-json-v"></span><div id="caps_table">
 <table class="center" id="table-3">
@@ -1814,7 +1802,7 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
               <td class="text-left" rowspan="1" colspan="1">prereqVals</td>
               <td class="text-left" rowspan="1" colspan="1">Prerequisite algorithm validations</td>
               <td class="text-left" rowspan="1" colspan="1">array of prereqAlgVal objects</td>
-              <td class="text-left" rowspan="1" colspan="1">See <a href="#prereq_algs" class="xref">Section 4.4</a>
+              <td class="text-left" rowspan="1" colspan="1">See <a href="#prereq_algs" class="xref">Section 7.2</a>
 </td>
               <td class="text-left" rowspan="1" colspan="1">No</td>
             </tr>
@@ -1822,7 +1810,7 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
               <td class="text-left" rowspan="1" colspan="1">function</td>
               <td class="text-left" rowspan="1" colspan="1">Type of function supported</td>
               <td class="text-left" rowspan="1" colspan="1">array of string</td>
-              <td class="text-left" rowspan="1" colspan="1">See <a href="#supported_functions" class="xref">Section 4.6</a>
+              <td class="text-left" rowspan="1" colspan="1">See <a href="#supported_functions" class="xref">Section 7.4</a>
 </td>
               <td class="text-left" rowspan="1" colspan="1">Yes</td>
             </tr>
@@ -1837,7 +1825,7 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
               <td class="text-left" rowspan="1" colspan="1">keyGenerationMethods</td>
               <td class="text-left" rowspan="1" colspan="1">The supported key generation methods.</td>
               <td class="text-left" rowspan="1" colspan="1">array of string</td>
-              <td class="text-left" rowspan="1" colspan="1">See <a href="#key_generation_methods" class="xref">Section 4.7</a>
+              <td class="text-left" rowspan="1" colspan="1">See <a href="#key_generation_methods" class="xref">Section 7.5</a>
 </td>
               <td class="text-left" rowspan="1" colspan="1">No</td>
             </tr>
@@ -1845,7 +1833,7 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
               <td class="text-left" rowspan="1" colspan="1">modulo</td>
               <td class="text-left" rowspan="1" colspan="1">The supported common modulo</td>
               <td class="text-left" rowspan="1" colspan="1">array of integer</td>
-              <td class="text-left" rowspan="1" colspan="1">See <a href="#modulo" class="xref">Section 4.8</a>
+              <td class="text-left" rowspan="1" colspan="1">See <a href="#modulo" class="xref">Section 7.6</a>
 </td>
               <td class="text-left" rowspan="1" colspan="1">No</td>
             </tr>
@@ -1860,126 +1848,182 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
               <td class="text-left" rowspan="1" colspan="1">scheme</td>
               <td class="text-left" rowspan="1" colspan="1">Array of supported key agreement schemes each having their own capabilities</td>
               <td class="text-left" rowspan="1" colspan="1">object</td>
-              <td class="text-left" rowspan="1" colspan="1">See <a href="#supported_schemes" class="xref">Section 4.9.1</a>
+              <td class="text-left" rowspan="1" colspan="1">See <a href="#supported_schemes" class="xref">Section 7.7.1</a>
 </td>
               <td class="text-left" rowspan="1" colspan="1">No</td>
             </tr>
           </tbody>
         </table>
 </div>
+<div id="_19a5c879-9420-4650-a9df-0931b36ad9c1">
+<p id="section-7.3-3">Note: Some optional values are <span class="bcp14">REQUIRED</span> depending on the algorithm. Failure to provide these values will result in the ACVP server returning an error to the ACVP client during registration.<a href="#section-7.3-3" class="pilcrow">¶</a></p>
+</div>
 </section>
 </div>
 <div id="supported_functions">
-<section id="section-4.6">
+<section id="section-7.4">
         <h3 id="name-supported-kas-ifc-functions">
-<a href="#section-4.6" class="section-number selfRef">4.6. </a><a href="#name-supported-kas-ifc-functions" class="section-name selfRef">Supported KAS IFC Functions</a>
+<a href="#section-7.4" class="section-number selfRef">7.4. </a><a href="#name-supported-kas-ifc-functions" class="section-name selfRef">Supported KAS IFC Functions</a>
         </h3>
-<div id="_1d84d10e-19c3-4e37-b4cc-5051cd3e2e77">
-<p id="section-4.6-1">The following function types <span class="bcp14">MAY</span> be advertised by the ACVP compliant crypto module:<a href="#section-4.6-1" class="pilcrow">¶</a></p>
+<div id="_4f49a56e-8e8d-4734-817a-17ce5e9d9af6">
+<p id="section-7.4-1">The following function types <span class="bcp14">MAY</span> be advertised by the ACVP compliant crypto module:<a href="#section-7.4-1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.6-2.1">
-            <div id="_72f1d284-e55f-4a15-9ba7-869bcb9764ff">
-<p id="section-4.6-2.1.1">keyPairGen - IUT can perform keypair generation.<a href="#section-4.6-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.4-2.1">
+            <div id="_1896bd65-bbf1-4711-abc0-750e9538f43a">
+<p id="section-7.4-2.1.1">keyPairGen - IUT can perform keypair generation.<a href="#section-7.4-2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.6-2.2">
-            <div id="_968abb4c-b006-47f5-afb9-b580c3645ac4">
-<p id="section-4.6-2.2.1">partialVal - IUT can perform partial public key validation ([SP800-56Br2] section 6.4.2.2).<a href="#section-4.6-2.2.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.4-2.2">
+            <div id="_b95e6ab9-6c5b-4647-9799-b026dc0cbe23">
+<p id="section-7.4-2.2.1">partialVal - IUT can perform partial public key validation ([SP800-56Br2] section 6.4.2.2).<a href="#section-7.4-2.2.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-        </ul>
+</ul>
 </section>
 </div>
 <div id="key_generation_methods">
-<section id="section-4.7">
+<section id="section-7.5">
         <h3 id="name-supported-key-generation-me">
-<a href="#section-4.7" class="section-number selfRef">4.7. </a><a href="#name-supported-key-generation-me" class="section-name selfRef">Supported Key Generation Methods</a>
+<a href="#section-7.5" class="section-number selfRef">7.5. </a><a href="#name-supported-key-generation-me" class="section-name selfRef">Supported Key Generation Methods</a>
         </h3>
-<div id="_4ca52862-cad0-4cd0-ae69-1b407402b65f">
-<p id="section-4.7-1">At least one key generation method is <span class="bcp14">REQUIRED</span> within the array.  The following types <span class="bcp14">MAY</span> be advertised by the ACVP compliant crypto module:<a href="#section-4.7-1" class="pilcrow">¶</a></p>
+<div id="_7f93583c-6893-48a5-82ce-7c708194a364">
+<p id="section-7.5-1">At least one key generation method is <span class="bcp14">REQUIRED</span> within the array.  The following types <span class="bcp14">MAY</span> be advertised by the ACVP compliant crypto module:<a href="#section-7.5-1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.7-2.1">
-            <div id="_1aeac8bb-f156-4696-8852-6a8e6a05e7bc">
-<p id="section-4.7-2.1.1">rsakpg1-basic - An RSA key pair with a private key in the basic format, and with a fixed public exponent.<a href="#section-4.7-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.5-2.1">
+            <div id="_a9df8c12-b97a-4e4c-8f53-e4e2ec08548c">
+<p id="section-7.5-2.1.1">rsakpg1-basic - An RSA key pair with a private key in the basic format, and with a fixed public exponent.<a href="#section-7.5-2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.7-2.2">
-            <div id="_00c67f45-9b13-4f26-8147-30457c6174a8">
-<p id="section-4.7-2.2.1">rsakpg1-prime-factor - An RSA key pair with a private key in the prime factor format, and with a fixed public exponent.<a href="#section-4.7-2.2.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.5-2.2">
+            <div id="_3d56c9c6-c352-42ed-817e-596d74ad2b83">
+<p id="section-7.5-2.2.1">rsakpg1-prime-factor - An RSA key pair with a private key in the prime factor format, and with a fixed public exponent.<a href="#section-7.5-2.2.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.7-2.3">
-            <div id="_72dffdd1-f0b9-43d9-bbb0-d9319ac75155">
-<p id="section-4.7-2.3.1">rsakpg1-crt - An RSA key pair with a private key in the Chinese Remainder Theorem format, and with a fixed public exponent.<a href="#section-4.7-2.3.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.5-2.3">
+            <div id="_37c576c2-91e4-463b-aa36-affc10588ab0">
+<p id="section-7.5-2.3.1">rsakpg1-crt - An RSA key pair with a private key in the Chinese Remainder Theorem format, and with a fixed public exponent.<a href="#section-7.5-2.3.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.7-2.4">
-            <div id="_44d3c4b8-2a75-4a03-a58c-4287f8f56eb3">
-<p id="section-4.7-2.4.1">rsakpg2-basic - An RSA key pair with a private key in the basic format, with a random public exponent.<a href="#section-4.7-2.4.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.5-2.4">
+            <div id="_ff7f08f2-5d7a-44c6-aa2d-cc8b434eec62">
+<p id="section-7.5-2.4.1">rsakpg2-basic - An RSA key pair with a private key in the basic format, with a random public exponent.<a href="#section-7.5-2.4.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.7-2.5">
-            <div id="_010ea48f-c808-40f1-b4f2-6d62b72b2ca9">
-<p id="section-4.7-2.5.1">rsakpg2-prime-factor - An RSA key pair with a private key in the prime factor format, with a random public exponent.<a href="#section-4.7-2.5.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.5-2.5">
+            <div id="_74c72259-ec91-408b-a72d-969f714d844d">
+<p id="section-7.5-2.5.1">rsakpg2-prime-factor - An RSA key pair with a private key in the prime factor format, with a random public exponent.<a href="#section-7.5-2.5.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.7-2.6">
-            <div id="_28781e04-f3eb-4d11-80e2-816732d92e83">
-<p id="section-4.7-2.6.1">rsakpg2-crt - An RSA key pair with a private key in the Chinese Remainder Theorem format, with a random public exponent.<a href="#section-4.7-2.6.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.5-2.6">
+            <div id="_c96d1356-45ad-4588-bd92-045fc048cf52">
+<p id="section-7.5-2.6.1">rsakpg2-crt - An RSA key pair with a private key in the Chinese Remainder Theorem format, with a random public exponent.<a href="#section-7.5-2.6.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-        </ul>
+</ul>
 </section>
 </div>
 <div id="modulo">
-<section id="section-4.8">
+<section id="section-7.6">
         <h3 id="name-supported-common-modulo">
-<a href="#section-4.8" class="section-number selfRef">4.8. </a><a href="#name-supported-common-modulo" class="section-name selfRef">Supported Common Modulo</a>
+<a href="#section-7.6" class="section-number selfRef">7.6. </a><a href="#name-supported-common-modulo" class="section-name selfRef">Supported Common Modulo</a>
         </h3>
-<div id="_f03b2961-ea43-46e8-9ca9-27c2f352f429">
-<p id="section-4.8-1">At least one supported common modulo is <span class="bcp14">REQUIRED</span> within the array.  The following common modulo <span class="bcp14">MAY</span> be advertised by the ACVP compliant crypto module:<a href="#section-4.8-1" class="pilcrow">¶</a></p>
+<div id="_70bb12a0-f1e4-4859-b5db-d6e26fe6071d">
+<p id="section-7.6-1">At least one supported common modulo is <span class="bcp14">REQUIRED</span> within the array.  The following common modulo <span class="bcp14">MAY</span> be advertised by the ACVP compliant crypto module:<a href="#section-7.6-1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.8-2.1">
-            <div id="_f03afb16-656e-4bfc-9f99-7bdfa03e0d81">
-<p id="section-4.8-2.1.1">2048 - estimated security strength 112<a href="#section-4.8-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.1">
+            <div id="_1559dd90-14c8-49d9-9411-dad7f31ef83b">
+<p id="section-7.6-2.1.1">2048 - estimated security strength 112<a href="#section-7.6-2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.8-2.2">
-            <div id="_4b825cb0-674e-46b6-8767-858b949e3706">
-<p id="section-4.8-2.2.1">3072 - estimated security strength 128<a href="#section-4.8-2.2.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.2">
+            <div id="_dce2cfbf-d381-4775-a866-096fd69673ee">
+<p id="section-7.6-2.2.1">3072 - estimated security strength 128<a href="#section-7.6-2.2.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.8-2.3">
-            <div id="_12f253aa-e370-4b7f-9380-61951d7fb14a">
-<p id="section-4.8-2.3.1">4096 - estimated security strength 152<a href="#section-4.8-2.3.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.3">
+            <div id="_fb99dd41-ace3-4906-be1f-690f2c7e01c5">
+<p id="section-7.6-2.3.1">4096 - estimated security strength 152<a href="#section-7.6-2.3.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.8-2.4">
-            <div id="_70ee8048-c998-4ae7-9a14-4a5f195b2267">
-<p id="section-4.8-2.4.1">6144 - estimated security strength 176<a href="#section-4.8-2.4.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.4">
+            <div id="_d1c3b5a9-9849-4a55-aaa7-755ab68536cb">
+<p id="section-7.6-2.4.1">6144 - estimated security strength 176<a href="#section-7.6-2.4.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-4.8-2.5">
-            <div id="_40ea20f6-3c41-4ce0-b9e1-3cd6cd37f12b">
-<p id="section-4.8-2.5.1">8192 - estimated security strength 200<a href="#section-4.8-2.5.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.6-2.5">
+            <div id="_dd6aa6f6-34f8-43c2-ad1b-7ab95b5a5306">
+<p id="section-7.6-2.5.1">8192 - estimated security strength 200<a href="#section-7.6-2.5.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-        </ul>
+</ul>
 </section>
 </div>
 <div id="schemes">
-<section id="section-4.9">
+<section id="section-7.7">
         <h3 id="name-kas-ifc-schemes">
-<a href="#section-4.9" class="section-number selfRef">4.9. </a><a href="#name-kas-ifc-schemes" class="section-name selfRef">KAS IFC Schemes</a>
+<a href="#section-7.7" class="section-number selfRef">7.7. </a><a href="#name-kas-ifc-schemes" class="section-name selfRef">KAS IFC Schemes</a>
         </h3>
+<div id="_3ead77d9-1b91-403d-9fd6-0a589476113d">
+<p id="section-7.7-1">All other scheme capabilities are advertised as a self-contained JSON object using the following values.  Note that <strong>AT LEAST</strong> one valid scheme must be registered.<a href="#section-7.7-1" class="pilcrow">¶</a></p>
+</div>
 <div id="supported_schemes">
-<section id="section-4.9.1">
+<section id="section-7.7.1">
           <h4 id="name-kas-ifc-scheme-capabilities">
-<a href="#section-4.9.1" class="section-number selfRef">4.9.1. </a><a href="#name-kas-ifc-scheme-capabilities" class="section-name selfRef">KAS IFC Scheme Capabilities JSON Values</a>
+<a href="#section-7.7.1" class="section-number selfRef">7.7.1. </a><a href="#name-kas-ifc-scheme-capabilities" class="section-name selfRef">KAS IFC Scheme Capabilities JSON Values</a>
           </h4>
+<div id="_58fc9ed2-2a04-46a4-abfb-a326ab3ffaa2">
+<p id="section-7.7.1-1">KAS Schemes<a href="#section-7.7.1-1" class="pilcrow">¶</a></p>
+</div>
+<ul class="normal">
+<li class="normal" id="section-7.7.1-2.1">
+              <div id="_e846401a-16c5-4a91-af8e-fe41900e0b72">
+<p id="section-7.7.1-2.1.1">KAS1-basic - requires kdfMethods<a href="#section-7.7.1-2.1.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-7.7.1-2.2">
+              <div id="_b4b98e64-9730-4a36-9e5f-02b243d60786">
+<p id="section-7.7.1-2.2.1">KAS1-Party_V-confirmation - requires kdfMethods, macMethods<a href="#section-7.7.1-2.2.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-7.7.1-2.3">
+              <div id="_625e03fb-be39-4873-a8d1-059635123891">
+<p id="section-7.7.1-2.3.1">KAS2-basic - requires kdfMethods<a href="#section-7.7.1-2.3.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-7.7.1-2.4">
+              <div id="_8ac16956-7a5a-472c-9cd9-2b55ada7a6cb">
+<p id="section-7.7.1-2.4.1">KAS2-bilateral-confirmation - requires kdfMethods, macMethods<a href="#section-7.7.1-2.4.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-7.7.1-2.5">
+              <div id="_43e5e4e3-0f4a-461c-8e96-fd8614984172">
+<p id="section-7.7.1-2.5.1">KAS2-Party_U-confirmation - requires kdfMethods, macMethods<a href="#section-7.7.1-2.5.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-7.7.1-2.6">
+              <div id="_b6488aca-9919-4035-8ee5-304c0aecd8ae">
+<p id="section-7.7.1-2.6.1">KAS2-Party_V-confirmation - requires kdfMethods, macMethods<a href="#section-7.7.1-2.6.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+</ul>
+<div id="_305f4771-78f8-4387-a987-6a6f22504f48">
+<p id="section-7.7.1-3">KTS Schemes<a href="#section-7.7.1-3" class="pilcrow">¶</a></p>
+</div>
+<ul class="normal">
+<li class="normal" id="section-7.7.1-4.1">
+              <div id="_c126d1fd-0f45-4bc2-a4a4-9e9b52d35985">
+<p id="section-7.7.1-4.1.1">KTS-OAEP-basic - requires ktsMethod<a href="#section-7.7.1-4.1.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-7.7.1-4.2">
+              <div id="_630b4309-207e-4394-a43c-5de4e3ddaca3">
+<p id="section-7.7.1-4.2.1">KTS-OAEP-Party_V-confirmation - requires ktsMethod, macMethods<a href="#section-7.7.1-4.2.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+</ul>
 <span id="name-kas-ifc-capabilities-json-v"></span><div id="scheme_caps_table">
 <table class="center" id="table-4">
             <caption>
@@ -2008,7 +2052,7 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
                 <td class="text-left" rowspan="1" colspan="1">The KDF methods to use when testing KAS schemes.</td>
                 <td class="text-left" rowspan="1" colspan="1">object</td>
                 <td class="text-left" rowspan="1" colspan="1">
-                  <a href="#kdfmethods" class="xref">Section 4.9.1.1</a>
+                  <a href="#kdfmethods" class="xref">Section 7.7.1.1</a>
                 </td>
                 <td class="text-left" rowspan="1" colspan="1">Not optional for KAS schemes.</td>
               </tr>
@@ -2017,7 +2061,7 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
                 <td class="text-left" rowspan="1" colspan="1">The KTS methods to use when testing KTS schemes.</td>
                 <td class="text-left" rowspan="1" colspan="1">object</td>
                 <td class="text-left" rowspan="1" colspan="1">
-                  <a href="#ktsmethods" class="xref">Section 4.9.1.2</a>
+                  <a href="#ktsmethods" class="xref">Section 7.7.1.2</a>
                 </td>
                 <td class="text-left" rowspan="1" colspan="1">Not optional for KTS schemes.</td>
               </tr>
@@ -2026,7 +2070,7 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
                 <td class="text-left" rowspan="1" colspan="1">The MAC methods to use when testing KAS or KTS schemes with key confirmation.</td>
                 <td class="text-left" rowspan="1" colspan="1">object</td>
                 <td class="text-left" rowspan="1" colspan="1">
-                  <a href="#macmethods" class="xref">Section 4.9.1.4</a>
+                  <a href="#macmethods" class="xref">Section 7.7.1.4</a>
                 </td>
                 <td class="text-left" rowspan="1" colspan="1">Not optional for KAS/KTS schemes making use of key confirmation.</td>
               </tr>
@@ -2041,11 +2085,14 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
           </table>
 </div>
 <div id="kdfmethods">
-<section id="section-4.9.1.1">
+<section id="section-7.7.1.1">
             <h5 id="name-supported-kdf-methods">
-<a href="#section-4.9.1.1" class="section-number selfRef">4.9.1.1. </a><a href="#name-supported-kdf-methods" class="section-name selfRef">Supported KDF Methods</a>
+<a href="#section-7.7.1.1" class="section-number selfRef">7.7.1.1. </a><a href="#name-supported-kdf-methods" class="section-name selfRef">Supported KDF Methods</a>
             </h5>
-<span id="name-kdf-options"></span><div id="_4bedaff0-b3d7-49d5-ba73-ce586490fb6c">
+<div id="_cffd0c3f-85c0-44ac-bde4-1d1d08c72845">
+<p id="section-7.7.1.1-1">Note that <strong>AT LEAST</strong> one KDF Method is required for KAS schemes.  The following <span class="bcp14">MAY</span> be advertised by the ACVP compliant crypto module:<a href="#section-7.7.1.1-1" class="pilcrow">¶</a></p>
+</div>
+<span id="name-kdf-options"></span><div id="_0bf2a04e-7e8b-4188-a93b-d81231159345">
 <table class="center" id="table-5">
               <caption>
 <a href="#table-5" class="selfRef">Table 5</a>:
@@ -2066,7 +2113,7 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
                   <td class="text-left" rowspan="1" colspan="1">Indicates the IUT will be testing key derivation using the SP800-56Cr1 OneStepKdf.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
                   <td class="text-left" rowspan="1" colspan="1">
-                    <a href="#onestepkdf" class="xref">Section 4.9.1.1.1</a>
+                    <a href="#onestepkdf" class="xref">Section 7.7.1.1.1</a>
                   </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2075,7 +2122,7 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
                   <td class="text-left" rowspan="1" colspan="1">Indicates the IUT will be testing key derivation using the SP800-56Cr1 TwoStepKdf.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
                   <td class="text-left" rowspan="1" colspan="1">
-                    <a href="#twostepkdf" class="xref">Section 4.9.1.1.2</a>
+                    <a href="#twostepkdf" class="xref">Section 7.7.1.1.2</a>
                   </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2083,11 +2130,11 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
             </table>
 </div>
 <div id="onestepkdf">
-<section id="section-4.9.1.1.1">
+<section id="section-7.7.1.1.1">
               <h6 id="name-one-step-kdf-capabilities">
-<a href="#section-4.9.1.1.1" class="section-number selfRef">4.9.1.1.1. </a><a href="#name-one-step-kdf-capabilities" class="section-name selfRef">One Step KDF Capabilities</a>
+<a href="#section-7.7.1.1.1" class="section-number selfRef">7.7.1.1.1. </a><a href="#name-one-step-kdf-capabilities" class="section-name selfRef">One Step KDF Capabilities</a>
               </h6>
-<span id="name-one-step-kdf-options"></span><div id="_c0d89f75-d858-470c-adb9-e1cb54a46c8c">
+<span id="name-one-step-kdf-options"></span><div id="_5d2c2902-6b84-49e9-9fb3-6a10a701f2b4">
 <table class="center" id="table-6">
                 <caption>
 <a href="#table-6" class="selfRef">Table 6</a>:
@@ -2116,7 +2163,7 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
                     <td class="text-left" rowspan="1" colspan="1">fixedInfoPattern</td>
                     <td class="text-left" rowspan="1" colspan="1">The pattern used for fixedInfo construction.</td>
                     <td class="text-left" rowspan="1" colspan="1">string</td>
-                    <td class="text-left" rowspan="1" colspan="1">See <a href="#fixedinfopatcon" class="xref">Section 4.9.1.3</a>
+                    <td class="text-left" rowspan="1" colspan="1">See <a href="#fixedinfopatcon" class="xref">Section 7.7.1.3</a>
 </td>
                     <td class="text-left" rowspan="1" colspan="1">No</td>
                   </tr>
@@ -2166,11 +2213,11 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
 </section>
 </div>
 <div id="twostepkdf">
-<section id="section-4.9.1.1.2">
+<section id="section-7.7.1.1.2">
               <h6 id="name-two-step-kdf-capabilities">
-<a href="#section-4.9.1.1.2" class="section-number selfRef">4.9.1.1.2. </a><a href="#name-two-step-kdf-capabilities" class="section-name selfRef">Two Step KDF Capabilities</a>
+<a href="#section-7.7.1.1.2" class="section-number selfRef">7.7.1.1.2. </a><a href="#name-two-step-kdf-capabilities" class="section-name selfRef">Two Step KDF Capabilities</a>
               </h6>
-<span id="name-two-step-kdf-options"></span><div id="_95107f19-7443-4c95-b63f-b2a4bdb22447">
+<span id="name-two-step-kdf-options"></span><div id="_8624db9c-b683-4c25-9dca-94383ff2c5d9">
 <table class="center" id="table-8">
                 <caption>
 <a href="#table-8" class="selfRef">Table 8</a>:
@@ -2198,8 +2245,8 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
                 </tbody>
               </table>
 </div>
-<div id="_0c80a827-02ac-4272-bffc-7bd961d24a45">
-<p id="section-4.9.1.1.2-2">Note this capabilities object is very similar to the capability object from SP800-108.<a href="#section-4.9.1.1.2-2" class="pilcrow">¶</a></p>
+<div id="_0ab3ff0f-11e3-4f6c-a65d-10566d93a1b1">
+<p id="section-7.7.1.1.2-2">Note this capabilities object is very similar to the capability object from SP800-108.<a href="#section-7.7.1.1.2-2" class="pilcrow">¶</a></p>
 </div>
 <span id="name-twostepcapabilities-options"></span><div id="twostepcapcap">
 <table class="center" id="table-9">
@@ -2228,7 +2275,7 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
                     <td class="text-left" rowspan="1" colspan="1">fixedInfoPattern</td>
                     <td class="text-left" rowspan="1" colspan="1">The pattern used for fixedInfo construction.</td>
                     <td class="text-left" rowspan="1" colspan="1">string</td>
-                    <td class="text-left" rowspan="1" colspan="1">See <a href="#fixedinfopatcon" class="xref">Section 4.9.1.3</a>
+                    <td class="text-left" rowspan="1" colspan="1">See <a href="#fixedinfopatcon" class="xref">Section 7.7.1.3</a>
 </td>
                     <td class="text-left" rowspan="1" colspan="1">No</td>
                   </tr>
@@ -2296,14 +2343,14 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
 </section>
 </div>
 <div id="ktsmethods">
-<section id="section-4.9.1.2">
+<section id="section-7.7.1.2">
             <h5 id="name-supported-kts-method">
-<a href="#section-4.9.1.2" class="section-number selfRef">4.9.1.2. </a><a href="#name-supported-kts-method" class="section-name selfRef">Supported KTS Method</a>
+<a href="#section-7.7.1.2" class="section-number selfRef">7.7.1.2. </a><a href="#name-supported-kts-method" class="section-name selfRef">Supported KTS Method</a>
             </h5>
-<div id="_b1a2544d-a599-4aba-bc26-577b76d4cb85">
-<p id="section-4.9.1.2-1">Note that this method is <span class="bcp14">REQUIRED</span> when testing KTS schemes.<a href="#section-4.9.1.2-1" class="pilcrow">¶</a></p>
+<div id="_a428dca3-662d-4af8-914c-4e80b6315bbc">
+<p id="section-7.7.1.2-1">Note that this method is <span class="bcp14">REQUIRED</span> when testing KTS schemes.<a href="#section-7.7.1.2-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-kts-method-options"></span><div id="_a2874ee7-1b84-42cb-bfc0-83bcca589410">
+<span id="name-kts-method-options"></span><div id="_c03aea83-0b5d-4c24-9faa-79a7d9e0780e">
 <table class="center" id="table-10">
               <caption>
 <a href="#table-10" class="selfRef">Table 10</a>:
@@ -2338,7 +2385,7 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
                   <td class="text-left" rowspan="1" colspan="1">The patten used to construct the associated data.</td>
                   <td class="text-left" rowspan="1" colspan="1">string</td>
                   <td class="text-left" rowspan="1" colspan="1">
-                    <a href="#fixedinfopatcon" class="xref">Section 4.9.1.3</a>
+                    <a href="#fixedinfopatcon" class="xref">Section 7.7.1.3</a>
                   </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2355,147 +2402,150 @@ algorithms <span class="bcp14">SHALL NOT</span> be in scope of ACVP testing, tho
 </section>
 </div>
 <div id="fixedinfopatcon">
-<section id="section-4.9.1.3">
+<section id="section-7.7.1.3">
             <h5 id="name-fixedinfopatternconstructio">
-<a href="#section-4.9.1.3" class="section-number selfRef">4.9.1.3. </a><a href="#name-fixedinfopatternconstructio" class="section-name selfRef">FixedInfoPatternConstruction</a>
+<a href="#section-7.7.1.3" class="section-number selfRef">7.7.1.3. </a><a href="#name-fixedinfopatternconstructio" class="section-name selfRef">FixedInfoPatternConstruction</a>
             </h5>
-<div id="_99550d45-914c-4c15-8500-1d337c33146d">
-<p id="section-4.9.1.3-1">IUTs <span class="bcp14">MUST</span> be capable of specifying how the FixedInfo is constructed for the KAS/KTS negotiation. Note that for the purposes of testing against the ACVP system, both uPartyInfo and vPartyInfo are <span class="bcp14">REQUIRED</span> to be registered within the fixed info pattern.<a href="#section-4.9.1.3-1" class="pilcrow">¶</a></p>
+<div id="_dbd4ab79-20b9-419c-8580-2e7a2bd88d6c">
+<p id="section-7.7.1.3-1">IUTs <span class="bcp14">MUST</span> be capable of specifying how the FixedInfo is constructed for the KAS/KTS negotiation. Note that for the purposes of testing against the ACVP system, both uPartyInfo and vPartyInfo are <span class="bcp14">REQUIRED</span> to be registered within the fixed info pattern.<a href="#section-7.7.1.3-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_b4d949a5-90e0-49c2-9f21-f0846916925f">
-<p id="section-4.9.1.3-2">Pattern candidates:<a href="#section-4.9.1.3-2" class="pilcrow">¶</a></p>
-</div>
-<div id="_f3d45289-811d-4aae-a507-df5914a5d368">
-<p id="section-4.9.1.3-3">Example (Note that party U is the server in this case "434156536964", party V is the IUT "a1b2c3d4e5"):<a href="#section-4.9.1.3-3" class="pilcrow">¶</a></p>
-</div>
-<div id="_2bf1fe9c-ccb7-4566-ba6e-f1cfd7751473">
-<p id="section-4.9.1.3-4">Evaluated as:<a href="#section-4.9.1.3-4" class="pilcrow">¶</a></p>
+<div id="_94106c48-9a19-45ff-910d-51a7d6cc3b4a">
+<p id="section-7.7.1.3-2">Pattern candidates:<a href="#section-7.7.1.3-2" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.9.1.3-5.1">
-                <div id="_a274e435-7f1a-4b81-8a74-bc44daf739bf">
-<p id="section-4.9.1.3-5.1.1">literal[0123456789ABCDEF]<a href="#section-4.9.1.3-5.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.7.1.3-3.1">
+                <div id="_96d37c0f-e56e-4471-ab4a-a7ee09cb84a9">
+<p id="section-7.7.1.3-3.1.1">literal[0123456789ABCDEF]<a href="#section-7.7.1.3-3.1.1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.9.1.3-5.1.2.1">
-                    <div id="_6e45edd4-e44e-4915-af4e-857458f2b4bd">
-<p id="section-4.9.1.3-5.1.2.1.1">uses the specified hex within "[]". literal[0123456789ABCDEF]
-substitutes "0123456789ABCDEF" in place of the field<a href="#section-4.9.1.3-5.1.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.7.1.3-3.1.2.1">
+                    <div id="_e63faa5a-83b1-4d8e-bae9-6abb5dbbcaff">
+<p id="section-7.7.1.3-3.1.2.1.1">uses the specified hex within "[]". literal[0123456789ABCDEF]
+substitutes "0123456789ABCDEF" in place of the field<a href="#section-7.7.1.3-3.1.2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-                </ul>
+</ul>
 </li>
-              <li class="normal" id="section-4.9.1.3-5.2">
-                <div id="_0b8060dc-bc06-4f7e-a353-652b88ed4eb1">
-<p id="section-4.9.1.3-5.2.1">uPartyInfo<a href="#section-4.9.1.3-5.2.1" class="pilcrow">¶</a></p>
-</div>
-<ul class="normal">
-<li class="normal" id="section-4.9.1.3-5.2.2.1">
-                    <div id="_f1943fa0-b1b0-451e-9fdd-57d3905a9980">
-<p id="section-4.9.1.3-5.2.2.1.1">uPartyId { || ephemeralKey } { || ephemeralNonce } { || dkmNonce } { || c }<a href="#section-4.9.1.3-5.2.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.7.1.3-3.2">
+                <div id="_ead51b0e-4587-4013-bb8e-77d028fc4df0">
+<p id="section-7.7.1.3-3.2.1">uPartyInfo<a href="#section-7.7.1.3-3.2.1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.9.1.3-5.2.2.1.2.1">
-                        <div id="_054f803e-c54a-4b74-9df6-65ba87aa7d6b">
-<p id="section-4.9.1.3-5.2.2.1.2.1.1">"optional" items such as ephemeralKey <span class="bcp14">MUST</span> be included when available for ACVP testing.<a href="#section-4.9.1.3-5.2.2.1.2.1.1" class="pilcrow">¶</a></p>
-</div>
-</li>
-                    </ul>
-</li>
-                </ul>
-</li>
-              <li class="normal" id="section-4.9.1.3-5.3">
-                <div id="_558f03fb-9880-43db-a216-1f6dc66cf213">
-<p id="section-4.9.1.3-5.3.1">vPartyInfo<a href="#section-4.9.1.3-5.3.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.7.1.3-3.2.2.1">
+                    <div id="_d7b93e80-109b-4fff-8367-ffbef3476a77">
+<p id="section-7.7.1.3-3.2.2.1.1">uPartyId { || ephemeralKey } { || ephemeralNonce } { || dkmNonce } { || c }<a href="#section-7.7.1.3-3.2.2.1.1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.9.1.3-5.3.2.1">
-                    <div id="_924a1f11-3129-41e3-a8f2-fe6942979df3">
-<p id="section-4.9.1.3-5.3.2.1.1">vPartyId { || ephemeralKey } { || ephemeralNonce } { || dkmNonce } { || c }<a href="#section-4.9.1.3-5.3.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.7.1.3-3.2.2.1.2.1">
+                        <div id="_c3db48e2-bdbf-4dfc-815f-de8ee33ceea8">
+<p id="section-7.7.1.3-3.2.2.1.2.1.1">"optional" items such as ephemeralKey <span class="bcp14">MUST</span> be included when available for ACVP testing.<a href="#section-7.7.1.3-3.2.2.1.2.1.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="normal" id="section-7.7.1.3-3.3">
+                <div id="_a1dffe71-2e5c-40a5-9b91-093480b4ede6">
+<p id="section-7.7.1.3-3.3.1">vPartyInfo<a href="#section-7.7.1.3-3.3.1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.9.1.3-5.3.2.1.2.1">
-                        <div id="_30984a78-3873-4e4e-8e18-4e28cb54cf6c">
-<p id="section-4.9.1.3-5.3.2.1.2.1.1">"optional" items such as ephemeralKey <span class="bcp14">MUST</span> be included when available for ACVP testing.<a href="#section-4.9.1.3-5.3.2.1.2.1.1" class="pilcrow">¶</a></p>
-</div>
-</li>
-                    </ul>
-</li>
-                </ul>
-</li>
-              <li class="normal" id="section-4.9.1.3-5.4">
-                <div id="_6689b9ab-b973-45cc-905e-603f7531f3d7">
-<p id="section-4.9.1.3-5.4.1">context<a href="#section-4.9.1.3-5.4.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.7.1.3-3.3.2.1">
+                    <div id="_e0ee6e3a-f8c0-45ca-b891-27dca8f4a817">
+<p id="section-7.7.1.3-3.3.2.1.1">vPartyId { || ephemeralKey } { || ephemeralNonce } { || dkmNonce } { || c }<a href="#section-7.7.1.3-3.3.2.1.1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.9.1.3-5.4.2.1">
-                    <div id="_e88f8683-edcf-4ca0-b96d-6d3067c7f558">
-<p id="section-4.9.1.3-5.4.2.1.1">Random value chosen by ACVP server to represent the context.<a href="#section-4.9.1.3-5.4.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.7.1.3-3.3.2.1.2.1">
+                        <div id="_5316e2f5-74b8-4093-8ebb-eee46344a365">
+<p id="section-7.7.1.3-3.3.2.1.2.1.1">"optional" items such as ephemeralKey <span class="bcp14">MUST</span> be included when available for ACVP testing.<a href="#section-7.7.1.3-3.3.2.1.2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-                </ul>
+</ul>
 </li>
-              <li class="normal" id="section-4.9.1.3-5.5">
-                <div id="_005e557d-3b32-426f-be1f-5fe946324ada">
-<p id="section-4.9.1.3-5.5.1">algorithmId<a href="#section-4.9.1.3-5.5.1" class="pilcrow">¶</a></p>
-</div>
-<ul class="normal">
-<li class="normal" id="section-4.9.1.3-5.5.2.1">
-                    <div id="_2d59d32e-a393-43a0-81eb-ab28136e8c32">
-<p id="section-4.9.1.3-5.5.2.1.1">Random value chosen by ACVP server to represent the
-algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
-</div>
+</ul>
 </li>
-                </ul>
-</li>
-              <li class="normal" id="section-4.9.1.3-5.6">
-                <div id="_12691255-ed66-4b96-8fed-b35e04810422">
-<p id="section-4.9.1.3-5.6.1">label<a href="#section-4.9.1.3-5.6.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.7.1.3-3.4">
+                <div id="_c51c4048-68bb-47e0-8138-b25663853f58">
+<p id="section-7.7.1.3-3.4.1">context<a href="#section-7.7.1.3-3.4.1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.9.1.3-5.6.2.1">
-                    <div id="_a60fa76e-ff69-4b7e-9f39-0f4fe517fac6">
-<p id="section-4.9.1.3-5.6.2.1.1">Random value chosen by ACVP server to represent the label.<a href="#section-4.9.1.3-5.6.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.7.1.3-3.4.2.1">
+                    <div id="_3055ac10-ed29-4bff-b479-42ea17b5e223">
+<p id="section-7.7.1.3-3.4.2.1.1">Random value chosen by ACVP server to represent the context.<a href="#section-7.7.1.3-3.4.2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-                </ul>
+</ul>
 </li>
-              <li class="normal" id="section-4.9.1.3-5.7">
-                <div id="_74c0ea96-0e32-42c9-9003-441790256b79">
-<p id="section-4.9.1.3-5.7.1">l<a href="#section-4.9.1.3-5.7.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.7.1.3-3.5">
+                <div id="_8090e2c0-3bf8-4e05-a32a-173fb5a9c85e">
+<p id="section-7.7.1.3-3.5.1">algorithmId<a href="#section-7.7.1.3-3.5.1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-4.9.1.3-5.7.2.1">
-                    <div id="_7a012359-5bfd-4d3a-9c3e-45c62f8d5a52">
-<p id="section-4.9.1.3-5.7.2.1.1">The length of the derived keying material in bits, <span class="bcp14">MUST</span> be represented in 32 bits for ACVP testing.<a href="#section-4.9.1.3-5.7.2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.7.1.3-3.5.2.1">
+                    <div id="_2bb48ddd-8cd0-4472-896a-7bdd806839c8">
+<p id="section-7.7.1.3-3.5.2.1.1">Random value chosen by ACVP server to represent the
+algorithmId.<a href="#section-7.7.1.3-3.5.2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-                </ul>
+</ul>
 </li>
-            </ul>
+<li class="normal" id="section-7.7.1.3-3.6">
+                <div id="_8eb92ecf-8221-453b-a3ba-defdd525457c">
+<p id="section-7.7.1.3-3.6.1">label<a href="#section-7.7.1.3-3.6.1" class="pilcrow">¶</a></p>
+</div>
 <ul class="normal">
-<li class="normal" id="section-4.9.1.3-6.1">
-                <div id="_cafbdf80-a4f7-4316-a64d-93430a9e50bb">
-<p id="section-4.9.1.3-6.1.1">"concatenation" :
-"literal[123456789CAFECAFE]||uPartyInfo||vPartyInfo"<a href="#section-4.9.1.3-6.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.7.1.3-3.6.2.1">
+                    <div id="_a1bdb6cf-4650-40e3-ba17-13857bb8efb5">
+<p id="section-7.7.1.3-3.6.2.1.1">Random value chosen by ACVP server to represent the label.<a href="#section-7.7.1.3-3.6.2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            </ul>
+</ul>
+</li>
+<li class="normal" id="section-7.7.1.3-3.7">
+                <div id="_8720b30a-2f20-40cc-a33c-91e40a8a9083">
+<p id="section-7.7.1.3-3.7.1">l<a href="#section-7.7.1.3-3.7.1" class="pilcrow">¶</a></p>
+</div>
 <ul class="normal">
-<li class="normal" id="section-4.9.1.3-7.1">
-                <div id="_0e02c6cd-ff07-4c20-b338-c4f5349130a4">
-<p id="section-4.9.1.3-7.1.1">"123456789CAFECAFE434156536964a1b2c3d4e5"<a href="#section-4.9.1.3-7.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-7.7.1.3-3.7.2.1">
+                    <div id="_6d0b9341-3c59-48e1-8f17-df75ba7cf113">
+<p id="section-7.7.1.3-3.7.2.1.1">The length of the derived keying material in bits, <span class="bcp14">MUST</span> be represented in 32 bits for ACVP testing.<a href="#section-7.7.1.3-3.7.2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-            </ul>
+</ul>
+</li>
+</ul>
+<div id="_6c75779e-6eec-4324-8e93-257fdafa30e2">
+<p id="section-7.7.1.3-4">Example (Note that party U is the server in this case "434156536964", party V is the IUT "a1b2c3d4e5"):<a href="#section-7.7.1.3-4" class="pilcrow">¶</a></p>
+</div>
+<ul class="normal">
+<li class="normal" id="section-7.7.1.3-5.1">
+                <div id="_2996b426-358a-4e1a-8248-4bd3f3844119">
+<p id="section-7.7.1.3-5.1.1">"concatenation" :
+"literal[123456789CAFECAFE]||uPartyInfo||vPartyInfo"<a href="#section-7.7.1.3-5.1.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+</ul>
+<div id="_1c1fb023-0725-4194-b009-8dd58f64e91e">
+<p id="section-7.7.1.3-6">Evaluated as:<a href="#section-7.7.1.3-6" class="pilcrow">¶</a></p>
+</div>
+<ul class="normal">
+<li class="normal" id="section-7.7.1.3-7.1">
+                <div id="_a908abde-259b-41fd-ba82-4df07627d17c">
+<p id="section-7.7.1.3-7.1.1">"123456789CAFECAFE434156536964a1b2c3d4e5"<a href="#section-7.7.1.3-7.1.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+</ul>
 </section>
 </div>
 <div id="macmethods">
-<section id="section-4.9.1.4">
+<section id="section-7.7.1.4">
             <h5 id="name-supported-mac-methods">
-<a href="#section-4.9.1.4" class="section-number selfRef">4.9.1.4. </a><a href="#name-supported-mac-methods" class="section-name selfRef">Supported MAC Methods</a>
+<a href="#section-7.7.1.4" class="section-number selfRef">7.7.1.4. </a><a href="#name-supported-mac-methods" class="section-name selfRef">Supported MAC Methods</a>
             </h5>
-<span id="name-mac-method-options"></span><div id="_bc7d5120-2cb3-4829-9b09-dfdd06201dfb">
+<div id="_c43a5b12-8be3-440b-b38d-0b797c53efd2">
+<p id="section-7.7.1.4-1">Note that <strong>AT LEAST</strong> one mac method must be supplied when making use of Key Confirmation.<a href="#section-7.7.1.4-1" class="pilcrow">¶</a></p>
+</div>
+<span id="name-mac-method-options"></span><div id="_bb646e31-10fc-48d9-90c6-1f17348a3866">
 <table class="center" id="table-11">
               <caption>
 <a href="#table-11" class="selfRef">Table 11</a>:
@@ -2515,14 +2565,14 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
                   <td class="text-left" rowspan="1" colspan="1">CMAC</td>
                   <td class="text-left" rowspan="1" colspan="1">Utilizes CMAC as the MAC algorithm.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
-                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 4.9.1.4.1</a>.  Note that the keyLen must be 128, 192, or 256 for this MAC.</td>
+                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 7.7.1.4.1</a>.  Note that the keyLen must be 128, 192, or 256 for this MAC.</td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
                 <tr>
                   <td class="text-left" rowspan="1" colspan="1">HMAC-SHA2-224</td>
                   <td class="text-left" rowspan="1" colspan="1">Utilizes HMAC-SHA2-224 as the MAC algorithm.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
-                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 4.9.1.4.1</a>
+                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 7.7.1.4.1</a>
 </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2530,7 +2580,7 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
                   <td class="text-left" rowspan="1" colspan="1">HMAC-SHA2-256</td>
                   <td class="text-left" rowspan="1" colspan="1">Utilizes HMAC-SHA2-256 as the MAC algorithm.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
-                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 4.9.1.4.1</a>
+                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 7.7.1.4.1</a>
 </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2538,7 +2588,7 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
                   <td class="text-left" rowspan="1" colspan="1">HMAC-SHA2-384</td>
                   <td class="text-left" rowspan="1" colspan="1">Utilizes HMAC-SHA2-384 as the MAC algorithm.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
-                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 4.9.1.4.1</a>
+                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 7.7.1.4.1</a>
 </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2546,7 +2596,7 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
                   <td class="text-left" rowspan="1" colspan="1">HMAC-SHA2-512</td>
                   <td class="text-left" rowspan="1" colspan="1">Utilizes HMAC-SHA2-512 as the MAC algorithm.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
-                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 4.9.1.4.1</a>
+                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 7.7.1.4.1</a>
 </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2554,7 +2604,7 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
                   <td class="text-left" rowspan="1" colspan="1">HMAC-SHA2-512/224</td>
                   <td class="text-left" rowspan="1" colspan="1">Utilizes HMAC-SHA2-512/224 as the MAC algorithm.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
-                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 4.9.1.4.1</a>
+                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 7.7.1.4.1</a>
 </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2562,7 +2612,7 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
                   <td class="text-left" rowspan="1" colspan="1">HMAC-SHA2-512/256</td>
                   <td class="text-left" rowspan="1" colspan="1">Utilizes HMAC-SHA2-512/256 as the MAC algorithm.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
-                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 4.9.1.4.1</a>
+                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 7.7.1.4.1</a>
 </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2570,7 +2620,7 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
                   <td class="text-left" rowspan="1" colspan="1">HMAC-SHA3-224</td>
                   <td class="text-left" rowspan="1" colspan="1">Utilizes HMAC-SHA3-224 as the MAC algorithm.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
-                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 4.9.1.4.1</a>
+                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 7.7.1.4.1</a>
 </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2578,7 +2628,7 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
                   <td class="text-left" rowspan="1" colspan="1">HMAC-SHA3-256</td>
                   <td class="text-left" rowspan="1" colspan="1">Utilizes HMAC-SHA3-256 as the MAC algorithm.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
-                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 4.9.1.4.1</a>
+                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 7.7.1.4.1</a>
 </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2586,7 +2636,7 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
                   <td class="text-left" rowspan="1" colspan="1">HMAC-SHA3-384</td>
                   <td class="text-left" rowspan="1" colspan="1">Utilizes HMAC-SHA3-384 as the MAC algorithm.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
-                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 4.9.1.4.1</a>
+                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 7.7.1.4.1</a>
 </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2594,7 +2644,7 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
                   <td class="text-left" rowspan="1" colspan="1">HMAC-SHA3-512</td>
                   <td class="text-left" rowspan="1" colspan="1">Utilizes HMAC-SHA3-512 as the MAC algorithm.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
-                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 4.9.1.4.1</a>
+                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 7.7.1.4.1</a>
 </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2602,7 +2652,7 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
                   <td class="text-left" rowspan="1" colspan="1">KMAC-128</td>
                   <td class="text-left" rowspan="1" colspan="1">Utilizes KMAC-128 as the MAC algorithm.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
-                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 4.9.1.4.1</a>
+                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 7.7.1.4.1</a>
 </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2610,7 +2660,7 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
                   <td class="text-left" rowspan="1" colspan="1">KMAC-256</td>
                   <td class="text-left" rowspan="1" colspan="1">Utilizes KMAC-256 as the MAC algorithm.</td>
                   <td class="text-left" rowspan="1" colspan="1">object</td>
-                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 4.9.1.4.1</a>
+                  <td class="text-left" rowspan="1" colspan="1">See <a href="#supmacopt" class="xref">Section 7.7.1.4.1</a>
 </td>
                   <td class="text-left" rowspan="1" colspan="1">Yes</td>
                 </tr>
@@ -2618,11 +2668,11 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
             </table>
 </div>
 <div id="supmacopt">
-<section id="section-4.9.1.4.1">
+<section id="section-7.7.1.4.1">
               <h6 id="name-supported-mac-options">
-<a href="#section-4.9.1.4.1" class="section-number selfRef">4.9.1.4.1. </a><a href="#name-supported-mac-options" class="section-name selfRef">Supported MAC Options</a>
+<a href="#section-7.7.1.4.1" class="section-number selfRef">7.7.1.4.1. </a><a href="#name-supported-mac-options" class="section-name selfRef">Supported MAC Options</a>
               </h6>
-<span id="name-mac-method-base-options"></span><div id="_9b5b5156-e922-4ca9-a59d-a7278be5f3bd">
+<span id="name-mac-method-base-options"></span><div id="_260576a5-ad6e-459f-bd00-8e531091eca8">
 <table class="center" id="table-12">
                 <caption>
 <a href="#table-12" class="selfRef">Table 12</a>:
@@ -2664,16 +2714,16 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="app-reg-ex">
-<section id="section-4.10">
+<section id="section-7.8">
         <h3 id="name-example-kas-ifc-registratio">
-<a href="#section-4.10" class="section-number selfRef">4.10. </a><a href="#name-example-kas-ifc-registratio" class="section-name selfRef">Example KAS-IFC Registration</a>
+<a href="#section-7.8" class="section-number selfRef">7.8. </a><a href="#name-example-kas-ifc-registratio" class="section-name selfRef">Example KAS-IFC Registration</a>
         </h3>
-<div id="_38bb7cee-264a-47ed-a5c9-07ae884b7bc5">
-<p id="section-4.10-1">The following is a example JSON object advertising support for KAS IFC.<a href="#section-4.10-1" class="pilcrow">¶</a></p>
+<div id="_6207bf03-3a1a-461e-9959-c7e94aff375f">
+<p id="section-7.8-1">The following is a example JSON object advertising support for KAS IFC.<a href="#section-7.8-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_92174a1a-276a-40e2-8955-360ccdddcf4d">
+<div id="_1c7f04b9-8f34-4b0e-8a29-2bbb323c5aca">
 <figure id="figure-2">
-          <div id="section-4.10-2.1">
+          <div id="section-7.8-2.1">
 <pre class="sourcecode lang-json">{
   "algorithm": "KAS-IFC",
   "revision": "Sp800-56Br2",
@@ -2772,16 +2822,16 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="app-reg-ex1">
-<section id="section-4.11">
+<section id="section-7.9">
         <h3 id="name-example-kts-ifc-registratio">
-<a href="#section-4.11" class="section-number selfRef">4.11. </a><a href="#name-example-kts-ifc-registratio" class="section-name selfRef">Example KTS-IFC Registration</a>
+<a href="#section-7.9" class="section-number selfRef">7.9. </a><a href="#name-example-kts-ifc-registratio" class="section-name selfRef">Example KTS-IFC Registration</a>
         </h3>
-<div id="_eeff2697-fd96-4454-8897-f8269078215a">
-<p id="section-4.11-1">The following is a example JSON object advertising support for KTS IFC.<a href="#section-4.11-1" class="pilcrow">¶</a></p>
+<div id="_c6c86878-70d3-41a3-859c-b12f0377ccb2">
+<p id="section-7.9-1">The following is a example JSON object advertising support for KTS IFC.<a href="#section-7.9-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_44283324-258d-4747-a2d9-dd259da04cbe">
+<div id="_83f145bc-face-4b18-b1b3-b1ca0348852a">
 <figure id="figure-3">
-          <div id="section-4.11-2.1">
+          <div id="section-7.9-2.1">
 <pre class="sourcecode lang-json">{
   "algorithm": "KTS-IFC",
   "revision": "Sp800-56Br2",
@@ -2848,12 +2898,12 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="generation_reqs_per_scheme">
-<section id="section-5">
+<section id="section-8">
       <h2 id="name-generation-requirements-per">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-generation-requirements-per" class="section-name selfRef">Generation Requirements per Party per Scheme</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-generation-requirements-per" class="section-name selfRef">Generation Requirements per Party per Scheme</a>
       </h2>
-<div id="_3999752f-3dc4-4249-8449-7cee23d4ae6b">
-<p id="section-5-1">The various schemes of KAS/KTS all have their own requirements as to keys and nonces per scheme, per party. The below table demonstrates those generation requirements:<a href="#section-5-1" class="pilcrow">¶</a></p>
+<div id="_8c7df243-37d4-4883-b6ec-d60b4dcac32c">
+<p id="section-8-1">The various schemes of KAS/KTS all have their own requirements as to keys and nonces per scheme, per party. The below table demonstrates those generation requirements:<a href="#section-8-1" class="pilcrow">¶</a></p>
 </div>
 <span id="name-required-party-generation-o"></span><div id="scheme_generation_requirements">
 <table class="center" id="table-13">
@@ -3060,17 +3110,17 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="test-vectors">
-<section id="section-6">
+<section id="section-9">
       <h2 id="name-test-vectors">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-test-vectors" class="section-name selfRef">Test Vectors</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-test-vectors" class="section-name selfRef">Test Vectors</a>
       </h2>
-<div id="_06f3b96a-86ec-4853-8dd3-85e8c4ad8811">
-<p id="section-6-1">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with SP800-56Br2 KAS IFC algorithms.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<div id="_9d750591-88eb-422a-8ab3-294a7e8f1937">
+<p id="section-9-1">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with SP800-56Br2 KAS IFC algorithms.<a href="#section-9-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_6ff7797a-37e2-4aad-8f24-f406e287b4be">
-<p id="section-6-2">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<div id="_a416e1aa-ea10-4ebd-8ff6-988f1938ea16">
+<p id="section-9-2">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.<a href="#section-9-2" class="pilcrow">¶</a></p>
 </div>
-<span id="name-top-level-test-vector-json-"></span><div id="_c0054316-da05-402e-a140-6bf43c39ed3e">
+<span id="name-top-level-test-vector-json-"></span><div id="_5ba6e186-9f5c-4d54-8236-4dfee3e054a0">
 <table class="center" id="table-14">
         <caption>
 <a href="#table-14" class="selfRef">Table 14</a>:
@@ -3111,19 +3161,19 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">testGroups</td>
-            <td class="text-left" rowspan="1" colspan="1">Array of test groups containing test data, see <a href="#tgjs" class="xref">Section 6.1</a>
+            <td class="text-left" rowspan="1" colspan="1">Array of test groups containing test data, see <a href="#tgjs" class="xref">Section 9.1</a>
 </td>
             <td class="text-left" rowspan="1" colspan="1">array</td>
           </tr>
         </tbody>
       </table>
 </div>
-<div id="_ac7e7043-69db-4674-adb3-d8660baf2059">
-<p id="section-6-4">An example of this would look like this<a href="#section-6-4" class="pilcrow">¶</a></p>
+<div id="_1cac6526-7e7c-4803-a786-baa870965e53">
+<p id="section-9-4">An example of this would look like this<a href="#section-9-4" class="pilcrow">¶</a></p>
 </div>
-<div id="_27766e83-13fd-416f-9083-747703a6b4d8">
+<div id="_62a72d25-6bf1-45ea-b966-290a924b1dac">
 <figure id="figure-4">
-        <div id="section-6-5.1">
+        <div id="section-9-5.1">
 <pre class="sourcecode lang-json">{
   "acvVersion": "version",
   "vsId": 1,
@@ -3136,16 +3186,16 @@ algorithmId.<a href="#section-4.9.1.3-5.5.2.1.1" class="pilcrow">¶</a></p>
 <figcaption><a href="#figure-4" class="selfRef">Figure 4</a></figcaption></figure>
 </div>
 <div id="tgjs">
-<section id="section-6.1">
+<section id="section-9.1">
         <h3 id="name-test-groups-json-schema">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-test-groups-json-schema" class="section-name selfRef">Test Groups JSON Schema</a>
+<a href="#section-9.1" class="section-number selfRef">9.1. </a><a href="#name-test-groups-json-schema" class="section-name selfRef">Test Groups JSON Schema</a>
         </h3>
-<div id="_e9769d38-1b0c-43a3-9693-9ad5d82e2da3">
-<p id="section-6.1-1">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors
-that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the secure hash JSON elements of the Test Group JSON object.<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<div id="_d3204e23-7d09-457d-8a12-0c483be3759c">
+<p id="section-9.1-1">The testGroups element at the top level in the test vector JSON object is an array of test groups. Test vectors are grouped into similar test cases to reduce the amount of data transmitted in the vector set. For instance, all test vectors
+that use the same key size would be grouped together. The Test Group JSON object contains meta data that applies to all test vectors within the group. The following table describes the secure hash JSON elements of the Test Group JSON object.<a href="#section-9.1-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_b1e23f17-dab7-49f1-b682-a0c9ff5c2ed5">
-<p id="section-6.1-2">The test group for KAS/KTS IFC is as follows:<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+<div id="_ec37490c-9ccf-4cc1-afc2-07cbccd0e63a">
+<p id="section-9.1-2">The test group for KAS/KTS IFC is as follows:<a href="#section-9.1-2" class="pilcrow">¶</a></p>
 </div>
 <span id="name-vector-group-json-object"></span><div id="vs_tg_table5">
 <table class="center" id="table-15">
@@ -3176,7 +3226,7 @@ that use the same key size would be grouped together. The Test Group JSON object
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">scheme</td>
-              <td class="text-left" rowspan="1" colspan="1">The scheme in use for the group. See <a href="#supported_schemes" class="xref">Section 4.9.1</a> for possible values.</td>
+              <td class="text-left" rowspan="1" colspan="1">The scheme in use for the group. See <a href="#supported_schemes" class="xref">Section 7.7.1</a> for possible values.</td>
               <td class="text-left" rowspan="1" colspan="1">value</td>
               <td class="text-left" rowspan="1" colspan="1">No</td>
             </tr>
@@ -3219,42 +3269,42 @@ that use the same key size would be grouped together. The Test Group JSON object
             <tr>
               <td class="text-left" rowspan="1" colspan="1">kdfConfiguration</td>
               <td class="text-left" rowspan="1" colspan="1">The KDF configuration for the group.</td>
-              <td class="text-left" rowspan="1" colspan="1">Object, See <a href="#kdfconfig" class="xref">Section 6.1.1</a>
+              <td class="text-left" rowspan="1" colspan="1">Object, See <a href="#kdfconfig" class="xref">Section 9.1.1</a>
 </td>
               <td class="text-left" rowspan="1" colspan="1">Not optional for KAS schemes.</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">ktsConfiguration</td>
               <td class="text-left" rowspan="1" colspan="1">The KTS configuration for the group.</td>
-              <td class="text-left" rowspan="1" colspan="1">Object, See <a href="#ktsconfig" class="xref">Section 6.1.2</a>
+              <td class="text-left" rowspan="1" colspan="1">Object, See <a href="#ktsconfig" class="xref">Section 9.1.2</a>
 </td>
               <td class="text-left" rowspan="1" colspan="1">Not optional for KTS schemes.</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">macConfiguration</td>
               <td class="text-left" rowspan="1" colspan="1">The MAC configuration for the group.</td>
-              <td class="text-left" rowspan="1" colspan="1">Object, See <a href="#macconfig" class="xref">Section 6.1.3</a>
+              <td class="text-left" rowspan="1" colspan="1">Object, See <a href="#macconfig" class="xref">Section 9.1.3</a>
 </td>
               <td class="text-left" rowspan="1" colspan="1">Not optional for KAS/KTS schemes using key confirmation.</td>
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">tests</td>
               <td class="text-left" rowspan="1" colspan="1">The tests for the group.</td>
-              <td class="text-left" rowspan="1" colspan="1">Array of objects, See <a href="#tvjs" class="xref">Section 6.2</a>.</td>
+              <td class="text-left" rowspan="1" colspan="1">Array of objects, See <a href="#tvjs" class="xref">Section 9.2</a>.</td>
               <td class="text-left" rowspan="1" colspan="1">No</td>
             </tr>
           </tbody>
         </table>
 </div>
 <div id="kdfconfig">
-<section id="section-6.1.1">
+<section id="section-9.1.1">
           <h4 id="name-kdf-configuration-json-sche">
-<a href="#section-6.1.1" class="section-number selfRef">6.1.1. </a><a href="#name-kdf-configuration-json-sche" class="section-name selfRef">KDF Configuration JSON Schema</a>
+<a href="#section-9.1.1" class="section-number selfRef">9.1.1. </a><a href="#name-kdf-configuration-json-sche" class="section-name selfRef">KDF Configuration JSON Schema</a>
           </h4>
-<div id="_ea4c18a4-5298-44f7-96bd-0db06e143636">
-<p id="section-6.1.1-1">Describes the KDF configuration for use under the test group.<a href="#section-6.1.1-1" class="pilcrow">¶</a></p>
+<div id="_35ca0e49-3c86-4eb5-a349-9924061d5769">
+<p id="section-9.1.1-1">Describes the KDF configuration for use under the test group.<a href="#section-9.1.1-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-kdfconfiguration-json-objec"></span><div id="_6ff3513d-e837-4eb9-a8c5-d0e6a190dc6e">
+<span id="name-kdfconfiguration-json-objec"></span><div id="_d584e24a-66f3-4955-b9c4-0da798c2faa6">
 <table class="center" id="table-16">
             <caption>
 <a href="#table-16" class="selfRef">Table 16</a>:
@@ -3284,13 +3334,13 @@ that use the same key size would be grouped together. The Test Group JSON object
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">fixedInfoPattern</td>
                 <td class="text-left" rowspan="1" colspan="1">The pattern used for constructing the fixedInfo.</td>
-                <td class="text-left" rowspan="1" colspan="1">value - See <a href="#fixedinfopatcon" class="xref">Section 4.9.1.3</a>.</td>
+                <td class="text-left" rowspan="1" colspan="1">value - See <a href="#fixedinfopatcon" class="xref">Section 7.7.1.3</a>.</td>
                 <td class="text-left" rowspan="1" colspan="1">No</td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">fixedInfoEncoding</td>
                 <td class="text-left" rowspan="1" colspan="1">The encoding type used when constructing the fixedInfo.</td>
-                <td class="text-left" rowspan="1" colspan="1">value - See <a href="#fixedinfopatcon" class="xref">Section 4.9.1.3</a>.</td>
+                <td class="text-left" rowspan="1" colspan="1">value - See <a href="#fixedinfopatcon" class="xref">Section 7.7.1.3</a>.</td>
                 <td class="text-left" rowspan="1" colspan="1">No</td>
               </tr>
               <tr>
@@ -3329,14 +3379,14 @@ that use the same key size would be grouped together. The Test Group JSON object
 </section>
 </div>
 <div id="ktsconfig">
-<section id="section-6.1.2">
+<section id="section-9.1.2">
           <h4 id="name-kts-configuration-json-sche">
-<a href="#section-6.1.2" class="section-number selfRef">6.1.2. </a><a href="#name-kts-configuration-json-sche" class="section-name selfRef">KTS Configuration JSON Schema</a>
+<a href="#section-9.1.2" class="section-number selfRef">9.1.2. </a><a href="#name-kts-configuration-json-sche" class="section-name selfRef">KTS Configuration JSON Schema</a>
           </h4>
-<div id="_ec81fa7d-ae0c-4c94-9548-63b9f52a1278">
-<p id="section-6.1.2-1">Describes the KTS configuration for use under the test group.<a href="#section-6.1.2-1" class="pilcrow">¶</a></p>
+<div id="_e181da95-bcbf-4bfb-a44f-afa90705273a">
+<p id="section-9.1.2-1">Describes the KTS configuration for use under the test group.<a href="#section-9.1.2-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-ktsconfiguration-json-objec"></span><div id="_6d23ab09-58f0-4f2c-95dc-89068d0d1430">
+<span id="name-ktsconfiguration-json-objec"></span><div id="_15db2fd0-0157-4b9a-9e2d-5ac9a2c90ef6">
 <table class="center" id="table-17">
             <caption>
 <a href="#table-17" class="selfRef">Table 17</a>:
@@ -3354,19 +3404,19 @@ that use the same key size would be grouped together. The Test Group JSON object
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">associatedDataPattern</td>
                 <td class="text-left" rowspan="1" colspan="1">The pattern used for constructing the associated data.</td>
-                <td class="text-left" rowspan="1" colspan="1">value - see <a href="#fixedinfopatcon" class="xref">Section 4.9.1.3</a>.</td>
+                <td class="text-left" rowspan="1" colspan="1">value - see <a href="#fixedinfopatcon" class="xref">Section 7.7.1.3</a>.</td>
                 <td class="text-left" rowspan="1" colspan="1">Yes</td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">encoding</td>
                 <td class="text-left" rowspan="1" colspan="1">The encoding type used when constructing the data.</td>
-                <td class="text-left" rowspan="1" colspan="1">value - see <a href="#fixedinfopatcon" class="xref">Section 4.9.1.3</a>.</td>
+                <td class="text-left" rowspan="1" colspan="1">value - see <a href="#fixedinfopatcon" class="xref">Section 7.7.1.3</a>.</td>
                 <td class="text-left" rowspan="1" colspan="1">Yes</td>
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">hashAlg</td>
                 <td class="text-left" rowspan="1" colspan="1">The hash algorithm used for the OAEP function.</td>
-                <td class="text-left" rowspan="1" colspan="1">value - see <a href="#ktsmethods" class="xref">Section 4.9.1.2</a>.</td>
+                <td class="text-left" rowspan="1" colspan="1">value - see <a href="#ktsmethods" class="xref">Section 7.7.1.2</a>.</td>
                 <td class="text-left" rowspan="1" colspan="1">No</td>
               </tr>
             </tbody>
@@ -3375,14 +3425,14 @@ that use the same key size would be grouped together. The Test Group JSON object
 </section>
 </div>
 <div id="macconfig">
-<section id="section-6.1.3">
+<section id="section-9.1.3">
           <h4 id="name-mac-configuration-json-sche">
-<a href="#section-6.1.3" class="section-number selfRef">6.1.3. </a><a href="#name-mac-configuration-json-sche" class="section-name selfRef">MAC Configuration JSON Schema</a>
+<a href="#section-9.1.3" class="section-number selfRef">9.1.3. </a><a href="#name-mac-configuration-json-sche" class="section-name selfRef">MAC Configuration JSON Schema</a>
           </h4>
-<div id="_0eebaf83-9e90-4df7-8f0d-1b4e24f2c618">
-<p id="section-6.1.3-1">Describes the key confirmation MAC configuration for use under the test group.<a href="#section-6.1.3-1" class="pilcrow">¶</a></p>
+<div id="_f85a0d45-3a2c-42f8-ae16-5e2b34bc5260">
+<p id="section-9.1.3-1">Describes the key confirmation MAC configuration for use under the test group.<a href="#section-9.1.3-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-macconfiguration-json-objec"></span><div id="_d2faa87c-460c-4f10-8544-31eacaeb0b2a">
+<span id="name-macconfiguration-json-objec"></span><div id="_6a72a92a-07e1-4d36-b4e6-6b200f2de174">
 <table class="center" id="table-18">
             <caption>
 <a href="#table-18" class="selfRef">Table 18</a>:
@@ -3423,12 +3473,12 @@ that use the same key size would be grouped together. The Test Group JSON object
 </section>
 </div>
 <div id="tvjs">
-<section id="section-6.2">
+<section id="section-9.2">
         <h3 id="name-test-case-json-schema">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-test-case-json-schema" class="section-name selfRef">Test Case JSON Schema</a>
+<a href="#section-9.2" class="section-number selfRef">9.2. </a><a href="#name-test-case-json-schema" class="section-name selfRef">Test Case JSON Schema</a>
         </h3>
-<div id="_998fe76a-d589-4905-bc76-0b0ea5ca6425">
-<p id="section-6.2-1">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each KAS/KTS IFC test vector.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<div id="_670d0b5a-7b7b-4ebf-9f17-91ba18dff6ef">
+<p id="section-9.2-1">Each test group contains an array of one or more test cases. Each test case is a JSON object that represents a single test vector to be processed by the ACVP client. The following table describes the JSON elements for each KAS/KTS IFC test vector.<a href="#section-9.2-1" class="pilcrow">¶</a></p>
 </div>
 <span id="name-test-case-json-object"></span><div id="vs_tc_table5">
 <table class="center" id="table-19">
@@ -3562,7 +3612,7 @@ that use the same key size would be grouped together. The Test Group JSON object
             <tr>
               <td class="text-left" rowspan="1" colspan="1">kdfParameter</td>
               <td class="text-left" rowspan="1" colspan="1">The KDF parameters for this test case.</td>
-              <td class="text-left" rowspan="1" colspan="1">value - See <a href="#kdfparms" class="xref">Section 6.2.1</a>.</td>
+              <td class="text-left" rowspan="1" colspan="1">value - See <a href="#kdfparms" class="xref">Section 9.2.1</a>.</td>
               <td class="text-left" rowspan="1" colspan="1">Yes</td>
             </tr>
             <tr>
@@ -3593,14 +3643,14 @@ that use the same key size would be grouped together. The Test Group JSON object
         </table>
 </div>
 <div id="kdfparms">
-<section id="section-6.2.1">
+<section id="section-9.2.1">
           <h4 id="name-kdf-parameter-json-schema">
-<a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-kdf-parameter-json-schema" class="section-name selfRef">KDF Parameter JSON Schema</a>
+<a href="#section-9.2.1" class="section-number selfRef">9.2.1. </a><a href="#name-kdf-parameter-json-schema" class="section-name selfRef">KDF Parameter JSON Schema</a>
           </h4>
-<div id="_61395a71-5b7e-4c86-85c6-ec0c83991399">
-<p id="section-6.2.1-1">KDF specific options used for the test case.<a href="#section-6.2.1-1" class="pilcrow">¶</a></p>
+<div id="_880337ed-7fcc-46bd-896a-31606ec5e3ac">
+<p id="section-9.2.1-1">KDF specific options used for the test case.<a href="#section-9.2.1-1" class="pilcrow">¶</a></p>
 </div>
-<span id="name-kdf-parameter-json-object"></span><div id="_65e7d260-8073-41b4-8731-12ff8349f823">
+<span id="name-kdf-parameter-json-object"></span><div id="_400ffb74-c6e2-442c-8c03-ddee3eccd0bc">
 <table class="center" id="table-20">
             <caption>
 <a href="#table-20" class="selfRef">Table 20</a>:
@@ -3659,16 +3709,16 @@ that use the same key size would be grouped together. The Test Group JSON object
 </section>
 </div>
 <div id="app-vs-ex">
-<section id="section-6.3">
+<section id="section-9.3">
         <h3 id="name-example-test-vectors-json-o">
-<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-example-test-vectors-json-o" class="section-name selfRef">Example Test Vectors JSON Object KAS-IFC</a>
+<a href="#section-9.3" class="section-number selfRef">9.3. </a><a href="#name-example-test-vectors-json-o" class="section-name selfRef">Example Test Vectors JSON Object KAS-IFC</a>
         </h3>
-<div id="_e2f187c0-9b12-459b-8cf0-02fafec9d11f">
-<p id="section-6.3-1">The following is a example JSON object for KAS-IFC test vectors sent from the ACVP server to the crypto module.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
+<div id="_7b9a8045-b366-445a-bdc5-f92ec82020fc">
+<p id="section-9.3-1">The following is a example JSON object for KAS-IFC test vectors sent from the ACVP server to the crypto module.<a href="#section-9.3-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_a98e0aa6-1ac3-43fa-8f7b-971a81238dbf">
+<div id="_c1046816-ac09-4162-84f6-5452c4becc22">
 <figure id="figure-5">
-          <div id="section-6.3-2.1">
+          <div id="section-9.3-2.1">
 <pre class="sourcecode lang-json">[
   {
     "acvVersion": "version"
@@ -4392,16 +4442,16 @@ that use the same key size would be grouped together. The Test Group JSON object
 </section>
 </div>
 <div id="app-vs-ex1">
-<section id="section-6.4">
+<section id="section-9.4">
         <h3 id="name-example-test-vectors-json-ob">
-<a href="#section-6.4" class="section-number selfRef">6.4. </a><a href="#name-example-test-vectors-json-ob" class="section-name selfRef">Example Test Vectors JSON Object KTS-IFC</a>
+<a href="#section-9.4" class="section-number selfRef">9.4. </a><a href="#name-example-test-vectors-json-ob" class="section-name selfRef">Example Test Vectors JSON Object KTS-IFC</a>
         </h3>
-<div id="_c1b82c68-77b4-498c-bfc4-c2c906d8ee99">
-<p id="section-6.4-1">The following is a example JSON object for KTS-IFC test vectors sent from the ACVP server to the crypto module.<a href="#section-6.4-1" class="pilcrow">¶</a></p>
+<div id="_5bc05a2f-8a04-4fe3-9a38-b637581896a9">
+<p id="section-9.4-1">The following is a example JSON object for KTS-IFC test vectors sent from the ACVP server to the crypto module.<a href="#section-9.4-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_997fdd67-095f-4ad6-8faa-71fdff43d308">
+<div id="_de53dd51-73a7-44fa-b34a-a9bd9303c0a3">
 <figure id="figure-6">
-          <div id="section-6.4-2.1">
+          <div id="section-9.4-2.1">
 <pre class="sourcecode lang-json">[
   {
     "acvVersion": "version"
@@ -4579,12 +4629,12 @@ that use the same key size would be grouped together. The Test Group JSON object
 </section>
 </div>
 <div id="vector_responses">
-<section id="section-7">
+<section id="section-10">
       <h2 id="name-test-vector-responses">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-test-vector-responses" class="section-name selfRef">Test Vector Responses</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-test-vector-responses" class="section-name selfRef">Test Vector Responses</a>
       </h2>
-<div id="_50d3eaae-017b-4a11-8558-edb30727dc75">
-<p id="section-7-1">After the ACVP client downloads and processes a vector set, it <span class="bcp14">MUST</span> send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<div id="_71788bc8-5b51-4243-bf99-2fb421a764a0">
+<p id="section-10-1">After the ACVP client downloads and processes a vector set, it <span class="bcp14">MUST</span> send the response vectors back to the ACVP server. The following table describes the JSON object that represents a vector set response.<a href="#section-10-1" class="pilcrow">¶</a></p>
 </div>
 <span id="name-vector-set-response-json-ob"></span><div id="vr_top_table">
 <table class="center" id="table-21">
@@ -4622,8 +4672,8 @@ that use the same key size would be grouped together. The Test Group JSON object
         </tbody>
       </table>
 </div>
-<div id="_45ed0838-c8f1-41d0-9281-77e374ba1d56">
-<p id="section-7-3">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <span class="bcp14">SHALL</span> require the client to send back group level properties in their response. This structure helps accommodate that.<a href="#section-7-3" class="pilcrow">¶</a></p>
+<div id="_57ea2655-d43a-47b5-ac68-3dd527fec23c">
+<p id="section-10-3">The testGroups section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <span class="bcp14">SHALL</span> require the client to send back group level properties in their response. This structure helps accommodate that.<a href="#section-10-3" class="pilcrow">¶</a></p>
 </div>
 <span id="name-vector-set-group-response-j"></span><div id="vr_group_table">
 <table class="center" id="table-22">
@@ -4655,8 +4705,8 @@ that use the same key size would be grouped together. The Test Group JSON object
         </tbody>
       </table>
 </div>
-<div id="_f1f3b26f-2e7d-4748-8ddd-b7d9a97f8e8a">
-<p id="section-7-5">The testCase section is used to organize the ACVP client response in a similar manner to how it receives vectors.  Several algorithms <span class="bcp14">SHALL</span> require the client to send back group level properties in their response.  This structure helps accommodate that.<a href="#section-7-5" class="pilcrow">¶</a></p>
+<div id="_58887d8e-6165-4c73-ba7a-3b0992c35733">
+<p id="section-10-5">The testCase section is used to organize the ACVP client response in a similar manner to how it receives vectors.  Several algorithms <span class="bcp14">SHALL</span> require the client to send back group level properties in their response.  This structure helps accommodate that.<a href="#section-10-5" class="pilcrow">¶</a></p>
 </div>
 <span id="name-vector-set-test-case-respon"></span><div id="vr_tc_table">
 <table class="center" id="table-23">
@@ -4713,16 +4763,16 @@ that use the same key size would be grouped together. The Test Group JSON object
       </table>
 </div>
 <div id="app-results-ex">
-<section id="section-7.1">
+<section id="section-10.1">
         <h3 id="name-example-test-results-kas-if">
-<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-example-test-results-kas-if" class="section-name selfRef">Example Test Results KAS-IFC JSON Object</a>
+<a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-example-test-results-kas-if" class="section-name selfRef">Example Test Results KAS-IFC JSON Object</a>
         </h3>
-<div id="_c910d363-8834-44b8-aec5-47c3ee6026ce">
-<p id="section-7.1-1">The following is an example JSON object for KAS-IFC test results sent from the crypto module to the ACVP server.<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<div id="_3c48512c-2874-4555-a988-fce96f91c155">
+<p id="section-10.1-1">The following is an example JSON object for KAS-IFC test results sent from the crypto module to the ACVP server.<a href="#section-10.1-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_fc444441-5638-40fc-9425-77d6692b0881">
+<div id="_48d2ef5b-fbdc-48b7-a665-72c0f0de438c">
 <figure id="figure-7">
-          <div id="section-7.1-2.1">
+          <div id="section-10.1-2.1">
 <pre class="sourcecode lang-json">[
   {
     "acvVersion": "version"
@@ -4910,16 +4960,16 @@ that use the same key size would be grouped together. The Test Group JSON object
 </section>
 </div>
 <div id="app-results-ex1">
-<section id="section-7.2">
+<section id="section-10.2">
         <h3 id="name-example-test-results-kts-if">
-<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-example-test-results-kts-if" class="section-name selfRef">Example Test Results KTS-IFC JSON Object</a>
+<a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-example-test-results-kts-if" class="section-name selfRef">Example Test Results KTS-IFC JSON Object</a>
         </h3>
-<div id="_3fb07f44-d6a8-460c-a201-b00b6c833412">
-<p id="section-7.2-1">The following is an example JSON object for KTS-IFC test results sent from the crypto module to the ACVP server.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+<div id="_5f69c10f-8508-4fe1-aa9f-8a5e9cd1cf71">
+<p id="section-10.2-1">The following is an example JSON object for KTS-IFC test results sent from the crypto module to the ACVP server.<a href="#section-10.2-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_ce13a4cd-ab36-4350-ba2c-58ae7bf330ef">
+<div id="_d7902d86-b1ed-4ddb-bb7a-2193df769865">
 <figure id="figure-8">
-          <div id="section-7.2-2.1">
+          <div id="section-10.2-2.1">
 <pre class="sourcecode lang-json">[
   {
     "acvVersion": "version"
@@ -5005,66 +5055,66 @@ that use the same key size would be grouped together. The Test Group JSON object
 </section>
 </div>
 <div id="security">
-<section id="section-8">
+<section id="section-11">
       <h2 id="name-security-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<div id="_4b98bc3c-6616-42e1-856a-a1a4103adaac">
-<p id="section-8-1">There are no additional security considerations outside of those outlined in the ACVP document.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<div id="_1bd3cdbd-94f2-492e-bade-7fc33bae2041">
+<p id="section-11-1">There are no additional security considerations outside of those outlined in the ACVP document.<a href="#section-11-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="iana">
-<section id="section-9">
+<section id="section-12">
       <h2 id="name-iana-considerations">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-12" class="section-number selfRef">12. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<div id="_e6597475-1f05-47e8-8a2f-509093e209d4">
-<p id="section-9-1">This document does not require any action by IANA.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<div id="_d4ef69c4-d4c5-4e38-a73e-98a8eab7a0ca">
+<p id="section-12-1">This document does not require any action by IANA.<a href="#section-12-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="_references">
-<section id="section-10">
+<section id="section-13">
       <h2 id="name-bibliography">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-bibliography" class="section-name selfRef">Bibliography</a>
+<a href="#section-13" class="section-number selfRef">13. </a><a href="#name-bibliography" class="section-name selfRef">Bibliography</a>
       </h2>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="refContent">IETF RFC 2119</span>, <span class="seriesInfo">IETF RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="refContent">IETF RFC 2119</span>, <span class="seriesInfo">IETF RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC3526">[RFC3526]</dt>
-      <dd>
-<span class="refAuthor">Kivinen, T.</span><span class="refAuthor"> and M. Kojo</span>, <span class="refTitle">"More Modular Exponential (MODP) Diffie-Hellman groups for Internet Key Exchange (IKE)"</span>, <span class="refContent">IETF RFC 3526</span>, <span class="seriesInfo">IETF RFC 3526</span>, <span class="seriesInfo">DOI 10.17487/RFC3526</span>, <time datetime="2003-05" class="refDate">May 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3526">https://www.rfc-editor.org/info/rfc3526</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Kivinen, T.</span><span class="refAuthor"> and M. Kojo</span>, <span class="refTitle">"More Modular Exponential (MODP) Diffie-Hellman groups for Internet Key Exchange (IKE)"</span>, <span class="refContent">IETF RFC 3526</span>, <span class="seriesInfo">IETF RFC 3526</span>, <span class="seriesInfo">DOI 10.17487/RFC3526</span>, <time datetime="2003-05">May 2003</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3526">https://www.rfc-editor.org/info/rfc3526</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7919">[RFC7919]</dt>
-      <dd>
-<span class="refAuthor">Gillmor, D.</span>, <span class="refTitle">"Negotiated Finite Field Diffie-Hellman Ephemeral Parameters for Transport Layer Security (TLS)"</span>, <span class="refContent">IETF RFC 7919</span>, <span class="seriesInfo">IETF RFC 7919</span>, <span class="seriesInfo">DOI 10.17487/RFC7919</span>, <time datetime="2016-08" class="refDate">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7919">https://www.rfc-editor.org/info/rfc7919</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Gillmor, D.</span>, <span class="refTitle">"Negotiated Finite Field Diffie-Hellman Ephemeral Parameters for Transport Layer Security (TLS)"</span>, <span class="refContent">IETF RFC 7919</span>, <span class="seriesInfo">IETF RFC 7919</span>, <span class="seriesInfo">DOI 10.17487/RFC7919</span>, <time datetime="2016-08">August 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7919">https://www.rfc-editor.org/info/rfc7919</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7991">[RFC7991]</dt>
-      <dd>
-<span class="refAuthor">Hoffman, P.</span>, <span class="refTitle">"The "xml2rfc" Version 3 Vocabulary"</span>, <span class="refContent">IETF RFC 7991</span>, <span class="seriesInfo">IETF RFC 7991</span>, <span class="seriesInfo">DOI 10.17487/RFC7991</span>, <time datetime="2016-12" class="refDate">December 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7991">https://www.rfc-editor.org/info/rfc7991</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Hoffman, P.</span>, <span class="refTitle">"The "xml2rfc" Version 3 Vocabulary"</span>, <span class="refContent">IETF RFC 7991</span>, <span class="seriesInfo">IETF RFC 7991</span>, <span class="seriesInfo">DOI 10.17487/RFC7991</span>, <time datetime="2016-12">December 2016</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7991">https://www.rfc-editor.org/info/rfc7991</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-      <dd>
-<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="refContent">IETF RFC 8174</span>, <span class="seriesInfo">IETF RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="refContent">IETF RFC 8174</span>, <span class="seriesInfo">IETF RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="ACVP">[ACVP]</dt>
-      <dd>
-<span class="refAuthor">Fussell, B.</span><span class="refAuthor">, Vassilev, A.</span><span class="refAuthor">, and H. Booth</span>, <span class="refTitle">"Automatic Cryptographic Validation Protocol"</span>, <time datetime="2019" class="refDate">2019</time>. </dd>
+<dd>
+<span class="refAuthor">Fussell, B.</span><span class="refAuthor">, Vassilev, A.</span><span class="refAuthor">, and H. Booth</span>, <span class="refTitle">"Automatic Cryptographic Validation Protocol"</span>, <time datetime="2019">2019</time>. </dd>
 <dd class="break"></dd>
 <dt id="SP800-108">[SP800-108]</dt>
-      <dd>
-<span class="refAuthor">Chen, L.</span>, <span class="refTitle">"SP800-108 Recommendation for Key Derivation Using Pseudorandom Functions"</span>, <time datetime="2009" class="refDate">2009</time>, <span>&lt;<a href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf">https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Chen, L.</span>, <span class="refTitle">"SP800-108 Recommendation for Key Derivation Using Pseudorandom Functions"</span>, <time datetime="2009">2009</time>, <span>&lt;<a href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf">https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-108.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="SP800-56Br2">[SP800-56Br2]</dt>
-      <dd>
-<span class="refAuthor">Barker, E.</span><span class="refAuthor">, Chen, L.</span><span class="refAuthor">, Davis, R.</span><span class="refAuthor">, Roginsky, A.</span><span class="refAuthor">, Simon, S.</span><span class="refAuthor">, and A. Vassilev</span>, <span class="refTitle">"SP800-56Br2 Recommendation for Pair-Wise Key-Establishment Schemes Using Discrete Logarithm Cryptography"</span>, <time datetime="2019" class="refDate">2019</time>, <span>&lt;<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-56Br2.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-56Br2.pdf</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Barker, E.</span><span class="refAuthor">, Chen, L.</span><span class="refAuthor">, Davis, R.</span><span class="refAuthor">, Roginsky, A.</span><span class="refAuthor">, Simon, S.</span><span class="refAuthor">, and A. Vassilev</span>, <span class="refTitle">"SP800-56Br2 Recommendation for Pair-Wise Key-Establishment Schemes Using Discrete Logarithm Cryptography"</span>, <time datetime="2019">2019</time>, <span>&lt;<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-56Br2.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-56Br2.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="SP800-56Cr1">[SP800-56Cr1]</dt>
-    <dd>
-<span class="refAuthor">Barker, E.</span><span class="refAuthor">, Chen, L.</span><span class="refAuthor">, and R. Davis</span>, <span class="refTitle">"SP800-56Cr1 Recommendation for Key-Derivation Methods in Key-Establishment Schemes"</span>, <time datetime="2018" class="refDate">2018</time>, <span>&lt;<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-56Cr1.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-56Cr1.pdf</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Barker, E.</span><span class="refAuthor">, Chen, L.</span><span class="refAuthor">, and R. Davis</span>, <span class="refTitle">"SP800-56Cr1 Recommendation for Key-Derivation Methods in Key-Establishment Schemes"</span>, <time datetime="2018">2018</time>, <span>&lt;<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-56Cr1.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-56Cr1.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>

@@ -3,9 +3,9 @@
 
 
 Network Working Group                                       C. Celi, Ed.
-Internet-Draft                                          17 November 2020
+Internet-Draft                                          18 November 2020
 Intended status: Informational                                          
-Expires: 21 May 2021
+Expires: 22 May 2021
 
 
         ACVP Extendable Output Function (XOF) JSON Specification
@@ -25,7 +25,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2021.
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -47,34 +47,35 @@ Table of Contents
    2.  Abstract  . . . . . . . . . . . . . . . . . . . . . . . . . .   2
    3.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    4.  Terms and definitions . . . . . . . . . . . . . . . . . . . .   3
-   5.  Test Types and Test Coverage  . . . . . . . . . . . . . . . .   3
-     5.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
-     5.2.  Monte Carlo tests for XOFs  . . . . . . . . . . . . . . .   3
+   5.  Supported Algorithms  . . . . . . . . . . . . . . . . . . . .   3
+   6.  Test Types and Test Coverage  . . . . . . . . . . . . . . . .   3
+     6.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
 
 
 
-Celi                       Expires 21 May 2021                  [Page 1]
+Celi                       Expires 22 May 2021                  [Page 1]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
 
-       5.2.1.  cSHAKE Monte Carlo Test . . . . . . . . . . . . . . .   3
-       5.2.2.  ParallelHash Monte Carlo Test . . . . . . . . . . . .   4
-       5.2.3.  TupleHash Monte Carlo Test  . . . . . . . . . . . . .   5
-       5.2.4.  BitsToString Function . . . . . . . . . . . . . . . .   6
-     5.3.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   7
-       5.3.1.  XOF Requirements Covered  . . . . . . . . . . . . . .   7
-       5.3.2.  XOF Requirements Not Covered  . . . . . . . . . . . .   7
-   6.  Capabilities Registration . . . . . . . . . . . . . . . . . .   7
-     6.1.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   7
-     6.2.  XOF Algorithm Capabilities Registration . . . . . . . . .   8
-   7.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  11
-     7.1.  Test Groups . . . . . . . . . . . . . . . . . . . . . . .  12
-     7.2.  Test Case JSON Schema . . . . . . . . . . . . . . . . . .  12
-     7.3.  Test Vector Responses . . . . . . . . . . . . . . . . . .  14
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  15
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  15
-   10. Bibliography  . . . . . . . . . . . . . . . . . . . . . . . .  15
+     6.2.  Monte Carlo tests for XOFs  . . . . . . . . . . . . . . .   4
+       6.2.1.  cSHAKE Monte Carlo Test . . . . . . . . . . . . . . .   4
+       6.2.2.  ParallelHash Monte Carlo Test . . . . . . . . . . . .   4
+       6.2.3.  TupleHash Monte Carlo Test  . . . . . . . . . . . . .   5
+       6.2.4.  BitsToString Function . . . . . . . . . . . . . . . .   6
+     6.3.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   7
+       6.3.1.  XOF Requirements Covered  . . . . . . . . . . . . . .   7
+       6.3.2.  XOF Requirements Not Covered  . . . . . . . . . . . .   7
+   7.  Capabilities Registration . . . . . . . . . . . . . . . . . .   7
+     7.1.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   7
+     7.2.  XOF Algorithm Capabilities Registration . . . . . . . . .   8
+   8.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  11
+     8.1.  Test Groups . . . . . . . . . . . . . . . . . . . . . . .  12
+     8.2.  Test Case JSON Schema . . . . . . . . . . . . . . . . . .  12
+     8.3.  Test Vector Responses . . . . . . . . . . . . . . . . . .  14
+   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  15
+   10. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  15
+   11. Bibliography  . . . . . . . . . . . . . . . . . . . . . . . .  15
    Appendix A.  Example Capabilities JSON Objects  . . . . . . . . .  16
    Appendix B.  Example Test Vectors JSON Objects  . . . . . . . . .  19
    Appendix C.  Example Test Results JSON Objects  . . . . . . . . .  24
@@ -108,8 +109,7 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-
-Celi                       Expires 21 May 2021                  [Page 2]
+Celi                       Expires 22 May 2021                  [Page 2]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
@@ -118,12 +118,35 @@ Internet-Draft                  ACVP XOF                   November 2020
 
    No terms and definitions are listed in this document.
 
-5.  Test Types and Test Coverage
+5.  Supported Algorithms
+
+   The following XOFs may be advertised by this ACVP compliant crypto
+   module:
+
+   *  cSHAKE-128
+
+   *  cSHAKE-256
+
+   *  parallelHash-128
+
+   *  parallelHash-256
+
+   *  tupleHash-128
+
+   *  tupleHash-256
+
+   *  KMAC-128
+
+   *  KMAC-256
+
+   Other XOFs may be advertised by the ACVP elsewhere.
+
+6.  Test Types and Test Coverage
 
    This section describes the design of the tests used to validate
    Extendable Output Function implementations.
 
-5.1.  Test Types
+6.1.  Test Types
 
    This section describes the design of the tests used to validate
    implementations of XOFs.  There are three types of tests for these
@@ -138,6 +161,15 @@ Internet-Draft                  ACVP XOF                   November 2020
       applicable) partial blocks.  In some cases random data is used, in
       others, static, predetermined tests are provided.
 
+
+
+
+
+Celi                       Expires 22 May 2021                  [Page 3]
+
+Internet-Draft                  ACVP XOF                   November 2020
+
+
    *  "MCT" - Monte Carlo Tests.  These tests exercise the
       implementation under test under strenuous circumstances.  The
       implementation under test must process the test vectors according
@@ -146,43 +178,28 @@ Internet-Draft                  ACVP XOF                   November 2020
       allocation of resources, addressing variables, error handling and
       generally improper behavior in response to random inputs.  Each
       MCT processes 100 pseudorandom tests.  Not every algorithm and
-      mode combination has an MCT.  See Section 5.2 for implementation
+      mode combination has an MCT.  See Section 6.2 for implementation
       details.
 
    *  "MVT" - MAC Verification Tests.  XXX
 
-5.2.  Monte Carlo tests for XOFs
+6.2.  Monte Carlo tests for XOFs
 
-5.2.1.  cSHAKE Monte Carlo Test
-
-
-
-
-
-
-
-
-
-
-
-Celi                       Expires 21 May 2021                  [Page 3]
-
-Internet-Draft                  ACVP XOF                   November 2020
-
+6.2.1.  cSHAKE Monte Carlo Test
 
    INPUT: The initial Msg is the length of the digest size
 
    MCT(Msg, MaxOutLen, MinOutLen)
    {
-     Range = (MaxOutLen – MinOutLen + 1);
+     Range = (MaxOutLen &#x2013; MinOutLen + 1);
      OutputLen = (floor(MaxOutLen/8)) * 8;
      FunctionName = "";
      Customization = "";
 
      Output[0] = Msg;
-     for (j = 0; j < 100; j++)
+     for (j = 0; j &lt; 100; j++)
      {
-       for (i = 1; i < 1001; i++)
+       for (i = 1; i &lt; 1001; i++)
        {
          InnerMsg = Left(Output[i-1] || ZeroBits(128), 128);
          Output[i] = CSHAKE(InnerMsg, OutputLen, FunctionName, Customization);
@@ -199,29 +216,12 @@ Internet-Draft                  ACVP XOF                   November 2020
 
                                   Figure 1
 
-5.2.2.  ParallelHash Monte Carlo Test
+6.2.2.  ParallelHash Monte Carlo Test
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Celi                       Expires 21 May 2021                  [Page 4]
+Celi                       Expires 22 May 2021                  [Page 4]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
@@ -230,16 +230,16 @@ Internet-Draft                  ACVP XOF                   November 2020
 
    MCT(Msg, MaxOutLen, MinOutLen, MaxBlockSize, MinBlockSize)
    {
-     Range = (MaxOutLen – MinOutLen + 1);
+     Range = (MaxOutLen &#x2013; MinOutLen + 1);
      OutputLen = (floor(MaxOutLen/8)) * 8;
-     BlockRange = (MaxBlockSize – MinBlockSize + 1);
+     BlockRange = (MaxBlockSize &#x2013; MinBlockSize + 1);
      BlockSize = MinBlockSize;
      Customization = "";
 
      Output[0] = Msg;
-     for (j = 0; j < 100; j++)
+     for (j = 0; j &lt; 100; j++)
      {
-       for (i = 1; i < 1001; i++)
+       for (i = 1; i &lt; 1001; i++)
        {
          InnerMsg = Left(Output[i-1] || ZeroBits(128), 128);
          Output[i] = ParallelHash(InnerMsg, OutputLen, BlockSize, FunctionName, Customization);
@@ -257,7 +257,7 @@ Internet-Draft                  ACVP XOF                   November 2020
 
                                   Figure 2
 
-5.2.3.  TupleHash Monte Carlo Test
+6.2.3.  TupleHash Monte Carlo Test
 
 
 
@@ -277,7 +277,7 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                  [Page 5]
+Celi                       Expires 22 May 2021                  [Page 5]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
@@ -286,19 +286,19 @@ Internet-Draft                  ACVP XOF                   November 2020
 
    MCT(Tuple, MaxOutLen, MinOutLen)
    {
-     Range = (MaxOutLen – MinOutLen + 1);
+     Range = (MaxOutLen &#x2013; MinOutLen + 1);
      OutputLen = (floor(MaxOutLen/8)) * 8;
      Customization = "";
 
      T[0][0] = Tuple;
 
-     for (j = 0; j < 100; j++)
+     for (j = 0; j &lt; 100; j++)
      {
-       for (i = 1; i < 1001; i++)
+       for (i = 1; i &lt; 1001; i++)
        {
          workingBits = Left(T[i-1][0] || ZeroBits(288), 288);
          tupleSize = Left(workingBits, 3) % 4 + 1; // never more than 4 tuples to a round
-         for (k = 0; k < tupleSize; k++)
+         for (k = 0; k &lt; tupleSize; k++)
          {
            T[i][k] = Substring of workingBits from (k * 288 / tupleSize) to ((k+1) * 288 / tupleSize - 1);
          }
@@ -316,7 +316,7 @@ Internet-Draft                  ACVP XOF                   November 2020
 
                                   Figure 3
 
-5.2.4.  BitsToString Function
+6.2.4.  BitsToString Function
 
    BitsToString(bits)
    {
@@ -333,27 +333,27 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                  [Page 6]
+Celi                       Expires 22 May 2021                  [Page 6]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
 
-5.3.  Test Coverage
+6.3.  Test Coverage
 
    The tests described in this document have the intention of ensuring
    an implementation is conformant to [SP800-185].
 
-5.3.1.  XOF Requirements Covered
+6.3.1.  XOF Requirements Covered
 
    In TBD.
 
-5.3.2.  XOF Requirements Not Covered
+6.3.2.  XOF Requirements Not Covered
 
    Some requirements in the outlined specification are not easily
    tested.  Often they are not ideal for black-box testing such as the
    ACVP.  In TBD.
 
-6.  Capabilities Registration
+7.  Capabilities Registration
 
    ACVP requires crypto modules to register their capabilities.  This
    allows the crypto module to advertise support for specific
@@ -370,7 +370,7 @@ Internet-Draft                  ACVP XOF                   November 2020
    registration message.  See the ACVP specification [ACVP] for more
    details on the registration message.
 
-6.1.  Prerequisites
+7.1.  Prerequisites
 
    Each algorithm implementation MAY rely on other cryptographic
    primitives.  For example, RSA Signature algorithms depend on an
@@ -389,12 +389,12 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                  [Page 7]
+Celi                       Expires 22 May 2021                  [Page 7]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
 
-        +===============+=============================+===========+
+        +---------------+-----------------------------+-----------+
         | JSON Property | Description                 | JSON Type |
         +===============+=============================+===========+
         | algorithm     | a prerequisite algorithm    | string    |
@@ -425,7 +425,7 @@ Internet-Draft                  ACVP XOF                   November 2020
 
                                   Figure 5
 
-6.2.  XOF Algorithm Capabilities Registration
+7.2.  XOF Algorithm Capabilities Registration
 
    This section describes the constructs for advertising support of XOFs
    to the ACVP server.  ACVP *REQUIRES* cryptographic modules to
@@ -445,7 +445,7 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                  [Page 8]
+Celi                       Expires 22 May 2021                  [Page 8]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
@@ -456,7 +456,7 @@ Internet-Draft                  ACVP XOF                   November 2020
    Each algorithm capability advertised is a self-contained JSON object.
    The following JSON values are used for hash algorithm capabilities:
 
-   +==================+======================================+=========+
+   +------------------+--------------------------------------+---------+
    | JSON Value       | Description                          | JSON    |
    |                  |                                      | type    |
    +==================+======================================+=========+
@@ -501,51 +501,51 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                  [Page 9]
+Celi                       Expires 22 May 2021                  [Page 9]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
 
+   +-------------+------+----------------+--------+---------+-------+------+
+   | algorithm   | xof  |hexCustomization|inputLen|outputLen|keyLen |macLen|
    +=============+======+================+========+=========+=======+======+
-   |algorithm    |xof   |hexCustomization|inputLen|outputLen|keyLen |macLen|
-   +=============+======+================+========+=========+=======+======+
-   |cSHAKE-128   |      |                |{Min: 0,|{Min: 16,|       |      |
-   |             |      |                |Max:    |Max:     |       |      |
-   |             |      |                |65536}  |65536}   |       |      |
+   | cSHAKE-128  |      |                |{Min: 0,|{Min: 16,|       |      |
+   |             |      |                | Max:   | Max:    |       |      |
+   |             |      |                | 65536} | 65536}  |       |      |
    +-------------+------+----------------+--------+---------+-------+------+
-   |cSHAKE-256   |      |                |{Min: 0,|{Min: 16,|       |      |
-   |             |      |                |Max:    |Max:     |       |      |
-   |             |      |                |65536}  |65536}   |       |      |
+   | cSHAKE-256  |      |                |{Min: 0,|{Min: 16,|       |      |
+   |             |      |                | Max:   | Max:    |       |      |
+   |             |      |                | 65536} | 65536}  |       |      |
    +-------------+------+----------------+--------+---------+-------+------+
-   |KMAC-128     |[true,|true, false     |{Min: 0,|{Min: 0, |{Min:  |{Min: |
-   |             |false]|                |Max:    |Max:     |128,   |32,   |
-   |             |      |                |65536}  |65536}   |Max:   |Max:  |
+   | KMAC-128    |[true,| true, false    |{Min: 0,|{Min: 0, | {Min: |{Min: |
+   |             |false]|                | Max:   | Max:    | 128,  | 32,  |
+   |             |      |                | 65536} | 65536}  | Max:  | Max: |
    |             |      |                |        |         |524288,|65536,|
-   |             |      |                |        |         |Inc: 8}|Inc:  |
-   |             |      |                |        |         |       |8}    |
+   |             |      |                |        |         |Inc: 8}| Inc: |
+   |             |      |                |        |         |       | 8}   |
    +-------------+------+----------------+--------+---------+-------+------+
-   |KMAC-256     |[true,|true, false     |{Min: 0,|{Min: 0, |{Min:  |{Min: |
-   |             |false]|                |Max:    |Max:     |128,   |32,   |
-   |             |      |                |65536}  |65536}   |Max:   |Max:  |
+   | KMAC-256    |[true,| true, false    |{Min: 0,|{Min: 0, | {Min: |{Min: |
+   |             |false]|                | Max:   | Max:    | 128,  | 32,  |
+   |             |      |                | 65536} | 65536}  | Max:  | Max: |
    |             |      |                |        |         |524288,|65536,|
-   |             |      |                |        |         |Inc: 8}|Inc:  |
-   |             |      |                |        |         |       |8}    |
+   |             |      |                |        |         |Inc: 8}| Inc: |
+   |             |      |                |        |         |       | 8}   |
    +-------------+------+----------------+--------+---------+-------+------+
-   |ParallelHash-|[true,|true, false     |{Min: 0,|{Min: 16,|       |      |
-   |128          |false]|                |Max:    |Max:     |       |      |
-   |             |      |                |65536}  |65536}   |       |      |
+   |ParallelHash-|[true,| true, false    |{Min: 0,|{Min: 16,|       |      |
+   | 128         |false]|                | Max:   | Max:    |       |      |
+   |             |      |                | 65536} | 65536}  |       |      |
    +-------------+------+----------------+--------+---------+-------+------+
-   |ParallelHash-|[true,|true, false     |{Min: 0,|{Min: 16,|       |      |
-   |256          |false]|                |Max:    |Max:     |       |      |
-   |             |      |                |65536}  |65536}   |       |      |
+   |ParallelHash-|[true,| true, false    |{Min: 0,|{Min: 16,|       |      |
+   | 256         |false]|                | Max:   | Max:    |       |      |
+   |             |      |                | 65536} | 65536}  |       |      |
    +-------------+------+----------------+--------+---------+-------+------+
-   |TupleHash-128|[true,|true, false     |{Min: 0,|{Min: 16,|       |      |
-   |             |false]|                |Max:    |Max:     |       |      |
-   |             |      |                |65536}  |65536}   |       |      |
+   |TupleHash-128|[true,| true, false    |{Min: 0,|{Min: 16,|       |      |
+   |             |false]|                | Max:   | Max:    |       |      |
+   |             |      |                | 65536} | 65536}  |       |      |
    +-------------+------+----------------+--------+---------+-------+------+
-   |TupleHash-128|[true,|true, false     |{Min: 0,|{Min: 16,|       |      |
-   |             |false]|                |Max:    |Max:     |       |      |
-   |             |      |                |65536}  |65536}   |       |      |
+   |TupleHash-128|[true,| true, false    |{Min: 0,|{Min: 16,|       |      |
+   |             |false]|                | Max:   | Max:    |       |      |
+   |             |      |                | 65536} | 65536}  |       |      |
    +-------------+------+----------------+--------+---------+-------+------+
 
                 Table 3: XOF Capabilities Applicability Grid
@@ -557,12 +557,12 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 10]
+Celi                       Expires 22 May 2021                 [Page 10]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
 
-7.  Test Vectors
+8.  Test Vectors
 
    The ACVP server provides test vectors to the ACVP client, which are
    then processed and returned to the ACVP server for validation.  A
@@ -577,7 +577,7 @@ Internet-Draft                  ACVP XOF                   November 2020
    test vectors to be processed by the ACVP client.  The following table
    describes the JSON elements at the top level of the hierarchy.
 
-    +=============+======================================+===========+
+    +-------------+--------------------------------------+-----------+
     | JSON Values | Description                          | JSON Type |
     +=============+======================================+===========+
     | acvVersion  | Protocol version identifier          | string    |
@@ -593,7 +593,7 @@ Internet-Draft                  ACVP XOF                   November 2020
     | revision    | Protocol test revision selected      | string    |
     +-------------+--------------------------------------+-----------+
     | testGroups  | Array of test groups containing test | array     |
-    |             | data, see Section 7.1                |           |
+    |             | data, see Section 8.1                |           |
     +-------------+--------------------------------------+-----------+
 
                Table 4: Top Level Test Vector JSON Elements
@@ -613,12 +613,12 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 11]
+Celi                       Expires 22 May 2021                 [Page 11]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
 
-7.1.  Test Groups
+8.1.  Test Groups
 
    Test vector sets MUST contain one or many test groups, each sharing
    similar properties.  For instance, all test vectors that use the same
@@ -629,7 +629,7 @@ Internet-Draft                  ACVP XOF                   November 2020
    describes the JSON elements that MUST appear from the server in the
    Test Group JSON object:
 
-      +==================+===============================+==========+
+      +------------------+-------------------------------+----------+
       | JSON Value       | Description                   | JSON     |
       |                  |                               | type     |
       +==================+===============================+==========+
@@ -639,7 +639,7 @@ Internet-Draft                  ACVP XOF                   November 2020
       +------------------+-------------------------------+----------+
       | testType         | Test category type.  AFT, MCT | string   |
       |                  | or MVT as defined in          |          |
-      |                  | Section 5                     |          |
+      |                  | Section 6                     |          |
       +------------------+-------------------------------+----------+
       | xof              | Whether or not the group uses | boolean  |
       |                  | the arbitrary output (XOF)    |          |
@@ -651,12 +651,12 @@ Internet-Draft                  ACVP XOF                   November 2020
       +------------------+-------------------------------+----------+
       | tests            | Array of individual test case | array of |
       |                  | JSON objects, which are       | testCase |
-      |                  | defined in Section 7.2        | objects  |
+      |                  | defined in Section 8.2        | objects  |
       +------------------+-------------------------------+----------+
 
                       Table 5: Test Group JSON Object
 
-7.2.  Test Case JSON Schema
+8.2.  Test Case JSON Schema
 
    Each test group SHALL contain an array of one or more test cases.
    Each test case is a JSON object that represents a single case to be
@@ -669,12 +669,12 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 12]
+Celi                       Expires 22 May 2021                 [Page 12]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
 
-   +==================+=====================================+=========+
+   +------------------+-------------------------------------+---------+
    | JSON Value       | Description                         | JSON    |
    |                  |                                     | type    |
    +==================+=====================================+=========+
@@ -725,19 +725,19 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 13]
+Celi                       Expires 22 May 2021                 [Page 13]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
 
-7.3.  Test Vector Responses
+8.3.  Test Vector Responses
 
    After the ACVP client downloads and processes a vector set, it SHALL
    send the response vectors back to the ACVP server within the alloted
    timeframe.  The following table describes the JSON object that
    represents a vector set response.
 
-       +============+==================================+===========+
+       +------------+----------------------------------+-----------+
        | JSON Value | Description                      | JSON type |
        +============+==================================+===========+
        | acvVersion | Protocol version identifier      | string    |
@@ -748,7 +748,7 @@ Internet-Draft                  ACVP XOF                   November 2020
        | testGroups | Array of JSON objects that       | array of  |
        |            | represent each test vector       | testGroup |
        |            | result, which uses the same JSON | objects   |
-       |            | schema as defined in Section 7.2 |           |
+       |            | schema as defined in Section 8.2 |           |
        +------------+----------------------------------+-----------+
 
                   Table 7: Vector Set Response JSON Object
@@ -758,7 +758,7 @@ Internet-Draft                  ACVP XOF                   November 2020
    algorithms SHALL require the client to send back group level
    properties in its response.  This structure helps accommodate that.
 
-      +============+=============================+==================+
+      +------------+-----------------------------+------------------+
       | JSON Value | Description                 | JSON type        |
       +============+=============================+==================+
       | tgId       | The test group identifier   | integer          |
@@ -781,12 +781,12 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 14]
+Celi                       Expires 22 May 2021                 [Page 14]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
 
-     +==============+==============================+================+
+     +--------------+------------------------------+----------------+
      | JSON Value   | Description                  | JSON type      |
      +==============+==============================+================+
      | tcId         | Numeric identifier for the   | integer        |
@@ -816,16 +816,16 @@ Internet-Draft                  ACVP XOF                   November 2020
       |  NOTE: The tcId MUST be included in every test case object sent
       |  between the client and the server.
 
-8.  Security Considerations
+9.  Security Considerations
 
    There are no additional security considerations outside of those
    outlined in the ACVP document.
 
-9.  IANA Considerations
+10.  IANA Considerations
 
    This document does not require any action by IANA.
 
-10.  Bibliography
+11.  Bibliography
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", IETF RFC 2119, IETF RFC 2119,
@@ -837,7 +837,7 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 15]
+Celi                       Expires 22 May 2021                 [Page 15]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
@@ -893,7 +893,7 @@ Appendix A.  Example Capabilities JSON Objects
 
 
 
-Celi                       Expires 21 May 2021                 [Page 16]
+Celi                       Expires 22 May 2021                 [Page 16]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
@@ -949,7 +949,7 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 17]
+Celi                       Expires 22 May 2021                 [Page 17]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
@@ -1005,7 +1005,7 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 18]
+Celi                       Expires 22 May 2021                 [Page 18]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
@@ -1061,13 +1061,13 @@ Appendix B.  Example Test Vectors JSON Objects
 
 
 
-Celi                       Expires 21 May 2021                 [Page 19]
+Celi                       Expires 22 May 2021                 [Page 19]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
 
    [
-   { "acvVersion": <acvp-version> },
+   { "acvVersion": &lt;acvp-version&gt; },
    {
      "vsId": 0,
      "algorithm": "CSHAKE-128",
@@ -1117,7 +1117,7 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 20]
+Celi                       Expires 22 May 2021                 [Page 20]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
@@ -1128,7 +1128,7 @@ Internet-Draft                  ACVP XOF                   November 2020
    from the ACVP server to the crypto module.
 
    [
-   { "acvVersion": <acvp-version> },
+   { "acvVersion": &lt;acvp-version&gt; },
    {
      "vsId": 0,
      "algorithm": "KMAC-128",
@@ -1173,7 +1173,7 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 21]
+Celi                       Expires 22 May 2021                 [Page 21]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
@@ -1206,7 +1206,7 @@ Internet-Draft                  ACVP XOF                   November 2020
    sent from the ACVP server to the crypto module.
 
    [
-   { "acvVersion": <acvp-version> },
+   { "acvVersion": &lt;acvp-version&gt; },
    {
      "vsId": 0,
      "algorithm": "ParallelHash-128",
@@ -1229,7 +1229,7 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 22]
+Celi                       Expires 22 May 2021                 [Page 22]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
@@ -1269,7 +1269,7 @@ Internet-Draft                  ACVP XOF                   November 2020
    sent from the ACVP server to the crypto module.
 
    [
-   { "acvVersion": <acvp-version> },
+   { "acvVersion": &lt;acvp-version&gt; },
    {
      "vsId": 0,
      "algorithm": "TupleHash-128",
@@ -1285,7 +1285,7 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 23]
+Celi                       Expires 22 May 2021                 [Page 23]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
@@ -1341,13 +1341,13 @@ Appendix C.  Example Test Results JSON Objects
 
 
 
-Celi                       Expires 21 May 2021                 [Page 24]
+Celi                       Expires 22 May 2021                 [Page 24]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
 
    [
-   { "acvVersion": <acvp-version> },
+   { "acvVersion": &lt;acvp-version&gt; },
    {
      "vsId": 0,
      "algorithm": "CSHAKE-128",
@@ -1397,7 +1397,7 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 25]
+Celi                       Expires 22 May 2021                 [Page 25]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
@@ -1408,7 +1408,7 @@ Internet-Draft                  ACVP XOF                   November 2020
    from the crypto module to the ACVP server.
 
    [
-   { "acvVersion": <acvp-version> },
+   { "acvVersion": &lt;acvp-version&gt; },
    {
      "vsId": 0,
      "algorithm": "KMAC-128",
@@ -1453,7 +1453,7 @@ Author's Address
 
 
 
-Celi                       Expires 21 May 2021                 [Page 26]
+Celi                       Expires 22 May 2021                 [Page 26]
 
 Internet-Draft                  ACVP XOF                   November 2020
 
@@ -1509,4 +1509,4 @@ Internet-Draft                  ACVP XOF                   November 2020
 
 
 
-Celi                       Expires 21 May 2021                 [Page 27]
+Celi                       Expires 22 May 2021                 [Page 27]

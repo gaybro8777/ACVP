@@ -6,26 +6,8 @@
 <meta content="initial-scale=1.0" name="viewport">
 <title>ACVP Extendable Output Function (XOF) JSON Specification</title>
 <meta content="Christopher Celi" name="author">
-<meta content="xml2rfc 3.4.0" name="generator">
+<meta content="xml2rfc 2.45.3" name="generator">
 <meta name="ietf.draft">
-<!-- Generator version information:
-  xml2rfc 3.4.0
-    Python 3.7.3
-    appdirs 1.4.4
-    ConfigArgParse 1.2.3
-    google-i18n-address 2.4.0
-    html5lib 1.1
-    intervaltree 3.1.0
-    Jinja2 2.11.2
-    kitchen 1.2.6
-    lxml 4.6.1
-    pycountry 20.7.3
-    pyflakes 2.2.0
-    PyYAML 5.3.1
-    requests 2.25.0
-    setuptools 50.3.2
-    six 1.15.0
--->
 <link href="draft-celi-acvp-xof.rfc.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">/*
@@ -927,6 +909,12 @@ caption a[href] {
   }
 
 }
+/* Avoid wrapping of URLs in references */
+@media screen {
+  .references a {
+    white-space: nowrap;
+  }
+}
 /* Tweak the bcp14 keyword presentation */
 .bcp14 {
   font-variant: small-caps;
@@ -1076,7 +1064,6 @@ figure, pre, table, .artwork, .sourcecode  {
 }
 /* Avoid breaks between <dt> and <dd> */
 dl {
-  break-before: auto;
   break-inside: auto;
 }
 dt {
@@ -1089,7 +1076,7 @@ dd {
   orphans: 3;
   widows: 3
 }
-span.break, dd.break {
+dd.break {
   margin-bottom: 0;
   min-height: 0;
   break-before: auto;
@@ -1115,48 +1102,8 @@ section ol.compact,
 section .olCompact {
   margin-bottom: 1em;                    /* same as p not within ul.compact etc. */
 }
-/* The tt and code background above interferes with for instance table cell
-   backgrounds.  Changed to something a bit more selective. */
-tt, code {
-  background-color: transparent;
-}
-p tt, p code, li tt, li code {
-  background-color: #f8f8f8;
-}
-/* Tweak the pre margin -- 0px doesn't come out well */
-pre {
-   margin-top: 0.5px;
-}
-/* Tweak the comact list text */
-ul.compact, .ulCompact,
-ol.compact, .olCompact,
-dl.compact, .dlCompact {
-  line-height: normal;
-}
-/* Don't add top margin for nested lists */
-li > ul, li > ol, li > dl,
-dd > ul, dd > ol, dd > dl,
-dl > dd > dl {
-  margin-top: initial;
-}
-/* Elements that should not be rendered on the same line as a <dt> */
-/* This should match the element list in writer.text.TextWriter.render_dl() */
-dd > div.artwork:first-child,
-dd > aside:first-child,
-dd > figure:first-child,
-dd > ol:first-child,
-dd > div:first-child > pre.sourcecode,
-dd > table:first-child,
-dd > ul:first-child {
-  clear: left;
-}
-/* fix for weird browser behaviour when <dd/> is empty */
-dt+dd:empty::before{
-  content: "\00a0";
-}
 </style>
 <link href="rfc-local.css" rel="stylesheet" type="text/css">
-<script type="application/javascript">async function addMetadata(){try{const e=document.styleSheets[0].cssRules;for(let t=0;t<e.length;t++)if(/#identifiers/.exec(e[t].selectorText)){const a=e[t].cssText.replace("#identifiers","#external-updates");document.styleSheets[0].insertRule(a,document.styleSheets[0].cssRules.length)}}catch(e){console.log(e)}const e=document.getElementById("external-metadata");if(e)try{var t,a="",o=function(e){const t=document.getElementsByTagName("meta");for(let a=0;a<t.length;a++)if(t[a].getAttribute("name")===e)return t[a].getAttribute("content");return""}("rfc.number");if(o){t="https://www.rfc-editor.org/rfc/rfc"+o+".json";try{const e=await fetch(t);a=await e.json()}catch(e){t=document.URL.indexOf("html")>=0?document.URL.replace(/html$/,"json"):document.URL+".json";const o=await fetch(t);a=await o.json()}}if(!a)return;e.style.display="block";const s="",d="https://datatracker.ietf.org/doc",n="https://datatracker.ietf.org/ipr/search",c="https://www.rfc-editor.org/info",l=a.doc_id.toLowerCase(),i=a.doc_id.slice(0,3).toLowerCase(),f=a.doc_id.slice(3).replace(/^0+/,""),u={status:"Status",obsoletes:"Obsoletes",obsoleted_by:"Obsoleted By",updates:"Updates",updated_by:"Updated By",see_also:"See Also",errata_url:"Errata"};let h="<dl style='overflow:hidden' id='external-updates'>";["status","obsoletes","obsoleted_by","updates","updated_by","see_also","errata_url"].forEach(e=>{if("status"==e){a[e]=a[e].toLowerCase();var t=a[e].split(" "),o=t.length,w="",p=1;for(let e=0;e<o;e++)p<o?w=w+r(t[e])+" ":w+=r(t[e]),p++;a[e]=w}else if("obsoletes"==e||"obsoleted_by"==e||"updates"==e||"updated_by"==e){var g,m="",b=1;g=a[e].length;for(let t=0;t<g;t++)a[e][t]&&(a[e][t]=String(a[e][t]).toLowerCase(),m=b<g?m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>, ":m+"<a href='"+s+"/rfc/".concat(a[e][t])+"'>"+a[e][t].slice(3)+"</a>",b++);a[e]=m}else if("see_also"==e){var y,L="",C=1;y=a[e].length;for(let t=0;t<y;t++)if(a[e][t]){a[e][t]=String(a[e][t]);var _=a[e][t].slice(0,3),v=a[e][t].slice(3).replace(/^0+/,"");L=C<y?"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>, ":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>, ":"RFC"!=_?L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+_+" "+v+"</a>":L+"<a href='"+s+"/info/"+_.toLowerCase().concat(v.toLowerCase())+"'>"+v+"</a>",C++}a[e]=L}else if("errata_url"==e){var R="";R=a[e]?R+"<a href='"+a[e]+"'>Errata exist</a> | <a href='"+d+"/"+l+"'>Datatracker</a>| <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>":"<a href='"+d+"/"+l+"'>Datatracker</a> | <a href='"+n+"/?"+i+"="+f+"&submit="+i+"'>IPR</a> | <a href='"+c+"/"+l+"'>Info page</a>",a[e]=R}""!=a[e]?"Errata"==u[e]?h+=`<dt>More info:</dt><dd>${a[e]}</dd>`:h+=`<dt>${u[e]}:</dt><dd>${a[e]}</dd>`:"Errata"==u[e]&&(h+=`<dt>More info:</dt><dd>${a[e]}</dd>`)}),h+="</dl>",e.innerHTML=h}catch(e){console.log(e)}else console.log("Could not locate metadata <div> element");function r(e){return e.charAt(0).toUpperCase()+e.slice(1)}}window.removeEventListener("load",addMetadata),window.addEventListener("load",addMetadata);</script>
 </head>
 <body>
 <script src="metadata.min.js"></script>
@@ -1168,7 +1115,7 @@ dt+dd:empty::before{
 </tr></thead>
 <tfoot><tr>
 <td class="left">Celi</td>
-<td class="center">Expires 21 May 2021</td>
+<td class="center">Expires 22 May 2021</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1183,12 +1130,12 @@ dt+dd:empty::before{
 <dd></dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2020-11-17" class="published">17 November 2020</time>
+<time datetime="2020-11-18" class="published">18 November 2020</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-05-21">21 May 2021</time></dd>
+<dd class="expires"><time datetime="2021-05-22">22 May 2021</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -1218,7 +1165,7 @@ dt+dd:empty::before{
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 21 May 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 22 May 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1246,102 +1193,105 @@ dt+dd:empty::before{
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="toc compact ulEmpty">
-<li class="toc compact ulEmpty" id="section-toc.1-1.1">
+<nav class="toc"><ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-acknowledgements" class="xref">Acknowledgements</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.2">
+<li class="compact ulEmpty toc" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1" class="keepWithNext"><a href="#section-2" class="xref">2</a>.  <a href="#name-abstract" class="xref">Abstract</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.3">
+<li class="compact ulEmpty toc" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1" class="keepWithNext"><a href="#section-3" class="xref">3</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.4">
+<li class="compact ulEmpty toc" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-terms-and-definitions" class="xref">Terms and definitions</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.5">
-            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-test-types-and-test-coverag" class="xref">Test Types and Test Coverage</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
-<ul class="toc compact ulEmpty">
-<li class="toc compact ulEmpty" id="section-toc.1-1.5.2.1">
-                <p id="section-toc.1-1.5.2.1.1"><a href="#section-5.1" class="xref">5.1</a>.  <a href="#name-test-types" class="xref">Test Types</a><a href="#section-toc.1-1.5.2.1.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.5">
+            <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-supported-algorithms" class="xref">Supported Algorithms</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.5.2.2">
-                <p id="section-toc.1-1.5.2.2.1"><a href="#section-5.2" class="xref">5.2</a>.  <a href="#name-monte-carlo-tests-for-xofs" class="xref">Monte Carlo tests for XOFs</a><a href="#section-toc.1-1.5.2.2.1" class="pilcrow">¶</a></p>
-<ul class="toc compact ulEmpty">
-<li class="toc compact ulEmpty" id="section-toc.1-1.5.2.2.2.1">
-                    <p id="section-toc.1-1.5.2.2.2.1.1"><a href="#section-5.2.1" class="xref">5.2.1</a>.  <a href="#name-cshake-monte-carlo-test" class="xref">cSHAKE Monte Carlo Test</a><a href="#section-toc.1-1.5.2.2.2.1.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.6">
+            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-test-types-and-test-coverag" class="xref">Test Types and Test Coverage</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
+<ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.6.2.1">
+                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-test-types" class="xref">Test Types</a><a href="#section-toc.1-1.6.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc compact ulEmpty" id="section-toc.1-1.5.2.2.2.2">
-                    <p id="section-toc.1-1.5.2.2.2.2.1"><a href="#section-5.2.2" class="xref">5.2.2</a>.  <a href="#name-parallelhash-monte-carlo-te" class="xref">ParallelHash Monte Carlo Test</a><a href="#section-toc.1-1.5.2.2.2.2.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.6.2.2">
+                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-monte-carlo-tests-for-xofs" class="xref">Monte Carlo tests for XOFs</a><a href="#section-toc.1-1.6.2.2.1" class="pilcrow">¶</a></p>
+<ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.6.2.2.2.1">
+                    <p id="section-toc.1-1.6.2.2.2.1.1"><a href="#section-6.2.1" class="xref">6.2.1</a>.  <a href="#name-cshake-monte-carlo-test" class="xref">cSHAKE Monte Carlo Test</a><a href="#section-toc.1-1.6.2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc compact ulEmpty" id="section-toc.1-1.5.2.2.2.3">
-                    <p id="section-toc.1-1.5.2.2.2.3.1"><a href="#section-5.2.3" class="xref">5.2.3</a>.  <a href="#name-tuplehash-monte-carlo-test" class="xref">TupleHash Monte Carlo Test</a><a href="#section-toc.1-1.5.2.2.2.3.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.6.2.2.2.2">
+                    <p id="section-toc.1-1.6.2.2.2.2.1"><a href="#section-6.2.2" class="xref">6.2.2</a>.  <a href="#name-parallelhash-monte-carlo-te" class="xref">ParallelHash Monte Carlo Test</a><a href="#section-toc.1-1.6.2.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc compact ulEmpty" id="section-toc.1-1.5.2.2.2.4">
-                    <p id="section-toc.1-1.5.2.2.2.4.1"><a href="#section-5.2.4" class="xref">5.2.4</a>.  <a href="#name-bitstostring-function" class="xref">BitsToString Function</a><a href="#section-toc.1-1.5.2.2.2.4.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.6.2.2.2.3">
+                    <p id="section-toc.1-1.6.2.2.2.3.1"><a href="#section-6.2.3" class="xref">6.2.3</a>.  <a href="#name-tuplehash-monte-carlo-test" class="xref">TupleHash Monte Carlo Test</a><a href="#section-toc.1-1.6.2.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
-                </ul>
+<li class="compact ulEmpty toc" id="section-toc.1-1.6.2.2.2.4">
+                    <p id="section-toc.1-1.6.2.2.2.4.1"><a href="#section-6.2.4" class="xref">6.2.4</a>.  <a href="#name-bitstostring-function" class="xref">BitsToString Function</a><a href="#section-toc.1-1.6.2.2.2.4.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.5.2.3">
-                <p id="section-toc.1-1.5.2.3.1"><a href="#section-5.3" class="xref">5.3</a>.  <a href="#name-test-coverage" class="xref">Test Coverage</a><a href="#section-toc.1-1.5.2.3.1" class="pilcrow">¶</a></p>
-<ul class="toc compact ulEmpty">
-<li class="toc compact ulEmpty" id="section-toc.1-1.5.2.3.2.1">
-                    <p id="section-toc.1-1.5.2.3.2.1.1"><a href="#section-5.3.1" class="xref">5.3.1</a>.  <a href="#name-xof-requirements-covered" class="xref">XOF Requirements Covered</a><a href="#section-toc.1-1.5.2.3.2.1.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-                  <li class="toc compact ulEmpty" id="section-toc.1-1.5.2.3.2.2">
-                    <p id="section-toc.1-1.5.2.3.2.2.1"><a href="#section-5.3.2" class="xref">5.3.2</a>.  <a href="#name-xof-requirements-not-covere" class="xref">XOF Requirements Not Covered</a><a href="#section-toc.1-1.5.2.3.2.2.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.6.2.3">
+                <p id="section-toc.1-1.6.2.3.1"><a href="#section-6.3" class="xref">6.3</a>.  <a href="#name-test-coverage" class="xref">Test Coverage</a><a href="#section-toc.1-1.6.2.3.1" class="pilcrow">¶</a></p>
+<ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.6.2.3.2.1">
+                    <p id="section-toc.1-1.6.2.3.2.1.1"><a href="#section-6.3.1" class="xref">6.3.1</a>.  <a href="#name-xof-requirements-covered" class="xref">XOF Requirements Covered</a><a href="#section-toc.1-1.6.2.3.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                </ul>
+<li class="compact ulEmpty toc" id="section-toc.1-1.6.2.3.2.2">
+                    <p id="section-toc.1-1.6.2.3.2.2.1"><a href="#section-6.3.2" class="xref">6.3.2</a>.  <a href="#name-xof-requirements-not-covere" class="xref">XOF Requirements Not Covered</a><a href="#section-toc.1-1.6.2.3.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            </ul>
+</ul>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.6">
-            <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-capabilities-registration" class="xref">Capabilities Registration</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
-<ul class="toc compact ulEmpty">
-<li class="toc compact ulEmpty" id="section-toc.1-1.6.2.1">
-                <p id="section-toc.1-1.6.2.1.1"><a href="#section-6.1" class="xref">6.1</a>.  <a href="#name-prerequisites" class="xref">Prerequisites</a><a href="#section-toc.1-1.6.2.1.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.6.2.2">
-                <p id="section-toc.1-1.6.2.2.1"><a href="#section-6.2" class="xref">6.2</a>.  <a href="#name-xof-algorithm-capabilities-" class="xref">XOF Algorithm Capabilities Registration</a><a href="#section-toc.1-1.6.2.2.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.7">
+            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-capabilities-registration" class="xref">Capabilities Registration</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
+<ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.7.2.1">
+                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-prerequisites" class="xref">Prerequisites</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
 </li>
-            </ul>
+<li class="compact ulEmpty toc" id="section-toc.1-1.7.2.2">
+                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-xof-algorithm-capabilities-" class="xref">XOF Algorithm Capabilities Registration</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.7">
-            <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-test-vectors" class="xref">Test Vectors</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
-<ul class="toc compact ulEmpty">
-<li class="toc compact ulEmpty" id="section-toc.1-1.7.2.1">
-                <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-test-groups" class="xref">Test Groups</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.7.2.2">
-                <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-test-case-json-schema" class="xref">Test Case JSON Schema</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.8">
+            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-test-vectors" class="xref">Test Vectors</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+<ul class="compact ulEmpty toc">
+<li class="compact ulEmpty toc" id="section-toc.1-1.8.2.1">
+                <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="xref">8.1</a>.  <a href="#name-test-groups" class="xref">Test Groups</a><a href="#section-toc.1-1.8.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc compact ulEmpty" id="section-toc.1-1.7.2.3">
-                <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="xref">7.3</a>.  <a href="#name-test-vector-responses" class="xref">Test Vector Responses</a><a href="#section-toc.1-1.7.2.3.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.8.2.2">
+                <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="xref">8.2</a>.  <a href="#name-test-case-json-schema" class="xref">Test Case JSON Schema</a><a href="#section-toc.1-1.8.2.2.1" class="pilcrow">¶</a></p>
 </li>
-            </ul>
+<li class="compact ulEmpty toc" id="section-toc.1-1.8.2.3">
+                <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="xref">8.3</a>.  <a href="#name-test-vector-responses" class="xref">Test Vector Responses</a><a href="#section-toc.1-1.8.2.3.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.8">
-            <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
+</ul>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.9">
-            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.9">
+            <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.10">
-            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-bibliography" class="xref">Bibliography</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.10">
+            <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-example-capabilities-json-o" class="xref">Example Capabilities JSON Objects</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-11" class="xref">11</a>. <a href="#name-bibliography" class="xref">Bibliography</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#section-appendix.b" class="xref">Appendix B</a>.  <a href="#name-example-test-vectors-json-o" class="xref">Example Test Vectors JSON Objects</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-example-capabilities-json-o" class="xref">Example Capabilities JSON Objects</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#section-appendix.c" class="xref">Appendix C</a>.  <a href="#name-example-test-results-json-o" class="xref">Example Test Results JSON Objects</a><a href="#section-toc.1-1.13.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#section-appendix.b" class="xref">Appendix B</a>.  <a href="#name-example-test-vectors-json-o" class="xref">Example Test Vectors JSON Objects</a><a href="#section-toc.1-1.13.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc compact ulEmpty" id="section-toc.1-1.14">
-            <p id="section-toc.1-1.14.1"><a href="#section-appendix.d" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a><a href="#section-toc.1-1.14.1" class="pilcrow">¶</a></p>
+<li class="compact ulEmpty toc" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#section-appendix.c" class="xref">Appendix C</a>.  <a href="#name-example-test-results-json-o" class="xref">Example Test Results JSON Objects</a><a href="#section-toc.1-1.14.1" class="pilcrow">¶</a></p>
 </li>
-        </ul>
+<li class="compact ulEmpty toc" id="section-toc.1-1.15">
+            <p id="section-toc.1-1.15.1"><a href="#section-appendix.d" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a><a href="#section-toc.1-1.15.1" class="pilcrow">¶</a></p>
+</li>
+</ul>
 </nav>
 </section>
 </div>
@@ -1350,7 +1300,7 @@ dt+dd:empty::before{
       <h2 id="name-acknowledgements">
 <a href="#section-1" class="section-number selfRef">1. </a><a href="#name-acknowledgements" class="section-name selfRef">Acknowledgements</a>
       </h2>
-<div id="_6f40c593-6e83-4191-8c72-e63ae1d38f55">
+<div id="_094c573f-5eaa-47b6-ac61-9b87278235c9">
 <p id="section-1-1">There are no acknowledgements.<a href="#section-1-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1360,7 +1310,7 @@ dt+dd:empty::before{
       <h2 id="name-abstract">
 <a href="#section-2" class="section-number selfRef">2. </a><a href="#name-abstract" class="section-name selfRef">Abstract</a>
       </h2>
-<div id="_87b024c8-c5ca-4d61-9090-b9e1972222f7">
+<div id="_6fc01cf5-2e3e-47e2-b8fb-fcc4115435b7">
 <p id="section-2-1">This document defines the JSON schema for testing Extendable Output Function implementations with the ACVP specification.<a href="#section-2-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1370,7 +1320,7 @@ dt+dd:empty::before{
       <h2 id="name-introduction">
 <a href="#section-3" class="section-number selfRef">3. </a><a href="#name-introduction" class="section-name selfRef">Introduction</a>
       </h2>
-<div id="_46854c0d-3950-4f8c-9abd-f1956994e328">
+<div id="_8b70af0f-9820-4fed-ab72-5dfe6e88aebf">
 <p id="section-3-1">The Automated Crypto Validation Protocol (ACVP) defines a mechanism to automatically verify the cryptographic implementation of a software or hardware crypto module. The ACVP specification defines how a crypto module communicates with an ACVP server, including crypto capabilities negotiation, session management, authentication, vector processing and more. The ACVP specification does not define algorithm specific JSON constructs for performing the crypto validation. A series of ACVP sub-specifications define the constructs for testing individual crypto algorithms. Each sub-specification addresses a specific class of crypto algorithms. This sub-specification defines the JSON constructs for testing Extendable Output Function implementations using ACVP.<a href="#section-3-1" class="pilcrow">¶</a></p>
 </div>
 </section>
@@ -1380,72 +1330,127 @@ dt+dd:empty::before{
       <h2 id="name-terms-and-definitions">
 <a href="#section-4" class="section-number selfRef">4. </a><a href="#name-terms-and-definitions" class="section-name selfRef">Terms and definitions</a>
       </h2>
-<div id="_8580e9f6-e94c-4042-90d0-a1fcdb7362c9">
+<div id="_905f0247-18c1-4a48-81a9-9418d32cec8a">
 <p id="section-4-1">No terms and definitions are listed in this document.<a href="#section-4-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
-<div id="testtypes">
+<div id="supported_algs">
 <section id="section-5">
-      <h2 id="name-test-types-and-test-coverag">
-<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-test-types-and-test-coverag" class="section-name selfRef">Test Types and Test Coverage</a>
+      <h2 id="name-supported-algorithms">
+<a href="#section-5" class="section-number selfRef">5. </a><a href="#name-supported-algorithms" class="section-name selfRef">Supported Algorithms</a>
       </h2>
-<div id="_c40d23ac-19cb-4674-8fba-e07e7b1ce92e">
-<p id="section-5-1">This section describes the design of the tests used to validate Extendable Output Function implementations.<a href="#section-5-1" class="pilcrow">¶</a></p>
-</div>
-<div id="_test_types">
-<section id="section-5.1">
-        <h3 id="name-test-types">
-<a href="#section-5.1" class="section-number selfRef">5.1. </a><a href="#name-test-types" class="section-name selfRef">Test Types</a>
-        </h3>
-<div id="_86948f35-7b87-482d-bbd1-d2befa164c1f">
-<p id="section-5.1-1">This section describes the design of the tests used to validate implementations of XOFs. There are three types of tests for these algorithms: Algorithm Functional Tests (AFT), Monte Carlo Tests (MCT) and MAC Verification Tests (MVT). Each has a specific value to be used in the testType field. The testType field definitions are:<a href="#section-5.1-1" class="pilcrow">¶</a></p>
+<div id="_32ea9f1f-6a00-47ff-bd0e-4dce8e56737c">
+<p id="section-5-1">The following XOFs may be advertised by this ACVP compliant crypto module:<a href="#section-5-1" class="pilcrow">¶</a></p>
 </div>
 <ul class="normal">
-<li class="normal" id="section-5.1-2.1">
-            <div id="_30c5eb89-a310-42ae-9bf6-31df22b1d1ba">
-<p id="section-5.1-2.1.1">"AFT" - Algorithm Functional Tests. These tests can be processed by the client using a normal 'encrypt' or 'decrypt' operation. AFTs cause the implementation under test to exercise normal operations on a single block, multiple blocks, or (where applicable) partial blocks. In some cases random data is used, in others, static, predetermined tests are provided.<a href="#section-5.1-2.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5-2.1">
+          <div id="_5f4d3206-6ab9-4ef3-affd-f4889d0d115c">
+<p id="section-5-2.1.1">cSHAKE-128<a href="#section-5-2.1.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-5.1-2.2">
-            <div id="_e8d6b9fb-aa42-476e-b6ec-f5e7c47b96bc">
-<p id="section-5.1-2.2.1">"MCT" - Monte Carlo Tests. These tests exercise the implementation under test under strenuous circumstances. The implementation under test must process the test vectors according to the correct algorithm and mode in this document. MCTs can help detect potential memory leaks over time, and problems in allocation of resources, addressing variables, error handling and generally improper behavior in response to random inputs. Each MCT processes 100 pseudorandom tests. Not every algorithm and mode combination has an MCT. See <a href="#MC_test" class="xref">Section 5.2</a> for implementation details.<a href="#section-5.1-2.2.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5-2.2">
+          <div id="_49fe947a-e4ba-4665-a6b3-e765f2a4f560">
+<p id="section-5-2.2.1">cSHAKE-256<a href="#section-5-2.2.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-          <li class="normal" id="section-5.1-2.3">
-            <div id="_998c7ec7-c6cc-480f-abf1-3372dfeb5141">
-<p id="section-5.1-2.3.1">"MVT" - MAC Verification Tests.  XXX<a href="#section-5.1-2.3.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-5-2.3">
+          <div id="_f2efa990-fbed-41ad-b00c-fa83b2a84055">
+<p id="section-5-2.3.1">parallelHash-128<a href="#section-5-2.3.1" class="pilcrow">¶</a></p>
 </div>
 </li>
-        </ul>
+<li class="normal" id="section-5-2.4">
+          <div id="_ccb8b0d7-8b50-4faa-9a04-dadf0bca24c8">
+<p id="section-5-2.4.1">parallelHash-256<a href="#section-5-2.4.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-5-2.5">
+          <div id="_3ab5b321-d9cd-4f3d-bac6-2e5c4f9e345a">
+<p id="section-5-2.5.1">tupleHash-128<a href="#section-5-2.5.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-5-2.6">
+          <div id="_8bebafc0-d016-4a5d-b1ff-9368a54438e9">
+<p id="section-5-2.6.1">tupleHash-256<a href="#section-5-2.6.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-5-2.7">
+          <div id="_4db7ac40-0e6b-4330-b7ca-b179ef43d003">
+<p id="section-5-2.7.1">KMAC-128<a href="#section-5-2.7.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-5-2.8">
+          <div id="_ffd24fd0-1add-42c4-8499-2531589a7e9d">
+<p id="section-5-2.8.1">KMAC-256<a href="#section-5-2.8.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+</ul>
+<div id="_d2e097e7-de4e-486f-8735-c2210c2937b9">
+<p id="section-5-3">Other XOFs may be advertised by the ACVP elsewhere.<a href="#section-5-3" class="pilcrow">¶</a></p>
+</div>
+</section>
+</div>
+<div id="testtypes">
+<section id="section-6">
+      <h2 id="name-test-types-and-test-coverag">
+<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-test-types-and-test-coverag" class="section-name selfRef">Test Types and Test Coverage</a>
+      </h2>
+<div id="_63863a37-23ec-452d-ad37-a60096f0ebcc">
+<p id="section-6-1">This section describes the design of the tests used to validate Extendable Output Function implementations.<a href="#section-6-1" class="pilcrow">¶</a></p>
+</div>
+<div id="_test_types">
+<section id="section-6.1">
+        <h3 id="name-test-types">
+<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-test-types" class="section-name selfRef">Test Types</a>
+        </h3>
+<div id="_fc8aff12-966e-4088-8b9b-a9d5b9064d78">
+<p id="section-6.1-1">This section describes the design of the tests used to validate implementations of XOFs. There are three types of tests for these algorithms: Algorithm Functional Tests (AFT), Monte Carlo Tests (MCT) and MAC Verification Tests (MVT). Each has a specific value to be used in the testType field. The testType field definitions are:<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+</div>
+<ul class="normal">
+<li class="normal" id="section-6.1-2.1">
+            <div id="_20a4d831-5272-4d5c-b206-36542d82e708">
+<p id="section-6.1-2.1.1">"AFT" - Algorithm Functional Tests. These tests can be processed by the client using a normal 'encrypt' or 'decrypt' operation. AFTs cause the implementation under test to exercise normal operations on a single block, multiple blocks, or (where applicable) partial blocks. In some cases random data is used, in others, static, predetermined tests are provided.<a href="#section-6.1-2.1.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-6.1-2.2">
+            <div id="_dafcab75-0628-447a-8a6d-b2406f3430fd">
+<p id="section-6.1-2.2.1">"MCT" - Monte Carlo Tests. These tests exercise the implementation under test under strenuous circumstances. The implementation under test must process the test vectors according to the correct algorithm and mode in this document. MCTs can help detect potential memory leaks over time, and problems in allocation of resources, addressing variables, error handling and generally improper behavior in response to random inputs. Each MCT processes 100 pseudorandom tests. Not every algorithm and mode combination has an MCT. See <a href="#MC_test" class="xref">Section 6.2</a> for implementation details.<a href="#section-6.1-2.2.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+<li class="normal" id="section-6.1-2.3">
+            <div id="_4eb9208d-228e-4041-b8d5-f5fe9eec0bee">
+<p id="section-6.1-2.3.1">"MVT" - MAC Verification Tests.  XXX<a href="#section-6.1-2.3.1" class="pilcrow">¶</a></p>
+</div>
+</li>
+</ul>
 </section>
 </div>
 <div id="MC_test">
-<section id="section-5.2">
+<section id="section-6.2">
         <h3 id="name-monte-carlo-tests-for-xofs">
-<a href="#section-5.2" class="section-number selfRef">5.2. </a><a href="#name-monte-carlo-tests-for-xofs" class="section-name selfRef">Monte Carlo tests for XOFs</a>
+<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-monte-carlo-tests-for-xofs" class="section-name selfRef">Monte Carlo tests for XOFs</a>
         </h3>
 <div id="cSHAKE-MCT">
-<section id="section-5.2.1">
+<section id="section-6.2.1">
           <h4 id="name-cshake-monte-carlo-test">
-<a href="#section-5.2.1" class="section-number selfRef">5.2.1. </a><a href="#name-cshake-monte-carlo-test" class="section-name selfRef">cSHAKE Monte Carlo Test</a>
+<a href="#section-6.2.1" class="section-number selfRef">6.2.1. </a><a href="#name-cshake-monte-carlo-test" class="section-name selfRef">cSHAKE Monte Carlo Test</a>
           </h4>
-<div id="_eec7a326-fb55-4729-ab33-5ce2b1ba3f4b">
+<div id="_edce4acc-2ca2-4d54-8724-0bc9abdf3d84">
 <figure id="figure-1">
-            <div id="section-5.2.1-1.1">
+            <div id="section-6.2.1-1.1">
 <pre class="sourcecode lang-code">INPUT: The initial Msg is the length of the digest size
 
 MCT(Msg, MaxOutLen, MinOutLen)
 {
-  Range = (MaxOutLen – MinOutLen + 1);
+  Range = (MaxOutLen &amp;#x2013; MinOutLen + 1);
   OutputLen = (floor(MaxOutLen/8)) * 8;
   FunctionName = "";
   Customization = "";
 
   Output[0] = Msg;
-  for (j = 0; j &lt; 100; j++)
+  for (j = 0; j &amp;lt; 100; j++)
   {
-    for (i = 1; i &lt; 1001; i++)
+    for (i = 1; i &amp;lt; 1001; i++)
     {
       InnerMsg = Left(Output[i-1] || ZeroBits(128), 128);
       Output[i] = CSHAKE(InnerMsg, OutputLen, FunctionName, Customization);
@@ -1465,27 +1470,27 @@ MCT(Msg, MaxOutLen, MinOutLen)
 </section>
 </div>
 <div id="ParallelHash-MCT">
-<section id="section-5.2.2">
+<section id="section-6.2.2">
           <h4 id="name-parallelhash-monte-carlo-te">
-<a href="#section-5.2.2" class="section-number selfRef">5.2.2. </a><a href="#name-parallelhash-monte-carlo-te" class="section-name selfRef">ParallelHash Monte Carlo Test</a>
+<a href="#section-6.2.2" class="section-number selfRef">6.2.2. </a><a href="#name-parallelhash-monte-carlo-te" class="section-name selfRef">ParallelHash Monte Carlo Test</a>
           </h4>
-<div id="_499d7906-a587-449d-a8b0-1573983a364d">
+<div id="_88a211f0-1097-47c5-a885-337cf8c6e748">
 <figure id="figure-2">
-            <div id="section-5.2.2-1.1">
+            <div id="section-6.2.2-1.1">
 <pre class="sourcecode lang-code">INPUT: The initial Msg is the length of the digest size
 
 MCT(Msg, MaxOutLen, MinOutLen, MaxBlockSize, MinBlockSize)
 {
-  Range = (MaxOutLen – MinOutLen + 1);
+  Range = (MaxOutLen &amp;#x2013; MinOutLen + 1);
   OutputLen = (floor(MaxOutLen/8)) * 8;
-  BlockRange = (MaxBlockSize – MinBlockSize + 1);
+  BlockRange = (MaxBlockSize &amp;#x2013; MinBlockSize + 1);
   BlockSize = MinBlockSize;
   Customization = "";
 
   Output[0] = Msg;
-  for (j = 0; j &lt; 100; j++)
+  for (j = 0; j &amp;lt; 100; j++)
   {
-    for (i = 1; i &lt; 1001; i++)
+    for (i = 1; i &amp;lt; 1001; i++)
     {
       InnerMsg = Left(Output[i-1] || ZeroBits(128), 128);
       Output[i] = ParallelHash(InnerMsg, OutputLen, BlockSize, FunctionName, Customization);
@@ -1506,30 +1511,30 @@ MCT(Msg, MaxOutLen, MinOutLen, MaxBlockSize, MinBlockSize)
 </section>
 </div>
 <div id="TupleHash-MCT">
-<section id="section-5.2.3">
+<section id="section-6.2.3">
           <h4 id="name-tuplehash-monte-carlo-test">
-<a href="#section-5.2.3" class="section-number selfRef">5.2.3. </a><a href="#name-tuplehash-monte-carlo-test" class="section-name selfRef">TupleHash Monte Carlo Test</a>
+<a href="#section-6.2.3" class="section-number selfRef">6.2.3. </a><a href="#name-tuplehash-monte-carlo-test" class="section-name selfRef">TupleHash Monte Carlo Test</a>
           </h4>
-<div id="_a91c8926-0b4a-4d91-b44f-513b4dd0cc14">
+<div id="_484b24ca-a0f7-4e96-9f35-88b5f5a6f09a">
 <figure id="figure-3">
-            <div id="section-5.2.3-1.1">
+            <div id="section-6.2.3-1.1">
 <pre class="sourcecode lang-code">INPUT: The initial Single-Tuple of a random length between 0 and 65536 bits.
 
 MCT(Tuple, MaxOutLen, MinOutLen)
 {
-  Range = (MaxOutLen – MinOutLen + 1);
+  Range = (MaxOutLen &amp;#x2013; MinOutLen + 1);
   OutputLen = (floor(MaxOutLen/8)) * 8;
   Customization = "";
 
   T[0][0] = Tuple;
 
-  for (j = 0; j &lt; 100; j++)
+  for (j = 0; j &amp;lt; 100; j++)
   {
-    for (i = 1; i &lt; 1001; i++)
+    for (i = 1; i &amp;lt; 1001; i++)
     {
       workingBits = Left(T[i-1][0] || ZeroBits(288), 288);
       tupleSize = Left(workingBits, 3) % 4 + 1; // never more than 4 tuples to a round
-      for (k = 0; k &lt; tupleSize; k++)
+      for (k = 0; k &amp;lt; tupleSize; k++)
       {
         T[i][k] = Substring of workingBits from (k * 288 / tupleSize) to ((k+1) * 288 / tupleSize - 1);
       }
@@ -1550,13 +1555,13 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </section>
 </div>
 <div id="_bitstostring_function">
-<section id="section-5.2.4">
+<section id="section-6.2.4">
           <h4 id="name-bitstostring-function">
-<a href="#section-5.2.4" class="section-number selfRef">5.2.4. </a><a href="#name-bitstostring-function" class="section-name selfRef">BitsToString Function</a>
+<a href="#section-6.2.4" class="section-number selfRef">6.2.4. </a><a href="#name-bitstostring-function" class="section-name selfRef">BitsToString Function</a>
           </h4>
-<div id="_0539bd20-cba5-405f-9253-1fdf3eaf3c21">
+<div id="_2f4059d0-07f6-4e2c-839b-ffe784bf22a4">
 <figure id="figure-4">
-            <div id="section-5.2.4-1.1">
+            <div id="section-6.2.4-1.1">
 <pre class="sourcecode lang-code">BitsToString(bits)
 {
   string = "";
@@ -1573,30 +1578,30 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </section>
 </div>
 <div id="_test_coverage">
-<section id="section-5.3">
+<section id="section-6.3">
         <h3 id="name-test-coverage">
-<a href="#section-5.3" class="section-number selfRef">5.3. </a><a href="#name-test-coverage" class="section-name selfRef">Test Coverage</a>
+<a href="#section-6.3" class="section-number selfRef">6.3. </a><a href="#name-test-coverage" class="section-name selfRef">Test Coverage</a>
         </h3>
-<div id="_6648af38-3170-4787-9431-cace225dd766">
-<p id="section-5.3-1">The tests described in this document have the intention of ensuring an implementation is conformant to <span>[<a href="#SP800-185" class="xref">SP800-185</a>]</span>.<a href="#section-5.3-1" class="pilcrow">¶</a></p>
+<div id="_c83556f7-5458-4fff-a3b3-97a47c1b0c65">
+<p id="section-6.3-1">The tests described in this document have the intention of ensuring an implementation is conformant to <span>[<a href="#SP800-185" class="xref">SP800-185</a>]</span>.<a href="#section-6.3-1" class="pilcrow">¶</a></p>
 </div>
 <div id="xof-coverage">
-<section id="section-5.3.1">
+<section id="section-6.3.1">
           <h4 id="name-xof-requirements-covered">
-<a href="#section-5.3.1" class="section-number selfRef">5.3.1. </a><a href="#name-xof-requirements-covered" class="section-name selfRef">XOF Requirements Covered</a>
+<a href="#section-6.3.1" class="section-number selfRef">6.3.1. </a><a href="#name-xof-requirements-covered" class="section-name selfRef">XOF Requirements Covered</a>
           </h4>
-<div id="_8f6bd7fc-dd28-4321-9cf8-570ab088fa3e">
-<p id="section-5.3.1-1">In TBD.<a href="#section-5.3.1-1" class="pilcrow">¶</a></p>
+<div id="_0331dc71-71e4-4584-8489-6f4340ae4efa">
+<p id="section-6.3.1-1">In TBD.<a href="#section-6.3.1-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="xof-not-coverage">
-<section id="section-5.3.2">
+<section id="section-6.3.2">
           <h4 id="name-xof-requirements-not-covere">
-<a href="#section-5.3.2" class="section-number selfRef">5.3.2. </a><a href="#name-xof-requirements-not-covere" class="section-name selfRef">XOF Requirements Not Covered</a>
+<a href="#section-6.3.2" class="section-number selfRef">6.3.2. </a><a href="#name-xof-requirements-not-covere" class="section-name selfRef">XOF Requirements Not Covered</a>
           </h4>
-<div id="_887b12b8-6cf4-4167-82ea-2bf9816754b7">
-<p id="section-5.3.2-1">Some requirements in the outlined specification are not easily tested. Often they are not ideal for black-box testing such as the ACVP. In TBD.<a href="#section-5.3.2-1" class="pilcrow">¶</a></p>
+<div id="_a021b4c3-d345-4833-a707-67973f15f67d">
+<p id="section-6.3.2-1">Some requirements in the outlined specification are not easily tested. Often they are not ideal for black-box testing such as the ACVP. In TBD.<a href="#section-6.3.2-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
@@ -1605,28 +1610,28 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </section>
 </div>
 <div id="capabilities">
-<section id="section-6">
+<section id="section-7">
       <h2 id="name-capabilities-registration">
-<a href="#section-6" class="section-number selfRef">6. </a><a href="#name-capabilities-registration" class="section-name selfRef">Capabilities Registration</a>
+<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-capabilities-registration" class="section-name selfRef">Capabilities Registration</a>
       </h2>
-<div id="_f97998d5-2ffb-45c3-9bb1-40d1bdb72375">
-<p id="section-6-1">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of XOF algorithms to the ACVP server.<a href="#section-6-1" class="pilcrow">¶</a></p>
+<div id="_060e1c59-1b60-4aab-a237-000d902fe519">
+<p id="section-7-1">ACVP requires crypto modules to register their capabilities. This allows the crypto module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.  This section describes the constructs for advertising support of XOF algorithms to the ACVP server.<a href="#section-7-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_c61400e1-27c7-4f9f-a01a-92ba2eb6888a">
-<p id="section-6-2">The algorithm capabilities <span class="bcp14">MUST</span> be advertised as JSON objects within the 'algorithms' value of the ACVP registration message. The 'algorithms' value is an array, where each array element is an individual JSON object defined in this section. The 'algorithms' value is part of the 'capability_exchange' element of the ACVP JSON registration message. See the ACVP specification <span>[<a href="#ACVP" class="xref">ACVP</a>]</span> for more details on the registration message.<a href="#section-6-2" class="pilcrow">¶</a></p>
+<div id="_1953c224-a369-4d33-b036-39bee9d95c89">
+<p id="section-7-2">The algorithm capabilities <span class="bcp14">MUST</span> be advertised as JSON objects within the 'algorithms' value of the ACVP registration message. The 'algorithms' value is an array, where each array element is an individual JSON object defined in this section. The 'algorithms' value is part of the 'capability_exchange' element of the ACVP JSON registration message. See the ACVP specification <span>[<a href="#ACVP" class="xref">ACVP</a>]</span> for more details on the registration message.<a href="#section-7-2" class="pilcrow">¶</a></p>
 </div>
 <div id="prerequisites">
-<section id="section-6.1">
+<section id="section-7.1">
         <h3 id="name-prerequisites">
-<a href="#section-6.1" class="section-number selfRef">6.1. </a><a href="#name-prerequisites" class="section-name selfRef">Prerequisites</a>
+<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-prerequisites" class="section-name selfRef">Prerequisites</a>
         </h3>
-<div id="_c96b0ab3-5e45-4830-af61-ea27206ea65e">
-<p id="section-6.1-1">Each algorithm implementation <span class="bcp14">MAY</span> rely on other cryptographic primitives. For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:<a href="#section-6.1-1" class="pilcrow">¶</a></p>
+<div id="_c5f404a5-131b-4450-ac97-db48db255ff4">
+<p id="section-7.1-1">Each algorithm implementation <span class="bcp14">MAY</span> rely on other cryptographic primitives. For example, RSA Signature algorithms depend on an underlying hash function. Each of these underlying algorithm primitives must be validated, either separately or as part of the same submission. ACVP provides a mechanism for specifying the required prerequisites:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_09c5e40d-775b-401a-a2e4-944809dbc460">
-<p id="section-6.1-2">Prerequisites, if applicable, <span class="bcp14">MUST</span> be submitted in the registration as the <code>prereqVals</code> JSON property array inside each element of the <code>algorithms</code> array. Each element in the <code>prereqVals</code> array <span class="bcp14">MUST</span> contain the following properties<a href="#section-6.1-2" class="pilcrow">¶</a></p>
+<div id="_1647a1ba-083a-4753-8a13-8fd9c1a4f8a1">
+<p id="section-7.1-2">Prerequisites, if applicable, <span class="bcp14">MUST</span> be submitted in the registration as the <code>prereqVals</code> JSON property array inside each element of the <code>algorithms</code> array. Each element in the <code>prereqVals</code> array <span class="bcp14">MUST</span> contain the following properties<a href="#section-7.1-2" class="pilcrow">¶</a></p>
 </div>
-<span id="name-prerequisite-properties"></span><div id="_f3394194-b698-44f7-af77-e2e2ae6de6b0">
+<span id="name-prerequisite-properties"></span><div id="_e2244ab7-968e-432c-bb0c-74e7fe0d9d37">
 <table class="center" id="table-1">
           <caption>
 <a href="#table-1" class="selfRef">Table 1</a>:
@@ -1653,15 +1658,15 @@ MCT(Tuple, MaxOutLen, MinOutLen)
           </tbody>
         </table>
 </div>
-<div id="_79bb5895-1d14-4861-a05b-2446dab722a8">
-<p id="section-6.1-4">A "valValue" of "same" <span class="bcp14">SHALL</span> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.<a href="#section-6.1-4" class="pilcrow">¶</a></p>
+<div id="_ffa2e14a-2324-419d-9b72-6d5d87686f34">
+<p id="section-7.1-4">A "valValue" of "same" <span class="bcp14">SHALL</span> be used to indicate that the prerequisite is being met by a different algorithm in the capability exchange in the same registration.<a href="#section-7.1-4" class="pilcrow">¶</a></p>
 </div>
-<div id="_5f5a2194-1b15-47d3-a0a7-de6444bcfc4e">
-<p id="section-6.1-5">An example description of prerequisites within a single algorithm capability exchange looks like this<a href="#section-6.1-5" class="pilcrow">¶</a></p>
+<div id="_4133c115-601d-4479-abfb-12e0a5060dda">
+<p id="section-7.1-5">An example description of prerequisites within a single algorithm capability exchange looks like this<a href="#section-7.1-5" class="pilcrow">¶</a></p>
 </div>
-<div id="_f7f3967d-b336-4f30-af77-ef169acb86f3">
+<div id="_7a568135-0fc9-4353-9270-0dfa509bb158">
 <figure id="figure-5">
-          <div id="section-6.1-6.1">
+          <div id="section-7.1-6.1">
 <pre class="sourcecode lang-json">"prereqVals":
 [
   {
@@ -1679,21 +1684,21 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </section>
 </div>
 <div id="xof_caps_reg">
-<section id="section-6.2">
+<section id="section-7.2">
         <h3 id="name-xof-algorithm-capabilities-">
-<a href="#section-6.2" class="section-number selfRef">6.2. </a><a href="#name-xof-algorithm-capabilities-" class="section-name selfRef">XOF Algorithm Capabilities Registration</a>
+<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-xof-algorithm-capabilities-" class="section-name selfRef">XOF Algorithm Capabilities Registration</a>
         </h3>
-<div id="_f1dee841-7e27-4387-a997-d28fd51502e1">
-<p id="section-6.2-1">This section describes the constructs for advertising support of XOFs to the ACVP server. ACVP <strong>REQUIRES</strong> cryptographic modules to register their capabilities in a registration. This allows the cryptographic module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.<a href="#section-6.2-1" class="pilcrow">¶</a></p>
+<div id="_5925668d-3f53-42a1-af86-67d28a385672">
+<p id="section-7.2-1">This section describes the constructs for advertising support of XOFs to the ACVP server. ACVP <strong>REQUIRES</strong> cryptographic modules to register their capabilities in a registration. This allows the cryptographic module to advertise support for specific algorithms, notifying the ACVP server which algorithms need test vectors generated for the validation process.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_9f99d893-3078-4b60-96bf-e70571e88a97">
-<p id="section-6.2-2">The XOF capabilities <span class="bcp14">MUST</span> be advertised as JSON objects within the 'algorithms' value of the ACVP registration message. The 'algorithms' value <span class="bcp14">MUST</span> be an array, where each array element is an individual JSON object defined in this section. The 'algorithms' value <span class="bcp14">MUST</span> be part of the 'capability_exchange' element of the ACVP JSON registration message.<a href="#section-6.2-2" class="pilcrow">¶</a></p>
+<div id="_09c0391a-4c29-4e2d-a47b-31dc9dbe2212">
+<p id="section-7.2-2">The XOF capabilities <span class="bcp14">MUST</span> be advertised as JSON objects within the 'algorithms' value of the ACVP registration message. The 'algorithms' value <span class="bcp14">MUST</span> be an array, where each array element is an individual JSON object defined in this section. The 'algorithms' value <span class="bcp14">MUST</span> be part of the 'capability_exchange' element of the ACVP JSON registration message.<a href="#section-7.2-2" class="pilcrow">¶</a></p>
 </div>
-<div id="_ff58a517-92e4-4d14-9c0c-a4caadca0926">
-<p id="section-6.2-3">Each XOF algorithm capability advertised <span class="bcp14">SHALL</span> be a self-contained JSON object.<a href="#section-6.2-3" class="pilcrow">¶</a></p>
+<div id="_f2397da0-60d9-4fdf-9198-c78fe75514c8">
+<p id="section-7.2-3">Each XOF algorithm capability advertised <span class="bcp14">SHALL</span> be a self-contained JSON object.<a href="#section-7.2-3" class="pilcrow">¶</a></p>
 </div>
-<div id="_92baa240-3566-426b-8b42-d0eff9b35bf2">
-<p id="section-6.2-4">Each algorithm capability advertised is a self-contained JSON object.  The following JSON values are used for hash algorithm capabilities:<a href="#section-6.2-4" class="pilcrow">¶</a></p>
+<div id="_8825a9fd-0b3a-40ea-8431-68cbfc99912c">
+<p id="section-7.2-4">Each algorithm capability advertised is a self-contained JSON object.  The following JSON values are used for hash algorithm capabilities:<a href="#section-7.2-4" class="pilcrow">¶</a></p>
 </div>
 <span id="name-xof-algorithm-capabilities-j"></span><div id="caps_table">
 <table class="center" id="table-2">
@@ -1752,8 +1757,8 @@ MCT(Tuple, MaxOutLen, MinOutLen)
           </tbody>
         </table>
 </div>
-<div id="_37e181f0-e3bb-4cc7-aa28-ff77e0e5f370">
-<p id="section-6.2-6">The following grid outlines which properties are <span class="bcp14">REQUIRED</span>, as well as all the possible values a server <span class="bcp14">MAY</span> support for XOF algorithms:<a href="#section-6.2-6" class="pilcrow">¶</a></p>
+<div id="_6a8c77b8-1c01-4b8b-af7c-5383d32558a7">
+<p id="section-7.2-6">The following grid outlines which properties are <span class="bcp14">REQUIRED</span>, as well as all the possible values a server <span class="bcp14">MAY</span> support for XOF algorithms:<a href="#section-7.2-6" class="pilcrow">¶</a></p>
 </div>
 <span id="name-xof-capabilities-applicabil"></span><div id="property_grid">
 <table class="center" id="table-3">
@@ -1853,17 +1858,17 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </section>
 </div>
 <div id="test-vectors">
-<section id="section-7">
+<section id="section-8">
       <h2 id="name-test-vectors">
-<a href="#section-7" class="section-number selfRef">7. </a><a href="#name-test-vectors" class="section-name selfRef">Test Vectors</a>
+<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-test-vectors" class="section-name selfRef">Test Vectors</a>
       </h2>
-<div id="_664a7c8d-c63b-41c6-8f99-0183c5f30f75">
-<p id="section-7-1">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with Extendable Output Function algorithms.<a href="#section-7-1" class="pilcrow">¶</a></p>
+<div id="_c100dd8a-9e78-4fb8-ae1e-63eb47e020f7">
+<p id="section-8-1">The ACVP server provides test vectors to the ACVP client, which are then processed and returned to the ACVP server for validation. A typical ACVP validation test session would require multiple test vector sets to be downloaded and processed by the ACVP client. Each test vector set represents an individual algorithm defined during the capability exchange. This section describes the JSON schema for a test vector set used with Extendable Output Function algorithms.<a href="#section-8-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_810f1360-7ab2-4fef-8ac8-48b700781223">
-<p id="section-7-2">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.<a href="#section-7-2" class="pilcrow">¶</a></p>
+<div id="_7415178e-29c1-4241-9832-e9d93e0bace9">
+<p id="section-8-2">The test vector set JSON schema is a multi-level hierarchy that contains meta data for the entire vector set as well as individual test vectors to be processed by the ACVP client. The following table describes the JSON elements at the top level of the hierarchy.<a href="#section-8-2" class="pilcrow">¶</a></p>
 </div>
-<span id="name-top-level-test-vector-json-"></span><div id="_9780350e-d496-4fa2-8067-a671db0493ca">
+<span id="name-top-level-test-vector-json-"></span><div id="_06e92aa3-de5f-4cc4-b108-ac3cfa5fbb4c">
 <table class="center" id="table-4">
         <caption>
 <a href="#table-4" class="selfRef">Table 4</a>:
@@ -1904,19 +1909,19 @@ MCT(Tuple, MaxOutLen, MinOutLen)
           </tr>
           <tr>
             <td class="text-left" rowspan="1" colspan="1">testGroups</td>
-            <td class="text-left" rowspan="1" colspan="1">Array of test groups containing test data, see <a href="#tgjs" class="xref">Section 7.1</a>
+            <td class="text-left" rowspan="1" colspan="1">Array of test groups containing test data, see <a href="#tgjs" class="xref">Section 8.1</a>
 </td>
             <td class="text-left" rowspan="1" colspan="1">array</td>
           </tr>
         </tbody>
       </table>
 </div>
-<div id="_2a3d10d5-eeba-470a-87b0-44a389dbff2a">
-<p id="section-7-4">An example of this would look like this<a href="#section-7-4" class="pilcrow">¶</a></p>
+<div id="_783a5c19-60ba-476f-8340-194b04ab7b16">
+<p id="section-8-4">An example of this would look like this<a href="#section-8-4" class="pilcrow">¶</a></p>
 </div>
-<div id="_3b6f3a0c-4b56-4044-8242-b607accd03f5">
+<div id="_02511a9a-d6fd-4ee0-b00e-1e6ac10c8bb4">
 <figure id="figure-6">
-        <div id="section-7-5.1">
+        <div id="section-8-5.1">
 <pre class="sourcecode lang-json">{
   "acvVersion": "version",
   "vsId": 1,
@@ -1929,12 +1934,12 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 <figcaption><a href="#figure-6" class="selfRef">Figure 6</a></figcaption></figure>
 </div>
 <div id="tgjs">
-<section id="section-7.1">
+<section id="section-8.1">
         <h3 id="name-test-groups">
-<a href="#section-7.1" class="section-number selfRef">7.1. </a><a href="#name-test-groups" class="section-name selfRef">Test Groups</a>
+<a href="#section-8.1" class="section-number selfRef">8.1. </a><a href="#name-test-groups" class="section-name selfRef">Test Groups</a>
         </h3>
-<div id="_e0028cf1-3bfd-44e4-8842-b338e430e1aa">
-<p id="section-7.1-1">Test vector sets <span class="bcp14">MUST</span> contain one or many test groups, each sharing similar properties. For instance, all test vectors that use the same key size would be grouped together. The testGroups element at the top level of the test vector JSON object <span class="bcp14">SHALL</span> be the array of test groups. The Test Group JSON object <span class="bcp14">MUST</span> contain meta-data that applies to all test cases within the group. The following table describes the JSON elements that <span class="bcp14">MUST</span> appear from the server in the Test Group JSON object:<a href="#section-7.1-1" class="pilcrow">¶</a></p>
+<div id="_4a0f5cb2-ff9d-4939-8c53-0d7d271d7042">
+<p id="section-8.1-1">Test vector sets <span class="bcp14">MUST</span> contain one or many test groups, each sharing similar properties. For instance, all test vectors that use the same key size would be grouped together. The testGroups element at the top level of the test vector JSON object <span class="bcp14">SHALL</span> be the array of test groups. The Test Group JSON object <span class="bcp14">MUST</span> contain meta-data that applies to all test cases within the group. The following table describes the JSON elements that <span class="bcp14">MUST</span> appear from the server in the Test Group JSON object:<a href="#section-8.1-1" class="pilcrow">¶</a></p>
 </div>
 <span id="name-test-group-json-object"></span><div id="vs_tg_table">
 <table class="center" id="table-5">
@@ -1957,7 +1962,7 @@ MCT(Tuple, MaxOutLen, MinOutLen)
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">testType</td>
-              <td class="text-left" rowspan="1" colspan="1">Test category type. AFT, MCT or MVT as defined in <a href="#testtypes" class="xref">Section 5</a>
+              <td class="text-left" rowspan="1" colspan="1">Test category type. AFT, MCT or MVT as defined in <a href="#testtypes" class="xref">Section 6</a>
 </td>
               <td class="text-left" rowspan="1" colspan="1">string</td>
             </tr>
@@ -1973,7 +1978,7 @@ MCT(Tuple, MaxOutLen, MinOutLen)
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">tests</td>
-              <td class="text-left" rowspan="1" colspan="1">Array of individual test case JSON objects, which are defined in <a href="#tcjs" class="xref">Section 7.2</a>
+              <td class="text-left" rowspan="1" colspan="1">Array of individual test case JSON objects, which are defined in <a href="#tcjs" class="xref">Section 8.2</a>
 </td>
               <td class="text-left" rowspan="1" colspan="1">array of testCase objects</td>
             </tr>
@@ -1983,12 +1988,12 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </section>
 </div>
 <div id="tcjs">
-<section id="section-7.2">
+<section id="section-8.2">
         <h3 id="name-test-case-json-schema">
-<a href="#section-7.2" class="section-number selfRef">7.2. </a><a href="#name-test-case-json-schema" class="section-name selfRef">Test Case JSON Schema</a>
+<a href="#section-8.2" class="section-number selfRef">8.2. </a><a href="#name-test-case-json-schema" class="section-name selfRef">Test Case JSON Schema</a>
         </h3>
-<div id="_4164b214-f672-4c0a-ba54-e8d6da7bae6d">
-<p id="section-7.2-1">Each test group <span class="bcp14">SHALL</span> contain an array of one or more test cases. Each test case is a JSON object that represents a single case to be processed by the ACVP client. The following table describes the JSON elements for each test case.<a href="#section-7.2-1" class="pilcrow">¶</a></p>
+<div id="_3f5c2903-937e-4c14-ae51-b154c7f690d4">
+<p id="section-8.2-1">Each test group <span class="bcp14">SHALL</span> contain an array of one or more test cases. Each test case is a JSON object that represents a single case to be processed by the ACVP client. The following table describes the JSON elements for each test case.<a href="#section-8.2-1" class="pilcrow">¶</a></p>
 </div>
 <span id="name-test-case-json-object"></span><div id="vs_tc_table">
 <table class="center" id="table-6">
@@ -2080,12 +2085,12 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </section>
 </div>
 <div id="vector_responses">
-<section id="section-7.3">
+<section id="section-8.3">
         <h3 id="name-test-vector-responses">
-<a href="#section-7.3" class="section-number selfRef">7.3. </a><a href="#name-test-vector-responses" class="section-name selfRef">Test Vector Responses</a>
+<a href="#section-8.3" class="section-number selfRef">8.3. </a><a href="#name-test-vector-responses" class="section-name selfRef">Test Vector Responses</a>
         </h3>
-<div id="_8f71712b-cdcb-4d3b-a9b2-5ddb43519508">
-<p id="section-7.3-1">After the ACVP client downloads and processes a vector set, it <span class="bcp14">SHALL</span> send the response vectors back to the ACVP server within the alloted timeframe. The following table describes the JSON object that represents a vector set response.<a href="#section-7.3-1" class="pilcrow">¶</a></p>
+<div id="_81e4e716-6574-4fc0-9116-c86fcfa241e2">
+<p id="section-8.3-1">After the ACVP client downloads and processes a vector set, it <span class="bcp14">SHALL</span> send the response vectors back to the ACVP server within the alloted timeframe. The following table describes the JSON object that represents a vector set response.<a href="#section-8.3-1" class="pilcrow">¶</a></p>
 </div>
 <span id="name-vector-set-response-json-ob"></span><div id="vr_top_table">
 <table class="center" id="table-7">
@@ -2113,15 +2118,15 @@ MCT(Tuple, MaxOutLen, MinOutLen)
             </tr>
             <tr>
               <td class="text-left" rowspan="1" colspan="1">testGroups</td>
-              <td class="text-left" rowspan="1" colspan="1">Array of JSON objects that represent each test vector result, which uses the same JSON schema as defined in <a href="#tcjs" class="xref">Section 7.2</a>
+              <td class="text-left" rowspan="1" colspan="1">Array of JSON objects that represent each test vector result, which uses the same JSON schema as defined in <a href="#tcjs" class="xref">Section 8.2</a>
 </td>
               <td class="text-left" rowspan="1" colspan="1">array of testGroup objects</td>
             </tr>
           </tbody>
         </table>
 </div>
-<div id="_f8cf0842-3f43-4111-932f-89e5545b1524">
-<p id="section-7.3-3">The testGroup Response section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <span class="bcp14">SHALL</span> require the client to send back group level properties in its response. This structure helps accommodate that.<a href="#section-7.3-3" class="pilcrow">¶</a></p>
+<div id="_139bd464-9368-4124-aacd-c504fa1e0c76">
+<p id="section-8.3-3">The testGroup Response section is used to organize the ACVP client response in a similar manner to how it receives vectors. Several algorithms <span class="bcp14">SHALL</span> require the client to send back group level properties in its response. This structure helps accommodate that.<a href="#section-8.3-3" class="pilcrow">¶</a></p>
 </div>
 <span id="name-vector-set-group-response-j"></span><div id="vr_group_table">
 <table class="center" id="table-8">
@@ -2150,8 +2155,8 @@ MCT(Tuple, MaxOutLen, MinOutLen)
           </tbody>
         </table>
 </div>
-<div id="_b3bd6091-8fda-42bd-8f53-966ce40de38f">
-<p id="section-7.3-5">Each test case is a JSON object that represents a single test object to be processed by the ACVP client. The following table describes the JSON elements for each test case object.<a href="#section-7.3-5" class="pilcrow">¶</a></p>
+<div id="_67187990-ae91-4c62-900a-07bc1a481db0">
+<p id="section-8.3-5">Each test case is a JSON object that represents a single test object to be processed by the ACVP client. The following table describes the JSON elements for each test case object.<a href="#section-8.3-5" class="pilcrow">¶</a></p>
 </div>
 <span id="name-test-case-results-json-obje"></span><div id="vs_tr_table">
 <table class="center" id="table-9">
@@ -2200,9 +2205,9 @@ MCT(Tuple, MaxOutLen, MinOutLen)
           </tbody>
         </table>
 </div>
-<div id="_d56b3043-a770-4e83-a3d2-ce1d2b5d5b74">
-<aside id="section-7.3-7">
-          <p id="section-7.3-7.1">NOTE: The tcId <span class="bcp14">MUST</span> be included in every test case object sent between the client and the server.<a href="#section-7.3-7.1" class="pilcrow">¶</a></p>
+<div id="_ac8ec1b9-1579-490c-9430-bda0d292de00">
+<aside id="section-8.3-7">
+          <p id="section-8.3-7.1">NOTE: The tcId <span class="bcp14">MUST</span> be included in every test case object sent between the client and the server.<a href="#section-8.3-7.1" class="pilcrow">¶</a></p>
 </aside>
 </div>
 </section>
@@ -2210,46 +2215,46 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </section>
 </div>
 <div id="security">
-<section id="section-8">
+<section id="section-9">
       <h2 id="name-security-considerations">
-<a href="#section-8" class="section-number selfRef">8. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
+<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-security-considerations" class="section-name selfRef">Security Considerations</a>
       </h2>
-<div id="_86e0c99d-95a6-428f-99ce-9c8359c7c9bd">
-<p id="section-8-1">There are no additional security considerations outside of those outlined in the ACVP document.<a href="#section-8-1" class="pilcrow">¶</a></p>
+<div id="_ab23ad09-f03b-4267-91a1-fe57592b2ebc">
+<p id="section-9-1">There are no additional security considerations outside of those outlined in the ACVP document.<a href="#section-9-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="iana">
-<section id="section-9">
+<section id="section-10">
       <h2 id="name-iana-considerations">
-<a href="#section-9" class="section-number selfRef">9. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
+<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-iana-considerations" class="section-name selfRef">IANA Considerations</a>
       </h2>
-<div id="_609a4ad6-0b8e-4ca5-a71a-5c1fd4dd7754">
-<p id="section-9-1">This document does not require any action by IANA.<a href="#section-9-1" class="pilcrow">¶</a></p>
+<div id="_6130a912-2fef-4c6a-9316-5cb2886d9093">
+<p id="section-10-1">This document does not require any action by IANA.<a href="#section-10-1" class="pilcrow">¶</a></p>
 </div>
 </section>
 </div>
 <div id="_references">
-<section id="section-10">
+<section id="section-11">
       <h2 id="name-bibliography">
-<a href="#section-10" class="section-number selfRef">10. </a><a href="#name-bibliography" class="section-name selfRef">Bibliography</a>
+<a href="#section-11" class="section-number selfRef">11. </a><a href="#name-bibliography" class="section-name selfRef">Bibliography</a>
       </h2>
 <dl class="references">
 <dt id="RFC2119">[RFC2119]</dt>
-      <dd>
-<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="refContent">IETF RFC 2119</span>, <span class="seriesInfo">IETF RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="refContent">IETF RFC 2119</span>, <span class="seriesInfo">IETF RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC8174">[RFC8174]</dt>
-      <dd>
-<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="refContent">IETF RFC 8174</span>, <span class="seriesInfo">IETF RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="refContent">IETF RFC 8174</span>, <span class="seriesInfo">IETF RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="ACVP">[ACVP]</dt>
-      <dd>
-<span class="refAuthor">Fussell, B.</span><span class="refAuthor">, Vassilev, A.</span><span class="refAuthor">, and H. Booth</span>, <span class="refTitle">"Automatic Cryptographic Validation Protocol"</span>, <span class="refContent">ACVP ACVP</span>, <time datetime="2019" class="refDate">2019</time>. </dd>
+<dd>
+<span class="refAuthor">Fussell, B.</span><span class="refAuthor">, Vassilev, A.</span><span class="refAuthor">, and H. Booth</span>, <span class="refTitle">"Automatic Cryptographic Validation Protocol"</span>, <span class="refContent">ACVP ACVP</span>, <time datetime="2019">2019</time>. </dd>
 <dd class="break"></dd>
 <dt id="SP800-185">[SP800-185]</dt>
-    <dd>
-<span class="refAuthor">Chang, S.</span><span class="refAuthor">, Kelsey, J.</span><span class="refAuthor">, and R. Perlner</span>, <span class="refTitle">"SP800-185 SHA-3 Derived Functions: cSHAKE, KMAC, TupleHash and ParallelHash"</span>, <span class="refContent">SP800 SP800-185</span>, <time datetime="2016" class="refDate">2016</time>, <span>&lt;<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf</a>&gt;</span>. </dd>
+<dd>
+<span class="refAuthor">Chang, S.</span><span class="refAuthor">, Kelsey, J.</span><span class="refAuthor">, and R. Perlner</span>, <span class="refTitle">"SP800-185 SHA-3 Derived Functions: cSHAKE, KMAC, TupleHash and ParallelHash"</span>, <span class="refContent">SP800 SP800-185</span>, <time datetime="2016">2016</time>, <span>&lt;<a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf">https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-185.pdf</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2259,10 +2264,10 @@ MCT(Tuple, MaxOutLen, MinOutLen)
       <h2 id="name-example-capabilities-json-o">
 <a href="#section-appendix.a" class="section-number selfRef">Appendix A. </a><a href="#name-example-capabilities-json-o" class="section-name selfRef">Example Capabilities JSON Objects</a>
       </h2>
-<div id="_d47ce546-87ab-47f4-abec-5409a350f125">
+<div id="_84aedbf2-ac80-429e-a637-9e5dfc80dcf1">
 <p id="section-appendix.a-1">The following is an example JSON object advertising support for cSHAKE-128.<a href="#section-appendix.a-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_3a20d840-de9e-43d2-8b03-2c54853f0cd8">
+<div id="_f8f773e6-ae27-42f2-9ab7-de1ac42b9ff9">
 <figure id="figure-7">
         <div id="section-appendix.a-2.1">
 <pre class="sourcecode lang-json">{
@@ -2287,10 +2292,10 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </div>
 <figcaption><a href="#figure-7" class="selfRef">Figure 7</a></figcaption></figure>
 </div>
-<div id="_252e6367-3ced-4dac-9fc5-ad0650cc3470">
+<div id="_6d0f85d7-aa12-4d1d-8083-6418033843ff">
 <p id="section-appendix.a-3">The following is an example JSON object advertising support for KMAC-128.<a href="#section-appendix.a-3" class="pilcrow">¶</a></p>
 </div>
-<div id="_dd19bdee-10e5-4059-a63b-172e2072b8d4">
+<div id="_19a374e5-bd78-4572-9ca3-63e29442efa8">
 <figure id="figure-8">
         <div id="section-appendix.a-4.1">
 <pre class="sourcecode lang-json">{
@@ -2323,10 +2328,10 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </div>
 <figcaption><a href="#figure-8" class="selfRef">Figure 8</a></figcaption></figure>
 </div>
-<div id="_77040e87-4b11-4b37-95fe-78ebc381cc7b">
+<div id="_27b1fced-397c-400a-b1ed-45c9f8fa0c1e">
 <p id="section-appendix.a-5">The following is an example JSON object advertising support for ParallelHash-128.<a href="#section-appendix.a-5" class="pilcrow">¶</a></p>
 </div>
-<div id="_01b147de-f355-4429-b598-a0e607cc4a8b">
+<div id="_dc2a57a8-0cf9-42c4-b0dc-b0f51347c6b7">
 <figure id="figure-9">
         <div id="section-appendix.a-6.1">
 <pre class="sourcecode lang-json">{
@@ -2352,10 +2357,10 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </div>
 <figcaption><a href="#figure-9" class="selfRef">Figure 9</a></figcaption></figure>
 </div>
-<div id="_62374d2c-bf81-4725-809a-b423520a6c9a">
+<div id="_bf0b941f-8d0d-48cc-9871-b06675264c90">
 <p id="section-appendix.a-7">The following is an example JSON object advertising support for TupleHash-128.<a href="#section-appendix.a-7" class="pilcrow">¶</a></p>
 </div>
-<div id="_b2b048cd-51ac-4d07-8e6b-4e72966d9a5c">
+<div id="_e0b594ee-d41a-4abf-93aa-0485045e66af">
 <figure id="figure-10">
         <div id="section-appendix.a-8.1">
 <pre class="sourcecode lang-json">{
@@ -2388,14 +2393,14 @@ MCT(Tuple, MaxOutLen, MinOutLen)
       <h2 id="name-example-test-vectors-json-o">
 <a href="#section-appendix.b" class="section-number selfRef">Appendix B. </a><a href="#name-example-test-vectors-json-o" class="section-name selfRef">Example Test Vectors JSON Objects</a>
       </h2>
-<div id="_44241762-c2da-43d1-aaad-851053497807">
+<div id="_c3e30199-e2f9-4ad5-a29c-9547d0cf663b">
 <p id="section-appendix.b-1">The following is an example JSON object for cSHAKE test vectors sent from the ACVP server to the crypto module.<a href="#section-appendix.b-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_887ff480-b959-46c5-95fc-ae0178701995">
+<div id="_7a42fc87-3e37-438e-9b2a-6fde282aa80b">
 <figure id="figure-11">
         <div id="section-appendix.b-2.1">
 <pre class="sourcecode lang-json">[
-{ "acvVersion": &lt;acvp-version&gt; },
+{ "acvVersion": &amp;lt;acvp-version&amp;gt; },
 {
   "vsId": 0,
   "algorithm": "CSHAKE-128",
@@ -2444,14 +2449,14 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </div>
 <figcaption><a href="#figure-11" class="selfRef">Figure 11</a></figcaption></figure>
 </div>
-<div id="_e98ee90b-fa23-4b9c-986c-f36031dfc0fe">
+<div id="_92742b4a-14bc-4e34-926a-d9e02b64c7c5">
 <p id="section-appendix.b-3">The following is an example JSON object for KMAC test vectors sent from the ACVP server to the crypto module.<a href="#section-appendix.b-3" class="pilcrow">¶</a></p>
 </div>
-<div id="_0034ab65-69b9-4f93-8ef8-d8d9d447d87e">
+<div id="_1c083f4a-76e3-493b-9761-2a5d940d2f12">
 <figure id="figure-12">
         <div id="section-appendix.b-4.1">
 <pre class="sourcecode">[
-{ "acvVersion": &lt;acvp-version&gt; },
+{ "acvVersion": &amp;lt;acvp-version&amp;gt; },
 {
   "vsId": 0,
   "algorithm": "KMAC-128",
@@ -2517,14 +2522,14 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </div>
 <figcaption><a href="#figure-12" class="selfRef">Figure 12</a></figcaption></figure>
 </div>
-<div id="_33e91c54-2dec-4ee9-8ec6-ddac9b521a8d">
+<div id="_f91716e1-0d80-43df-853a-7c3d9c899c2e">
 <p id="section-appendix.b-5">The following is an example JSON object for ParallelHash test vectors sent from the ACVP server to the crypto module.<a href="#section-appendix.b-5" class="pilcrow">¶</a></p>
 </div>
-<div id="_3d9e8ecb-c35e-4f1f-b37a-8bda360402e1">
+<div id="_f798fcce-b515-4ece-aa70-9bdfa37facb6">
 <figure id="figure-13">
         <div id="section-appendix.b-6.1">
 <pre class="sourcecode lang-json">[
-{ "acvVersion": &lt;acvp-version&gt; },
+{ "acvVersion": &amp;lt;acvp-version&amp;gt; },
 {
   "vsId": 0,
   "algorithm": "ParallelHash-128",
@@ -2575,14 +2580,14 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </div>
 <figcaption><a href="#figure-13" class="selfRef">Figure 13</a></figcaption></figure>
 </div>
-<div id="_8d1d680a-317b-46dc-abab-e1ea30419a9e">
+<div id="_ebac200d-3707-4603-a592-8207a35e8ff0">
 <p id="section-appendix.b-7">The following is an example JSON object for TupleHash test vectors sent from the ACVP server to the crypto module.<a href="#section-appendix.b-7" class="pilcrow">¶</a></p>
 </div>
-<div id="_7c4577d2-f671-4be9-b316-b1589b1ab0d5">
+<div id="_5a6c21a8-b9fc-4ef3-bd3c-37326ac255eb">
 <figure id="figure-14">
         <div id="section-appendix.b-8.1">
 <pre class="sourcecode lang-json">[
-{ "acvVersion": &lt;acvp-version&gt; },
+{ "acvVersion": &amp;lt;acvp-version&amp;gt; },
 {
   "vsId": 0,
   "algorithm": "TupleHash-128",
@@ -2642,14 +2647,14 @@ MCT(Tuple, MaxOutLen, MinOutLen)
       <h2 id="name-example-test-results-json-o">
 <a href="#section-appendix.c" class="section-number selfRef">Appendix C. </a><a href="#name-example-test-results-json-o" class="section-name selfRef">Example Test Results JSON Objects</a>
       </h2>
-<div id="_23d616b2-bd3a-4c1b-9d71-e1f6a07c7802">
+<div id="_d9905b96-9ef4-4525-8a87-a61fb7cfd7ad">
 <p id="section-appendix.c-1">The following is an example JSON object for cSHAKE test results sent from the crypto module to the ACVP server. The JSON objects for ParallelHash and TupleHash match this schema.<a href="#section-appendix.c-1" class="pilcrow">¶</a></p>
 </div>
-<div id="_755a1558-936a-464d-b9c9-a3700fd1b959">
+<div id="_a56462d1-12a6-4d9f-b3d4-a63d89488244">
 <figure id="figure-15">
         <div id="section-appendix.c-2.1">
 <pre class="sourcecode lang-json">[
-{ "acvVersion": &lt;acvp-version&gt; },
+{ "acvVersion": &amp;lt;acvp-version&amp;gt; },
 {
   "vsId": 0,
   "algorithm": "CSHAKE-128",
@@ -2698,14 +2703,14 @@ MCT(Tuple, MaxOutLen, MinOutLen)
 </div>
 <figcaption><a href="#figure-15" class="selfRef">Figure 15</a></figcaption></figure>
 </div>
-<div id="_877967a9-7182-4cc9-9bba-6d879df531b1">
+<div id="_bd0ae579-99bf-4b14-8b5c-66d9a20b3f1b">
 <p id="section-appendix.c-3">The following is an example JSON object for KMAC test results sent from the crypto module to the ACVP server.<a href="#section-appendix.c-3" class="pilcrow">¶</a></p>
 </div>
-<div id="_a85cefc2-f2fb-4e35-acde-607106addcac">
+<div id="_87289d80-22de-4f85-b190-6e48520a59b3">
 <figure id="figure-16">
         <div id="section-appendix.c-4.1">
 <pre class="sourcecode lang-json">[
-{ "acvVersion": &lt;acvp-version&gt; },
+{ "acvVersion": &amp;lt;acvp-version&amp;gt; },
 {
   "vsId": 0,
   "algorithm": "KMAC-128",

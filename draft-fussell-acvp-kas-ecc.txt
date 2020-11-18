@@ -5,7 +5,7 @@
 Network Working Group                                    B. Fussell, Ed.
 Internet-Draft                                                          
 Intended status: Informational                           R. Hammett, Ed.
-Expires: 21 May 2021                                    17 November 2020
+Expires: 22 May 2021                                    18 November 2020
 
 
                     ACVP KAS ECC JSON Specification
@@ -25,7 +25,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2021.
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -44,78 +44,82 @@ Table of Contents
    2.  Abstract  . . . . . . . . . . . . . . . . . . . . . . . . . .   3
    3.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
    4.  Terms and definitions . . . . . . . . . . . . . . . . . . . .   3
-     4.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
-     4.2.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   4
-       4.2.1.  KAS-ECC Requirements Covered  . . . . . . . . . . . .   4
-       4.2.2.  KAS-ECC Requirements Not Covered  . . . . . . . . . .   5
-     4.3.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   6
-     4.4.  Required Prerequisite Algorithms  . . . . . . . . . . . .   7
+   5.  Supported KAS-ECCs  . . . . . . . . . . . . . . . . . . . . .   3
+   6.  Test Types and Test Coverage  . . . . . . . . . . . . . . . .   4
+     6.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   4
+     6.2.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   4
+       6.2.1.  KAS-ECC Requirements Covered  . . . . . . . . . . . .   4
+       6.2.2.  KAS-ECC Requirements Not Covered  . . . . . . . . . .   6
 
 
 
-Fussell & Hammett          Expires 21 May 2021                  [Page 1]
+Fussell & Hammett          Expires 22 May 2021                  [Page 1]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-     4.5.  KAS ECC Algorithm Capabilities JSON Values  . . . . . . .   9
-     4.6.  Supported KAS ECC Functions . . . . . . . . . . . . . . .   9
-     4.7.  KAS ECC Schemes . . . . . . . . . . . . . . . . . . . . .  10
-       4.7.1.  KAS ECC Scheme Capabilities JSON Values . . . . . . .  10
-       4.7.2.  Supported KAS ECC Schemes . . . . . . . . . . . . . .  11
-     4.8.  KAS ECC Modes . . . . . . . . . . . . . . . . . . . . . .  12
-       4.8.1.  KAS ECC noKdfNoKc . . . . . . . . . . . . . . . . . .  12
-       4.8.2.  KAS ECC kdfNoKc . . . . . . . . . . . . . . . . . . .  12
-       4.8.3.  KAS ECC kdfKc . . . . . . . . . . . . . . . . . . . .  13
-     4.9.  Parameter Sets  . . . . . . . . . . . . . . . . . . . . .  13
-       4.9.1.  KAS ECC Parameter Set . . . . . . . . . . . . . . . .  14
-       4.9.2.  KAS ECC Parameter Set Details . . . . . . . . . . . .  14
-     4.10. Supported ECC Curves  . . . . . . . . . . . . . . . . . .  15
-     4.11. Supported Hash Algorithm Methods  . . . . . . . . . . . .  15
-     4.12. Supported KAS ECC MAC Options . . . . . . . . . . . . . .  16
-     4.13. Supported KAS ECC KDF Options . . . . . . . . . . . . . .  17
-       4.13.1.  Other Information Construction . . . . . . . . . . .  18
-     4.14. Supported KAS ECC KC Options  . . . . . . . . . . . . . .  19
-     4.15. Example KAS ECC Capabilities JSON Object  . . . . . . . .  19
-     4.16. Example KAS ECC Component Capabilities JSON Object  . . .  20
-   5.  Generation requirements per party per scheme  . . . . . . . .  22
-   6.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  25
-     6.1.  Test Groups JSON Schema . . . . . . . . . . . . . . . . .  26
-     6.2.  Test Case JSON Schema . . . . . . . . . . . . . . . . . .  29
-     6.3.  Example Test Vectors JSON Object  . . . . . . . . . . . .  32
-     6.4.  Example Test Vectors Component JSON Object  . . . . . . .  35
-   7.  Test Vector Responses . . . . . . . . . . . . . . . . . . . .  36
-     7.1.  Vector Set Response JSON Object . . . . . . . . . . . . .  37
-     7.2.  Vector Set Group Response JSON Object . . . . . . . . . .  37
-     7.3.  Example Test Results JSON Object  . . . . . . . . . . . .  37
-     7.4.  Example Test Results Component JSON Object  . . . . . . .  39
-   8.  ECC CDH Component Test  . . . . . . . . . . . . . . . . . . .  40
-     8.1.  ECC CDH Component Capabilities JSON Values  . . . . . . .  40
-       8.1.1.  Example KAS ECC CDH-Component Capabilities JSON
-               Object  . . . . . . . . . . . . . . . . . . . . . . .  40
-     8.2.  ECC CDH Component TestVectors JSON Values . . . . . . . .  41
-       8.2.1.  ECC CDH Component TestGroup JSON Values . . . . . . .  42
-       8.2.2.  ECC CDH Component TestCase JSON Values  . . . . . . .  42
-       8.2.3.  Example KAS ECC CDH-Component Test Vectors JSON
-               Object  . . . . . . . . . . . . . . . . . . . . . . .  43
-     8.3.  KAS CDH-Component Test Vector Responses . . . . . . . . .  45
-       8.3.1.  CDH Component Vector Set Response JSON Object . . . .  45
-       8.3.2.  CDH Component Vector Set Group Response JSON
+   7.  Capabilities Registration . . . . . . . . . . . . . . . . . .   6
+     7.1.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   7
+     7.2.  Required Prerequisite Algorithms  . . . . . . . . . . . .   8
+     7.3.  KAS ECC Algorithm Capabilities JSON Values  . . . . . . .   9
+     7.4.  Supported KAS ECC Functions . . . . . . . . . . . . . . .  10
+     7.5.  KAS ECC Schemes . . . . . . . . . . . . . . . . . . . . .  11
+       7.5.1.  KAS ECC Scheme Capabilities JSON Values . . . . . . .  11
+       7.5.2.  Supported KAS ECC Schemes . . . . . . . . . . . . . .  12
+     7.6.  KAS ECC Modes . . . . . . . . . . . . . . . . . . . . . .  13
+       7.6.1.  KAS ECC noKdfNoKc . . . . . . . . . . . . . . . . . .  13
+       7.6.2.  KAS ECC kdfNoKc . . . . . . . . . . . . . . . . . . .  13
+       7.6.3.  KAS ECC kdfKc . . . . . . . . . . . . . . . . . . . .  14
+     7.7.  Parameter Sets  . . . . . . . . . . . . . . . . . . . . .  14
+       7.7.1.  KAS ECC Parameter Set . . . . . . . . . . . . . . . .  15
+       7.7.2.  KAS ECC Parameter Set Details . . . . . . . . . . . .  15
+     7.8.  Supported ECC Curves  . . . . . . . . . . . . . . . . . .  16
+     7.9.  Supported Hash Algorithm Methods  . . . . . . . . . . . .  16
+     7.10. Supported KAS ECC MAC Options . . . . . . . . . . . . . .  17
+     7.11. Supported KAS ECC KDF Options . . . . . . . . . . . . . .  18
+       7.11.1.  Other Information Construction . . . . . . . . . . .  19
+     7.12. Supported KAS ECC KC Options  . . . . . . . . . . . . . .  20
+     7.13. Example KAS ECC Capabilities JSON Object  . . . . . . . .  20
+     7.14. Example KAS ECC Component Capabilities JSON Object  . . .  22
+   8.  Generation requirements per party per scheme  . . . . . . . .  24
+   9.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  27
+     9.1.  Test Groups JSON Schema . . . . . . . . . . . . . . . . .  28
+     9.2.  Test Case JSON Schema . . . . . . . . . . . . . . . . . .  31
+     9.3.  Example Test Vectors JSON Object  . . . . . . . . . . . .  34
+     9.4.  Example Test Vectors Component JSON Object  . . . . . . .  37
+   10. Test Vector Responses . . . . . . . . . . . . . . . . . . . .  38
+     10.1.  Vector Set Response JSON Object  . . . . . . . . . . . .  39
+     10.2.  Vector Set Group Response JSON Object  . . . . . . . . .  39
+     10.3.  Example Test Results JSON Object . . . . . . . . . . . .  39
+     10.4.  Example Test Results Component JSON Object . . . . . . .  41
+   11. ECC CDH Component Test  . . . . . . . . . . . . . . . . . . .  42
+     11.1.  ECC CDH Component Capabilities JSON Values . . . . . . .  42
+       11.1.1.  Example KAS ECC CDH-Component Capabilities JSON
+               Object  . . . . . . . . . . . . . . . . . . . . . . .  42
+     11.2.  ECC CDH Component TestVectors JSON Values  . . . . . . .  43
+       11.2.1.  ECC CDH Component TestGroup JSON Values  . . . . . .  44
+       11.2.2.  ECC CDH Component TestCase JSON Values . . . . . . .  44
+       11.2.3.  Example KAS ECC CDH-Component Test Vectors JSON
                Object  . . . . . . . . . . . . . . . . . . . . . . .  45
-       8.3.3.  CDH Component Test Case Results JSON Object . . . . .  46
-     8.4.  Example KAS ECC CDH Component Test Results JSON Object  .  46
-   9.  Security Considerations . . . . . . . . . . . . . . . . . . .  47
-   10. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  47
+     11.3.  KAS CDH-Component Test Vector Responses  . . . . . . . .  47
+       11.3.1.  CDH Component Vector Set Response JSON Object  . . .  47
+       11.3.2.  CDH Component Vector Set Group Response JSON
+               Object  . . . . . . . . . . . . . . . . . . . . . . .  47
+       11.3.3.  CDH Component Test Case Results JSON Object  . . . .  48
 
 
 
-Fussell & Hammett          Expires 21 May 2021                  [Page 2]
+Fussell & Hammett          Expires 22 May 2021                  [Page 2]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-   11. Normative references  . . . . . . . . . . . . . . . . . . . .  47
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  48
+     11.4.  Example KAS ECC CDH Component Test Results JSON
+            Object . . . . . . . . . . . . . . . . . . . . . . . . .  48
+   12. Security Considerations . . . . . . . . . . . . . . . . . . .  49
+   13. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  49
+   14. Normative References  . . . . . . . . . . . . . . . . . . . .  49
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  50
 
 1.  Acknowledgements
 
@@ -143,10 +147,39 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 4.  Terms and definitions
 
-   For the purposes of this document, the following terms and
-   definitions apply.
+   No terms and definitions are listed in this document.
 
-4.1.  Test Types
+5.  Supported KAS-ECCs
+
+   The following key derivation functions MAY be advertised by the ACVP
+   compliant cryptographic module:
+
+   *  KAS-ECC / null / 1.0
+
+   *  KAS-ECC / Component / 1.0
+
+
+
+
+
+
+
+
+Fussell & Hammett          Expires 22 May 2021                  [Page 3]
+
+Internet-Draft                ACVP KAS ECC                 November 2020
+
+
+6.  Test Types and Test Coverage
+
+   The ACVP server performs a set of tests on the KAS protocol in order
+   to assess the correctness and robustness of the implementation.  A
+   typical ACVP validation session SHALL require multiple tests to be
+   performed for every supported permutation of KAS capabilities.  This
+   section describes the design of the tests used to validate
+   implementations of KAS algorithms.
+
+6.1.  Test Types
 
    There are two test types for KAS testing:
 
@@ -157,19 +190,6 @@ Internet-Draft                ACVP KAS ECC                 November 2020
       and IUT MAY act as party U/V, as well as recipient/provider to key
       confirmation.
 
-
-
-
-
-
-
-
-
-Fussell & Hammett          Expires 21 May 2021                  [Page 3]
-
-Internet-Draft                ACVP KAS ECC                 November 2020
-
-
    *  "VAL" - Validation Test.  In the VAL test mode, The ACVP server
       MUST generate a complete (from both party U and party V's
       perspectives) key agreement, and expects the IUT to be able to
@@ -178,9 +198,12 @@ Internet-Draft                ACVP KAS ECC                 November 2020
       process (changed DKM, changed key, changed hash digest, etc), that
       the IUT MUST be able to detect and report on.
 
-4.2.  Test Coverage
+6.2.  Test Coverage
 
-4.2.1.  KAS-ECC Requirements Covered
+   The tests described in this document have the intention of ensuring
+   an implementation is conformant to [SP800-56Ar2].
+
+6.2.1.  KAS-ECC Requirements Covered
 
    *  SP 800-56Ar2 - 4.1 Key Establishment Preparations.  The ACVP
       server is responsible for generating domain parameters as per the
@@ -191,6 +214,17 @@ Internet-Draft                ACVP KAS ECC                 November 2020
       IUT can both take the roles of party U/V, and as such the
       "performer" of steps depicted in "Figure 2: Key Agreement process"
       can vary.
+
+
+
+
+
+
+
+Fussell & Hammett          Expires 22 May 2021                  [Page 4]
+
+Internet-Draft                ACVP KAS ECC                 November 2020
+
 
    *  SP 800-56Ar2 - 5.1 Cryptographic Hash Functions.  All modes of
       performing KAS SHALL make use of a hash function.  The hash
@@ -213,25 +247,12 @@ Internet-Draft                ACVP KAS ECC                 November 2020
       parameters SHALL generate all keypairs (party U/V, static/
       ephemeral) for a single test case.
 
-
-
-
-
-
-
-
-
-Fussell & Hammett          Expires 21 May 2021                  [Page 4]
-
-Internet-Draft                ACVP KAS ECC                 November 2020
-
-
    *  SP 800-56Ar2 - 5.6 Key-Pair Generation.  While Key-Pairs are used
       in each KAS scheme, the generation of said key-pairs is out of
       scope for KAS testing.  Random tests from the VAL groups, MAY
       inject bad keypairs that the IUT MUST be able detect.  These
       random tests are only present in groups given appropriate
-      assurance functions see: Section 4.6
+      assurance functions see: Section 7.4
 
    *  SP 800-56Ar2 - 4.3 DLC-based Key-Transport Process / 5.7 DLC
       Primitives.  Depending on the scheme used, either Diffie Hellman
@@ -241,7 +262,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
    *  SP 800-56Ar2 - 5.8 Key-Derivation Methods for Key-Agreement
       Schemes.  All schemes/modes save noKdfNoKc (component) MUST make
-      use of a KDF.  KDF construction SHALL utilize Section 4.13.1 for
+      use of a KDF.  KDF construction SHALL utilize Section 7.11.1 for
       its pattern.
 
    *  SP 800-56Ar2 - 5.9 Key Confirmation.  Most KAS schemes MAY allow
@@ -254,7 +275,14 @@ Internet-Draft                ACVP KAS ECC                 November 2020
       referenced document are supported for validation with the ACVP
       server.
 
-4.2.2.  KAS-ECC Requirements Not Covered
+
+
+Fussell & Hammett          Expires 22 May 2021                  [Page 5]
+
+Internet-Draft                ACVP KAS ECC                 November 2020
+
+
+6.2.2.  KAS-ECC Requirements Not Covered
 
    *  SP 800-56Ar2 - 4.1 Key Establishment Preparations.  The ACVP
       server SHALL NOT make a distinction between IUT generated keys via
@@ -274,14 +302,6 @@ Internet-Draft                ACVP KAS ECC                 November 2020
       ACVP server SHALL generate all domain parameters, IUT validation
       of such parameters is SHALL NOT be in scope for KAS testing.
 
-
-
-
-Fussell & Hammett          Expires 21 May 2021                  [Page 5]
-
-Internet-Draft                ACVP KAS ECC                 November 2020
-
-
    *  SP 800-56Ar2 - 5.5.3 Domain Parameter Management.  Domain
       Parameter Management SHALL NOT be in scope for KAS testing.
 
@@ -299,7 +319,9 @@ Internet-Draft                ACVP KAS ECC                 November 2020
       testing perspective SHALL NOT be in scope.
 
    *  SP 800-56Ar2 - 8 Key Recovery.  Key Recovery SHALL NOT be in scope
-      of KAS testing. == Capabilities Registration
+      of KAS testing.
+
+7.  Capabilities Registration
 
    ACVP requires crypto modules to register their capabilities.  This
    allows the crypto module to advertise support for specific
@@ -307,6 +329,14 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    vectors generated for the validation process.  This section describes
    the constructs for advertising support of KAS ECC algorithms to the
    ACVP server.
+
+
+
+
+Fussell & Hammett          Expires 22 May 2021                  [Page 6]
+
+Internet-Draft                ACVP KAS ECC                 November 2020
+
 
    The algorithm capabilities MUST be advertised as JSON objects within
    the 'algorithms' value of the ACVP registration message.  The
@@ -316,7 +346,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    registration message.  See the ACVP specification [ACVP] for more
    details on the registration message.
 
-4.3.  Prerequisites
+7.1.  Prerequisites
 
    Each algorithm implementation MAY rely on other cryptographic
    primitives.  For example, RSA Signature algorithms depend on an
@@ -330,22 +360,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    "algorithms" array.  Each element in the "prereqVals" array MUST
    contain the following properties
 
-
-
-
-Fussell & Hammett          Expires 21 May 2021                  [Page 6]
-
-Internet-Draft                ACVP KAS ECC                 November 2020
-
-
-   A "valValue" of "same" SHALL be used to indicate that the
-   prerequisite is being met by a different algorithm in the capability
-   exchange in the same registration.
-
-   An example description of prerequisites within a single algorithm
-   capability exchange looks like this
-
-        +===============+=============================+===========+
+        +---------------+-----------------------------+-----------+
         | JSON Property | Description                 | JSON Type |
         +===============+=============================+===========+
         | algorithm     | a prerequisite algorithm    | string    |
@@ -354,6 +369,30 @@ Internet-Draft                ACVP KAS ECC                 November 2020
         +---------------+-----------------------------+-----------+
 
                       Table 1: Prerequisite Properties
+
+   A "valValue" of "same" SHALL be used to indicate that the
+   prerequisite is being met by a different algorithm in the capability
+   exchange in the same registration.
+
+   An example description of prerequisites within a single algorithm
+   capability exchange looks like this
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fussell & Hammett          Expires 22 May 2021                  [Page 7]
+
+Internet-Draft                ACVP KAS ECC                 November 2020
+
 
    "prereqVals":
    [
@@ -369,7 +408,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
                                   Figure 1
 
-4.4.  Required Prerequisite Algorithms
+7.2.  Required Prerequisite Algorithms
 
    Some algorithm implementations rely on other cryptographic
    primitives.  For example, IKEv2 uses an underlying SHA algorithm.
@@ -377,24 +416,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    either separately or as part of the same submission.  ACVP provides a
    mechanism for specifying the required prerequisites:
 
-   KAS has conditional prerequisite algorithms, depending on the
-   capabilities registered:
-
-
-
-
-
-
-
-
-
-
-Fussell & Hammett          Expires 21 May 2021                  [Page 7]
-
-Internet-Draft                ACVP KAS ECC                 November 2020
-
-
-   +============+==============+========+==============+==============+
+   +------------+--------------+--------+--------------+--------------+
    | JSON Value | Description  | JSON   | Valid Values | Optional     |
    |            |              | type   |              |              |
    +============+==============+========+==============+==============+
@@ -410,7 +432,25 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
           Table 2: Required Prerequisite Algorithms JSON Values
 
-     +==============+===============================================+
+   KAS has conditional prerequisite algorithms, depending on the
+   capabilities registered:
+
+
+
+
+
+
+
+
+
+
+
+Fussell & Hammett          Expires 22 May 2021                  [Page 8]
+
+Internet-Draft                ACVP KAS ECC                 November 2020
+
+
+     +--------------+-----------------------------------------------+
      | Prerequisite | Condition                                     |
      | Algorithm    |                                               |
      +==============+===============================================+
@@ -439,27 +479,34 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
                Table 3: Prerequisite requirement conditions
 
-
-
-
-
-
-
-Fussell & Hammett          Expires 21 May 2021                  [Page 8]
-
-Internet-Draft                ACVP KAS ECC                 November 2020
-
-
-4.5.  KAS ECC Algorithm Capabilities JSON Values
+7.3.  KAS ECC Algorithm Capabilities JSON Values
 
    Each algorithm capability advertised is a self-contained JSON object
    using the following values.
 
-   Note: Some optional values are required depending on the algorithm.
-   Failure to provide these values will result in the ACVP server
-   returning an error to the ACVP client during registration.
 
-   +============+===============+==============+===========+==========+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fussell & Hammett          Expires 22 May 2021                  [Page 9]
+
+Internet-Draft                ACVP KAS ECC                 November 2020
+
+
+   +------------+---------------+--------------+-----------+----------+
    | JSON Value | Description   | JSON type    | Valid     | Optional |
    |            |               |              | Values    |          |
    +============+===============+==============+===========+==========+
@@ -476,15 +523,15 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    +------------+---------------+--------------+-----------+----------+
    | prereqVals | Prerequisite  | array of     | See       | No       |
    |            | algorithm     | prereqAlgVal | Section   |          |
-   |            | validations   | objects      | 4.4       |          |
+   |            | validations   | objects      | 7.2       |          |
    +------------+---------------+--------------+-----------+----------+
    | function   | Type of       | array        | See       | No       |
    |            | function      |              | Section   |          |
-   |            | supported     |              | 4.6       |          |
+   |            | supported     |              | 7.4       |          |
    +------------+---------------+--------------+-----------+----------+
    | scheme     | Array of      | object       | See       | No       |
    |            | supported key |              | Section   |          |
-   |            | agreement     |              | 4.7.1     |          |
+   |            | agreement     |              | 7.5.1     |          |
    |            | schemes each  |              |           |          |
    |            | having their  |              |           |          |
    |            | own           |              |           |          |
@@ -493,24 +540,27 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
                 Table 4: KAS ECC Capabilities JSON Values
 
-4.6.  Supported KAS ECC Functions
+   Note: Some optional values are required depending on the algorithm.
+   Failure to provide these values will result in the ACVP server
+   returning an error to the ACVP client during registration.
+
+7.4.  Supported KAS ECC Functions
 
    The following function types MAY be advertised by the ACVP compliant
    crypto module:
-
-
-
-
-Fussell & Hammett          Expires 21 May 2021                  [Page 9]
-
-Internet-Draft                ACVP KAS ECC                 November 2020
-
 
    *  dpGen - IUT can perform domain parameter generation (FFC only)
 
    *  dpVal - IUT can perform domain parameter validation (FFC only)
 
    *  keyPairGen - IUT can perform keypair generation.
+
+
+
+Fussell & Hammett          Expires 22 May 2021                 [Page 10]
+
+Internet-Draft                ACVP KAS ECC                 November 2020
+
 
    *  fullVal - IUT can perform full public key validation (
       [SP800-56Ar2] section 5.6.2.3.1 / 5.6.2.3.3)
@@ -521,15 +571,13 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    *  keyRegen - IUT can regenerate keys given a specific seed and
       domain parameter (pqg for FFC, curve for ECC)
 
-4.7.  KAS ECC Schemes
+7.5.  KAS ECC Schemes
 
-4.7.1.  KAS ECC Scheme Capabilities JSON Values
+7.5.1.  KAS ECC Scheme Capabilities JSON Values
 
-All other scheme capabilities are advertised as a self-contained JSON object using the following values. Note that at least one of "noKdfNoKc", "kdfNoKc", or "kdfKc" *MUST* be supplied with the registration. See <<supported_scheme_values>> for allowed ECC scheme types.
+   All other scheme capabilities are advertised as a self-contained JSON object using the following values. Note that at least one of "noKdfNoKc", "kdfNoKc", or "kdfKc" *MUST* be supplied with the registration. See <<supported_scheme_values>> for allowed ECC scheme types.
 
-                               Figure 2
-
-
+                                  Figure 2
 
 
 
@@ -557,12 +605,20 @@ All other scheme capabilities are advertised as a self-contained JSON object usi
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 10]
+
+
+
+
+
+
+
+
+Fussell & Hammett          Expires 22 May 2021                 [Page 11]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-   +===========+=======================+========+===========+==========+
+   +-----------+-----------------------+--------+-----------+----------+
    | JSON      | Description           | JSON   | Valid     | Optional |
    | Value     |                       | type   | Values    |          |
    +===========+=======================+========+===========+==========+
@@ -571,7 +627,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    |           |                       |        | responder |          |
    +-----------+-----------------------+--------+-----------+----------+
    | noKdfNoKc | Indicates no KDF,     | object | Section   | Yes      |
-   |           | no KC tests are to    |        | 4.8.1     |          |
+   |           | no KC tests are to    |        | 7.6.1     |          |
    |           | be generated.  Note   |        |           |          |
    |           | this is a COMPONENT   |        |           |          |
    |           | mode only test.       |        |           |          |
@@ -581,7 +637,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    |           | "Component"           |        |           |          |
    +-----------+-----------------------+--------+-----------+----------+
    | kdfNoKc   | Indicates KDF, no     | object | Section   | Yes      |
-   |           | KC tests are to be    |        | 4.8.2     |          |
+   |           | KC tests are to be    |        | 7.6.2     |          |
    |           | generated.  Note      |        |           |          |
    |           | this is a KAS-ECC     |        |           |          |
    |           | only test.  This      |        |           |          |
@@ -591,7 +647,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    |           | "KAS-ECC" (no mode)   |        |           |          |
    +-----------+-----------------------+--------+-----------+----------+
    | kdfKc     | Indicates KDF, KC     | object | Section   | Yes      |
-   |           | tests are to be       |        | 4.8.3     |          |
+   |           | tests are to be       |        | 7.6.3     |          |
    |           | generated.  Note      |        |           |          |
    |           | this is a KAS-ECC     |        |           |          |
    |           | only test.  This      |        |           |          |
@@ -603,7 +659,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
                  Table 5: KAS ECC Capabilities JSON Values
 
-4.7.2.  Supported KAS ECC Schemes
+7.5.2.  Supported KAS ECC Schemes
 
    The following schemes MAY be advertised by the ACVP compliant crypto
    module:
@@ -613,7 +669,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 11]
+Fussell & Hammett          Expires 22 May 2021                 [Page 12]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -631,24 +687,24 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
    *  staticUnified
 
-4.8.  KAS ECC Modes
+7.6.  KAS ECC Modes
 
-4.8.1.  KAS ECC noKdfNoKc
+7.6.1.  KAS ECC noKdfNoKc
 
    Contains properties REQUIRED for "noKdfNoKc" registration.
 
-     +==============+==================+========+=========+==========+
+     +--------------+------------------+--------+---------+----------+
      | JSON Value   | Description      | JSON   | Valid   | Optional |
      |              |                  | type   | Values  |          |
      +==============+==================+========+=========+==========+
      | parameterSet | The parameterSet | object | Section | No       |
-     |              | options for      |        | 4.9.1   |          |
+     |              | options for      |        | 7.7.1   |          |
      |              | "noKdfNoKc"      |        |         |          |
      +--------------+------------------+--------+---------+----------+
 
                       Table 6: NoKdfNoKc Capabilities
 
-4.8.2.  KAS ECC kdfNoKc
+7.6.2.  KAS ECC kdfNoKc
 
    Contains properties REQUIRED for "kdfNoKc" registration.
 
@@ -669,54 +725,54 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 12]
+Fussell & Hammett          Expires 22 May 2021                 [Page 13]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-   +=============+=============+======+==================+=============+
-   |JSON Value   |Description  |JSON  |Valid Values      |Optional     |
-   |             |             |type  |                  |             |
-   +=============+=============+======+==================+=============+
-   |kdfOption    |The kdf      |object|Section 4.13      |No           |
-   |             |options for  |      |                  |             |
-   |             |"kdfNoKc"    |      |                  |             |
    +-------------+-------------+------+------------------+-------------+
-   |dkmNonceTypes|the          |array |randomNonce,      |Required for |
-   |             |dkmNonceTypes|of    |timestamp,        |staticUnified|
-   |             |supported    |string|sequence,         |scheme       |
+   | JSON Value  | Description | JSON | Valid Values     | Optional    |
+   |             |             | type |                  |             |
+   +=============+=============+======+==================+=============+
+   | kdfOption   | The kdf     |object| Section 7.11     | No          |
+   |             | options for |      |                  |             |
+   |             | "kdfNoKc"   |      |                  |             |
+   +-------------+-------------+------+------------------+-------------+
+   |dkmNonceTypes| the         |array | randomNonce,     |Required for |
+   |             |dkmNonceTypes| of   | timestamp,       |staticUnified|
+   |             | supported   |string| sequence,        | scheme      |
    |             |             |      |timestampSequence |             |
    +-------------+-------------+------+------------------+-------------+
-   |parameterSet |The          |object|Section 4.9.1     |No           |
+   |parameterSet | The         |object| Section 7.7.1    | No          |
    |             |parameterSet |      |                  |             |
-   |             |options for  |      |                  |             |
-   |             |"kdfNoKc"    |      |                  |             |
+   |             | options for |      |                  |             |
+   |             | "kdfNoKc"   |      |                  |             |
    +-------------+-------------+------+------------------+-------------+
 
                        Table 7: kdfNoKc Capabilities
 
-4.8.3.  KAS ECC kdfKc
+7.6.3.  KAS ECC kdfKc
 
    Contains properties REQUIRED for "kdfKc" registration.
 
-     +==============+==================+========+=========+==========+
+     +--------------+------------------+--------+---------+----------+
      | JSON Value   | Description      | JSON   | Valid   | Optional |
      |              |                  | type   | Values  |          |
      +==============+==================+========+=========+==========+
      | kdfOption    | The kdf options  | object | Section | No       |
-     |              | for "kdfNoKc"    |        | 4.13    |          |
+     |              | for "kdfNoKc"    |        | 7.11    |          |
      +--------------+------------------+--------+---------+----------+
      | kcOption     | The kc options   | object | Section | No       |
-     |              | for "kdfNoKc"    |        | 4.14    |          |
+     |              | for "kdfNoKc"    |        | 7.12    |          |
      +--------------+------------------+--------+---------+----------+
      | parameterSet | The parameterSet | object | Section | No       |
-     |              | options for      |        | 4.9.1   |          |
+     |              | options for      |        | 7.7.1   |          |
      |              | "kdfNoKc"        |        |         |          |
      +--------------+------------------+--------+---------+----------+
 
                         Table 8: kdfKc Capabilities
 
-4.9.  Parameter Sets
+7.7.  Parameter Sets
 
 
 
@@ -725,36 +781,36 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 13]
+Fussell & Hammett          Expires 22 May 2021                 [Page 14]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-4.9.1.  KAS ECC Parameter Set
+7.7.1.  KAS ECC Parameter Set
 
    Each parameter set advertised is a self-contained JSON object using
    the following values.  Note that at least one parameter set ("eb",
    "ec", "ed", "ee") is REQUIRED.
 
-   +============+===============+===========+==============+==========+
+   +------------+---------------+-----------+--------------+----------+
    | JSON Value | Description   | JSON type | Valid Values | Optional |
    +============+===============+===========+==============+==========+
    | eb         | The eb        | object    | See Section  | Yes      |
-   |            | parameter set |           | 4.9.2        |          |
+   |            | parameter set |           | 7.7.2        |          |
    +------------+---------------+-----------+--------------+----------+
    | ec         | The ec        | object    | See Section  | Yes      |
-   |            | parameter set |           | 4.9.2        |          |
+   |            | parameter set |           | 7.7.2        |          |
    +------------+---------------+-----------+--------------+----------+
    | ed         | The ed        | object    | See Section  | Yes      |
-   |            | parameter set |           | 4.9.2        |          |
+   |            | parameter set |           | 7.7.2        |          |
    +------------+---------------+-----------+--------------+----------+
    | ee         | The ee        | object    | See Section  | Yes      |
-   |            | parameter set |           | 4.9.2        |          |
+   |            | parameter set |           | 7.7.2        |          |
    +------------+---------------+-----------+--------------+----------+
 
          Table 9: KAS ECC Parameter Set Capabilities JSON Values
 
-4.9.2.  KAS ECC Parameter Set Details
+7.7.2.  KAS ECC Parameter Set Details
 
    *  eb: Len n - 224-255, min Len h - 112, min hash len - 224, min
       keySize - 112, min macSize - 64
@@ -781,36 +837,36 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 14]
+Fussell & Hammett          Expires 22 May 2021                 [Page 15]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-   +===========+=========================+========+=========+==========+
+   +-----------+-------------------------+--------+---------+----------+
    | JSON      | Description             | JSON   | Valid   | Optional |
    | Value     |                         | type   | Values  |          |
    +===========+=========================+========+=========+==========+
    | curve     | The elliptic curve      | value  | See     | No       |
    |           | to use for key          |        | Section |          |
-   |           | generation.             |        | 4.10    |          |
+   |           | generation.             |        | 7.8     |          |
    +-----------+-------------------------+--------+---------+----------+
    | hashAlg   | The hash algorithms     | array  | See     | No       |
    |           | to use for KDF (and     |        | Section |          |
-   |           | noKdfNoKc)              |        | 4.11    |          |
+   |           | noKdfNoKc)              |        | 7.9     |          |
    +-----------+-------------------------+--------+---------+----------+
    | macOption | The macOption(s) to     | object | See     | Yes      |
    |           | use with "kdfNoKc"      |        | Section |          |
-   |           | and/or "kdfKc"          |        | 4.12    |          |
+   |           | and/or "kdfKc"          |        | 7.10    |          |
    +-----------+-------------------------+--------+---------+----------+
 
       Table 10: KAS ECC Parameter Set Details Capabilities JSON Values
 
-4.10.  Supported ECC Curves
+7.8.  Supported ECC Curves
 
    The following ECC Curves MAY be advertised by the ACVP compliant
    crypto module:
 
-               +===============+=======+=========+========+
+               +---------------+-------+---------+--------+
                | Parameter Set | Prime | Koblitz | Binary |
                +===============+=======+=========+========+
                | eb            | P-224 | K-233   | B-233  |
@@ -825,7 +881,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
                  Table 11: Supported Curves per parameter
                                    set.
 
-4.11.  Supported Hash Algorithm Methods
+7.9.  Supported Hash Algorithm Methods
 
    The following SHA methods MAY be advertised by the ACVP compliant
    crypto module:
@@ -837,7 +893,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 15]
+Fussell & Hammett          Expires 22 May 2021                 [Page 16]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -846,7 +902,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
    *  SHA2-512
 
-4.12.  Supported KAS ECC MAC Options
+7.10.  Supported KAS ECC MAC Options
 
    The following MAC options MAY be advertised for registration under a
    "kdfNoKc" and "kdfKc" kasMode:
@@ -893,12 +949,12 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 16]
+Fussell & Hammett          Expires 22 May 2021                 [Page 17]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-    +==========+=============+========+==================+===========+
+    +----------+-------------+--------+------------------+-----------+
     | JSON     | Description | JSON   | Valid Values     | Optional  |
     | Value    |             | type   |                  |           |
     +==========+=============+========+==================+===========+
@@ -911,7 +967,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
     |          |             |        | MUST conform to  |           |
     |          |             |        | parameter set    |           |
     |          |             |        | requirements See |           |
-    |          |             |        | Section 4.9.2 .  |           |
+    |          |             |        | Section 7.7.2 .  |           |
     +----------+-------------+--------+------------------+-----------+
     | nonceLen | The nonce   | value  | Input as bits,   | Yes       |
     |          | len for use |        | 56-104, odd byte | (required |
@@ -922,14 +978,14 @@ Internet-Draft                ACVP KAS ECC                 November 2020
     |          |             |        | conform to       |           |
     |          |             |        | parameter set    |           |
     |          |             |        | requirements See |           |
-    |          |             |        | Section 4.9.2 .  |           |
+    |          |             |        | Section 7.7.2 .  |           |
     +----------+-------------+--------+------------------+-----------+
     | macLen   | The mac len | value  | Input as bits,   | Yes       |
     |          | for use     |        | mod 8, minimum   | (required |
     |          | with mac    |        | MUST conform to  | for AES-  |
     |          |             |        | parameter set    | CCM)      |
     |          |             |        | requirements See |           |
-    |          |             |        | Section 4.9.2 ,  |           |
+    |          |             |        | Section 7.7.2 ,  |           |
     |          |             |        | maximum SHALL    |           |
     |          |             |        | NOT exceed block |           |
     |          |             |        | size..           |           |
@@ -937,39 +993,41 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
                    Table 12: KAS ECC Mac Option Details
 
-4.13.  Supported KAS ECC KDF Options
+7.11.  Supported KAS ECC KDF Options
 
-    +===========+======================+=======+==========+==========+
-    | JSON      | Description          | JSON  | Valid    | Optional |
-    | Value     |                      | type  | Values   |          |
-    +===========+======================+=======+==========+==========+
-    | oiPattern | The OI pattern to    | value | See      | No       |
-    |           | use for constructing |       | Section  |          |
-    |           | OtherInformation.    |       | 4.13.1 . |          |
+   The following MAC options are available for registration under a
+   "kdfNoKc" and "kdfKc" kasMode:
+
+   *  concatenation
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 17]
+
+
+
+Fussell & Hammett          Expires 22 May 2021                 [Page 18]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
     +-----------+----------------------+-------+----------+----------+
+    | JSON      | Description          | JSON  | Valid    | Optional |
+    | Value     |                      | type  | Values   |          |
+    +===========+======================+=======+==========+==========+
+    | oiPattern | The OI pattern to    | value | See      | No       |
+    |           | use for constructing |       | Section  |          |
+    |           | OtherInformation.    |       | 7.11.1 . |          |
+    +-----------+----------------------+-------+----------+----------+
 
                    Table 13: KAS ECC KDF Option Details
 
-4.13.1.  Other Information Construction
+7.11.1.  Other Information Construction
 
-Some IUTs *MAY* require a specific pattern for the OtherInfo portion of the KDFs for KAS. An "oiPattern" is specified in the KDF registration to accommodate such requirements. Regardless of the oiPattern specified, the OI bitlength *MUST* be 240 for FFC, and 376 for ECC. The OI *SHALL* be padded with random bits (or the most significant bits utilized) when the specified OI pattern does not meet the bitlength requirement
+   Some IUTs *MAY* require a specific pattern for the OtherInfo portion of the KDFs for KAS. An "oiPattern" is specified in the KDF registration to accommodate such requirements. Regardless of the oiPattern specified, the OI bitlength *MUST* be 240 for FFC, and 376 for ECC. The OI *SHALL* be padded with random bits (or the most significant bits utilized) when the specified OI pattern does not meet the bitlength requirement
 
-                               Figure 3
+                                  Figure 3
 
    Pattern candidates:
-
-   Example (Note that party U is the server in this case "434156536964",
-   party V is the IUT "a1b2c3d4e5", using an ECC non-static scheme):
-
-   Evaluated as:
 
    *  literal[123456789ABCDEF]
 
@@ -997,50 +1055,55 @@ Some IUTs *MAY* require a specific pattern for the OtherInfo portion of the KDFs
 
       -  32bit counter starting at "1" (0x00000001)
 
-   *  "concatenation" :
-      "literal[123456789CAFECAFE]||uPartyInfo||vPartyInfo"
-
-   *  "123456789CAFECAFE434156536964a1b2c3d4e5b16c5f78ef56e8c14a561"
+   Example (Note that party U is the server in this case "434156536964",
+   party V is the IUT "a1b2c3d4e5", using an ECC non-static scheme):
 
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 18]
+Fussell & Hammett          Expires 22 May 2021                 [Page 19]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
+   *  "concatenation" :
+      "literal[123456789CAFECAFE]||uPartyInfo||vPartyInfo"
+
+   Evaluated as:
+
+   *  "123456789CAFECAFE434156536964a1b2c3d4e5b16c5f78ef56e8c14a561"
+
       -  "b16c5f78ef56e8c14a561" are random bits applied to meet length
          requirements
 
-4.14.  Supported KAS ECC KC Options
+7.12.  Supported KAS ECC KC Options
 
    The following KC options are available for registration under a
    "kdfKc" kasMode:
 
-   +===========+==================+=====+===================+==========+
-   |JSON Value |Description       |JSON |Valid Values       | Optional |
+   +-----------+------------------+-----+-------------------+----------+
+   |JSON Value | Description      |JSON | Valid Values      | Optional |
    |           |                  |type |                   |          |
    +===========+==================+=====+===================+==========+
-   |kcRole     |The role(s) the   |array|provider/recipient | No       |
-   |           |IUT is to act as  |     |                   |          |
-   |           |for               |     |                   |          |
-   |           |KeyConfirmation.  |     |                   |          |
+   | kcRole    | The role(s) the  |array|provider/recipient | No       |
+   |           | IUT is to act as |     |                   |          |
+   |           | for              |     |                   |          |
+   |           | KeyConfirmation. |     |                   |          |
    +-----------+------------------+-----+-------------------+----------+
-   |kcType     |The type(s) the   |array|unilateral/        | No       |
-   |           |IUT is to act as  |     |bilateral          |          |
-   |           |for               |     |                   |          |
-   |           |KeyConfirmation.  |     |                   |          |
+   | kcType    | The type(s) the  |array| unilateral/       | No       |
+   |           | IUT is to act as |     | bilateral         |          |
+   |           | for              |     |                   |          |
+   |           | KeyConfirmation. |     |                   |          |
    +-----------+------------------+-----+-------------------+----------+
-   |nonceType  |The nonce type(s) |array|randomNonce,       | No       |
-   |           |the IUT is to use |     |timestamp,         |          |
-   |           |for               |     |sequence,          |          |
-   |           |KeyConfirmation.  |     |timestampSequence  |          |
+   | nonceType |The nonce type(s) |array| randomNonce,      | No       |
+   |           |the IUT is to use |     | timestamp,        |          |
+   |           | for              |     | sequence,         |          |
+   |           | KeyConfirmation. |     | timestampSequence |          |
    +-----------+------------------+-----+-------------------+----------+
 
               Table 14: KAS ECC KC Option Details Capabilities
 
-4.15.  Example KAS ECC Capabilities JSON Object
+7.13.  Example KAS ECC Capabilities JSON Object
 
    The following is a example JSON object advertising support for KAS
    ECC.
@@ -1051,6 +1114,14 @@ Internet-Draft                ACVP KAS ECC                 November 2020
            "prereqVals": [{
                            "algorithm": "ECDSA",
                            "valValue": "123456"
+
+
+
+Fussell & Hammett          Expires 22 May 2021                 [Page 20]
+
+Internet-Draft                ACVP KAS ECC                 November 2020
+
+
                    },
                    {
                            "algorithm": "DRBG",
@@ -1058,14 +1129,6 @@ Internet-Draft                ACVP KAS ECC                 November 2020
                    },
                    {
                            "algorithm": "SHA",
-
-
-
-Fussell & Hammett          Expires 21 May 2021                 [Page 19]
-
-Internet-Draft                ACVP KAS ECC                 November 2020
-
-
                            "valValue": "123456"
                    },
                    {
@@ -1108,16 +1171,65 @@ Internet-Draft                ACVP KAS ECC                 November 2020
            }
    }
 
+
+
+Fussell & Hammett          Expires 22 May 2021                 [Page 21]
+
+Internet-Draft                ACVP KAS ECC                 November 2020
+
+
                                   Figure 4
 
-4.16.  Example KAS ECC Component Capabilities JSON Object
+7.14.  Example KAS ECC Component Capabilities JSON Object
 
    The following is a example JSON object advertising support for KAS
    ECC Component.
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 20]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fussell & Hammett          Expires 22 May 2021                 [Page 22]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -1173,188 +1285,188 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 21]
+Fussell & Hammett          Expires 22 May 2021                 [Page 23]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-5.  Generation requirements per party per scheme
+8.  Generation requirements per party per scheme
 
    The various schemes of KAS all have their own requirements as to keys
    and nonces per scheme, per party.  The below table demonstrates those
    generation requirements:
 
+   +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
+   | Scheme        | KasMode | KasRole       |KeyConfirmationRole|KeyConfirmationDirection|StaticKeyPair|EphemeralKeyPair|EphemeralNonce|DkmNonce|
    +===============+=========+===============+===================+========================+=============+================+==============+========+
-   |Scheme         |KasMode  |KasRole        |KeyConfirmationRole|KeyConfirmationDirection|StaticKeyPair|EphemeralKeyPair|EphemeralNonce|DkmNonce|
-   +===============+=========+===============+===================+========================+=============+================+==============+========+
-   |DhHybrid1      |NoKdfNoKc|InitiatorPartyU|None               |None                    |True         |True            |False         |False   |
+   | DhHybrid1     |NoKdfNoKc|InitiatorPartyU| None              | None                   | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybrid1      |NoKdfNoKc|ResponderPartyV|None               |None                    |True         |True            |False         |False   |
+   | DhHybrid1     |NoKdfNoKc|ResponderPartyV| None              | None                   | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybrid1      |KdfNoKc  |InitiatorPartyU|None               |None                    |True         |True            |False         |False   |
+   | DhHybrid1     | KdfNoKc |InitiatorPartyU| None              | None                   | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybrid1      |KdfNoKc  |ResponderPartyV|None               |None                    |True         |True            |False         |False   |
+   | DhHybrid1     | KdfNoKc |ResponderPartyV| None              | None                   | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybrid1      |KdfKc    |InitiatorPartyU|Provider           |Unilateral              |True         |True            |False         |False   |
+   | DhHybrid1     | KdfKc   |InitiatorPartyU| Provider          | Unilateral             | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybrid1      |KdfKc    |InitiatorPartyU|Provider           |Bilateral               |True         |True            |False         |False   |
+   | DhHybrid1     | KdfKc   |InitiatorPartyU| Provider          | Bilateral              | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybrid1      |KdfKc    |InitiatorPartyU|Recipient          |Unilateral              |True         |True            |False         |False   |
+   | DhHybrid1     | KdfKc   |InitiatorPartyU| Recipient         | Unilateral             | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybrid1      |KdfKc    |InitiatorPartyU|Recipient          |Bilateral               |True         |True            |False         |False   |
+   | DhHybrid1     | KdfKc   |InitiatorPartyU| Recipient         | Bilateral              | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybrid1      |KdfKc    |ResponderPartyV|Provider           |Unilateral              |True         |True            |False         |False   |
+   | DhHybrid1     | KdfKc   |ResponderPartyV| Provider          | Unilateral             | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybrid1      |KdfKc    |ResponderPartyV|Provider           |Bilateral               |True         |True            |False         |False   |
+   | DhHybrid1     | KdfKc   |ResponderPartyV| Provider          | Bilateral              | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybrid1      |KdfKc    |ResponderPartyV|Recipient          |Unilateral              |True         |True            |False         |False   |
+   | DhHybrid1     | KdfKc   |ResponderPartyV| Recipient         | Unilateral             | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybrid1      |KdfKc    |ResponderPartyV|Recipient          |Bilateral               |True         |True            |False         |False   |
+   | DhHybrid1     | KdfKc   |ResponderPartyV| Recipient         | Bilateral              | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv2           |NoKdfNoKc|InitiatorPartyU|None               |None                    |True         |True            |False         |False   |
+   | Mqv2          |NoKdfNoKc|InitiatorPartyU| None              | None                   | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv2           |NoKdfNoKc|ResponderPartyV|None               |None                    |True         |True            |False         |False   |
+   | Mqv2          |NoKdfNoKc|ResponderPartyV| None              | None                   | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv2           |KdfNoKc  |InitiatorPartyU|None               |None                    |True         |True            |False         |False   |
+   | Mqv2          | KdfNoKc |InitiatorPartyU| None              | None                   | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv2           |KdfNoKc  |ResponderPartyV|None               |None                    |True         |True            |False         |False   |
+   | Mqv2          | KdfNoKc |ResponderPartyV| None              | None                   | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv2           |KdfKc    |InitiatorPartyU|Provider           |Unilateral              |True         |True            |False         |False   |
+   | Mqv2          | KdfKc   |InitiatorPartyU| Provider          | Unilateral             | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv2           |KdfKc    |InitiatorPartyU|Provider           |Bilateral               |True         |True            |False         |False   |
+   | Mqv2          | KdfKc   |InitiatorPartyU| Provider          | Bilateral              | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv2           |KdfKc    |InitiatorPartyU|Recipient          |Unilateral              |True         |True            |False         |False   |
+   | Mqv2          | KdfKc   |InitiatorPartyU| Recipient         | Unilateral             | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv2           |KdfKc    |InitiatorPartyU|Recipient          |Bilateral               |True         |True            |False         |False   |
+   | Mqv2          | KdfKc   |InitiatorPartyU| Recipient         | Bilateral              | True        | True           | False        | False  |
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 22]
+Fussell & Hammett          Expires 22 May 2021                 [Page 24]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv2           |KdfKc    |ResponderPartyV|Provider           |Unilateral              |True         |True            |False         |False   |
+   | Mqv2          | KdfKc   |ResponderPartyV| Provider          | Unilateral             | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv2           |KdfKc    |ResponderPartyV|Provider           |Bilateral               |True         |True            |False         |False   |
+   | Mqv2          | KdfKc   |ResponderPartyV| Provider          | Bilateral              | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv2           |KdfKc    |ResponderPartyV|Recipient          |Unilateral              |True         |True            |False         |False   |
+   | Mqv2          | KdfKc   |ResponderPartyV| Recipient         | Unilateral             | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv2           |KdfKc    |ResponderPartyV|Recipient          |Bilateral               |True         |True            |False         |False   |
+   | Mqv2          | KdfKc   |ResponderPartyV| Recipient         | Bilateral              | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhEphem        |NoKdfNoKc|InitiatorPartyU|None               |None                    |False        |True            |False         |False   |
+   | DhEphem       |NoKdfNoKc|InitiatorPartyU| None              | None                   | False       | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhEphem        |NoKdfNoKc|ResponderPartyV|None               |None                    |False        |True            |False         |False   |
+   | DhEphem       |NoKdfNoKc|ResponderPartyV| None              | None                   | False       | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhEphem        |KdfNoKc  |InitiatorPartyU|None               |None                    |False        |True            |False         |False   |
+   | DhEphem       | KdfNoKc |InitiatorPartyU| None              | None                   | False       | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhEphem        |KdfNoKc  |ResponderPartyV|None               |None                    |False        |True            |False         |False   |
+   | DhEphem       | KdfNoKc |ResponderPartyV| None              | None                   | False       | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybridOneFlow|NoKdfNoKc|InitiatorPartyU|None               |None                    |True         |True            |False         |False   |
+   |DhHybridOneFlow|NoKdfNoKc|InitiatorPartyU| None              | None                   | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybridOneFlow|NoKdfNoKc|ResponderPartyV|None               |None                    |True         |False           |False         |False   |
+   |DhHybridOneFlow|NoKdfNoKc|ResponderPartyV| None              | None                   | True        | False          | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybridOneFlow|KdfNoKc  |InitiatorPartyU|None               |None                    |True         |True            |False         |False   |
+   |DhHybridOneFlow| KdfNoKc |InitiatorPartyU| None              | None                   | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybridOneFlow|KdfNoKc  |ResponderPartyV|None               |None                    |True         |False           |False         |False   |
+   |DhHybridOneFlow| KdfNoKc |ResponderPartyV| None              | None                   | True        | False          | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybridOneFlow|KdfKc    |InitiatorPartyU|Provider           |Unilateral              |True         |True            |False         |False   |
+   |DhHybridOneFlow| KdfKc   |InitiatorPartyU| Provider          | Unilateral             | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybridOneFlow|KdfKc    |InitiatorPartyU|Provider           |Bilateral               |True         |True            |False         |False   |
+   |DhHybridOneFlow| KdfKc   |InitiatorPartyU| Provider          | Bilateral              | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybridOneFlow|KdfKc    |InitiatorPartyU|Recipient          |Unilateral              |True         |True            |False         |False   |
+   |DhHybridOneFlow| KdfKc   |InitiatorPartyU| Recipient         | Unilateral             | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybridOneFlow|KdfKc    |InitiatorPartyU|Recipient          |Bilateral               |True         |True            |False         |False   |
+   |DhHybridOneFlow| KdfKc   |InitiatorPartyU| Recipient         | Bilateral              | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybridOneFlow|KdfKc    |ResponderPartyV|Provider           |Unilateral              |True         |False           |False         |False   |
+   |DhHybridOneFlow| KdfKc   |ResponderPartyV| Provider          | Unilateral             | True        | False          | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybridOneFlow|KdfKc    |ResponderPartyV|Provider           |Bilateral               |True         |False           |True          |False   |
+   |DhHybridOneFlow| KdfKc   |ResponderPartyV| Provider          | Bilateral              | True        | False          | True         | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybridOneFlow|KdfKc    |ResponderPartyV|Recipient          |Unilateral              |True         |False           |True          |False   |
+   |DhHybridOneFlow| KdfKc   |ResponderPartyV| Recipient         | Unilateral             | True        | False          | True         | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhHybridOneFlow|KdfKc    |ResponderPartyV|Recipient          |Bilateral               |True         |False           |True          |False   |
+   |DhHybridOneFlow| KdfKc   |ResponderPartyV| Recipient         | Bilateral              | True        | False          | True         | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv1           |NoKdfNoKc|InitiatorPartyU|None               |None                    |True         |True            |False         |False   |
+   | Mqv1          |NoKdfNoKc|InitiatorPartyU| None              | None                   | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv1           |NoKdfNoKc|ResponderPartyV|None               |None                    |True         |False           |False         |False   |
+   | Mqv1          |NoKdfNoKc|ResponderPartyV| None              | None                   | True        | False          | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv1           |KdfNoKc  |InitiatorPartyU|None               |None                    |True         |True            |False         |False   |
+   | Mqv1          | KdfNoKc |InitiatorPartyU| None              | None                   | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv1           |KdfNoKc  |ResponderPartyV|None               |None                    |True         |False           |False         |False   |
+   | Mqv1          | KdfNoKc |ResponderPartyV| None              | None                   | True        | False          | False        | False  |
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 23]
+Fussell & Hammett          Expires 22 May 2021                 [Page 25]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv1           |KdfKc    |InitiatorPartyU|Provider           |Unilateral              |True         |True            |False         |False   |
+   | Mqv1          | KdfKc   |InitiatorPartyU| Provider          | Unilateral             | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv1           |KdfKc    |InitiatorPartyU|Provider           |Bilateral               |True         |True            |False         |False   |
+   | Mqv1          | KdfKc   |InitiatorPartyU| Provider          | Bilateral              | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv1           |KdfKc    |InitiatorPartyU|Recipient          |Unilateral              |True         |True            |False         |False   |
+   | Mqv1          | KdfKc   |InitiatorPartyU| Recipient         | Unilateral             | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv1           |KdfKc    |InitiatorPartyU|Recipient          |Bilateral               |True         |True            |False         |False   |
+   | Mqv1          | KdfKc   |InitiatorPartyU| Recipient         | Bilateral              | True        | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv1           |KdfKc    |ResponderPartyV|Provider           |Unilateral              |True         |False           |False         |False   |
+   | Mqv1          | KdfKc   |ResponderPartyV| Provider          | Unilateral             | True        | False          | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv1           |KdfKc    |ResponderPartyV|Provider           |Bilateral               |True         |False           |True          |False   |
+   | Mqv1          | KdfKc   |ResponderPartyV| Provider          | Bilateral              | True        | False          | True         | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv1           |KdfKc    |ResponderPartyV|Recipient          |Unilateral              |True         |False           |True          |False   |
+   | Mqv1          | KdfKc   |ResponderPartyV| Recipient         | Unilateral             | True        | False          | True         | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |Mqv1           |KdfKc    |ResponderPartyV|Recipient          |Bilateral               |True         |False           |True          |False   |
+   | Mqv1          | KdfKc   |ResponderPartyV| Recipient         | Bilateral              | True        | False          | True         | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhOneFlow      |NoKdfNoKc|InitiatorPartyU|None               |None                    |False        |True            |False         |False   |
+   | DhOneFlow     |NoKdfNoKc|InitiatorPartyU| None              | None                   | False       | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhOneFlow      |NoKdfNoKc|ResponderPartyV|None               |None                    |True         |False           |False         |False   |
+   | DhOneFlow     |NoKdfNoKc|ResponderPartyV| None              | None                   | True        | False          | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhOneFlow      |KdfNoKc  |InitiatorPartyU|None               |None                    |False        |True            |False         |False   |
+   | DhOneFlow     | KdfNoKc |InitiatorPartyU| None              | None                   | False       | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhOneFlow      |KdfNoKc  |ResponderPartyV|None               |None                    |True         |False           |False         |False   |
+   | DhOneFlow     | KdfNoKc |ResponderPartyV| None              | None                   | True        | False          | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhOneFlow      |KdfKc    |InitiatorPartyU|Recipient          |Unilateral              |False        |True            |False         |False   |
+   | DhOneFlow     | KdfKc   |InitiatorPartyU| Recipient         | Unilateral             | False       | True           | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhOneFlow      |KdfKc    |ResponderPartyV|Provider           |Unilateral              |True         |False           |False         |False   |
+   | DhOneFlow     | KdfKc   |ResponderPartyV| Provider          | Unilateral             | True        | False          | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhStatic       |NoKdfNoKc|InitiatorPartyU|None               |None                    |True         |False           |False         |False   |
+   | DhStatic      |NoKdfNoKc|InitiatorPartyU| None              | None                   | True        | False          | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhStatic       |NoKdfNoKc|ResponderPartyV|None               |None                    |True         |False           |False         |False   |
+   | DhStatic      |NoKdfNoKc|ResponderPartyV| None              | None                   | True        | False          | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhStatic       |KdfNoKc  |InitiatorPartyU|None               |None                    |True         |False           |False         |True    |
+   | DhStatic      | KdfNoKc |InitiatorPartyU| None              | None                   | True        | False          | False        | True   |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhStatic       |KdfNoKc  |ResponderPartyV|None               |None                    |True         |False           |False         |False   |
+   | DhStatic      | KdfNoKc |ResponderPartyV| None              | None                   | True        | False          | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhStatic       |KdfKc    |InitiatorPartyU|Provider           |Unilateral              |True         |False           |False         |True    |
+   | DhStatic      | KdfKc   |InitiatorPartyU| Provider          | Unilateral             | True        | False          | False        | True   |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhStatic       |KdfKc    |InitiatorPartyU|Provider           |Bilateral               |True         |False           |False         |True    |
+   | DhStatic      | KdfKc   |InitiatorPartyU| Provider          | Bilateral              | True        | False          | False        | True   |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhStatic       |KdfKc    |InitiatorPartyU|Recipient          |Unilateral              |True         |False           |False         |True    |
+   | DhStatic      | KdfKc   |InitiatorPartyU| Recipient         | Unilateral             | True        | False          | False        | True   |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhStatic       |KdfKc    |InitiatorPartyU|Recipient          |Bilateral               |True         |False           |False         |True    |
+   | DhStatic      | KdfKc   |InitiatorPartyU| Recipient         | Bilateral              | True        | False          | False        | True   |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhStatic       |KdfKc    |ResponderPartyV|Provider           |Unilateral              |True         |False           |False         |False   |
+   | DhStatic      | KdfKc   |ResponderPartyV| Provider          | Unilateral             | True        | False          | False        | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhStatic       |KdfKc    |ResponderPartyV|Provider           |Bilateral               |True         |False           |True          |False   |
+   | DhStatic      | KdfKc   |ResponderPartyV| Provider          | Bilateral              | True        | False          | True         | False  |
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 24]
+Fussell & Hammett          Expires 22 May 2021                 [Page 26]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhStatic       |KdfKc    |ResponderPartyV|Recipient          |Unilateral              |True         |False           |True          |False   |
+   | DhStatic      | KdfKc   |ResponderPartyV| Recipient         | Unilateral             | True        | False          | True         | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
-   |DhStatic       |KdfKc    |ResponderPartyV|Recipient          |Bilateral               |True         |False           |True          |False   |
+   | DhStatic      | KdfKc   |ResponderPartyV| Recipient         | Bilateral              | True        | False          | True         | False  |
    +---------------+---------+---------------+-------------------+------------------------+-------------+----------------+--------------+--------+
 
               Table 15: Required Party Generation Obligations
 
-6.  Test Vectors
+9.  Test Vectors
 
    The ACVP server provides test vectors to the ACVP client, which are
    then processed and returned to the ACVP server for validation.  A
@@ -1369,7 +1481,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    test vectors to be processed by the ACVP client.  The following table
    describes the JSON elements at the top level of the hierarchy.
 
-    +=============+======================================+===========+
+    +-------------+--------------------------------------+-----------+
     | JSON Values | Description                          | JSON Type |
     +=============+======================================+===========+
     | acvVersion  | Protocol version identifier          | string    |
@@ -1385,7 +1497,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
     | revision    | Protocol test revision selected      | string    |
     +-------------+--------------------------------------+-----------+
     | testGroups  | Array of test groups containing test | array     |
-    |             | data, see Section 6.1                |           |
+    |             | data, see Section 9.1                |           |
     +-------------+--------------------------------------+-----------+
 
               Table 16: Top Level Test Vector JSON Elements
@@ -1397,7 +1509,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 25]
+Fussell & Hammett          Expires 22 May 2021                 [Page 27]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -1413,7 +1525,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
                                   Figure 6
 
-6.1.  Test Groups JSON Schema
+9.1.  Test Groups JSON Schema
 
    The testGroups element at the top level in the test vector JSON
    object is an array of test groups.  Test vectors are grouped into
@@ -1436,7 +1548,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    +----------------+----------------------+----------------+----------+
    | scheme         | The scheme for the   | value          | No       |
    |                | test vectors.  See   |                |          |
-   |                | Section 4.7.1 for    |                |          |
+   |                | Section 7.5.1 for    |                |          |
    |                | possible values      |                |          |
    +----------------+----------------------+----------------+----------+
    | testType       | The type of          | AFT, VAL       | No       |
@@ -1453,7 +1565,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 26]
+Fussell & Hammett          Expires 22 May 2021                 [Page 28]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -1483,20 +1595,20 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    |                | to use               |                |          |
    +----------------+----------------------+----------------+----------+
    | hashAlg        | hashAlg values       | See            | No       |
-   |                | being used           | Section 4.11   |          |
+   |                | being used           | Section 7.9    |          |
    +----------------+----------------------+----------------+----------+
    | macType        | The MAC being used.  | See            | Yes      |
-   |                | REQUIRED for         | Section 4.12   |          |
+   |                | REQUIRED for         | Section 7.10   |          |
    |                | "kdfNoKc" and        |                |          |
    |                | "kdfKc" modes.       |                |          |
    +----------------+----------------------+----------------+----------+
    | keyLen         | The key length of    | See            | Yes      |
-   |                | the MAC.  REQUIRED   | Section 4.12   |          |
+   |                | the MAC.  REQUIRED   | Section 7.10   |          |
    |                | for "kdfNoKc" and    |                |          |
    |                | "kdfKc" modes.       |                |          |
    +----------------+----------------------+----------------+----------+
    | nonceAesCcmLen | The nonce length of  | See            | Yes      |
-   |                | the MAC (applies     | Section 4.12   |          |
+   |                | the MAC (applies     | Section 7.10   |          |
    |                | only to AES-CCM).    |                |          |
    |                | REQUIRED for         |                |          |
    |                | "kdfNoKc" and        |                |          |
@@ -1504,12 +1616,12 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    |                | a AES-CCM MAC.       |                |          |
    +----------------+----------------------+----------------+----------+
    | macLen         | The mac length.      | See            | Yes      |
-   |                | REQUIRED for         | Section 4.12   |          |
+   |                | REQUIRED for         | Section 7.10   |          |
    |                | "kdfNoKc" and        |                |          |
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 27]
+Fussell & Hammett          Expires 22 May 2021                 [Page 29]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -1550,7 +1662,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    |                | AFT tests.           |                |          |
    +----------------+----------------------+----------------+----------+
    | oiPattern      | The oiPattern used   | See            | Yes      |
-   |                | in the KDF.          | Section 4.13.1 |          |
+   |                | in the KDF.          | Section 7.11.1 |          |
    |                | REQUIRED for         |                |          |
    |                | "kdfNoKc" and        |                |          |
    |                | "kdfKc" modes.       |                |          |
@@ -1565,7 +1677,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 28]
+Fussell & Hammett          Expires 22 May 2021                 [Page 30]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -1580,188 +1692,188 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    |                | test vector JSON     |                |          |
    |                | objects, which are   |                |          |
    |                | defined in           |                |          |
-   |                | Section 6.2          |                |          |
+   |                | Section 9.2          |                |          |
    +----------------+----------------------+----------------+----------+
 
                      Table 17: Vector Group JSON Object
 
-6.2.  Test Case JSON Schema
+9.2.  Test Case JSON Schema
 
    Each test group contains an array of one or more test cases.  Each
    test case is a JSON object that represents a single test vector to be
    processed by the ACVP client.  The following table describes the JSON
    elements for each test vector.
 
+   +------------------------+----------------------+--------+----------+
+   | JSON Value             | Description          | JSON   | Optional |
+   |                        |                      | type   |          |
    +========================+======================+========+==========+
-   | JSON Value             |Description           |JSON    | Optional |
-   |                        |                      |type    |          |
-   +========================+======================+========+==========+
-   | tcId                   |Numeric identifier for|value   | No       |
+   | tcId                   |Numeric identifier for| value  | No       |
    |                        |the test case, unique |        |          |
-   |                        |across the entire     |        |          |
-   |                        |vector set.           |        |          |
+   |                        | across the entire    |        |          |
+   |                        | vector set.          |        |          |
    +------------------------+----------------------+--------+----------+
-   | staticPublicServerX    |The ECDSA static      |value   | Yes      |
-   |                        |public key X          |        |          |
-   |                        |coordinate            |        |          |
+   | staticPublicServerX    | The ECDSA static     | value  | Yes      |
+   |                        | public key X         |        |          |
+   |                        | coordinate           |        |          |
    +------------------------+----------------------+--------+----------+
-   | staticPublicServerY    |The ECDSA static      |value   | Yes      |
-   |                        |public key Y          |        |          |
-   |                        |coordinate            |        |          |
+   | staticPublicServerY    | The ECDSA static     | value  | Yes      |
+   |                        | public key Y         |        |          |
+   |                        | coordinate           |        |          |
    +------------------------+----------------------+--------+----------+
-   | ephemeralPublicServerX |The ECDSA ephemeral   |value   | Yes      |
-   |                        |public key X          |        |          |
-   |                        |coordinate            |        |          |
+   | ephemeralPublicServerX | The ECDSA ephemeral  | value  | Yes      |
+   |                        | public key X         |        |          |
+   |                        | coordinate           |        |          |
    +------------------------+----------------------+--------+----------+
-   | ephemeralPublicServerY |The ECDSA ephemeral   |value   | Yes      |
-   |                        |public key Y          |        |          |
-   |                        |coordinate            |        |          |
+   | ephemeralPublicServerY | The ECDSA ephemeral  | value  | Yes      |
+   |                        | public key Y         |        |          |
+   |                        | coordinate           |        |          |
    +------------------------+----------------------+--------+----------+
-   | nonceEphemeralServer   |nonceEphemeralServer  |value   | Yes      |
+   | nonceEphemeralServer   | nonceEphemeralServer | value  | Yes      |
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 29]
+Fussell & Hammett          Expires 22 May 2021                 [Page 31]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-   |                        |ONLY USED BY C(1,2)   |        |          |
-   |                        |and C(0,2) schemes    |        |          |
-   |                        |with KC. nonce to be  |        |          |
-   |                        |used in the MacData   |        |          |
-   |                        |field                 |        |          |
+   |                        | ONLY USED BY C(1,2)  |        |          |
+   |                        | and C(0,2) schemes   |        |          |
+   |                        | with KC. nonce to be |        |          |
+   |                        | used in the MacData  |        |          |
+   |                        | field                |        |          |
    +------------------------+----------------------+--------+----------+
-   | nonceNoKc              |The 16 byte nonce     |value   | Yes      |
-   |                        |concatenated to the   |        |          |
-   |                        |"Standard Test        |        |          |
+   | nonceNoKc              | The 16 byte nonce    | value  | Yes      |
+   |                        | concatenated to the  |        |          |
+   |                        | "Standard Test       |        |          |
    |                        |Message".  Used for No|        |          |
    |                        |Key Confirmation tests|        |          |
-   |                        |only.                 |        |          |
+   |                        | only.                |        |          |
    +------------------------+----------------------+--------+----------+
-   | nonceDkm               |The nonce supplied by |value   | Yes      |
-   |                        |the initiator to be   |        |          |
-   |                        |used in the OI field  |        |          |
-   |                        |in the PartyUInfo     |        |          |
-   |                        |field.                |        |          |
+   | nonceDkm               |The nonce supplied by | value  | Yes      |
+   |                        | the initiator to be  |        |          |
+   |                        | used in the OI field |        |          |
+   |                        | in the PartyUInfo    |        |          |
+   |                        | field.               |        |          |
    +------------------------+----------------------+--------+----------+
-   | staticPrivateIut       |The IUT ECDSA static  |value   | Yes      |
-   |                        |private key           |        |          |
+   | staticPrivateIut       | The IUT ECDSA static | value  | Yes      |
+   |                        | private key          |        |          |
    +------------------------+----------------------+--------+----------+
-   | staticPublicIutX       |The IUT ECDSA static  |value   | Yes      |
-   |                        |public key X          |        |          |
-   |                        |coordinate            |        |          |
+   | staticPublicIutX       | The IUT ECDSA static | value  | Yes      |
+   |                        | public key X         |        |          |
+   |                        | coordinate           |        |          |
    +------------------------+----------------------+--------+----------+
-   | staticPublicIutY       |The IUT ECDSA static  |value   | Yes      |
-   |                        |public key Y          |        |          |
-   |                        |coordinate            |        |          |
+   | staticPublicIutY       | The IUT ECDSA static | value  | Yes      |
+   |                        | public key Y         |        |          |
+   |                        | coordinate           |        |          |
    +------------------------+----------------------+--------+----------+
-   | ephemeralPrivateIut    |The IUT ECDSA         |value   | Yes      |
+   | ephemeralPrivateIut    | The IUT ECDSA        | value  | Yes      |
    |                        |ephemeral private key |        |          |
    +------------------------+----------------------+--------+----------+
-   | ephemeralPublicIutX    |The IUT ECDSA         |value   | Yes      |
+   | ephemeralPublicIutX    | The IUT ECDSA        | value  | Yes      |
    |                        |ephemeral public key X|        |          |
-   |                        |coordinate            |        |          |
+   |                        | coordinate           |        |          |
    +------------------------+----------------------+--------+----------+
-   | ephemeralPublicIutY    |The IUT ECDSA         |value   | Yes      |
+   | ephemeralPublicIutY    | The IUT ECDSA        | value  | Yes      |
    |                        |ephemeral public key Y|        |          |
-   |                        |coordinate            |        |          |
+   |                        | coordinate           |        |          |
    +------------------------+----------------------+--------+----------+
-   | oiLen                  |Length of the         |value   | Yes      |
-   |                        |OtherInfo field       |        |          |
+   | oiLen                  | Length of the        | value  | Yes      |
+   |                        | OtherInfo field      |        |          |
    +------------------------+----------------------+--------+----------+
-   | oi                     |OtherInfo field       |value   | Yes      |
+   | oi                     | OtherInfo field      | value  | Yes      |
    +------------------------+----------------------+--------+----------+
-   | dkm                    |Derived Keying        |value   | Yes      |
-   |                        |Material.             |        |          |
+   | dkm                    | Derived Keying       | value  | Yes      |
+   |                        | Material.            |        |          |
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 30]
+Fussell & Hammett          Expires 22 May 2021                 [Page 32]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
    +------------------------+----------------------+--------+----------+
-   | tagIut                 |The tag (or MAC)      |value   | Yes      |
-   |                        |GENERATED BY THE      |        |          |
-   |                        |SERVER/IUT by using   |        |          |
-   |                        |the DKM to MAC the    |        |          |
-   |                        |Message with the      |        |          |
-   |                        |specified method      |        |          |
+   | tagIut                 | The tag (or MAC)     | value  | Yes      |
+   |                        | GENERATED BY THE     |        |          |
+   |                        | SERVER/IUT by using  |        |          |
+   |                        | the DKM to MAC the   |        |          |
+   |                        | Message with the     |        |          |
+   |                        | specified method     |        |          |
    +------------------------+----------------------+--------+----------+
-   | nonceEphemeralIut      |nonceEphemeralIut ONLY|value   | Yes      |
-   |                        |USED BY C(1,2) and    |        |          |
-   |                        |C(0,2) schemes with   |        |          |
-   |                        |KC. nonce to be used  |        |          |
-   |                        |in the MacData field  |        |          |
+   | nonceEphemeralIut      |nonceEphemeralIut ONLY| value  | Yes      |
+   |                        | USED BY C(1,2) and   |        |          |
+   |                        | C(0,2) schemes with  |        |          |
+   |                        | KC. nonce to be used |        |          |
+   |                        | in the MacData field |        |          |
    +------------------------+----------------------+--------+----------+
-   | nonceDkmIut            |ONLY USED BY STATIC   |value   | Yes      |
-   |                        |SCHEME.  The nonce    |        |          |
-   |                        |supplied by the       |        |          |
-   |                        |initiator to be used  |        |          |
+   | nonceDkmIut            | ONLY USED BY STATIC  | value  | Yes      |
+   |                        | SCHEME.  The nonce   |        |          |
+   |                        | supplied by the      |        |          |
+   |                        | initiator to be used |        |          |
    |                        |in the OI field in the|        |          |
-   |                        |PartyUInfo field      |        |          |
+   |                        | PartyUInfo field     |        |          |
    +------------------------+----------------------+--------+----------+
-   | nonceLenDkm            |ONLY USED BY STATIC   |value   | Yes      |
+   | nonceLenDkm            | ONLY USED BY STATIC  | value  | Yes      |
    |                        |SCHEME.  The length of|        |          |
    |                        |the nonce supplied by |        |          |
-   |                        |the initiator to be   |        |          |
-   |                        |used in the OI field  |        |          |
-   |                        |in the PartyUInfo     |        |          |
-   |                        |field.                |        |          |
+   |                        | the initiator to be  |        |          |
+   |                        | used in the OI field |        |          |
+   |                        | in the PartyUInfo    |        |          |
+   |                        | field.               |        |          |
    +------------------------+----------------------+--------+----------+
-   | nonceEphemeralDkm      |ONLY USED BY C(1,2)   |value   | Yes      |
-   |                        |and C(0,2) schemes    |        |          |
-   |                        |with KC. nonce to be  |        |          |
-   |                        |used in the MacData   |        |          |
-   |                        |field                 |        |          |
+   | nonceEphemeralDkm      | ONLY USED BY C(1,2)  | value  | Yes      |
+   |                        | and C(0,2) schemes   |        |          |
+   |                        | with KC. nonce to be |        |          |
+   |                        | used in the MacData  |        |          |
+   |                        | field                |        |          |
    +------------------------+----------------------+--------+----------+
-   | nonceEphemralDkmLen    |length of             |value   | Yes      |
-   |                        |nonceEphemeralIut     |        |          |
-   |                        |value.                |        |          |
+   | nonceEphemralDkmLen    | length of            | value  | Yes      |
+   |                        | nonceEphemeralIut    |        |          |
+   |                        | value.               |        |          |
    +------------------------+----------------------+--------+----------+
-   | nonceAesCcm            |Nonce used by the CCM |value   | Yes      |
-   |                        |function, if CCM is   |        |          |
-   |                        |used to generate the  |        |          |
-   |                        |Tag.                  |        |          |
+   | nonceAesCcm            |Nonce used by the CCM | value  | Yes      |
+   |                        | function, if CCM is  |        |          |
+   |                        | used to generate the |        |          |
+   |                        | Tag.                 |        |          |
    +------------------------+----------------------+--------+----------+
-   | macData                |The message to be     |value   | Yes      |
-   |                        |MAced.                |        |          |
+   | macData                | The message to be    | value  | Yes      |
+   |                        | MAced.               |        |          |
    +------------------------+----------------------+--------+----------+
-   |                        |A shared secret that  |value   | Yes      |
+   |                        | A shared secret that | value  | Yes      |
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 31]
+Fussell & Hammett          Expires 22 May 2021                 [Page 33]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-   |                        |is used to derive     |        |          |
+   |                        | is used to derive    |        |          |
    |                        |secret keying material|        |          |
    |                        |using a key derivation|        |          |
-   |                        |function.             |        |          |
+   |                        | function.            |        |          |
    +------------------------+----------------------+--------+----------+
-   | hashZServer            |The hashed shared     |value   | Yes      |
+   | hashZServer            | The hashed shared    | value  | Yes      |
    |                        |secret, only provided |        |          |
    |                        |in noKdfNoKc modes of |        |          |
-   |                        |operation.            |        |          |
+   |                        | operation.           |        |          |
    +------------------------+----------------------+--------+----------+
-   | hashZIut               |The hashed shared     |value   | Yes      |
+   | hashZIut               | The hashed shared    | value  | Yes      |
    |                        |secret, only provided |        |          |
    |                        |in noKdfNoKc modes of |        |          |
-   |                        |operation.            |        |          |
+   |                        | operation.           |        |          |
    +------------------------+----------------------+--------+----------+
-   | testPassed             |Pass Fail indicating  |boolean | Yes      |
+   | testPassed             | Pass Fail indicating |boolean | Yes      |
    |                        |if the IUT agrees with|        |          |
-   |                        |the Tag generated by  |        |          |
-   |                        |the server.           |        |          |
+   |                        | the Tag generated by |        |          |
+   |                        | the server.          |        |          |
    +------------------------+----------------------+--------+----------+
 
                       Table 18: Test Case JSON Object
 
-6.3.  Example Test Vectors JSON Object
+9.3.  Example Test Vectors JSON Object
 
    The following is a example JSON object for KAS ECC test vectors sent
    from the ACVP server to the crypto module.
@@ -1789,7 +1901,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 32]
+Fussell & Hammett          Expires 22 May 2021                 [Page 34]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -1845,7 +1957,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 33]
+Fussell & Hammett          Expires 22 May 2021                 [Page 35]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -1901,7 +2013,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 34]
+Fussell & Hammett          Expires 22 May 2021                 [Page 36]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -1910,7 +2022,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
                                   Figure 7
 
-6.4.  Example Test Vectors Component JSON Object
+9.4.  Example Test Vectors Component JSON Object
 
    The following is a example JSON object for KAS ECC Component test
    vectors sent from the ACVP server to the crypto module.
@@ -1957,7 +2069,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 35]
+Fussell & Hammett          Expires 22 May 2021                 [Page 37]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -2004,7 +2116,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
                                   Figure 8
 
-7.  Test Vector Responses
+10.  Test Vector Responses
 
    After the ACVP client downloads and processes a vector set, it must
    send the response vectors back to the ACVP server.  The following
@@ -2013,36 +2125,36 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 36]
+Fussell & Hammett          Expires 22 May 2021                 [Page 38]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-7.1.  Vector Set Response JSON Object
+10.1.  Vector Set Response JSON Object
 
-   +============+==========================================+===========+
-   | JSON Value | Description                              | JSON      |
-   |            |                                          | type      |
-   +============+==========================================+===========+
-   | acvVersion | Protocol version identifier              | value     |
-   +------------+------------------------------------------+-----------+
-   | vsId       | Unique numeric identifier for the vector | value     |
-   |            | set                                      |           |
-   +------------+------------------------------------------+-----------+
-   | testGroups | Array of JSON objects that represent     | array     |
-   |            | each test vector group.  See Section 7.2 |           |
-   +------------+------------------------------------------+-----------+
+    +------------+-------------------------------------------+-------+
+    | JSON Value | Description                               | JSON  |
+    |            |                                           | type  |
+    +============+===========================================+=======+
+    | acvVersion | Protocol version identifier               | value |
+    +------------+-------------------------------------------+-------+
+    | vsId       | Unique numeric identifier for the vector  | value |
+    |            | set                                       |       |
+    +------------+-------------------------------------------+-------+
+    | testGroups | Array of JSON objects that represent each | array |
+    |            | test vector group.  See Section 10.2      |       |
+    +------------+-------------------------------------------+-------+
 
-                 Table 19: Vector Set Response JSON Object
+                Table 19: Vector Set Response JSON Object
 
    The testGroups section is used to organize the ACVP client response
    in a similar manner to how it receives vectors.  Several algorithms
    SHALL require the client to send back group level properties in their
    response.  This structure helps accommodate that.
 
-7.2.  Vector Set Group Response JSON Object
+10.2.  Vector Set Group Response JSON Object
 
-         +============+=============================+===========+
+         +------------+-----------------------------+-----------+
          | JSON Value | Description                 | JSON type |
          +============+=============================+===========+
          | tgId       | The test group Id           | value     |
@@ -2053,7 +2165,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
              Table 20: Vector Set Group Response JSON Object
 
-7.3.  Example Test Results JSON Object
+10.3.  Example Test Results JSON Object
 
    The following is a example JSON object for KAS ECC test results sent
    from the crypto module to the ACVP server.
@@ -2069,7 +2181,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 37]
+Fussell & Hammett          Expires 22 May 2021                 [Page 39]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -2125,12 +2237,12 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 38]
+Fussell & Hammett          Expires 22 May 2021                 [Page 40]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-7.4.  Example Test Results Component JSON Object
+10.4.  Example Test Results Component JSON Object
 
    The following is a example JSON object for KAS ECC Component test
    results sent from the crypto module to the ACVP server.
@@ -2181,46 +2293,46 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 39]
+Fussell & Hammett          Expires 22 May 2021                 [Page 41]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-8.  ECC CDH Component Test
+11.  ECC CDH Component Test
 
    The ECC CDH Component Test
 
-8.1.  ECC CDH Component Capabilities JSON Values
+11.1.  ECC CDH Component Capabilities JSON Values
 
    Each algorithm capability advertised is a self-contained JSON object
    using the following values.
 
    +------------+--------------+--------------+---------------+--------+
-   | JSON Value |Description   | JSON type    |Valid Values   |Optional|
+   | JSON Value | Description  | JSON type    | Valid Values  |Optional|
    +------------+--------------+--------------+---------------+--------+
-   | algorithm  |The algorithm | value        |KAS-ECC        |No      |
-   |            |under test    |              |               |        |
+   | algorithm  |The algorithm | value        | KAS-ECC       | No     |
+   |            | under test   |              |               |        |
    +------------+--------------+--------------+---------------+--------+
-   | mode       |The algorithm | value        |CDH-Component  |No      |
-   |            |mode          |              |               |        |
+   | mode       |The algorithm | value        | CDH-Component | No     |
+   |            | mode         |              |               |        |
    +------------+--------------+--------------+---------------+--------+
-   | revision   |The algorithm | value        |"1.0"          |No      |
-   |            |testing       |              |               |        |
-   |            |revision to   |              |               |        |
-   |            |use.          |              |               |        |
+   | revision   |The algorithm | value        | "1.0"         | No     |
+   |            | testing      |              |               |        |
+   |            | revision to  |              |               |        |
+   |            | use.         |              |               |        |
    +------------+--------------+--------------+---------------+--------+
-   | prereqVals |Prerequisite  | array of     |See Section 4.4|No      |
-   |            |algorithm     | prereqAlgVal |               |        |
-   |            |validations   | objects      |               |        |
+   | prereqVals | Prerequisite | array of     |See Section 7.2| No     |
+   |            | algorithm    | prereqAlgVal |               |        |
+   |            | validations  | objects      |               |        |
    +------------+--------------+--------------+---------------+--------+
-   | curve      |Array of      | array        |See            |No      |
-   |            |supported     |              |Section 4.10   |        |
-   |            |curves        |              |               |        |
+   | curve      | Array of     | array        |See Section 7.8| No     |
+   |            | supported    |              |               |        |
+   |            | curves       |              |               |        |
    +------------+--------------+--------------+---------------+--------+
 
             Table 21: KAS ECC Component Capabilities JSON Values
 
-8.1.1.  Example KAS ECC CDH-Component Capabilities JSON Object
+11.1.1.  Example KAS ECC CDH-Component Capabilities JSON Object
 
    The following is a example JSON object advertising support for KAS
    ECC CDH-Component.
@@ -2237,7 +2349,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 40]
+Fussell & Hammett          Expires 22 May 2021                 [Page 42]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -2256,9 +2368,9 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
                                  Figure 11
 
-8.2.  ECC CDH Component TestVectors JSON Values
+11.2.  ECC CDH Component TestVectors JSON Values
 
-    +============+=================+=======+===============+==========+
+    +------------+-----------------+-------+---------------+----------+
     | JSON Value | Description     | JSON  | Valid Values  | Optional |
     |            |                 | type  |               |          |
     +============+=================+=======+===============+==========+
@@ -2278,7 +2390,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
     |            | group JSON      |       | information   |          |
     |            | objects, which  |       |               |          |
     |            | are defined in  |       |               |          |
-    |            | Section 8.2.1   |       |               |          |
+    |            | Section 11.2.1  |       |               |          |
     +------------+-----------------+-------+---------------+----------+
 
           Table 22: KAS ECC CDH Component TestVectors JSON Values
@@ -2293,14 +2405,14 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 41]
+Fussell & Hammett          Expires 22 May 2021                 [Page 43]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-8.2.1.  ECC CDH Component TestGroup JSON Values
+11.2.1.  ECC CDH Component TestGroup JSON Values
 
-   +==========+=====================+=======+===============+==========+
+   +----------+---------------------+-------+---------------+----------+
    | JSON     | Description         | JSON  | Valid Values  | Optional |
    | Value    |                     | type  |               |          |
    +==========+=====================+=======+===============+==========+
@@ -2323,14 +2435,14 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    |          | vector JSON         |       |               |          |
    |          | objects, which      |       |               |          |
    |          | are defined in      |       |               |          |
-   |          | Section 8.2.2       |       |               |          |
+   |          | Section 11.2.2      |       |               |          |
    +----------+---------------------+-------+---------------+----------+
 
            Table 23: KAS ECC CDH Component TestGroup JSON Values
 
-8.2.2.  ECC CDH Component TestCase JSON Values
+11.2.2.  ECC CDH Component TestCase JSON Values
 
-    +===============+============================+========+==========+
+    +---------------+----------------------------+--------+----------+
     | JSON Value    | Description                | Valid  | Optional |
     |               |                            | Values |          |
     +===============+============================+========+==========+
@@ -2349,7 +2461,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 42]
+Fussell & Hammett          Expires 22 May 2021                 [Page 44]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -2363,7 +2475,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
            Table 24: KAS ECC CDH Component TestCase JSON Values
 
-8.2.3.  Example KAS ECC CDH-Component Test Vectors JSON Object
+11.2.3.  Example KAS ECC CDH-Component Test Vectors JSON Object
 
    The following is a example JSON object for KAS ECC CDH-Component test
    vectors sent from the ACVP server to the crypto module.
@@ -2405,7 +2517,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 43]
+Fussell & Hammett          Expires 22 May 2021                 [Page 45]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -2461,21 +2573,21 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 44]
+Fussell & Hammett          Expires 22 May 2021                 [Page 46]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-8.3.  KAS CDH-Component Test Vector Responses
+11.3.  KAS CDH-Component Test Vector Responses
 
    After the ACVP client downloads and processes a vector set, it must
    send the response vectors back to the ACVP server.  The following
    table describes the JSON object that represents a vector set
    response.
 
-8.3.1.  CDH Component Vector Set Response JSON Object
+11.3.1.  CDH Component Vector Set Response JSON Object
 
-    +============+===========================================+=======+
+    +------------+-------------------------------------------+-------+
     | JSON Value | Description                               | JSON  |
     |            |                                           | type  |
     +============+===========================================+=======+
@@ -2485,7 +2597,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
     |            | set                                       |       |
     +------------+-------------------------------------------+-------+
     | testGroups | Array of JSON objects that represent each | array |
-    |            | test vector group.  See Section 8.3.2     |       |
+    |            | test vector group.  See Section 11.3.2    |       |
     +------------+-------------------------------------------+-------+
 
          Table 25: CDH Component Vector Set Response JSON Object
@@ -2495,9 +2607,9 @@ Internet-Draft                ACVP KAS ECC                 November 2020
    SHALL require the client to send back group level properties in their
    response.  This structure helps accommodate that.
 
-8.3.2.  CDH Component Vector Set Group Response JSON Object
+11.3.2.  CDH Component Vector Set Group Response JSON Object
 
-             +============+===================+=============+
+             +------------+-------------------+-------------+
              | JSON Value | Description       | JSON type   |
              +============+===================+=============+
              | tgId       | The test group Id | value tests |
@@ -2517,14 +2629,14 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 45]
+Fussell & Hammett          Expires 22 May 2021                 [Page 47]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
 
-8.3.3.  CDH Component Test Case Results JSON Object
+11.3.3.  CDH Component Test Case Results JSON Object
 
-      +============+============================+=======+==========+
+      +------------+----------------------------+-------+----------+
       | JSON Value | Description                | JSON  | Optional |
       |            |                            | type  |          |
       +============+============================+=======+==========+
@@ -2543,7 +2655,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
           Table 27: CDH Component Test Case Results JSON Object
 
-8.4.  Example KAS ECC CDH Component Test Results JSON Object
+11.4.  Example KAS ECC CDH Component Test Results JSON Object
 
    The following is a example JSON object for KAS ECC CDH Component test
    results sent from the crypto module to the ACVP server.
@@ -2573,7 +2685,7 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 46]
+Fussell & Hammett          Expires 22 May 2021                 [Page 48]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -2616,20 +2728,20 @@ Internet-Draft                ACVP KAS ECC                 November 2020
 
                                  Figure 13
 
-9.  Security Considerations
+12.  Security Considerations
 
    There are no additional security considerations outside of those
    outlined in the ACVP document.
 
-10.  IANA Considerations
+13.  IANA Considerations
 
    This document does not require any action by IANA.
 
-11.  Normative references
+14.  Normative References
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 47]
+Fussell & Hammett          Expires 22 May 2021                 [Page 49]
 
 Internet-Draft                ACVP KAS ECC                 November 2020
 
@@ -2685,4 +2797,4 @@ Authors' Addresses
 
 
 
-Fussell & Hammett          Expires 21 May 2021                 [Page 48]
+Fussell & Hammett          Expires 22 May 2021                 [Page 50]

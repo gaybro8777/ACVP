@@ -3,9 +3,9 @@
 
 
 Network Working Group                                    B. Fussell, Ed.
-Internet-Draft                                          17 November 2020
+Internet-Draft                                          18 November 2020
 Intended status: Informational                                          
-Expires: 21 May 2021
+Expires: 22 May 2021
 
 
                  ACVP DSA Algorithm JSON Specification
@@ -25,7 +25,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2021.
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -44,54 +44,57 @@ Table of Contents
    2.  Abstract  . . . . . . . . . . . . . . . . . . . . . . . . . .   2
    3.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   3
    4.  Terms and definitions . . . . . . . . . . . . . . . . . . . .   3
-     4.1.  Supported Conformances for DSA Algorithms . . . . . . . .   3
-     4.2.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
-     4.3.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   4
-       4.3.1.  Requirements Covered  . . . . . . . . . . . . . . . .   4
-       4.3.2.  Requirements Not Covered  . . . . . . . . . . . . . .   4
-     4.4.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   5
+   5.  Supported DSA Algorithms  . . . . . . . . . . . . . . . . . .   3
+     5.1.  Supported Conformances for DSA Algorithms . . . . . . . .   3
+   6.  Test Types and Test Coverage  . . . . . . . . . . . . . . . .   3
+     6.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   4
+     6.2.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   4
+       6.2.1.  Requirements Covered  . . . . . . . . . . . . . . . .   4
 
 
 
-Fussell                    Expires 21 May 2021                  [Page 1]
+Fussell                    Expires 22 May 2021                  [Page 1]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-     4.5.  Required Prerequisite Algorithms for DSA Validations  . .   6
-     4.6.  DSA Algorithm Capabilities Registration . . . . . . . . .   7
-     4.7.  DSA pqgGen Mode Capabilities  . . . . . . . . . . . . . .   8
-     4.8.  DSA pqgVer Mode Capabilities  . . . . . . . . . . . . . .  11
-       4.8.1.  DSA keyGen Mode Capabilities  . . . . . . . . . . . .  14
-       4.8.2.  DSA sigGen Mode Capabilities  . . . . . . . . . . . .  16
-       4.8.3.  DSA sigVer Mode Capabilities  . . . . . . . . . . . .  18
-   5.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  20
-   6.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  21
-     6.1.  DSA pqgGen Test Vectors . . . . . . . . . . . . . . . . .  22
-       6.1.1.  DSA pqgGen Test Groups JSON Schema  . . . . . . . . .  22
-       6.1.2.  DSA pqgGen Test Case JSON Schema  . . . . . . . . . .  23
-     6.2.  DSA pqgVer Test Vectors . . . . . . . . . . . . . . . . .  26
-       6.2.1.  DSA pqgVer Test Groups JSON Schema  . . . . . . . . .  26
-       6.2.2.  DSA pqgVer Test Case JSON Schema  . . . . . . . . . .  27
-     6.3.  DSA keyGen Test Vectors . . . . . . . . . . . . . . . . .  31
-       6.3.1.  DSA keyGen Test Groups JSON Schema  . . . . . . . . .  31
-       6.3.2.  DSA keyGen Test Case JSON Schema  . . . . . . . . . .  31
-     6.4.  DSA sigGen Test Vectors . . . . . . . . . . . . . . . . .  32
-       6.4.1.  DSA sigGen Test Groups JSON Schema  . . . . . . . . .  33
-       6.4.2.  DSA sigGen Test Case JSON Schema  . . . . . . . . . .  33
-     6.5.  DSA sigVer Test Vectors . . . . . . . . . . . . . . . . .  35
-       6.5.1.  DSA sigVer Test Groups JSON Schema  . . . . . . . . .  36
-       6.5.2.  DSA sigVer Test Case JSON Schema  . . . . . . . . . .  37
-   7.  Test Vector Responses . . . . . . . . . . . . . . . . . . . .  39
-     7.1.  DSA PQGGen Test Vector Responses  . . . . . . . . . . . .  40
-     7.2.  DSA PQGVer Test Vector Responses  . . . . . . . . . . . .  43
-     7.3.  DSA keyGen Test Vector Responses  . . . . . . . . . . . .  45
-     7.4.  DSA sigGen Test Vector Responses  . . . . . . . . . . . .  46
-     7.5.  DSA sigVer Test Vector Responses  . . . . . . . . . . . .  48
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  50
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  50
-   10. Normative references  . . . . . . . . . . . . . . . . . . . .  50
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  51
+       6.2.2.  Requirements Not Covered  . . . . . . . . . . . . . .   5
+   7.  Capabilities Registration . . . . . . . . . . . . . . . . . .   5
+     7.1.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   6
+     7.2.  Required Prerequisite Algorithms for DSA Validations  . .   7
+     7.3.  DSA Algorithm Capabilities Registration . . . . . . . . .   7
+     7.4.  DSA pqgGen Mode Capabilities  . . . . . . . . . . . . . .   8
+     7.5.  DSA pqgVer Mode Capabilities  . . . . . . . . . . . . . .  11
+       7.5.1.  DSA keyGen Mode Capabilities  . . . . . . . . . . . .  15
+       7.5.2.  DSA sigGen Mode Capabilities  . . . . . . . . . . . .  16
+       7.5.3.  DSA sigVer Mode Capabilities  . . . . . . . . . . . .  18
+   8.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  21
+   9.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  22
+     9.1.  DSA pqgGen Test Vectors . . . . . . . . . . . . . . . . .  23
+       9.1.1.  DSA pqgGen Test Groups JSON Schema  . . . . . . . . .  23
+       9.1.2.  DSA pqgGen Test Case JSON Schema  . . . . . . . . . .  24
+     9.2.  DSA pqgVer Test Vectors . . . . . . . . . . . . . . . . .  27
+       9.2.1.  DSA pqgVer Test Groups JSON Schema  . . . . . . . . .  27
+       9.2.2.  DSA pqgVer Test Case JSON Schema  . . . . . . . . . .  28
+     9.3.  DSA keyGen Test Vectors . . . . . . . . . . . . . . . . .  32
+       9.3.1.  DSA keyGen Test Groups JSON Schema  . . . . . . . . .  32
+       9.3.2.  DSA keyGen Test Case JSON Schema  . . . . . . . . . .  32
+     9.4.  DSA sigGen Test Vectors . . . . . . . . . . . . . . . . .  33
+       9.4.1.  DSA sigGen Test Groups JSON Schema  . . . . . . . . .  34
+       9.4.2.  DSA sigGen Test Case JSON Schema  . . . . . . . . . .  34
+     9.5.  DSA sigVer Test Vectors . . . . . . . . . . . . . . . . .  36
+       9.5.1.  DSA sigVer Test Groups JSON Schema  . . . . . . . . .  37
+       9.5.2.  DSA sigVer Test Case JSON Schema  . . . . . . . . . .  38
+   10. Test Vector Responses . . . . . . . . . . . . . . . . . . . .  40
+     10.1.  DSA PQGGen Test Vector Responses . . . . . . . . . . . .  41
+     10.2.  DSA PQGVer Test Vector Responses . . . . . . . . . . . .  44
+     10.3.  DSA keyGen Test Vector Responses . . . . . . . . . . . .  46
+     10.4.  DSA sigGen Test Vector Responses . . . . . . . . . . . .  47
+     10.5.  DSA sigVer Test Vector Responses . . . . . . . . . . . .  49
+   11. Security Considerations . . . . . . . . . . . . . . . . . . .  51
+   12. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  51
+   13. Normative References  . . . . . . . . . . . . . . . . . . . .  51
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  52
 
 1.  Acknowledgements
 
@@ -106,10 +109,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-
-
-
-Fussell                    Expires 21 May 2021                  [Page 2]
+Fussell                    Expires 22 May 2021                  [Page 2]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
@@ -131,18 +131,46 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 4.  Terms and definitions
 
-   For the purposes of this document, the following terms and
-   definitions apply.
+   No terms and definitions are listed in this document.
 
-4.1.  Supported Conformances for DSA Algorithms
+5.  Supported DSA Algorithms
+
+   The following DSA algorithm / mode / revision combinations MAY be
+   advertised by the ACVP compliant cryptographic module:
+
+   *  DSA / keyGen / 1.0
+
+   *  DSA / pqgGen / 1.0
+
+   *  DSA / pqgVer / 1.0
+
+   *  DSA / sigGen / 1.0
+
+   *  DSA / sigVer / 1.0
+
+5.1.  Supported Conformances for DSA Algorithms
 
    The following DSA algorithms MAY claim conformance to [SP800-106]:
 
    *  DSA / sigGen / 1.0
 
-   *  DSA / sigVer / 1.0 == Test Types and Test Coverage
+   *  DSA / sigVer / 1.0
 
-4.2.  Test Types
+6.  Test Types and Test Coverage
+
+
+
+
+
+
+
+
+Fussell                    Expires 22 May 2021                  [Page 3]
+
+Internet-Draft                  ACVP DSA                   November 2020
+
+
+6.1.  Test Types
 
    The ACVP server performs a set of tests on the specified DSA
    algorithm in order to assess the correctness and robustness of the
@@ -160,16 +188,6 @@ Internet-Draft                  ACVP DSA                   November 2020
       test mode is REQUIRED to generate PQ or G as a response to the
       ACVP provided test vector set.
 
-
-
-
-
-
-Fussell                    Expires 21 May 2021                  [Page 3]
-
-Internet-Draft                  ACVP DSA                   November 2020
-
-
    *  DSA / pqgVer / 1.0 "GDT" - Generated Data Test.  In this test
       mode, the ACVP server is REQUIRED to generate domain parameters
       for transmission to the IUT.  The IUT is expected to evaluate the
@@ -186,9 +204,12 @@ Internet-Draft                  ACVP DSA                   November 2020
       The IUT is REQUIRED to determine the validity of the signature
       given the PQG, key, and message.
 
-4.3.  Test Coverage
+6.2.  Test Coverage
 
-4.3.1.  Requirements Covered
+   The tests described in this document have the intention of ensuring
+   an implementation is conformant to [FIPS186-4] and [SP800-89].
+
+6.2.1.  Requirements Covered
 
    *  FIPS186-4 Section 3 General Discussion.  Domain parameter
       generation, key generation, signature generation, and signature
@@ -197,6 +218,14 @@ Internet-Draft                  ACVP DSA                   November 2020
    *  FIPS186-4 Section 4 The Digital Signature Algorithm (DSA).  The
       ACVP server provides a means of the generation and validation of
       domain parameters.  The ACVP server is SHALL support a variety of
+
+
+
+Fussell                    Expires 22 May 2021                  [Page 4]
+
+Internet-Draft                  ACVP DSA                   November 2020
+
+
       parameter sizes/hash function for creation and delivery to/from
       the IUT.  The ACVP server SHALL allow for the testing of the
       validity of domain parameters.  Key pair generation testing SHALL
@@ -209,7 +238,7 @@ Internet-Draft                  ACVP DSA                   November 2020
       provide a random value that should be used to "randomize" a
       message prior to signing and/or verifying an original message.
 
-4.3.2.  Requirements Not Covered
+6.2.2.  Requirements Not Covered
 
    *  FIPS186-4 Section 3 General Discussion.  Assurances of private key
       secrecy and ownership SHALL NOT be within scope of ACVP testing.
@@ -218,14 +247,6 @@ Internet-Draft                  ACVP DSA                   November 2020
       IUT's selection of parameter sizes and hash functions SHALL NOT be
       within scope of ACVP server testing.  Though the ACVP server SHALL
       support a variety of parameter sizes/hash functions, the IUT's
-
-
-
-Fussell                    Expires 21 May 2021                  [Page 4]
-
-Internet-Draft                  ACVP DSA                   November 2020
-
-
       selection of these is out of scope of testing.  The ACVP server
       MAY provide testing for the validity of domain parameters, but
       testing SHALL NOT provide assurances the IUT has validated a set
@@ -235,8 +256,9 @@ Internet-Draft                  ACVP DSA                   November 2020
    *  SP800-106 Section 3.3 The Random Value.  DSA, ECDSA, and RSA have
       random values generated as per their signing process, this random
       value can be used as the input to the message randomization
-      function, doing so however is out of scope of this testing. ==
-      Capabilities Registration
+      function, doing so however is out of scope of this testing.
+
+7.  Capabilities Registration
 
    ACVP requires crypto modules to register their capabilities.  This
    allows the crypto module to advertise support for specific
@@ -253,7 +275,14 @@ Internet-Draft                  ACVP DSA                   November 2020
    registration message.  See the ACVP specification [ACVP] for more
    details on the registration message.
 
-4.4.  Prerequisites
+
+
+Fussell                    Expires 22 May 2021                  [Page 5]
+
+Internet-Draft                  ACVP DSA                   November 2020
+
+
+7.1.  Prerequisites
 
    Each algorithm implementation MAY rely on other cryptographic
    primitives.  For example, RSA Signature algorithms depend on an
@@ -267,22 +296,7 @@ Internet-Draft                  ACVP DSA                   November 2020
    "algorithms" array.  Each element in the "prereqVals" array MUST
    contain the following properties
 
-   A "valValue" of "same" SHALL be used to indicate that the
-   prerequisite is being met by a different algorithm in the capability
-   exchange in the same registration.
-
-   An example description of prerequisites within a single algorithm
-   capability exchange looks like this
-
-
-
-
-Fussell                    Expires 21 May 2021                  [Page 5]
-
-Internet-Draft                  ACVP DSA                   November 2020
-
-
-        +===============+=============================+===========+
+        +---------------+-----------------------------+-----------+
         | JSON Property | Description                 | JSON Type |
         +===============+=============================+===========+
         | algorithm     | a prerequisite algorithm    | string    |
@@ -291,6 +305,13 @@ Internet-Draft                  ACVP DSA                   November 2020
         +---------------+-----------------------------+-----------+
 
                       Table 1: Prerequisite Properties
+
+   A "valValue" of "same" SHALL be used to indicate that the
+   prerequisite is being met by a different algorithm in the capability
+   exchange in the same registration.
+
+   An example description of prerequisites within a single algorithm
+   capability exchange looks like this
 
    "prereqVals":
    [
@@ -306,7 +327,18 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                   Figure 1
 
-4.5.  Required Prerequisite Algorithms for DSA Validations
+
+
+
+
+
+
+Fussell                    Expires 22 May 2021                  [Page 6]
+
+Internet-Draft                  ACVP DSA                   November 2020
+
+
+7.2.  Required Prerequisite Algorithms for DSA Validations
 
    Each DSA implementation relies on other cryptographic primitives.
    For example, DSA uses an underlying SHA algorithm.  Each of these
@@ -314,52 +346,28 @@ Internet-Draft                  ACVP DSA                   November 2020
    or as part of the same submission.  ACVP provides a mechanism for
    specifying the required prerequisites:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Fussell                    Expires 21 May 2021                  [Page 6]
-
-Internet-Draft                  ACVP DSA                   November 2020
-
-
-   +==============+===========+==============+==============+==========+
-   |JSON Value    |Description| JSON type    | Valid Values |algorithm |
-   +==============+===========+==============+==============+==========+
-   |a prerequisite|string     | DRBG, SHA,   | valValue     |algorithm |
-   |algorithm     |           | SHA_OPT2     |              |validation|
-   |              |           |              |              |number    |
    +--------------+-----------+--------------+--------------+----------+
-   |string        |actual     | prereqAlgVal | prerequistie |object    |
-   |              |number or  |              | algorithm    |with      |
-   |              |"same"     |              | validation   |algorithm |
-   |              |           |              |              |and       |
-   |              |           |              |              |valValue  |
+   | JSON Value   |Description| JSON type    | Valid Values |algorithm |
+   +==============+===========+==============+==============+==========+
+   |a prerequisite| string    | DRBG, SHA,   | valValue     |algorithm |
+   | algorithm    |           | SHA_OPT2     |              |validation|
+   |              |           |              |              | number   |
+   +--------------+-----------+--------------+--------------+----------+
+   | string       | actual    | prereqAlgVal | prerequistie | object   |
+   |              | number or |              | algorithm    | with     |
+   |              | "same"    |              | validation   |algorithm |
+   |              |           |              |              | and      |
+   |              |           |              |              | valValue |
    |              |           |              |              |properties|
    +--------------+-----------+--------------+--------------+----------+
-   |see above     |prereqVals | prerequistie | array of     |see above |
+   | see above    |prereqVals | prerequistie | array of     |see above |
    |              |           | algorithm    | prereqAlgVal |          |
    |              |           | validations  | objects      |          |
    +--------------+-----------+--------------+--------------+----------+
 
          Table 2: Required DSA Prerequisite Algorithms JSON Values
 
-4.6.  DSA Algorithm Capabilities Registration
+7.3.  DSA Algorithm Capabilities Registration
 
    Each algorithm capability advertised is a self-contained JSON object
    using the following values.
@@ -381,20 +389,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-
-
-
-
-
-
-
-
-Fussell                    Expires 21 May 2021                  [Page 7]
+Fussell                    Expires 22 May 2021                  [Page 7]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-   +==============+=======================+==============+=============+
+   +--------------+-----------------------+--------------+-------------+
    | JSON Value   | Description           | JSON type    | Valid       |
    |              |                       |              | Values      |
    +==============+=======================+==============+=============+
@@ -412,22 +412,22 @@ Internet-Draft                  ACVP DSA                   November 2020
    |              | use.                  |              |             |
    +--------------+-----------------------+--------------+-------------+
    | prereqVals   | prerequistie          | array of     | See         |
-   |              | algorithm             | prereqAlgVal | Section 4.5 |
+   |              | algorithm             | prereqAlgVal | Section 7.2 |
    |              | validations           | objects      |             |
    +--------------+-----------------------+--------------+-------------+
    | capabilities | array of JSON         | Array of     | See Section |
-   |              | objects, each with    | JSON objects | 4.7,        |
+   |              | objects, each with    | JSON objects | 7.4,        |
    |              | fields pertaining to  |              | Section     |
-   |              | the global DSA mode   |              | 4.8,        |
+   |              | the global DSA mode   |              | 7.5,        |
    |              | indicated above and   |              | Section     |
-   |              | identified uniquely   |              | 4.8.1,      |
+   |              | identified uniquely   |              | 7.5.1,      |
    |              | by the combination    |              | Section     |
-   |              | of the DSA "mode"     |              | 4.8.2 or    |
+   |              | of the DSA "mode"     |              | 7.5.2 or    |
    |              | and indicated         |              | Section     |
-   |              | properties            |              | 4.8.3       |
+   |              | properties            |              | 7.5.3       |
    +--------------+-----------------------+--------------+-------------+
    | conformances | Used to denote the    | Array of     | See         |
-   |              | optional              | strings      | Section 4.1 |
+   |              | optional              | strings      | Section 5.1 |
    |              | conformances that     |              |             |
    |              | can apply to          |              |             |
    |              | specific modes of     |              |             |
@@ -436,7 +436,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
               Table 3: DSA Algorithm Capabilities JSON Values
 
-4.7.  DSA pqgGen Mode Capabilities
+7.4.  DSA pqgGen Mode Capabilities
 
    The DSA / pqgGen / 1.0 mode capabilities are advertised as JSON
    objects, which are elements of the 'capabilities' array in the ACVP
@@ -445,7 +445,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                  [Page 8]
+Fussell                    Expires 22 May 2021                  [Page 8]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
@@ -456,9 +456,7 @@ Internet-Draft                  ACVP DSA                   November 2020
    The complete list of DSA PQ and G generation capabilities may be
    advertised by the ACVP compliant crypto module:
 
-   An example of the DSA / pqgGen / 1.0 registration is the following
-
-   +=========+=============+=======+==================================+
+   +---------+-------------+-------+----------------------------------+
    | JSON    | Description | JSON  | Valid Values                     |
    | Value   |             | type  |                                  |
    +=========+=============+=======+==================================+
@@ -498,10 +496,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                Table 4: DSA pqgGen Capabilities JSON Values
 
+   An example of the DSA / pqgGen / 1.0 registration is the following
 
 
 
-Fussell                    Expires 21 May 2021                  [Page 9]
+
+Fussell                    Expires 22 May 2021                  [Page 9]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
@@ -557,7 +557,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 10]
+Fussell                    Expires 22 May 2021                 [Page 10]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
@@ -590,9 +590,35 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                   Figure 2
 
-4.8.  DSA pqgVer Mode Capabilities
+7.5.  DSA pqgVer Mode Capabilities
 
-   +=========+=============+=======+==================================+
+   The DSA / pqgVer / 1.0 mode capabilities are advertised as JSON
+   objects, which are elements of the 'capabilities' array in the ACVP
+   registration message.  See the ACVP specification for details on the
+   registration message.
+
+   Each DSA / pqgVer / 1.0 mode capability set is advertised as a self-
+   contained JSON object.
+
+   The complete list of DSA P, Q and G verification capabilities may be
+   advertised by the ACVP compliant crypto module:
+
+
+
+
+
+
+
+
+
+
+
+Fussell                    Expires 22 May 2021                 [Page 11]
+
+Internet-Draft                  ACVP DSA                   November 2020
+
+
+   +---------+-------------+-------+----------------------------------+
    | JSON    | Description | JSON  | Valid Values                     |
    | Value   |             | type  |                                  |
    +=========+=============+=======+==================================+
@@ -610,14 +636,6 @@ Internet-Draft                  ACVP DSA                   November 2020
    |         | a prime     |       |                                  |
    |         | factor of   |       |                                  |
    |         | (p-1).      |       |                                  |
-
-
-
-Fussell                    Expires 21 May 2021                 [Page 11]
-
-Internet-Draft                  ACVP DSA                   November 2020
-
-
    +---------+-------------+-------+----------------------------------+
    | pqGen   | The methods | array | Any non-empty subset of          |
    |         | supported   |       | {"probable", "provable"}.        |
@@ -640,12 +658,22 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                Table 5: DSA pqgVer Capabilities JSON Values
 
+   An example of the DSA / pqgVer / 1.0 registration is the following
+
    {
      "algorithm": "DSA",
      "mode": "pqgVer",
      "revision": "1.0",
      "prereqVals": [
        {
+
+
+
+Fussell                    Expires 22 May 2021                 [Page 12]
+
+Internet-Draft                  ACVP DSA                   November 2020
+
+
          "algorithm": "SHA",
          "valValue": "123456"
        },
@@ -666,14 +694,6 @@ Internet-Draft                  ACVP DSA                   November 2020
          ],
          "l": 1024,
          "n": 160,
-
-
-
-Fussell                    Expires 21 May 2021                 [Page 12]
-
-Internet-Draft                  ACVP DSA                   November 2020
-
-
          "hashAlg": [
            "SHA-1",
            "SHA2-224",
@@ -702,6 +722,14 @@ Internet-Draft                  ACVP DSA                   November 2020
            "SHA2-512",
            "SHA2-512/224",
            "SHA2-512/256"
+
+
+
+Fussell                    Expires 22 May 2021                 [Page 13]
+
+Internet-Draft                  ACVP DSA                   November 2020
+
+
          ]
        },
        {
@@ -722,14 +750,6 @@ Internet-Draft                  ACVP DSA                   November 2020
            "SHA2-512/256"
          ]
        },
-
-
-
-Fussell                    Expires 21 May 2021                 [Page 13]
-
-Internet-Draft                  ACVP DSA                   November 2020
-
-
        {
          "pqGen": [
            "probable",
@@ -753,7 +773,20 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                   Figure 3
 
-4.8.1.  DSA keyGen Mode Capabilities
+
+
+
+
+
+
+
+
+Fussell                    Expires 22 May 2021                 [Page 14]
+
+Internet-Draft                  ACVP DSA                   November 2020
+
+
+7.5.1.  DSA keyGen Mode Capabilities
 
    The DSA / keyGen / 1.0 mode capabilities are advertised as JSON
    objects, which are elements of the 'capabilities' array in the ACVP
@@ -765,6 +798,21 @@ Internet-Draft                  ACVP DSA                   November 2020
 
    The complete list of DSA key generation capabilities may be
    advertised by the ACVP compliant crypto module:
+
+      +-------+--------------------------+-------+-----------------+
+      | JSON  | Description              | JSON  | Valid Values    |
+      | Value |                          | type  |                 |
+      +=======+==========================+=======+=================+
+      | l     | The length in bits of    | value | 2048, or 3072   |
+      |       | the field and the length |       |                 |
+      |       | in bits of prime p.      |       |                 |
+      +-------+--------------------------+-------+-----------------+
+      | n     | The length in bits of q  | value | 224, or 256     |
+      |       | which is a prime factor  |       | when L is 2048. |
+      |       | of (p-1).                |       | Otherwise 256.  |
+      +-------+--------------------------+-------+-----------------+
+
+               Table 6: DSA keyGen Capabilities JSON Values
 
    An example of this is the following
 
@@ -781,25 +829,18 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 14]
+
+
+
+
+
+
+
+
+Fussell                    Expires 22 May 2021                 [Page 15]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
-
-      +=======+==========================+=======+=================+
-      | JSON  | Description              | JSON  | Valid Values    |
-      | Value |                          | type  |                 |
-      +=======+==========================+=======+=================+
-      | l     | The length in bits of    | value | 2048, or 3072   |
-      |       | the field and the length |       |                 |
-      |       | in bits of prime p.      |       |                 |
-      +-------+--------------------------+-------+-----------------+
-      | n     | The length in bits of q  | value | 224, or 256     |
-      |       | which is a prime factor  |       | when L is 2048. |
-      |       | of (p-1).                |       | Otherwise 256.  |
-      +-------+--------------------------+-------+-----------------+
-
-               Table 6: DSA keyGen Capabilities JSON Values
 
    {
      "algorithm": "DSA",
@@ -833,16 +874,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                   Figure 4
 
-
-
-
-
-Fussell                    Expires 21 May 2021                 [Page 15]
-
-Internet-Draft                  ACVP DSA                   November 2020
-
-
-4.8.2.  DSA sigGen Mode Capabilities
+7.5.2.  DSA sigGen Mode Capabilities
 
    The DSA / sigGen / 1.0 mode capabilities are advertised as JSON
    objects, which are elements of the 'capabilities' array in the ACVP
@@ -855,9 +887,18 @@ Internet-Draft                  ACVP DSA                   November 2020
    The complete list of DSA signature generation capabilities may be
    advertised by the ACVP compliant crypto module:
 
-   An example of this is the following
 
-    +=========+====================+=======+=========================+
+
+
+
+
+
+Fussell                    Expires 22 May 2021                 [Page 16]
+
+Internet-Draft                  ACVP DSA                   November 2020
+
+
+    +---------+--------------------+-------+-------------------------+
     | JSON    | Description        | JSON  | Valid Values            |
     | Value   |                    | type  |                         |
     +=========+====================+=======+=========================+
@@ -880,6 +921,8 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                Table 7: DSA sigGen Capabilities JSON Values
 
+   An example of this is the following
+
    {
      "algorithm": "DSA",
      "mode": "sigGen",
@@ -890,14 +933,6 @@ Internet-Draft                  ACVP DSA                   November 2020
          "valValue": "123456"
        },
        {
-
-
-
-Fussell                    Expires 21 May 2021                 [Page 16]
-
-Internet-Draft                  ACVP DSA                   November 2020
-
-
          "algorithm": "DRBG",
          "valValue": "123456"
        }
@@ -911,6 +946,14 @@ Internet-Draft                  ACVP DSA                   November 2020
            "SHA2-224",
            "SHA2-256",
            "SHA2-384",
+
+
+
+Fussell                    Expires 22 May 2021                 [Page 17]
+
+Internet-Draft                  ACVP DSA                   November 2020
+
+
            "SHA2-512",
            "SHA2-512/224",
            "SHA2-512/256"
@@ -946,19 +989,11 @@ Internet-Draft                  ACVP DSA                   November 2020
      "conformances": [
        "SP800-106"
      ]
-
-
-
-Fussell                    Expires 21 May 2021                 [Page 17]
-
-Internet-Draft                  ACVP DSA                   November 2020
-
-
    }
 
                                   Figure 5
 
-4.8.3.  DSA sigVer Mode Capabilities
+7.5.3.  DSA sigVer Mode Capabilities
 
    The DSA / sigVer / 1.0 mode capabilities are advertised as JSON
    objects, which are elements of the 'capabilities' array in the ACVP
@@ -968,12 +1003,17 @@ Internet-Draft                  ACVP DSA                   November 2020
    Each DSA / sigVer / 1.0 mode capability set is advertised as a self-
    contained JSON object.
 
+
+
+Fussell                    Expires 22 May 2021                 [Page 18]
+
+Internet-Draft                  ACVP DSA                   November 2020
+
+
    The complete list of DSA signature verification capabilities may be
    advertised by the ACVP compliant crypto module:
 
-   An example of this is the following
-
-   +=========+===================+=======+=============================+
+   +---------+-------------------+-------+-----------------------------+
    | JSON    | Description       | JSON  | Valid Values                |
    | Value   |                   | type  |                             |
    +=========+===================+=======+=============================+
@@ -998,17 +1038,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                 Table 8: DSA sigVer Capabilities JSON Values
 
-
-
-
-
-
-
-
-Fussell                    Expires 21 May 2021                 [Page 18]
-
-Internet-Draft                  ACVP DSA                   November 2020
-
+   An example of this is the following
 
    {
      "algorithm": "DSA",
@@ -1028,6 +1058,14 @@ Internet-Draft                  ACVP DSA                   November 2020
        {
          "n": 160,
          "l": 1024,
+
+
+
+Fussell                    Expires 22 May 2021                 [Page 19]
+
+Internet-Draft                  ACVP DSA                   November 2020
+
+
          "hashAlg": [
            "SHA-1",
            "SHA2-224",
@@ -1058,14 +1096,6 @@ Internet-Draft                  ACVP DSA                   November 2020
            "SHA-1",
            "SHA2-224",
            "SHA2-256",
-
-
-
-Fussell                    Expires 21 May 2021                 [Page 19]
-
-Internet-Draft                  ACVP DSA                   November 2020
-
-
            "SHA2-384",
            "SHA2-512",
            "SHA2-512/224",
@@ -1084,6 +1114,14 @@ Internet-Draft                  ACVP DSA                   November 2020
            "SHA2-512/224",
            "SHA2-512/256"
          ]
+
+
+
+Fussell                    Expires 22 May 2021                 [Page 20]
+
+Internet-Draft                  ACVP DSA                   November 2020
+
+
        }
      ],
      "conformances": [
@@ -1093,7 +1131,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                   Figure 6
 
-5.  Test Vectors
+8.  Test Vectors
 
    The ACVP server provides test vectors to the ACVP client, which are
    then processed and returned to the ACVP server for validation.  A
@@ -1108,21 +1146,7 @@ Internet-Draft                  ACVP DSA                   November 2020
    test vectors to be processed by the ACVP client.  The following table
    describes the JSON elements at the top level of the hierarchy.
 
-
-
-
-
-
-
-
-
-
-Fussell                    Expires 21 May 2021                 [Page 20]
-
-Internet-Draft                  ACVP DSA                   November 2020
-
-
-    +=============+======================================+===========+
+    +-------------+--------------------------------------+-----------+
     | JSON Values | Description                          | JSON Type |
     +=============+======================================+===========+
     | acvVersion  | Protocol version identifier          | string    |
@@ -1138,12 +1162,21 @@ Internet-Draft                  ACVP DSA                   November 2020
     | revision    | Protocol test revision selected      | string    |
     +-------------+--------------------------------------+-----------+
     | testGroups  | Array of test groups containing test | array     |
-    |             | data, see Section 6                  |           |
+    |             | data, see Section 9                  |           |
     +-------------+--------------------------------------+-----------+
 
                Table 9: Top Level Test Vector JSON Elements
 
    An example of this would look like this
+
+
+
+
+
+Fussell                    Expires 22 May 2021                 [Page 21]
+
+Internet-Draft                  ACVP DSA                   November 2020
+
 
    {
      "acvVersion": "version",
@@ -1156,7 +1189,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                   Figure 7
 
-6.  Test Vectors
+9.  Test Vectors
 
    The ACVP server provides test vectors to the ACVP client, which are
    then processed and returned to the ACVP server for validation.  A
@@ -1173,12 +1206,35 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 21]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fussell                    Expires 22 May 2021                 [Page 22]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-      +============+=====================================+=========+
+      +------------+-------------------------------------+---------+
       | JSON Value | Description                         | JSON    |
       |            |                                     | type    |
       +============+=====================================+=========+
@@ -1196,17 +1252,17 @@ Internet-Draft                  ACVP DSA                   November 2020
       |            | use                                 |         |
       +------------+-------------------------------------+---------+
       | testGroups | Array of test group JSON objects,   | array   |
-      |            | which are defined in Section 6.1.1, |         |
-      |            | Section 6.2.1, Section 6.3.1,       |         |
-      |            | Section 6.4.1, or Section 6.5.1     |         |
+      |            | which are defined in Section 9.1.1, |         |
+      |            | Section 9.2.1, Section 9.3.1,       |         |
+      |            | Section 9.4.1, or Section 9.5.1     |         |
       |            | depending on the algorithm          |         |
       +------------+-------------------------------------+---------+
 
                    Table 10: DSA Vector Set JSON Object
 
-6.1.  DSA pqgGen Test Vectors
+9.1.  DSA pqgGen Test Vectors
 
-6.1.1.  DSA pqgGen Test Groups JSON Schema
+9.1.1.  DSA pqgGen Test Groups JSON Schema
 
    The testGroups element at the top level in the test vector JSON
    object is an array of test groups.  Test vectors are grouped into
@@ -1229,12 +1285,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 22]
+Fussell                    Expires 22 May 2021                 [Page 23]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-   +==========+=============================================+=========+
+   +----------+---------------------------------------------+---------+
    | JSON     | Description                                 | JSON    |
    | Value    |                                             | type    |
    +==========+=============================================+=========+
@@ -1255,12 +1311,12 @@ Internet-Draft                  ACVP DSA                   November 2020
    | hashAlg  | The hash algorithm used in the test group   | string  |
    +----------+---------------------------------------------+---------+
    | tests    | Array of individual test vector JSON        | array   |
-   |          | objects, which are defined in Section 6.1.2 |         |
+   |          | objects, which are defined in Section 9.1.2 |         |
    +----------+---------------------------------------------+---------+
 
                Table 11: DSA PQGGen Test Group JSON Object
 
-6.1.2.  DSA pqgGen Test Case JSON Schema
+9.1.2.  DSA pqgGen Test Case JSON Schema
 
    Each test group contains an array of one or more test cases.  Each
    test case is a JSON object that represents a single test vector to be
@@ -1285,12 +1341,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 23]
+Fussell                    Expires 22 May 2021                 [Page 24]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-    +============+=======================================+===========+
+    +------------+---------------------------------------+-----------+
     | JSON Value | Description                           | JSON type |
     +============+=======================================+===========+
     | tcId       | Numeric identifier for the test case, | integer   |
@@ -1326,7 +1382,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
    [
        {
-           "acvVersion": <acvp-version>
+           "acvVersion": &lt;acvp-version&gt;
        },
        {
            "vsId": 1564,
@@ -1341,7 +1397,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 24]
+Fussell                    Expires 22 May 2021                 [Page 25]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
@@ -1397,7 +1453,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 25]
+Fussell                    Expires 22 May 2021                 [Page 26]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
@@ -1414,9 +1470,9 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                   Figure 8
 
-6.2.  DSA pqgVer Test Vectors
+9.2.  DSA pqgVer Test Vectors
 
-6.2.1.  DSA pqgVer Test Groups JSON Schema
+9.2.1.  DSA pqgVer Test Groups JSON Schema
 
    The testGroups element at the top level in the test vector JSON
    object is an array of test groups.  Test vectors are grouped into
@@ -1453,12 +1509,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 26]
+Fussell                    Expires 22 May 2021                 [Page 27]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-   +==========+=============================================+=========+
+   +----------+---------------------------------------------+---------+
    | JSON     | Description                                 | JSON    |
    | Value    |                                             | type    |
    +==========+=============================================+=========+
@@ -1479,12 +1535,12 @@ Internet-Draft                  ACVP DSA                   November 2020
    | hashAlg  | The hash algorithm used in the test group   | string  |
    +----------+---------------------------------------------+---------+
    | tests    | Array of individual test vector JSON        | array   |
-   |          | objects, which are defined in Section 6.2.2 |         |
+   |          | objects, which are defined in Section 9.2.2 |         |
    +----------+---------------------------------------------+---------+
 
                Table 13: DSA PQGVer Test Group JSON Object
 
-6.2.2.  DSA pqgVer Test Case JSON Schema
+9.2.2.  DSA pqgVer Test Case JSON Schema
 
    Each test group contains an array of one or more test cases.  Each
    test case is a JSON object that represents a single test vector to be
@@ -1509,12 +1565,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 27]
+Fussell                    Expires 22 May 2021                 [Page 28]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-    +============+=======================================+===========+
+    +------------+---------------------------------------+-----------+
     | JSON Value | Description                           | JSON type |
     +============+=======================================+===========+
     | tcId       | Numeric identifier for the test case, | integer   |
@@ -1565,7 +1621,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 28]
+Fussell                    Expires 22 May 2021                 [Page 29]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
@@ -1583,7 +1639,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
    [
        {
-           "acvVersion": <acvp-version>
+           "acvVersion": &lt;acvp-version&gt;
        },
        {
            "vsId": 1564,
@@ -1621,7 +1677,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 29]
+Fussell                    Expires 22 May 2021                 [Page 30]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
@@ -1677,16 +1733,16 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 30]
+Fussell                    Expires 22 May 2021                 [Page 31]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
                                   Figure 9
 
-6.3.  DSA keyGen Test Vectors
+9.3.  DSA keyGen Test Vectors
 
-6.3.1.  DSA keyGen Test Groups JSON Schema
+9.3.1.  DSA keyGen Test Groups JSON Schema
 
    The testGroups element at the top level in the test vector JSON
    object is an array of test groups.  Test vectors are grouped into
@@ -1699,7 +1755,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
    The test group for DSA / keyGen / * is as follows:
 
-   +==========+=============================================+=========+
+   +----------+---------------------------------------------+---------+
    | JSON     | Description                                 | JSON    |
    | Value    |                                             | type    |
    +==========+=============================================+=========+
@@ -1712,12 +1768,12 @@ Internet-Draft                  ACVP DSA                   November 2020
    | n        | Length in bits of prime divisor q           | integer |
    +----------+---------------------------------------------+---------+
    | tests    | Array of individual test vector JSON        | array   |
-   |          | objects, which are defined in Section 6.3.2 |         |
+   |          | objects, which are defined in Section 9.3.2 |         |
    +----------+---------------------------------------------+---------+
 
                Table 15: DSA keyGen Test Group JSON Object
 
-6.3.2.  DSA keyGen Test Case JSON Schema
+9.3.2.  DSA keyGen Test Case JSON Schema
 
    Each test group contains an array of one or more test cases.  Each
    test case is a JSON object that represents a single test vector to be
@@ -1733,12 +1789,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 31]
+Fussell                    Expires 22 May 2021                 [Page 32]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-    +============+=======================================+===========+
+    +------------+---------------------------------------+-----------+
     | JSON Value | Description                           | JSON type |
     +============+=======================================+===========+
     | tcId       | Numeric identifier for the test case, | integer   |
@@ -1755,7 +1811,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
    [
        {
-           "acvVersion": <acvp-version>
+           "acvVersion": &lt;acvp-version&gt;
        },
        {
            "vsId": 1564,
@@ -1779,7 +1835,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                  Figure 10
 
-6.4.  DSA sigGen Test Vectors
+9.4.  DSA sigGen Test Vectors
 
 
 
@@ -1789,12 +1845,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 32]
+Fussell                    Expires 22 May 2021                 [Page 33]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-6.4.1.  DSA sigGen Test Groups JSON Schema
+9.4.1.  DSA sigGen Test Groups JSON Schema
 
    The testGroups element at the top level in the test vector JSON
    object is an array of test groups.  Test vectors are grouped into
@@ -1807,7 +1863,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
    The test group for DSA / sigGen / * is as follows:
 
-     +=============+=======================================+=========+
+     +-------------+---------------------------------------+---------+
      | JSON Value  | Description                           | JSON    |
      |             |                                       | type    |
      +=============+=======================================+=========+
@@ -1828,12 +1884,12 @@ Internet-Draft                  ACVP DSA                   November 2020
      +-------------+---------------------------------------+---------+
      | tests       | Array of individual test vector JSON  | array   |
      |             | objects, which are defined in         |         |
-     |             | Section 6.4.2                         |         |
+     |             | Section 9.4.2                         |         |
      +-------------+---------------------------------------+---------+
 
                 Table 17: DSA sigGen Test Group JSON Object
 
-6.4.2.  DSA sigGen Test Case JSON Schema
+9.4.2.  DSA sigGen Test Case JSON Schema
 
    Each test group contains an array of one or more test cases.  Each
    test case is a JSON object that represents a single test vector to be
@@ -1845,12 +1901,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 33]
+Fussell                    Expires 22 May 2021                 [Page 34]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-    +============+=======================================+===========+
+    +------------+---------------------------------------+-----------+
     | JSON Value | Description                           | JSON type |
     +============+=======================================+===========+
     | tcId       | Numeric identifier for the test case, | integer   |
@@ -1901,14 +1957,14 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 34]
+Fussell                    Expires 22 May 2021                 [Page 35]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
    [
        {
-           "acvVersion": <acvp-version>
+           "acvVersion": &lt;acvp-version&gt;
        },
        {
            "vsId": 1564,
@@ -1947,7 +2003,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                  Figure 11
 
-6.5.  DSA sigVer Test Vectors
+9.5.  DSA sigVer Test Vectors
 
 
 
@@ -1957,12 +2013,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 35]
+Fussell                    Expires 22 May 2021                 [Page 36]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-6.5.1.  DSA sigVer Test Groups JSON Schema
+9.5.1.  DSA sigVer Test Groups JSON Schema
 
    The testGroups element at the top level in the test vector JSON
    object is an array of test groups.  Test vectors are grouped into
@@ -1975,7 +2031,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
    The test group for DSA / sigVer / * is as follows:
 
-     +=============+=======================================+=========+
+     +-------------+---------------------------------------+---------+
      | JSON Value  | Description                           | JSON    |
      |             |                                       | type    |
      +=============+=======================================+=========+
@@ -2002,7 +2058,7 @@ Internet-Draft                  ACVP DSA                   November 2020
      +-------------+---------------------------------------+---------+
      | tests       | Array of individual test vector JSON  | array   |
      |             | objects, which are defined in         |         |
-     |             | Section 6.5.2                         |         |
+     |             | Section 9.5.2                         |         |
      +-------------+---------------------------------------+---------+
 
                 Table 19: DSA sigVer Test Group JSON Object
@@ -2013,19 +2069,19 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 36]
+Fussell                    Expires 22 May 2021                 [Page 37]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-6.5.2.  DSA sigVer Test Case JSON Schema
+9.5.2.  DSA sigVer Test Case JSON Schema
 
    Each test group contains an array of one or more test cases.  Each
    test case is a JSON object that represents a single test vector to be
    processed by the ACVP client.  The following table describes the JSON
    elements for each DSA / sigVer / 1.0 test vector.
 
-   +================+========================================+=========+
+   +----------------+----------------------------------------+---------+
    | JSON Value     | Description                            | JSON    |
    |                |                                        | type    |
    +================+========================================+=========+
@@ -2069,14 +2125,14 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 37]
+Fussell                    Expires 22 May 2021                 [Page 38]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
    [
        {
-           "acvVersion": <acvp-version>
+           "acvVersion": &lt;acvp-version&gt;
        },
        {
            "vsId": 1564,
@@ -2125,7 +2181,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 38]
+Fussell                    Expires 22 May 2021                 [Page 39]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
@@ -2137,14 +2193,14 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                  Figure 12
 
-7.  Test Vector Responses
+10.  Test Vector Responses
 
    After the ACVP client downloads and processes a vector set, it must
    send the response vectors back to the ACVP server.  The following
    table describes the JSON object that represents a vector set
    response.
 
-        +===============+============================+===========+
+        +---------------+----------------------------+-----------+
         | JSON Property | Description                | JSON Type |
         +===============+============================+===========+
         | acvVersion    | The ACVP version used      | string    |
@@ -2181,12 +2237,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 39]
+Fussell                    Expires 22 May 2021                 [Page 40]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-     +==========+==========================================+=========+
+     +----------+------------------------------------------+---------+
      | JSON     | Description                              | JSON    |
      | Property |                                          | Type    |
      +==========+==========================================+=========+
@@ -2208,12 +2264,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                  Figure 14
 
-7.1.  DSA PQGGen Test Vector Responses
+10.1.  DSA PQGGen Test Vector Responses
 
    The test groups for DSA / pqgGen / 1.0 contain public key properties.
    The groups can be described using the following table.
 
-   +============+=========================================+===========+
+   +------------+-----------------------------------------+-----------+
    | JSON Value | Description                             | JSON type |
    +============+=========================================+===========+
    | tgId       | The test group identifier               | integer   |
@@ -2237,12 +2293,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 40]
+Fussell                    Expires 22 May 2021                 [Page 41]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-        +============+================================+===========+
+        +------------+--------------------------------+-----------+
         | JSON Value | Description                    | JSON type |
         +============+================================+===========+
         | tcId       | The test case identifier       | integer   |
@@ -2293,7 +2349,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 41]
+Fussell                    Expires 22 May 2021                 [Page 42]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
@@ -2303,7 +2359,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
    [
        {
-           "acvVersion": <acvp-version>
+           "acvVersion": &lt;acvp-version&gt;
        },
        {
            "vsId": 1564,
@@ -2349,7 +2405,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 42]
+Fussell                    Expires 22 May 2021                 [Page 43]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
@@ -2367,12 +2423,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                  Figure 15
 
-7.2.  DSA PQGVer Test Vector Responses
+10.2.  DSA PQGVer Test Vector Responses
 
    The test groups for DSA / pqgVer / 1.0 contain public key properties.
    The groups can be described using the following table.
 
-   +============+=========================================+===========+
+   +------------+-----------------------------------------+-----------+
    | JSON Value | Description                             | JSON type |
    +============+=========================================+===========+
    | tgId       | The test group identifier               | integer   |
@@ -2387,7 +2443,7 @@ Internet-Draft                  ACVP DSA                   November 2020
    processed by the ACVP client.  The following table describes the JSON
    elements for each DSA / pqgVer / 1.0 test vector.
 
-   +============+==========================================+===========+
+   +------------+------------------------------------------+-----------+
    | JSON Value | Description                              | JSON type |
    +============+==========================================+===========+
    | tcId       | The test case identifier                 | integer   |
@@ -2405,14 +2461,14 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 43]
+Fussell                    Expires 22 May 2021                 [Page 44]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
    [
        {
-           "acvVersion": <acvp-version>
+           "acvVersion": &lt;acvp-version&gt;
        },
        {
            "vsId": 1564,
@@ -2461,17 +2517,17 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 44]
+Fussell                    Expires 22 May 2021                 [Page 45]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-7.3.  DSA keyGen Test Vector Responses
+10.3.  DSA keyGen Test Vector Responses
 
    The test groups for DSA / keyGen / 1.0 contain public key properties.
    The groups can be described using the following table.
 
-   +============+=========================================+===========+
+   +------------+-----------------------------------------+-----------+
    | JSON Value | Description                             | JSON type |
    +============+=========================================+===========+
    | tgId       | The test group identifier               | integer   |
@@ -2492,7 +2548,7 @@ Internet-Draft                  ACVP DSA                   November 2020
    processed by the ACVP client.  The following table describes the JSON
    elements for each DSA / keyGen / 1.0 test vector.
 
-         +============+=============================+===========+
+         +------------+-----------------------------+-----------+
          | JSON Value | Description                 | JSON type |
          +============+=============================+===========+
          | tcId       | The test case identifier    | integer   |
@@ -2517,14 +2573,14 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 45]
+Fussell                    Expires 22 May 2021                 [Page 46]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
    [
        {
-           "acvVersion": <acvp-version>
+           "acvVersion": &lt;acvp-version&gt;
        },
        {
            "vsId": 1564,
@@ -2548,12 +2604,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                  Figure 17
 
-7.4.  DSA sigGen Test Vector Responses
+10.4.  DSA sigGen Test Vector Responses
 
    The test groups for DSA / sigGen / 1.0 contain public key properties.
    The groups can be described using the following table.
 
-   +============+=========================================+===========+
+   +------------+-----------------------------------------+-----------+
    | JSON Value | Description                             | JSON type |
    +============+=========================================+===========+
    | tgId       | The test group identifier               | integer   |
@@ -2573,7 +2629,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 46]
+Fussell                    Expires 22 May 2021                 [Page 47]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
@@ -2583,7 +2639,7 @@ Internet-Draft                  ACVP DSA                   November 2020
    processed by the ACVP client.  The following table describes the JSON
    elements for each DSA / sigGen / 1.0 test vector.
 
-   +================+========================================+=========+
+   +----------------+----------------------------------------+---------+
    | JSON Value     | Description                            | JSON    |
    |                |                                        | type    |
    +================+========================================+=========+
@@ -2629,14 +2685,14 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 47]
+Fussell                    Expires 22 May 2021                 [Page 48]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
    [
      {
-       "acvVersion": <acv-version>
+       "acvVersion": &lt;acv-version&gt;
      },
      {
        "vsId": 1564,
@@ -2677,7 +2733,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                  Figure 18
 
-7.5.  DSA sigVer Test Vector Responses
+10.5.  DSA sigVer Test Vector Responses
 
    The test groups for DSA / sigVer / 1.0 contain public key properties.
    The groups can be described using the following table.
@@ -2685,12 +2741,12 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 48]
+Fussell                    Expires 22 May 2021                 [Page 49]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
-   +============+=========================================+===========+
+   +------------+-----------------------------------------+-----------+
    | JSON Value | Description                             | JSON type |
    +============+=========================================+===========+
    | tgId       | The test group identifier               | integer   |
@@ -2705,7 +2761,7 @@ Internet-Draft                  ACVP DSA                   November 2020
    processed by the ACVP client.  The following table describes the JSON
    elements for each DSA / sigVer / 1.0 test vector.
 
-   +============+==========================================+===========+
+   +------------+------------------------------------------+-----------+
    | JSON Value | Description                              | JSON type |
    +============+==========================================+===========+
    | tcId       | The test case identifier                 | integer   |
@@ -2741,14 +2797,14 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 49]
+Fussell                    Expires 22 May 2021                 [Page 50]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
 
    [
      {
-       "acvVersion": <acvp-version>
+       "acvVersion": &lt;acvp-version&gt;
      },
      {
        "vsId": 1564,
@@ -2772,16 +2828,16 @@ Internet-Draft                  ACVP DSA                   November 2020
 
                                  Figure 19
 
-8.  Security Considerations
+11.  Security Considerations
 
    There are no additional security considerations outside of those
    outlined in the ACVP document.
 
-9.  IANA Considerations
+12.  IANA Considerations
 
    This document does not require any action by IANA.
 
-10.  Normative references
+13.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", IETF RFC 2119, IETF RFC 2119,
@@ -2797,7 +2853,7 @@ Internet-Draft                  ACVP DSA                   November 2020
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 50]
+Fussell                    Expires 22 May 2021                 [Page 51]
 
 Internet-Draft                  ACVP DSA                   November 2020
 
@@ -2853,4 +2909,4 @@ Author's Address
 
 
 
-Fussell                    Expires 21 May 2021                 [Page 51]
+Fussell                    Expires 22 May 2021                 [Page 52]

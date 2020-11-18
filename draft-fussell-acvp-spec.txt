@@ -5,9 +5,9 @@
 Network Working Group                                    B. Fussell, Ed.
 Internet-Draft                                                          
 Intended status: Informational                          A. Vassilev, Ed.
-Expires: 21 May 2021                                                    
+Expires: 22 May 2021                                                    
                                                            H. Booth, Ed.
-                                                        17 November 2020
+                                                        18 November 2020
 
 
  Automated Cryptographic Validation Protocol (ACVP) JSON Specification
@@ -28,7 +28,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2021.
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -46,134 +46,143 @@ Table of Contents
    1.  Abstract  . . . . . . . . . . . . . . . . . . . . . . . . . .   4
    2.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   4
    3.  Terms and definitions . . . . . . . . . . . . . . . . . . . .   4
-     3.1.  Audience  . . . . . . . . . . . . . . . . . . . . . . . .   4
-     3.2.  Goals . . . . . . . . . . . . . . . . . . . . . . . . . .   5
-     3.3.  Server/Client Architecture(realtime)  . . . . . . . . . .   6
-     3.4.  Server/Client Architecture(not realtime)  . . . . . . . .   6
+   4.  Overview  . . . . . . . . . . . . . . . . . . . . . . . . . .   5
+     4.1.  Audience  . . . . . . . . . . . . . . . . . . . . . . . .   5
+     4.2.  Goals . . . . . . . . . . . . . . . . . . . . . . . . . .   6
+   5.  Architecture  . . . . . . . . . . . . . . . . . . . . . . . .   6
 
 
 
-Fussell, et al.            Expires 21 May 2021                  [Page 1]
+Fussell, et al.            Expires 22 May 2021                  [Page 1]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-     3.5.  Server/Proxy Architecture . . . . . . . . . . . . . . . .   7
-     3.6.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   7
-     3.7.  HTTP URI Hierarchy  . . . . . . . . . . . . . . . . . . .   8
-     3.8.  HTTP URI Resources  . . . . . . . . . . . . . . . . . . .   9
-     3.9.  Authentication  . . . . . . . . . . . . . . . . . . . . .  11
-   4.  Login . . . . . . . . . . . . . . . . . . . . . . . . . . . .  12
-     4.1.  Request . . . . . . . . . . . . . . . . . . . . . . . . .  13
-     4.2.  Response  . . . . . . . . . . . . . . . . . . . . . . . .  13
-     4.3.  Multi Refresh JWT . . . . . . . . . . . . . . . . . . . .  14
-       4.3.1.  Request . . . . . . . . . . . . . . . . . . . . . . .  14
-       4.3.2.  Response  . . . . . . . . . . . . . . . . . . . . . .  14
-     4.4.  Product Registration/Capabilities Exchange  . . . . . . .  15
-     4.5.  Test Exchange . . . . . . . . . . . . . . . . . . . . . .  15
-     4.6.  JSON Web Token (JWT)  . . . . . . . . . . . . . . . . . .  15
-       4.6.1.  Authorization flows with JWT  . . . . . . . . . . . .  17
-       4.6.2.  JWT Expiration/Renewal  . . . . . . . . . . . . . . .  17
-     4.7.  Message Flow  . . . . . . . . . . . . . . . . . . . . . .  18
-     4.8.  Paging  . . . . . . . . . . . . . . . . . . . . . . . . .  21
-       4.8.1.  Parameters  . . . . . . . . . . . . . . . . . . . . .  21
-       4.8.2.  Response  . . . . . . . . . . . . . . . . . . . . . .  22
-     4.9.  Query Parameters  . . . . . . . . . . . . . . . . . . . .  23
-     4.10. Requests  . . . . . . . . . . . . . . . . . . . . . . . .  24
-       4.10.1.  Request Listing  . . . . . . . . . . . . . . . . . .  25
-       4.10.2.  Request Information  . . . . . . . . . . . . . . . .  25
-     4.11. Vendor Resources  . . . . . . . . . . . . . . . . . . . .  25
-       4.11.1.  Vendor Listing . . . . . . . . . . . . . . . . . . .  26
-       4.11.2.  Create a New Vendor  . . . . . . . . . . . . . . . .  27
-       4.11.3.  Vendor Information . . . . . . . . . . . . . . . . .  27
-       4.11.4.  Update an existing Vendor  . . . . . . . . . . . . .  28
-       4.11.5.  Remove a Vendor  . . . . . . . . . . . . . . . . . .  29
-       4.11.6.  Contact Listing for a Vendor . . . . . . . . . . . .  29
-     4.12. Address Resources . . . . . . . . . . . . . . . . . . . .  30
-       4.12.1.  Address Listing  . . . . . . . . . . . . . . . . . .  30
-       4.12.2.  Address Information  . . . . . . . . . . . . . . . .  30
-     4.13. Person Resources  . . . . . . . . . . . . . . . . . . . .  31
-       4.13.1.  Person Listing . . . . . . . . . . . . . . . . . . .  31
-       4.13.2.  Create a New Person  . . . . . . . . . . . . . . . .  32
-       4.13.3.  Person Information . . . . . . . . . . . . . . . . .  32
-       4.13.4.  Update an existing Person  . . . . . . . . . . . . .  33
-       4.13.5.  Remove a Person  . . . . . . . . . . . . . . . . . .  34
-     4.14. Modules . . . . . . . . . . . . . . . . . . . . . . . . .  34
-       4.14.1.  List Modules . . . . . . . . . . . . . . . . . . . .  35
-       4.14.2.  Register a new Module  . . . . . . . . . . . . . . .  35
-       4.14.3.  Retrieve information for a Module  . . . . . . . . .  36
-       4.14.4.  Update a Module  . . . . . . . . . . . . . . . . . .  37
-       4.14.5.  Delete a Module  . . . . . . . . . . . . . . . . . .  38
-     4.15. Operational Environments (OEs)  . . . . . . . . . . . . .  38
-       4.15.1.  List Operational Environments  . . . . . . . . . . .  38
+     5.1.  Server/Client Architecture(realtime)  . . . . . . . . . .   7
+     5.2.  Server/Client Architecture(not realtime)  . . . . . . . .   7
+     5.3.  Server/Proxy Architecture . . . . . . . . . . . . . . . .   8
+     5.4.  Terminology . . . . . . . . . . . . . . . . . . . . . . .   8
+     5.5.  HTTP URI Hierarchy  . . . . . . . . . . . . . . . . . . .  10
+     5.6.  HTTP URI Resources  . . . . . . . . . . . . . . . . . . .  10
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  12
+     6.1.  Authentication  . . . . . . . . . . . . . . . . . . . . .  13
+   7.  Encoding  . . . . . . . . . . . . . . . . . . . . . . . . . .  13
+   8.  Submission Size Considerations  . . . . . . . . . . . . . . .  13
+   9.  Login . . . . . . . . . . . . . . . . . . . . . . . . . . . .  13
+     9.1.  Request . . . . . . . . . . . . . . . . . . . . . . . . .  14
+     9.2.  Response  . . . . . . . . . . . . . . . . . . . . . . . .  14
+     9.3.  Multi Refresh JWT . . . . . . . . . . . . . . . . . . . .  15
+       9.3.1.  Request . . . . . . . . . . . . . . . . . . . . . . .  15
+       9.3.2.  Response  . . . . . . . . . . . . . . . . . . . . . .  15
+   10. Messaging and Workflow  . . . . . . . . . . . . . . . . . . .  16
+     10.1.  Product Registration/Capabilities Exchange . . . . . . .  16
+     10.2.  Test Exchange  . . . . . . . . . . . . . . . . . . . . .  17
+     10.3.  JSON Web Token (JWT) . . . . . . . . . . . . . . . . . .  17
+       10.3.1.  Authorization flows with JWT . . . . . . . . . . . .  18
+       10.3.2.  JWT Expiration/Renewal . . . . . . . . . . . . . . .  19
+     10.4.  Message Flow . . . . . . . . . . . . . . . . . . . . . .  19
+     10.5.  Paging . . . . . . . . . . . . . . . . . . . . . . . . .  22
+       10.5.1.  Parameters . . . . . . . . . . . . . . . . . . . . .  22
+       10.5.2.  Response . . . . . . . . . . . . . . . . . . . . . .  23
+     10.6.  Query Parameters . . . . . . . . . . . . . . . . . . . .  24
+     10.7.  Requests . . . . . . . . . . . . . . . . . . . . . . . .  25
+       10.7.1.  Request Listing  . . . . . . . . . . . . . . . . . .  26
+       10.7.2.  Request Information  . . . . . . . . . . . . . . . .  26
+     10.8.  Vendor Resources . . . . . . . . . . . . . . . . . . . .  26
+       10.8.1.  Vendor Listing . . . . . . . . . . . . . . . . . . .  27
+       10.8.2.  Create a New Vendor  . . . . . . . . . . . . . . . .  28
+       10.8.3.  Vendor Information . . . . . . . . . . . . . . . . .  28
+       10.8.4.  Update an existing Vendor  . . . . . . . . . . . . .  29
+       10.8.5.  Remove a Vendor  . . . . . . . . . . . . . . . . . .  30
+       10.8.6.  Contact Listing for a Vendor . . . . . . . . . . . .  30
+     10.9.  Address Resources  . . . . . . . . . . . . . . . . . . .  31
+       10.9.1.  Address Listing  . . . . . . . . . . . . . . . . . .  31
+       10.9.2.  Address Information  . . . . . . . . . . . . . . . .  31
+     10.10. Person Resources . . . . . . . . . . . . . . . . . . . .  32
+       10.10.1.  Person Listing  . . . . . . . . . . . . . . . . . .  32
+       10.10.2.  Create a New Person . . . . . . . . . . . . . . . .  33
+       10.10.3.  Person Information  . . . . . . . . . . . . . . . .  33
+       10.10.4.  Update an existing Person . . . . . . . . . . . . .  34
+       10.10.5.  Remove a Person . . . . . . . . . . . . . . . . . .  35
+     10.11. Modules  . . . . . . . . . . . . . . . . . . . . . . . .  35
+       10.11.1.  List Modules  . . . . . . . . . . . . . . . . . . .  36
 
 
 
-Fussell, et al.            Expires 21 May 2021                  [Page 2]
+Fussell, et al.            Expires 22 May 2021                  [Page 2]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-       4.15.2.  Create a new Operational Environment . . . . . . . .  38
-       4.15.3.  Retrieve information for an Operational
-               Environment . . . . . . . . . . . . . . . . . . . . .  39
-       4.15.4.  Update an Operational Environment  . . . . . . . . .  40
-       4.15.5.  Delete an Operational Environment  . . . . . . . . .  41
-     4.16. Dependencies  . . . . . . . . . . . . . . . . . . . . . .  41
-       4.16.1.  List Dependencies  . . . . . . . . . . . . . . . . .  42
-       4.16.2.  Register a new Dependency  . . . . . . . . . . . . .  42
-       4.16.3.  List Dependency Properties . . . . . . . . . . . . .  43
-       4.16.4.  Retrieve information for a Dependency  . . . . . . .  44
-       4.16.5.  Update a Dependency  . . . . . . . . . . . . . . . .  45
-       4.16.6.  Delete a Dependency  . . . . . . . . . . . . . . . .  45
-     4.17. Algorithms  . . . . . . . . . . . . . . . . . . . . . . .  46
-       4.17.1.  Algorithms Listing . . . . . . . . . . . . . . . . .  46
-       4.17.2.  Algorithm Information  . . . . . . . . . . . . . . .  46
-     4.18. Validations . . . . . . . . . . . . . . . . . . . . . . .  47
-       4.18.1.  Validation Information . . . . . . . . . . . . . . .  47
-     4.19. Test Sessions . . . . . . . . . . . . . . . . . . . . . .  48
-       4.19.1.  Test Session Listing (Current User)  . . . . . . . .  48
-       4.19.2.  Create a New Test Session  . . . . . . . . . . . . .  48
-       4.19.3.  Test Session Information . . . . . . . . . . . . . .  49
-       4.19.4.  Submit For Validation  . . . . . . . . . . . . . . .  50
-       4.19.5.  Cancel Test Session  . . . . . . . . . . . . . . . .  52
-       4.19.6.  Request Validation Results . . . . . . . . . . . . .  52
-     4.20. Vector Sets . . . . . . . . . . . . . . . . . . . . . . .  52
-       4.20.1.  Vectors Set Listing  . . . . . . . . . . . . . . . .  53
-       4.20.2.  Vector Set Download  . . . . . . . . . . . . . . . .  53
-       4.20.3.  Cancel Testing of a Vector Set . . . . . . . . . . .  55
-       4.20.4.  Request Validation Results . . . . . . . . . . . . .  55
-       4.20.5.  Submit Results . . . . . . . . . . . . . . . . . . .  57
-       4.20.6.  Update Results Submission  . . . . . . . . . . . . .  58
-       4.20.7.  Retrieve Expected Results  . . . . . . . . . . . . .  59
-   5.  Large Submission  . . . . . . . . . . . . . . . . . . . . . .  59
-     5.1.  Request . . . . . . . . . . . . . . . . . . . . . . . . .  60
-     5.2.  Response  . . . . . . . . . . . . . . . . . . . . . . . .  60
-   6.  Vector Set Expiration . . . . . . . . . . . . . . . . . . . .  60
-   7.  Error Codes . . . . . . . . . . . . . . . . . . . . . . . . .  62
-     7.1.  Date  . . . . . . . . . . . . . . . . . . . . . . . . . .  64
-     7.2.  BitString . . . . . . . . . . . . . . . . . . . . . . . .  64
-       7.2.1.  Endianness  . . . . . . . . . . . . . . . . . . . . .  64
-       7.2.2.  Hex to Bitstring Parsing  . . . . . . . . . . . . . .  64
-     7.3.  Range . . . . . . . . . . . . . . . . . . . . . . . . . .  65
-       7.3.1.  Range JSON examples . . . . . . . . . . . . . . . . .  65
-     7.4.  Domain  . . . . . . . . . . . . . . . . . . . . . . . . .  65
-       7.4.1.  Domain JSON examples  . . . . . . . . . . . . . . . .  65
-       7.4.2.  Additional Domain Information . . . . . . . . . . . .  66
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  66
-   9.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  66
+       10.11.2.  Register a new Module . . . . . . . . . . . . . . .  36
+       10.11.3.  Retrieve information for a Module . . . . . . . . .  37
+       10.11.4.  Update a Module . . . . . . . . . . . . . . . . . .  38
+       10.11.5.  Delete a Module . . . . . . . . . . . . . . . . . .  39
+     10.12. Operational Environments (OEs) . . . . . . . . . . . . .  39
+       10.12.1.  List Operational Environments . . . . . . . . . . .  39
+       10.12.2.  Create a new Operational Environment  . . . . . . .  39
+       10.12.3.  Retrieve information for an Operational
+               Environment . . . . . . . . . . . . . . . . . . . . .  40
+       10.12.4.  Update an Operational Environment . . . . . . . . .  41
+       10.12.5.  Delete an Operational Environment . . . . . . . . .  42
+     10.13. Dependencies . . . . . . . . . . . . . . . . . . . . . .  42
+       10.13.1.  List Dependencies . . . . . . . . . . . . . . . . .  43
+       10.13.2.  Register a new Dependency . . . . . . . . . . . . .  43
+       10.13.3.  List Dependency Properties  . . . . . . . . . . . .  44
+       10.13.4.  Retrieve information for a Dependency . . . . . . .  45
+       10.13.5.  Update a Dependency . . . . . . . . . . . . . . . .  46
+       10.13.6.  Delete a Dependency . . . . . . . . . . . . . . . .  46
+     10.14. Algorithms . . . . . . . . . . . . . . . . . . . . . . .  47
+       10.14.1.  Algorithms Listing  . . . . . . . . . . . . . . . .  47
+       10.14.2.  Algorithm Information . . . . . . . . . . . . . . .  47
+     10.15. Validations  . . . . . . . . . . . . . . . . . . . . . .  48
+       10.15.1.  Validation Information  . . . . . . . . . . . . . .  48
+     10.16. Test Sessions  . . . . . . . . . . . . . . . . . . . . .  49
+       10.16.1.  Test Session Listing (Current User) . . . . . . . .  49
+       10.16.2.  Create a New Test Session . . . . . . . . . . . . .  49
+       10.16.3.  Test Session Information  . . . . . . . . . . . . .  50
+       10.16.4.  Submit For Validation . . . . . . . . . . . . . . .  51
+       10.16.5.  Cancel Test Session . . . . . . . . . . . . . . . .  53
+       10.16.6.  Request Validation Results  . . . . . . . . . . . .  53
+     10.17. Vector Sets  . . . . . . . . . . . . . . . . . . . . . .  53
+       10.17.1.  Vectors Set Listing . . . . . . . . . . . . . . . .  54
+       10.17.2.  Vector Set Download . . . . . . . . . . . . . . . .  54
+       10.17.3.  Cancel Testing of a Vector Set  . . . . . . . . . .  56
+       10.17.4.  Request Validation Results  . . . . . . . . . . . .  56
+       10.17.5.  Submit Results  . . . . . . . . . . . . . . . . . .  58
+       10.17.6.  Update Results Submission . . . . . . . . . . . . .  59
+       10.17.7.  Retrieve Expected Results . . . . . . . . . . . . .  60
+   11. Large Submission  . . . . . . . . . . . . . . . . . . . . . .  60
+     11.1.  Request  . . . . . . . . . . . . . . . . . . . . . . . .  61
+     11.2.  Response . . . . . . . . . . . . . . . . . . . . . . . .  61
+   12. Vector Set Expiration . . . . . . . . . . . . . . . . . . . .  61
+   13. Error Codes . . . . . . . . . . . . . . . . . . . . . . . . .  63
+   14. Algorithm Test Extensions . . . . . . . . . . . . . . . . . .  64
+   15. Custom Specification Objects  . . . . . . . . . . . . . . . .  65
+     15.1.  Date . . . . . . . . . . . . . . . . . . . . . . . . . .  65
+     15.2.  BitString  . . . . . . . . . . . . . . . . . . . . . . .  65
+       15.2.1.  Endianness . . . . . . . . . . . . . . . . . . . . .  65
 
 
 
-Fussell, et al.            Expires 21 May 2021                  [Page 3]
+Fussell, et al.            Expires 22 May 2021                  [Page 3]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-   10. JSON Formatting Guidelines  . . . . . . . . . . . . . . . . .  67
-   11. Error Messages  . . . . . . . . . . . . . . . . . . . . . . .  67
-   12. Normative references  . . . . . . . . . . . . . . . . . . . .  68
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  69
+       15.2.2.  Hex to Bitstring Parsing . . . . . . . . . . . . . .  65
+     15.3.  Range  . . . . . . . . . . . . . . . . . . . . . . . . .  66
+       15.3.1.  Range JSON examples  . . . . . . . . . . . . . . . .  66
+     15.4.  Domain . . . . . . . . . . . . . . . . . . . . . . . . .  66
+       15.4.1.  Domain JSON examples . . . . . . . . . . . . . . . .  67
+       15.4.2.  Additional Domain Information  . . . . . . . . . . .  67
+   16. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  67
+   17. Other Considerations  . . . . . . . . . . . . . . . . . . . .  67
+   18. Contributors  . . . . . . . . . . . . . . . . . . . . . . . .  68
+   19. JSON Formatting Guidelines  . . . . . . . . . . . . . . . . .  68
+   20. Error Messages  . . . . . . . . . . . . . . . . . . . . . . .  69
+   21. Normative References  . . . . . . . . . . . . . . . . . . . .  69
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  70
 
 1.  Abstract
 
@@ -207,24 +216,76 @@ Internet-Draft                ACVP Protocol                November 2020
 
 3.  Terms and definitions
 
-   For the purposes of this document, the following terms and
-   definitions apply.
+   No terms and definitions are listed in this document.
 
-3.1.  Audience
+
+
+
+Fussell, et al.            Expires 22 May 2021                  [Page 4]
+
+Internet-Draft                ACVP Protocol                November 2020
+
+
+4.  Overview
+
+   ACVP has the following goals:
+
+   *  To work in situations where the testing system is remote from the
+      cryptographic module, e.g. running as a process on a separate
+      device.
+
+   *  To enable automated testing that can take place with a minimum of
+      human interaction.
+
+   *  To enable the testing system to discover the capabilities of the
+      module being tested; that is, the particular algorithms and
+      parameters that the module supports.
+
+   *  To provide extensibility that can be used to introduce tests for
+      new algorithms, and new tests for existing algorithms.
+
+   *  To be compatible with emerging automated validation systems
+      wherever possible, especially the FIPS-140 Cryptographic Algorithm
+      Validation Program.
+
+   *  To provide a standard communication method so that vendors can
+      utilize the same testing service for FIPS-140, 3rd party crypto
+      verification and product FCS readiness testing.
+
+   ACVP defines how to communicate a request (to execute a cryptographic
+   operation) to a cryptographic module, and how to communicate the
+   corresponding response (containing the output of that operation) back
+   to a testing system.  It defines a transport (based on HTTP or HTTPS
+   [RFC7230]), an JSON message structure(which is negotiated), and a set
+   of message exchanges.  Each vector test set corresponds to a single
+   message exchange driven from the client associated with the module
+   under test.  ACVP does not define the cryptographic algorithms, nor
+   does it detail the precise conditions for a response to be
+   acceptable.  Instead, it references existing specifications for those
+   algorithms, and defines a mapping between the data on the wire and
+   the algorithm testing specification.  ACVP does not define detailed
+   conformance criteria, such as those in FIPS-140.  Instead, it aims to
+   be independent of particular conformance criteria, so that it can be
+   used in multiple domains with different (even potentially
+   conflicting) conformance criteria.  ACVP does not define an interface
+   that can be used to manage or control a cryptographic module.
+
+4.1.  Audience
 
    This document is written to address multiple audiences:
+
+
+
+
+Fussell, et al.            Expires 22 May 2021                  [Page 5]
+
+Internet-Draft                ACVP Protocol                November 2020
+
 
    *  Crypto module developers who require validation testing
 
    *  Crypto module developers who require runtime crypto assessment
       testing
-
-
-
-Fussell, et al.            Expires 21 May 2021                  [Page 4]
-
-Internet-Draft                ACVP Protocol                November 2020
-
 
    *  Crypto validation organizations who will perform validation
       testing
@@ -232,23 +293,12 @@ Internet-Draft                ACVP Protocol                November 2020
    *  Crypto module customers that desire validation testing results or
       verifiable artifacts of testing
 
-3.2.  Goals
+4.2.  Goals
 
    The goals for this document are to provide a messaging protocol that
    can be used with existing authentication and communication protocols
    to provide a way to test crypto modules.  The following functions are
    outside the scope of this document:
-
-   With that in mind there are several expectations when building a
-   server used as a validation authority.  A validation authority SHALL
-   use a combination of HTTPS [RFC7230], TLS 1.2 [RFC5246] or greater
-   and mutual authentication.  Therefore a client that expects to be
-   used with a validation authority SHALL have the same requirements.  A
-   server, proxy or client developed for the purposes of internal
-   organizational testing only MAY choose not to include some of those
-   features. == Architecture
-
-   A server/client/proxy model is used where the roles are defined as:
 
    *  The API to the cryptographic module
 
@@ -262,9 +312,31 @@ Internet-Draft                ACVP Protocol                November 2020
 
    *  Management interface
 
+   With that in mind there are several expectations when building a
+   server used as a validation authority.  A validation authority SHALL
+   use a combination of HTTPS [RFC7230], TLS 1.2 [RFC5246] or greater
+   and mutual authentication.  Therefore a client that expects to be
+   used with a validation authority SHALL have the same requirements.  A
+   server, proxy or client developed for the purposes of internal
+   organizational testing only MAY choose not to include some of those
+   features.
+
+5.  Architecture
+
+   A server/client/proxy model is used where the roles are defined as:
+
    *  ACV Client - Communicates with the ACV server using Java Script
       Object Notation (JSON [RFC7159]) and collects the test vectors and
       returns the test results using product specific methods.
+
+
+
+
+
+Fussell, et al.            Expires 22 May 2021                  [Page 6]
+
+Internet-Draft                ACVP Protocol                November 2020
+
 
    *  ACV Server - Sends JSON formatted messaging and test data to the
       ACV client and processes test responses.
@@ -274,13 +346,6 @@ Internet-Draft                ACVP Protocol                November 2020
       the client does not support TLS, key management or have signature
       capabilities and they are required by the server.  An example
       architecture is provided in Figure 3.
-
-
-
-Fussell, et al.            Expires 21 May 2021                  [Page 5]
-
-Internet-Draft                ACVP Protocol                November 2020
-
 
    *  Device Under Test - Contains the crypto module under test which
       can include various algorithms and functions that encrypt/decrypt,
@@ -292,7 +357,7 @@ Internet-Draft                ACVP Protocol                November 2020
       specific and will vary depending on the crypto module and may not
       be limited to real-time operation.
 
-3.3.  Server/Client Architecture(realtime)
+5.1.  Server/Client Architecture(realtime)
 
                               +----------------------------------------+
                               |                    +-----------------+ |
@@ -312,7 +377,22 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                   Figure 1
 
-3.4.  Server/Client Architecture(not realtime)
+5.2.  Server/Client Architecture(not realtime)
+
+
+
+
+
+
+
+
+
+
+
+Fussell, et al.            Expires 22 May 2021                  [Page 7]
+
+Internet-Draft                ACVP Protocol                November 2020
+
 
                          +------------+
                          |            |             +-----------------+
@@ -330,15 +410,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                   Figure 2
 
-
-
-
-Fussell, et al.            Expires 21 May 2021                  [Page 6]
-
-Internet-Draft                ACVP Protocol                November 2020
-
-
-3.5.  Server/Proxy Architecture
+5.3.  Server/Proxy Architecture
 
                    +--------------------------------------------------+
                    |                      +-------------------------+ |
@@ -356,25 +428,10 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                   Figure 3
 
-3.6.  Terminology
+5.4.  Terminology
 
    The following terms are consistently used throughout this document
    and SHOULD be used throughout its extensions:
-
-   The ACV protocol will utilize existing mechanisms for transport
-   coordinated with JSON formatted messaging.
-
-             +-----------------------------------------------+
-             | JSON Formatted ACVP request/response messages |
-             +-----------------------------------------------+
-             | HTTP[S] message transfer and signaling        |
-             +-----------------------------------------------+
-             | TLS for transport security(recommended)       |
-             +-----------------------------------------------+
-             | TCP for transport                             |
-             |_______________________________________________|
-
-                        Figure 4: Protocol Layering
 
    *  Test Session - The largest structure of an instance of ACVP.
       Often generated from a single registration, it will contain many
@@ -388,8 +445,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-
-Fussell, et al.            Expires 21 May 2021                  [Page 7]
+Fussell, et al.            Expires 22 May 2021                  [Page 8]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -438,17 +494,31 @@ Internet-Draft                ACVP Protocol                November 2020
       crypto module cannot communicate directly with the ACVP client. ==
       ACV Protocol
 
-3.7.  HTTP URI Hierarchy
+   The ACV protocol will utilize existing mechanisms for transport
+   coordinated with JSON formatted messaging.
 
 
 
 
 
-
-Fussell, et al.            Expires 21 May 2021                  [Page 8]
+Fussell, et al.            Expires 22 May 2021                  [Page 9]
 
 Internet-Draft                ACVP Protocol                November 2020
 
+
+             +-----------------------------------------------+
+             | JSON Formatted ACVP request/response messages |
+             +-----------------------------------------------+
+             | HTTP[S] message transfer and signaling        |
+             +-----------------------------------------------+
+             | TLS for transport security(recommended)       |
+             +-----------------------------------------------+
+             | TCP for transport                             |
+             |_______________________________________________|
+
+                        Figure 4: Protocol Layering
+
+5.5.  HTTP URI Hierarchy
 
            +-------------+------------------+-------------------------+
               server          path prefix          resource
@@ -464,7 +534,7 @@ Internet-Draft                ACVP Protocol                November 2020
    protocol, e.g., HTTP, custom server, context and port number to
    interact with the DUT.
 
-3.8.  HTTP URI Resources
+5.6.  HTTP URI Resources
 
    In the table below, any parts of a resource path enclosed in curly
    braces, { or }, are replaced by an instance of what is described in
@@ -473,6 +543,108 @@ Internet-Draft                ACVP Protocol                November 2020
    An empty cell for a resource and HTTP Method combination denotes that
    the server returns an HTTP Status 405 code _Method not allowed
    (405)_.
+
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | Resource                                                      |GET (read)| POST   | PUT    |DELETE |
+   |                                                               |          |(create)|(update)|       |
+   +===============================================================+==========+========+========+=======+
+   | /requests                                                     | Section  |        |        |       |
+   |                                                               | 10.7.1   |        |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /requests/{requestId}                                         | Section  |        |        |       |
+   |                                                               | 10.7.2   |        |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+
+
+
+Fussell, et al.            Expires 22 May 2021                 [Page 10]
+
+Internet-Draft                ACVP Protocol                November 2020
+
+
+   | /vendors                                                      | Section  |Section |        |       |
+   |                                                               | 10.8.1   | 10.8.2 |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /vendors/{vendorId}                                           | Section  |        |Section |Section|
+   |                                                               | 10.8.3   |        | 10.8.4 |10.8.5 |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /vendors/{vendorId}/addresses                                 | Section  |        |        |       |
+   |                                                               | 10.9.1   |        |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /vendors/{vendorId}/addresses/{addressId}                     | Section  |        |        |       |
+   |                                                               | 10.9.2   |        |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /vendors/{vendorId}/contacts                                  | Section  |        |        |       |
+   |                                                               | 10.8.6   |        |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /persons                                                      | Section  |Section |        |       |
+   |                                                               | 10.10.1  |10.10.2 |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /persons/{personId}                                           | Section  |        |Section |Section|
+   |                                                               | 10.10.3  |        |10.10.4 |10.10.5|
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /oes                                                          | Section  |Section |        |       |
+   |                                                               | 10.12.1  |10.12.2 |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /oes/{oeId}                                                   | Section  |        |Section |Section|
+   |                                                               | 10.12.3  |        |10.12.4 |10.12.5|
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /modules                                                      | Section  |Section |        |       |
+   |                                                               | 10.11.1  |10.11.2 |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /modules/{moduleId}                                           | Section  |        |Section |Section|
+   |                                                               | 10.11.3  |        |10.11.4 |10.11.5|
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /dependencies                                                 | Section  |Section |        |       |
+   |                                                               | 10.13.1  |10.13.2 |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /dependencies/properties                                      | Section  |        |        |       |
+   |                                                               | 10.13.3  |        |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /dependencies/{dependencyId}                                  | Section  |        |Section |Section|
+   |                                                               | 10.13.4  |        |10.13.5 |10.13.6|
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /algorithms                                                   | Section  |        |        |       |
+   |                                                               | 10.14.1  |        |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /algorithms/{algorithmId}                                     | Section  |        |        |       |
+   |                                                               | 10.14.2  |        |        |       |
+   |                                                               |(Optional)|        |        |       |
+
+
+
+Fussell, et al.            Expires 22 May 2021                 [Page 11]
+
+Internet-Draft                ACVP Protocol                November 2020
+
+
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /testSessions                                                 | Section  |Section |        |       |
+   |                                                               | 10.16.1  |10.16.2 |        |       |
+   |                                                               |(Optional)|        |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /testSessions/{testSessionId}                                 | Section  |        |Section |Section|
+   |                                                               | 10.16.3  |        |10.16.4 |10.16.5|
+   |                                                               |(Optional)|        |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /testSessions/{testSessionId}/results                         | Section  |        |        |       |
+   |                                                               | 10.16.6  |        |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /testSessions/{testSessionId}/vectorSets                      | Section  |        |        |       |
+   |                                                               | 10.17.1  |        |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   | /testSessions/{testSessionId}/vectorSets/{vectorSetId}        | Section  |        |        |Section|
+   |                                                               | 10.17.2  |        |        |10.17.3|
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   |/testSessions/{testSessionId}/vectorSets/{vectorSetId}/results | Section  |Section |Section |       |
+   |                                                               | 10.17.4  |10.17.5 |10.17.6 |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+   |/testSessions/{testSessionId}/vectorSets/{vectorSetId}/expected| Section  |        |        |       |
+   |                                                               | 10.17.7  |        |        |       |
+   |                                                               |(Optional)|        |        |       |
+   +---------------------------------------------------------------+----------+--------+--------+-------+
+
+             Table 1: Resources and their Available Operations
 
    The resource path is appended to the path prefix to form the URI used
    with an HTTP Method to perform the desired ACVP operation.  For
@@ -486,8 +658,9 @@ Internet-Draft                ACVP Protocol                November 2020
    Likewise, to request a specific vector set from the server the ACVP
    client would use the following request-line:
 
-   GET /acvp/v1/testSessions/1/vectorSets/1 HTTP/1.1 == Security
-   Considerations
+   GET /acvp/v1/testSessions/1/vectorSets/1 HTTP/1.1
+
+6.  Security Considerations
 
    It is RECOMMENDED that HTTPS and TLS 1.2 or greater be used in order
    to enforce a secure communication method.  Not all environments will
@@ -496,133 +669,28 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-
-
-
-
-
-Fussell, et al.            Expires 21 May 2021                  [Page 9]
+Fussell, et al.            Expires 22 May 2021                 [Page 12]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-   +===============================================================+==========+========+========+=======+
-   |Resource                                                       |GET (read)|POST    |PUT     |DELETE |
-   |                                                               |          |(create)|(update)|       |
-   +===============================================================+==========+========+========+=======+
-   |/requests                                                      |Section   |        |        |       |
-   |                                                               |4.10.1    |        |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/requests/{requestId}                                          |Section   |        |        |       |
-   |                                                               |4.10.2    |        |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/vendors                                                       |Section   |Section |        |       |
-   |                                                               |4.11.1    |4.11.2  |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/vendors/{vendorId}                                            |Section   |        |Section |Section|
-   |                                                               |4.11.3    |        |4.11.4  |4.11.5 |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/vendors/{vendorId}/addresses                                  |Section   |        |        |       |
-   |                                                               |4.12.1    |        |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/vendors/{vendorId}/addresses/{addressId}                      |Section   |        |        |       |
-   |                                                               |4.12.2    |        |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/vendors/{vendorId}/contacts                                   |Section   |        |        |       |
-   |                                                               |4.11.6    |        |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/persons                                                       |Section   |Section |        |       |
-   |                                                               |4.13.1    |4.13.2  |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/persons/{personId}                                            |Section   |        |Section |Section|
-   |                                                               |4.13.3    |        |4.13.4  |4.13.5 |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/oes                                                           |Section   |Section |        |       |
-   |                                                               |4.15.1    |4.15.2  |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/oes/{oeId}                                                    |Section   |        |Section |Section|
-   |                                                               |4.15.3    |        |4.15.4  |4.15.5 |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/modules                                                       |Section   |Section |        |       |
-   |                                                               |4.14.1    |4.14.2  |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/modules/{moduleId}                                            |Section   |        |Section |Section|
-   |                                                               |4.14.3    |        |4.14.4  |4.14.5 |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/dependencies                                                  |Section   |Section |        |       |
-   |                                                               |4.16.1    |4.16.2  |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/dependencies/properties                                       |Section   |        |        |       |
-   |                                                               |4.16.3    |        |        |       |
-
-
-
-Fussell, et al.            Expires 21 May 2021                 [Page 10]
-
-Internet-Draft                ACVP Protocol                November 2020
-
-
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/dependencies/{dependencyId}                                   |Section   |        |Section |Section|
-   |                                                               |4.16.4    |        |4.16.5  |4.16.6 |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/algorithms                                                    |Section   |        |        |       |
-   |                                                               |4.17.1    |        |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/algorithms/{algorithmId}                                      |Section   |        |        |       |
-   |                                                               |4.17.2    |        |        |       |
-   |                                                               |(Optional)|        |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/testSessions                                                  |Section   |Section |        |       |
-   |                                                               |4.19.1    |4.19.2  |        |       |
-   |                                                               |(Optional)|        |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/testSessions/{testSessionId}                                  |Section   |        |Section |Section|
-   |                                                               |4.19.3    |        |4.19.4  |4.19.5 |
-   |                                                               |(Optional)|        |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/testSessions/{testSessionId}/results                          |Section   |        |        |       |
-   |                                                               |4.19.6    |        |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/testSessions/{testSessionId}/vectorSets                       |Section   |        |        |       |
-   |                                                               |4.20.1    |        |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/testSessions/{testSessionId}/vectorSets/{vectorSetId}         |Section   |        |        |Section|
-   |                                                               |4.20.2    |        |        |4.20.3 |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/testSessions/{testSessionId}/vectorSets/{vectorSetId}/results |Section   |Section |Section |       |
-   |                                                               |4.20.4    |4.20.5  |4.20.6  |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-   |/testSessions/{testSessionId}/vectorSets/{vectorSetId}/expected|Section   |        |        |       |
-   |                                                               |4.20.7    |        |        |       |
-   |                                                               |(Optional)|        |        |       |
-   +---------------------------------------------------------------+----------+--------+--------+-------+
-
-             Table 1: Resources and their Available Operations
-
-3.9.  Authentication
+6.1.  Authentication
 
    It is RECOMMENDED that an authentication scheme be used.  Typically,
    a JSON Web Token (JWT) is created by the server upon successful
    client authentication and returned to the client to use as an
    authorization mechanism for accessing the server resources - see
-   Section 4.6 below for more information.  Depending on the target
+   Section 10.3 below for more information.  Depending on the target
    environment and usage objectives, the authentication can be as weak
    as basic HTTP authentication or as strong as TLS mutual certificate
    authentication.  Definition of an authentication scheme will not be
-
-
-
-Fussell, et al.            Expires 21 May 2021                 [Page 11]
-
-Internet-Draft                ACVP Protocol                November 2020
-
-
    discussed here, but should be agreed upon between the client and
    server owning entities including the servers owned by the validation
-   authorities.  The Section 4 endpoint will be discussed for the
+   authorities.  The Section 9 endpoint will be discussed for the
    purposes of establishing a test session but how a client is
-   authenticated to the server is not prescribed. == Encoding
+   authenticated to the server is not prescribed.
+
+7.  Encoding
 
    The encoding used for the request/response messaging will be JSON
    ([RFC7159]).  The data will be identified by: Content-type:
@@ -630,22 +698,23 @@ Internet-Draft                ACVP Protocol                November 2020
    a particular version of the ACV protocol, a top-level JSON keyword,
    extensions will be used to extend the OE description and/or the
    capabilities.  Extensions MAY be ignored by the ACV server.  Vector
-   and vector response data will be JSON encoded. == Submission Size
-   Considerations
+   and vector response data will be JSON encoded.
+
+8.  Submission Size Considerations
 
    Some server implementations MAY require alternative handling for
    submission sizes that exceed resource limitations of the normal
    workflow for a "POST" response.  Server implementations MUST indicate
    whether the server requires large submission handling and what the
-   maxmimum value for non-large submissions is within the Section 4
+   maxmimum value for non-large submissions is within the Section 9
    response.
 
-4.  Login
+9.  Login
 
    A login endpoint is mentioned throughout the document and although
    how to authenticate is left up to the server the following
    description is an example of the login endpoint to establish a
-   session and obtain a Section 4.6.1.  See Section 5 for more
+   session and obtain a Section 10.3.1.  See Section 11 for more
    information on how to handle data which exceeds the "sizeConstraint"
    in the event the value of "largeEndpointRequired" is "true".
 
@@ -654,27 +723,22 @@ Internet-Draft                ACVP Protocol                November 2020
    *  *accessToken* - "string", a JWT associated with the current user
       for which renewal of the expiration is desired
 
+
+
+Fussell, et al.            Expires 22 May 2021                 [Page 13]
+
+Internet-Draft                ACVP Protocol                November 2020
+
+
    *  *largeEndpointRequired* - "boolean", true if the server requires
       the large endpoint for submissions with a size that exceeds the
       value found in *sizeConstraint*.
 
    *  *sizeConstraint* - "number", provides the maximum value, in bytes,
-      of a submission not required to use the Section 5 or -1 if
+      of a submission not required to use the Section 11 or -1 if
       "largeEndpointRequired" is "false".
 
-
-
-
-
-
-
-
-Fussell, et al.            Expires 21 May 2021                 [Page 12]
-
-Internet-Draft                ACVP Protocol                November 2020
-
-
-4.1.  Request
+9.1.  Request
 
    There are two forms of a login request.  There is the initial form
    which just provides the authentication information without any JWT,
@@ -705,7 +769,22 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                   Figure 7
 
-4.2.  Response
+9.2.  Response
+
+
+
+
+
+
+
+
+
+
+
+Fussell, et al.            Expires 22 May 2021                 [Page 14]
+
+Internet-Draft                ACVP Protocol                November 2020
+
 
    [
      {"acvVersion": "{acvp-version}"},
@@ -718,19 +797,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                   Figure 8
 
-
-
-
-
-
-
-
-Fussell, et al.            Expires 21 May 2021                 [Page 13]
-
-Internet-Draft                ACVP Protocol                November 2020
-
-
-4.3.  Multi Refresh JWT
+9.3.  Multi Refresh JWT
 
    This endpoint can be utilized for refreshing multiple JWTs with a
    single POST.  Because a JWT with claims is issued for each test
@@ -738,7 +805,7 @@ Internet-Draft                ACVP Protocol                November 2020
    one test session at a time, a mechanism for refreshing multiple JWTs
    across multiple test sessions simultaneously MAY be made available.
 
-4.3.1.  Request
+9.3.1.  Request
 
    *POST /login/refresh*
 
@@ -756,7 +823,24 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                   Figure 9
 
-4.3.2.  Response
+9.3.2.  Response
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fussell, et al.            Expires 22 May 2021                 [Page 15]
+
+Internet-Draft                ACVP Protocol                November 2020
+
 
    [
      {"acvVersion": "{acvp-version}"},
@@ -776,16 +860,6 @@ Internet-Draft                ACVP Protocol                November 2020
    Note the order of JWTs between the request and response is preserved.
    == Versioning
 
-
-
-
-
-
-Fussell, et al.            Expires 21 May 2021                 [Page 14]
-
-Internet-Draft                ACVP Protocol                November 2020
-
-
    The version of the ACVP protocol will be carried with each message
    and will contain a simple major.minor format.  Major version changes
    will not be backward compatible, however additions and enhancements
@@ -793,15 +867,17 @@ Internet-Draft                ACVP Protocol                November 2020
    version change.  A server MAY accept a down-level version from the
    client if it can process at a lower level.  If not, it will reject
    the session.  All subsequent messages will carry the negotiated
-   version value. == Messaging and Workflow
+   version value.
 
-4.4.  Product Registration/Capabilities Exchange
+10.  Messaging and Workflow
 
-   The product registration will utilize the URI resources Section 3.8
+10.1.  Product Registration/Capabilities Exchange
+
+   The product registration will utilize the URI resources Section 5.6
    to register and provide cryptographic capabilities.  This exchange
    will consist of several message exchanges and will provide a detailed
    list of cryptographic algorithms and their options to be tested
-   during the testSession, see Section 4.7, Paragraph 2, retrieval of
+   during the testSession, see Section 10.4, Paragraph 2, retrieval of
    test vectors, submission of test responses, determining test result,
    and a certification step to associate the product and tested
    environment information with the completed test.  A set URI resources
@@ -809,7 +885,20 @@ Internet-Draft                ACVP Protocol                November 2020
    as companay name, primary contact, product descriptions, and
    operational environment descriptions.
 
-4.5.  Test Exchange
+
+
+
+
+
+
+
+
+Fussell, et al.            Expires 22 May 2021                 [Page 16]
+
+Internet-Draft                ACVP Protocol                November 2020
+
+
+10.2.  Test Exchange
 
    The test exchange consists of the ACV client requesting a particular
    vectorSet associated with the testSession.  The server responds with
@@ -821,26 +910,12 @@ Internet-Draft                ACVP Protocol                November 2020
    been POSTed to the server the client may request success/failure
    results from the server at any time, however if vectorSets have not
    been completed the overall status will be incomplete.  A minimal
-   message flow is described below Section 4.7, Paragraph 2.
+   message flow is described below Section 10.4, Paragraph 2.
 
-4.6.  JSON Web Token (JWT)
+10.3.  JSON Web Token (JWT)
 
    JSON Web Token is described in [RFC7519] and is used as an
    authorization mechanism for gaining access to different resources.
-
-
-
-
-
-
-
-
-
-
-Fussell, et al.            Expires 21 May 2021                 [Page 15]
-
-Internet-Draft                ACVP Protocol                November 2020
-
 
    {
        "alg" : "none"
@@ -861,6 +936,23 @@ Internet-Draft                ACVP Protocol                November 2020
    The JWT can be secured if desired using the header encryption "alg"
    value defined to HS256(HMAC-SHA256) or one of the other secure
    values.  Key agreement would follow RFC7518.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Fussell, et al.            Expires 22 May 2021                 [Page 17]
+
+Internet-Draft                ACVP Protocol                November 2020
+
 
    {
      "alg": "HS256",
@@ -890,20 +982,12 @@ Internet-Draft                ACVP Protocol                November 2020
 
    and where "HMACSHA256" is the algorithm specified in the JWT header.
 
-
-
-
-Fussell, et al.            Expires 21 May 2021                 [Page 16]
-
-Internet-Draft                ACVP Protocol                November 2020
-
-
    The first four claims are required, however "pkey" is an optional
    private claim used to pass the key used for encrypting the database
    at the server.  Enabling this option is discussed further in
-   Section 4.19.2
+   Section 10.16.2
 
-4.6.1.  Authorization flows with JWT
+10.3.1.  Authorization flows with JWT
 
    JSON Web Token is described in [RFC7519] and is used as an
    authorization mechanism for gaining access to different resources.
@@ -918,6 +1002,14 @@ Internet-Draft                ACVP Protocol                November 2020
 
    Workflow authorization flows.  All exchanges shown are over HTTP.
 
+
+
+
+Fussell, et al.            Expires 22 May 2021                 [Page 18]
+
+Internet-Draft                ACVP Protocol                November 2020
+
+
             +--------+---------------------------------+------+--------+
             | Client |                                 |Server|  Notes |
             +--------+---------------------------------+------+--------+
@@ -931,7 +1023,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 15
 
-4.6.2.  JWT Expiration/Renewal
+10.3.2.  JWT Expiration/Renewal
 
    The JWT access tokens received from either the /login server endpoint
    SHALL be set to expire after a pre-defined period.  The specific
@@ -943,16 +1035,9 @@ Internet-Draft                ACVP Protocol                November 2020
    Unauthorized" HTTP status code.
 
    A client may renew an expired JWT access token using the mechanism
-   shown in Section 4.6.2, Paragraph 3below.
+   shown in Section 10.3.2, Paragraph 3below.
 
    JWT access token renewal flows.  All exchanges shown are over HTTP.
-
-
-
-Fussell, et al.            Expires 21 May 2021                 [Page 17]
-
-Internet-Draft                ACVP Protocol                November 2020
-
 
             +--------+---------------------------------+------+--------+
             | Client |                                 |Server|  Notes |
@@ -969,46 +1054,19 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 16
 
-4.7.  Message Flow
+10.4.  Message Flow
 
    An example minimum message flow between client and server after
    receiving the JWT is seen in the figure below.
 
-   An example minimal message flow.  All exchanges shown are over HTTP.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Fussell, et al.            Expires 21 May 2021                 [Page 18]
+Fussell, et al.            Expires 22 May 2021                 [Page 19]
 
 Internet-Draft                ACVP Protocol                November 2020
 
+
+   An example minimal message flow.  All exchanges shown are over HTTP.
 
       +--------+-----------------------------------+------+------------+
       | Client |                                   |Server|  Notes     |
@@ -1053,15 +1111,13 @@ Internet-Draft                ACVP Protocol                November 2020
                                  Figure 17
 
    Metadata creation and update example.  The list of available metadata
-   endpoints can be found in Section 3.8.
+   endpoints can be found in Section 5.6.
 
 
 
 
 
-
-
-Fussell, et al.            Expires 21 May 2021                 [Page 19]
+Fussell, et al.            Expires 22 May 2021                 [Page 20]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -1099,7 +1155,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
    In the event a submission response exceeds server defined thresholds
    the following workflow will need to be followed in order to submit
-   the test result.  See Section 5 for more information.
+   the test result.  See Section 11 for more information.
 
 
 
@@ -1117,7 +1173,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 20]
+Fussell, et al.            Expires 22 May 2021                 [Page 21]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -1140,23 +1196,23 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 19
 
-4.8.  Paging
+10.5.  Paging
 
    Some resource operations require paging in order to avoid returning
    large amounts of data.  Each operation that uses paging will indicate
    that uses paging and what the value for each element will be within
    the section describing that operation.  All paged responses MUST
-   follow the format described in Section 4.8.2.  Conversely, clients
+   follow the format described in Section 10.5.2.  Conversely, clients
    may navigate pages using the paging parameters described in
-   Section 4.8.1.  Server implementations SHOULD impose limitations on
+   Section 10.5.1.  Server implementations SHOULD impose limitations on
    the page size limit based on resource constraints.
 
-4.8.1.  Parameters
+10.5.1.  Parameters
 
    A Server MUST accept requests without paging parameters.  If not all
    results are returned, the response MUST indicate that not all of the
    results were provided using the "incomplete" property of a paged
-   response described in Section 4.8.2.  The query parameters clients
+   response described in Section 10.5.2.  The query parameters clients
    MUST use to specify paging are described below:
 
    *  *limit* - "number", the maximum number of entries to return.
@@ -1173,12 +1229,12 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 21]
+Fussell, et al.            Expires 22 May 2021                 [Page 22]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-4.8.2.  Response
+10.5.2.  Response
 
    A paged response has the following properties:
 
@@ -1229,12 +1285,12 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 22]
+Fussell, et al.            Expires 22 May 2021                 [Page 23]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-4.9.  Query Parameters
+10.6.  Query Parameters
 
    Some of the resource listing operations allow for query parameters to
    be provided to filter out the returned values.  Each resource will
@@ -1285,7 +1341,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 23]
+Fussell, et al.            Expires 22 May 2021                 [Page 24]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -1305,7 +1361,7 @@ Internet-Draft                ACVP Protocol                November 2020
    or resources that have "property1" equal to "test" and "property2"
    not equal to "bar".
 
-   Example 2 based on Section 4.11.1.
+   Example 2 based on Section 10.8.1.
 
    /vendors?name[0]=contains:acme&name[1]=contains:test
 
@@ -1315,7 +1371,7 @@ Internet-Draft                ACVP Protocol                November 2020
    resources that have a "name" property value that contains either
    "acme" or "test".
 
-4.10.  Requests
+10.7.  Requests
 
    Some resource operations make a request to modify or create data.  To
    facilitate an out-of-band approval step, where data can be inspected
@@ -1341,7 +1397,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 24]
+Fussell, et al.            Expires 22 May 2021                 [Page 25]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -1355,22 +1411,22 @@ Internet-Draft                ACVP Protocol                November 2020
    *  *approvedUrl* - "string", a link to the resource which was created
       or modified as a result of the requested operation
 
-4.10.1.  Request Listing
+10.7.1.  Request Listing
 
    *GET /requests*
 
    Returns a paged listing of requests for the current user.  Each
    element in the "data" array is a "request object" as described in
-   Section 4.10.2.  See also Section 4.8.2 for a description of a paged
+   Section 10.7.2.  See also Section 10.5.2 for a description of a paged
    response.
 
-4.10.2.  Request Information
+10.7.2.  Request Information
 
    *GET /requests/{requestId}*
 
    Retrieve Information for a specific request
 
-4.10.2.1.  Response
+10.7.2.1.  Response
 
    [
        {"acvVersion": "{acvp-version}"},
@@ -1383,7 +1439,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 24
 
-4.11.  Vendor Resources
+10.8.  Vendor Resources
 
    The available properties for vendor resources are:
 
@@ -1397,7 +1453,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 25]
+Fussell, et al.            Expires 22 May 2021                 [Page 26]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -1433,15 +1489,15 @@ Internet-Draft                ACVP Protocol                November 2020
 
       -  *postalCode* - "string"
 
-4.11.1.  Vendor Listing
+10.8.1.  Vendor Listing
 
    *GET /vendors*
 
    Returns a paged listing of vendors.  Each element in the "data" array
-   is a "vendor object" as described in Section 4.11.3.  See also
-   Section 4.8.2 for a description of a paged response.
+   is a "vendor object" as described in Section 10.8.3.  See also
+   Section 10.5.2 for a description of a paged response.
 
-   Available Section 4.9:
+   Available Section 10.6:
 
    *  *name*: "eq", "start", "end", "contains"
 
@@ -1453,18 +1509,18 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 26]
+Fussell, et al.            Expires 22 May 2021                 [Page 27]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-4.11.2.  Create a New Vendor
+10.8.2.  Create a New Vendor
 
    *POST /vendors*
 
    Request the creation of a new Vendor.
 
-4.11.2.1.  Request
+10.8.2.1.  Request
 
    "name" is required and all other defined properties are OPTIONAL.
    Any additional properties included in the request are ignored.
@@ -1491,17 +1547,17 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 25
 
-4.11.2.2.  Response
+10.8.2.2.  Response
 
-   Reply is a request response as described in Section 4.10.  If
+   Reply is a request response as described in Section 10.7.  If
    "status" is "approved" the "approvedUrl" returned will be the
    identifier of the vendor resource which was created.  The url of any
    resources created incidental to the creation of the vendor resource
-   would be available through the Section 4.11.3 operation.
+   would be available through the Section 10.8.3 operation.
 
-   Reply is a request response as described in Section 4.10.
+   Reply is a request response as described in Section 10.7.
 
-4.11.3.  Vendor Information
+10.8.3.  Vendor Information
 
    *GET /vendors/{vendorId}*
 
@@ -1509,12 +1565,12 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 27]
+Fussell, et al.            Expires 22 May 2021                 [Page 28]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-4.11.3.1.  Response
+10.8.3.1.  Response
 
    [
        {"acvVersion": "{acvp-version}"},
@@ -1541,7 +1597,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 26
 
-4.11.4.  Update an existing Vendor
+10.8.4.  Update an existing Vendor
 
    *PUT /vendors/{vendorId}*
 
@@ -1549,7 +1605,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
    The "url" property is not updateable.
 
-4.11.4.1.  Request
+10.8.4.1.  Request
 
    Can be any subset of the updateable properties.  If a property is not
    included its value is not changed.  A "null" value for a property
@@ -1565,7 +1621,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 28]
+Fussell, et al.            Expires 22 May 2021                 [Page 29]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -1589,44 +1645,44 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 27
 
-4.11.4.2.  Response
+10.8.4.2.  Response
 
-   Reply is a request response as described in Section 4.10.  If
+   Reply is a request response as described in Section 10.7.  If
    "status" is "approved" the "approvedUrl" returned will be the
    identifier of the vendor resource which was updated.  A server
    implementation MAY create a new resource instead of updating the
    existing resource.
 
-4.11.5.  Remove a Vendor
+10.8.5.  Remove a Vendor
 
    *DELETE /vendors/{vendorId}*
 
    Request to delete a specific vendor.  Reply is a request response as
-   described in Section 4.10.
+   described in Section 10.7.
 
    The server is not required to remove the resource but MUST return a
    "rejection`value for the `status" property if the resource will not
    be removed.
 
-4.11.6.  Contact Listing for a Vendor
+10.8.6.  Contact Listing for a Vendor
 
    *GET /vendors/{vendorId}/contacts*
 
    Returns a paged listing of persons specific to the vendor.  Each
    element in the "data" array is a "person object" as described in
-   Section 4.13.3.  See also Section 4.8.2 for a description of a paged
-   response.
+   Section 10.10.3.  See also Section 10.5.2 for a description of a
+   paged response.
 
 
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 29]
+Fussell, et al.            Expires 22 May 2021                 [Page 30]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-4.12.  Address Resources
+10.9.  Address Resources
 
    The available properties for address resources are:
 
@@ -1646,25 +1702,25 @@ Internet-Draft                ACVP Protocol                November 2020
 
    *  *postalCode* - "string"
 
-4.12.1.  Address Listing
+10.9.1.  Address Listing
 
    *GET /vendors/{vendorId}/addresses*
 
    Returns a paged listing of addresses for the vendor.  Each element in
    the "data" array is an "address object" as described in
-   Section 4.12.2.  See also Section 4.8.2 for a description of a paged
+   Section 10.9.2.  See also Section 10.5.2 for a description of a paged
    response.
 
    The addresses returned are equivalent to the address array returned
-   in Section 4.11.3 for the same vendor resource.
+   in Section 10.8.3 for the same vendor resource.
 
-4.12.2.  Address Information
+10.9.2.  Address Information
 
    *GET /vendors/{vendorId}/addresses/{addressId}*
 
    Retrieve Information for a specific address
 
-4.12.2.1.  Response
+10.9.2.1.  Response
 
 
 
@@ -1677,7 +1733,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 30]
+Fussell, et al.            Expires 22 May 2021                 [Page 31]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -1696,7 +1752,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 28
 
-4.13.  Person Resources
+10.10.  Person Resources
 
    The available properties for person resources are:
 
@@ -1719,21 +1775,21 @@ Internet-Draft                ACVP Protocol                November 2020
    and are independent of the equivalent information in the vendor
    resource.
 
-4.13.1.  Person Listing
+10.10.1.  Person Listing
 
    *GET /persons*
 
    Returns a paged listing of persons.  Each element in the "data" array
-   is a "person object" as described in Section 4.13.3.  See also
-   Section 4.8.2 for a description of a paged response.
+   is a "person object" as described in Section 10.10.3.  See also
+   Section 10.5.2 for a description of a paged response.
 
-   Available Section 4.9:
+   Available Section 10.6:
 
    *  *fullName*: "eq", "start", "end", "contains"
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 31]
+Fussell, et al.            Expires 22 May 2021                 [Page 32]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -1744,13 +1800,13 @@ Internet-Draft                ACVP Protocol                November 2020
 
    *  *vendorId*: "eq", "ne", "lt", "le", "gt", "ge"
 
-4.13.2.  Create a New Person
+10.10.2.  Create a New Person
 
    *POST /persons*
 
    Request the creation of a new Person.
 
-4.13.2.1.  Request
+10.10.2.1.  Request
 
    "fullName" and "vendorUrl" are required.  Other defined resource
    properties are OPTIONAL.  Any additional properties included in the
@@ -1776,27 +1832,27 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 29
 
-4.13.2.2.  Response
+10.10.2.2.  Response
 
-   Reply is a request response as described in Section 4.10.  If
+   Reply is a request response as described in Section 10.7.  If
    "status" is "approved" the "approvedUrl" returned will be the
    identifier of the person resource which was created.
 
-4.13.3.  Person Information
+10.10.3.  Person Information
 
    *GET /persons/{personId}*
 
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 32]
+Fussell, et al.            Expires 22 May 2021                 [Page 33]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
    Retrieve Information for a specific person
 
-4.13.3.1.  Response
+10.10.3.1.  Response
 
    [
        {"acvVersion": "{acvp-version}"},
@@ -1819,7 +1875,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 30
 
-4.13.4.  Update an existing Person
+10.10.4.  Update an existing Person
 
    *PUT /persons/{personId}*
 
@@ -1827,7 +1883,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
    The "url" property is not updateable.
 
-4.13.4.1.  Request
+10.10.4.1.  Request
 
    Can be any subset of the updateable properties.  If a property is not
    included its value is not changed.  A "null" value for a property
@@ -1845,7 +1901,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 33]
+Fussell, et al.            Expires 22 May 2021                 [Page 34]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -1869,26 +1925,26 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 31
 
-4.13.4.2.  Response
+10.10.4.2.  Response
 
-   Reply is a request response as described in Section 4.10.  If
+   Reply is a request response as described in Section 10.7.  If
    "status" is "approved" the "approvedUrl" returned will be the
    identifier of the person resource which was updated.  A server
    implementation MAY create a new resource instead of updating the
    existing resource.
 
-4.13.5.  Remove a Person
+10.10.5.  Remove a Person
 
    *DELETE /persons/{personId}*
 
    Request to delete a specific person.  Reply is a request response as
-   described in Section 4.10.
+   described in Section 10.7.
 
    The server is not required to remove the resource but MUST return a
    "rejection" value for the "status" property if the resource will not
    be removed.
 
-4.14.  Modules
+10.11.  Modules
 
    The available properties for module resources are:
 
@@ -1901,7 +1957,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 34]
+Fussell, et al.            Expires 22 May 2021                 [Page 35]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -1916,24 +1972,24 @@ Internet-Draft                ACVP Protocol                November 2020
 
    *  *website* - "string"
 
-   *  *vendorUrl* - "string", identifier for a Section 4.11
+   *  *vendorUrl* - "string", identifier for a Section 10.8
 
-   *  *addressUrl* - "string", identifier for an Section 4.12
+   *  *addressUrl* - "string", identifier for an Section 10.9
 
    *  *contactUrls* - "string array", array of identifiers for a
-      Section 4.13
+      Section 10.10
 
    *  *description* - "string", a description of the implementation
 
-4.14.1.  List Modules
+10.11.1.  List Modules
 
    *GET /modules*
 
    Returns a paged listing of modules.  Each element in the "data" array
-   is a "module object" as described in Section 4.14.3.  See also
-   Section 4.8.2 for a description of a paged response.
+   is a "module object" as described in Section 10.11.3.  See also
+   Section 10.5.2 for a description of a paged response.
 
-   Available Section 4.9:
+   Available Section 10.6:
 
    *  *name*: "eq", "start", "end", "contains"
 
@@ -1947,7 +2003,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
    *  *description*: "eq", "start", "end", "contains"
 
-4.14.2.  Register a new Module
+10.11.2.  Register a new Module
 
    *POST /modules*
 
@@ -1957,12 +2013,12 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 35]
+Fussell, et al.            Expires 22 May 2021                 [Page 36]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-4.14.2.1.  Request
+10.11.2.1.  Request
 
    "name", "vendorUrl", and "description" are required.  Other defined
    resource properties are OPTIONAL.  Any additional properties included
@@ -1983,21 +2039,21 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 32
 
-4.14.2.2.  Response
+10.11.2.2.  Response
 
-   Reply is a request response as described in Section 4.10.  If
+   Reply is a request response as described in Section 10.7.  If
    "status" is "approved" the "approvedUrl" returned will be the
    identifier of the module resource which was created.  The url of any
    resources created incidental to the creation of the module resource
-   would be available through the Section 4.14.3 operation.
+   would be available through the Section 10.11.3 operation.
 
-4.14.3.  Retrieve information for a Module
+10.11.3.  Retrieve information for a Module
 
    *GET /modules/{moduleId}*
 
    Returns information about a specific module.
 
-4.14.3.1.  Response
+10.11.3.1.  Response
 
 
 
@@ -2013,7 +2069,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 36]
+Fussell, et al.            Expires 22 May 2021                 [Page 37]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -2035,7 +2091,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 33
 
-4.14.4.  Update a Module
+10.11.4.  Update a Module
 
    *PUT /modules/{moduleId}*
 
@@ -2044,7 +2100,7 @@ Internet-Draft                ACVP Protocol                November 2020
    It may not be possible to update all properties of a module once the
    module has been associated with a test session.
 
-4.14.4.1.  Request
+10.11.4.1.  Request
 
    [
        {"acvVersion": "{acvp-version}"},
@@ -2055,9 +2111,9 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 34
 
-4.14.4.2.  Response
+10.11.4.2.  Response
 
-   Reply is a request response as described in Section 4.10.  If
+   Reply is a request response as described in Section 10.7.  If
    "status" is "approved" the "approvedUrl" returned will be the
    identifier of the module resource which was updated.  A server
    implementation MAY create a new resource instead of updating the
@@ -2069,23 +2125,23 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 37]
+Fussell, et al.            Expires 22 May 2021                 [Page 38]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-4.14.5.  Delete a Module
+10.11.5.  Delete a Module
 
    *DELETE /modules/{moduleId}*
 
    Request to delete a specific module.  Reply is a request response as
-   described in Section 4.10.
+   described in Section 10.7.
 
    The server is not required to remove the resource but MUST return a
    "rejection" value for the "status" property if the resource will not
    be removed.
 
-4.15.  Operational Environments (OEs)
+10.12.  Operational Environments (OEs)
 
    The available properties for operational environment resources are:
 
@@ -2094,26 +2150,26 @@ Internet-Draft                ACVP Protocol                November 2020
    *  *name* - "string"
 
    *  *dependencyUrls* - an array of "string" which identify the
-      Section 4.16 which comprise this OE.
+      Section 10.13 which comprise this OE.
 
-   *  *dependencies* - an array of Section 4.16s which comprise this OE.
-      Only valid on update or create and MAY be used in combination with
-      the "dependencyUrls" property.
+   *  *dependencies* - an array of Section 10.13s which comprise this
+      OE.  Only valid on update or create and MAY be used in combination
+      with the "dependencyUrls" property.
 
-4.15.1.  List Operational Environments
+10.12.1.  List Operational Environments
 
    *GET /oes*
 
    Returns a paged listing of available operational environments.  Each
    element in the "data" array is a "operational environment object" as
-   described in Section 4.15.3.  See also Section 4.8.2 for a
+   described in Section 10.12.3.  See also Section 10.5.2 for a
    description of a paged response.
 
-   Available Section 4.9:
+   Available Section 10.6:
 
    *  *name*: "eq", "start", "end", "contains"
 
-4.15.2.  Create a new Operational Environment
+10.12.2.  Create a new Operational Environment
 
    *POST /oes*
 
@@ -2125,12 +2181,12 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 38]
+Fussell, et al.            Expires 22 May 2021                 [Page 39]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-4.15.2.1.  Request
+10.12.2.1.  Request
 
    "name" is required.  Other defined resource properties are OPTIONAL.
    Any additional properties included in the request are ignored.
@@ -2150,22 +2206,22 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 35
 
-4.15.2.2.  Response
+10.12.2.2.  Response
 
-   Reply is a request response as described in Section 4.10.  If
+   Reply is a request response as described in Section 10.7.  If
    "status" is "approved" the "approvedUrl" returned will be the
    identifier of the operational environment resource which was created.
    The url of any resources created incidental to the creation of the
    operational environment resource would be available through the
-   Section 4.11.3 operation.
+   Section 10.8.3 operation.
 
-4.15.3.  Retrieve information for an Operational Environment
+10.12.3.  Retrieve information for an Operational Environment
 
    *GET /oes/{oeId}*
 
    Returns information about a specific operational environment.
 
-4.15.3.1.  Response
+10.12.3.1.  Response
 
 
 
@@ -2181,7 +2237,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 39]
+Fussell, et al.            Expires 22 May 2021                 [Page 40]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -2227,7 +2283,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 36
 
-4.15.4.  Update an Operational Environment
+10.12.4.  Update an Operational Environment
 
    *PUT /oes/{oeId}*
 
@@ -2237,7 +2293,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 40]
+Fussell, et al.            Expires 22 May 2021                 [Page 41]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -2246,7 +2302,7 @@ Internet-Draft                ACVP Protocol                November 2020
    operational environment resource once the resource has been
    associated with a test session.
 
-4.15.4.1.  Request
+10.12.4.1.  Request
 
    [
        {"acvVersion": "{acvp-version}"},
@@ -2257,26 +2313,26 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 37
 
-4.15.4.2.  Response
+10.12.4.2.  Response
 
-   Reply is a request response as described in Section 4.10.  If
+   Reply is a request response as described in Section 10.7.  If
    "status" is "approved" the "approvedUrl" returned will be the
    identifier of the operational environment resource which was updated.
    A server implementation MAY create a new resource instead of updating
    the existing resource.
 
-4.15.5.  Delete an Operational Environment
+10.12.5.  Delete an Operational Environment
 
    *DELETE /oes/{oeId}*
 
    Request to delete an operation environment.  Reply is a request
-   response as described in Section 4.10.
+   response as described in Section 10.7.
 
    The server is not required to remove the resource but MUST return a
    "rejection" value for the "status" property if the resource will not
    be removed.
 
-4.16.  Dependencies
+10.13.  Dependencies
 
    An operational environment is composed of one or more dependencies
    which fully characterize and describe the operational environment
@@ -2293,7 +2349,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 41]
+Fussell, et al.            Expires 22 May 2021                 [Page 42]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -2316,21 +2372,21 @@ Internet-Draft                ACVP Protocol                November 2020
       to better describe and define the dependency which in turn
       describes the operational environment that a module will operate
       under.  The possible name/value pairs for a given value of "type"
-      MAY be provided by the response of Section 4.16.3, if the server
+      MAY be provided by the response of Section 10.13.3, if the server
       implements this endpoint.  Otherwise a server MAY choose to
       restrict or not restrict the range of name/value pairs available,
       but any restrictions MUST be clearly documented.
 
-4.16.1.  List Dependencies
+10.13.1.  List Dependencies
 
    *GET /dependencies*
 
    Returns a paged listing of available dependencies.  Each element in
    the "data" array is a "dependency object" as described in
-   Section 4.16.4.  See also Section 4.8.2 for a description of a paged
-   response.
+   Section 10.13.4.  See also Section 10.5.2 for a description of a
+   paged response.
 
-   Available Section 4.9:
+   Available Section 10.6:
 
    *  *name*: "eq", "start", "end", "contains"
 
@@ -2338,7 +2394,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
    *  *description*: "eq", "start", "end", "contains"
 
-4.16.2.  Register a new Dependency
+10.13.2.  Register a new Dependency
 
    *POST /dependencies*
 
@@ -2349,12 +2405,12 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 42]
+Fussell, et al.            Expires 22 May 2021                 [Page 43]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-4.16.2.1.  Request
+10.13.2.1.  Request
 
    "name" is required.  Other defined resource properties are OPTIONAL.
    Any additional properties included in the request are ignored.
@@ -2371,17 +2427,17 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 38
 
-4.16.2.2.  Response
+10.13.2.2.  Response
 
-   Reply is a request response as described in Section 4.10.  If
+   Reply is a request response as described in Section 10.7.  If
    "status" is "approved" the "approvedUrl" returned will be the
    identifier of the dependency resource which was created.
 
-4.16.3.  List Dependency Properties
+10.13.3.  List Dependency Properties
 
    (Optional) *GET /dependencies/properties*
 
-   Returns a Section 4.8 list of available dependency properties.
+   Returns a Section 10.5 list of available dependency properties.
 
    An array of property objects is returned with the following
    properties:
@@ -2395,7 +2451,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
    *  *description* - "string"
 
-4.16.3.1.  Example Dependency Property Elements
+10.13.3.1.  Example Dependency Property Elements
 
 
 
@@ -2405,7 +2461,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 43]
+Fussell, et al.            Expires 22 May 2021                 [Page 44]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -2453,7 +2509,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 39
 
-4.16.4.  Retrieve information for a Dependency
+10.13.4.  Retrieve information for a Dependency
 
    *GET /dependencies/{dependencyId}*
 
@@ -2461,12 +2517,12 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 44]
+Fussell, et al.            Expires 22 May 2021                 [Page 45]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-4.16.4.1.  Response
+10.13.4.1.  Response
 
    [
        {"acvVersion": "{acvp-version}"},
@@ -2480,7 +2536,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 40
 
-4.16.5.  Update a Dependency
+10.13.5.  Update a Dependency
 
    *PUT /dependencies/{dependencyId}*
 
@@ -2490,7 +2546,7 @@ Internet-Draft                ACVP Protocol                November 2020
    dependency resource once the resource has been associated with an
    operational environment.
 
-4.16.5.1.  Request
+10.13.5.1.  Request
 
    [
        {"acvVersion": "{acvp-version}"},
@@ -2501,15 +2557,15 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 41
 
-4.16.5.2.  Response
+10.13.5.2.  Response
 
-   Reply is a request response as described in Section 4.10.  If
+   Reply is a request response as described in Section 10.7.  If
    "status" is "approved" the "approvedUrl" returned will be the
    identifier of the dependency resource which was updated.  A server
    implementation MAY create a new resource instead of updating the
    existing resource.
 
-4.16.6.  Delete a Dependency
+10.13.6.  Delete a Dependency
 
    *DELETE /dependencies/{dependencyId}*
 
@@ -2517,29 +2573,29 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 45]
+Fussell, et al.            Expires 22 May 2021                 [Page 46]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
    Request to delete a dependency.  Reply is a request response as
-   described in Section 4.10.
+   described in Section 10.7.
 
    The server is not required to remove the resource but MUST return a
    "rejection" value for the "status" property if the resource will not
    be removed.
 
-4.17.  Algorithms
+10.14.  Algorithms
 
    The Algorithm resources are informational only.
 
-4.17.1.  Algorithms Listing
+10.14.1.  Algorithms Listing
 
    *GET /algorithms*
 
    Returns a list of available algorithms on the server.
 
-4.17.1.1.  Response
+10.14.1.1.  Response
 
    [
        {"acvVersion": "{acvp-version}"},
@@ -2566,35 +2622,35 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 42
 
-4.17.2.  Algorithm Information
+10.14.2.  Algorithm Information
 
    *GET /algorithms/{algorithmId}*
 
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 46]
+Fussell, et al.            Expires 22 May 2021                 [Page 47]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
    Retrieve Information for about a specific algorithm.
 
-4.17.2.1.  Response
+10.14.2.1.  Response
 
    Response may vary from server depending on internal representation.
 
-4.18.  Validations
+10.15.  Validations
 
    The Validations resources are informational only.
 
-4.18.1.  Validation Information
+10.15.1.  Validation Information
 
    *GET /validations/{validationId}*
 
    Retrieve information about a specific validation.
 
-4.18.1.1.  Response
+10.15.1.1.  Response
 
    Response MAY vary from server depending on internal representation.
    Available properties for validations MAY include (but are not limited
@@ -2606,10 +2662,10 @@ Internet-Draft                ACVP Protocol                November 2020
       and source.
 
    *  *moduleUrl* - "string", the module URL associated with this
-      validation.  See Section 4.14
+      validation.  See Section 10.11
 
    *  *oeUrls* - "array of string", the Operational Environments
-      associated with this validation.  See Section 4.15
+      associated with this validation.  See Section 10.12
 
    [
        {"acvVersion": "{acvp-version}"},
@@ -2629,12 +2685,12 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 47]
+Fussell, et al.            Expires 22 May 2021                 [Page 48]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-4.19.  Test Sessions
+10.16.  Test Sessions
 
    The available properties for test session resources are:
 
@@ -2643,9 +2699,9 @@ Internet-Draft                ACVP Protocol                November 2020
    *  *acvpVersion* - "string", version of ACV protocol used to created
       the test session.
 
-   *  *createdOn* - Section 7.1
+   *  *createdOn* - Section 15.1
 
-   *  *expiresOn* - Section 7.1
+   *  *expiresOn* - Section 15.1
 
    *  *encryptAtRest* - "boolean"
 
@@ -2657,11 +2713,11 @@ Internet-Draft                ACVP Protocol                November 2020
    *  *passed* - "boolean", indicates whether all of the vector set
       tests have passed
 
-   *  *isSample* - "boolean", if true Section 4.20.7 will return
+   *  *isSample* - "boolean", if true Section 10.17.7 will return
       expected result values.  As well, Test Vector Sets MAY contain
       fewer Test Cases for quicker generation and verification.
 
-4.19.1.  Test Session Listing (Current User)
+10.16.1.  Test Session Listing (Current User)
 
    *GET /testSessions*
 
@@ -2669,23 +2725,23 @@ Internet-Draft                ACVP Protocol                November 2020
 
    Returns a paged listing of test sessions for the current user.  Each
    element in the "data" array is a "test session object" as described
-   in Section 4.19.3.  See also Section 4.8.2 for a description of a
+   in Section 10.16.3.  See also Section 10.5.2 for a description of a
    paged response.
 
-4.19.2.  Create a New Test Session
+10.16.2.  Create a New Test Session
 
    *POST /testSessions*
 
    Create a new Test Session.
 
-4.19.2.1.  Request
+10.16.2.1.  Request
 
    "algorithms" is an array of algorithm objects.  Each algorithm object
    has the following available properties:
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 48]
+Fussell, et al.            Expires 22 May 2021                 [Page 49]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -2710,10 +2766,10 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 44
 
-4.19.2.2.  Response
+10.16.2.2.  Response
 
    "accessToken" is a [RFC7519] which MUST be supplied as described in
-   Section 4.6 in order to access the Test Session.
+   Section 10.3 in order to access the Test Session.
 
    [
        {"acvVersion": "{acvp-version}"},
@@ -2733,7 +2789,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 45
 
-4.19.3.  Test Session Information
+10.16.3.  Test Session Information
 
    *GET /testSessions/{testSessionId}*
 
@@ -2741,12 +2797,12 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 49]
+Fussell, et al.            Expires 22 May 2021                 [Page 50]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-4.19.3.1.  Response
+10.16.3.1.  Response
 
    [
        {"acvVersion": "{acvp-version}"},
@@ -2765,7 +2821,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 46
 
-4.19.4.  Submit For Validation
+10.16.4.  Submit For Validation
 
    *PUT /testSessions/{testSessionId}*
 
@@ -2775,20 +2831,20 @@ Internet-Draft                ACVP Protocol                November 2020
    test session MUST be have both "publishable" and "passed" set to
    "true".
 
-4.19.4.1.  Request
+10.16.4.1.  Request
 
    Available properties:
 
    *  *moduleUrl* - "string"
 
-   *  *module* - a Section 4.14, MAY be used instead of "moduleUrl", but
-      SHOULD only be used when the goal is to create a new module
+   *  *module* - a Section 10.11, MAY be used instead of "moduleUrl",
+      but SHOULD only be used when the goal is to create a new module
       resource, otherwise use "moduleUrl" to use an existing module.
 
    *  *oeUrl* - "string"
 
-   *  *oe* - an Section 4.15, MAY be used instead of "oeUrl", but SHOULD
-      only be used when the goal is to create a new operating
+   *  *oe* - an Section 10.12, MAY be used instead of "oeUrl", but
+      SHOULD only be used when the goal is to create a new operating
       environment resource, otherwise use "oeUrl" to use an existing
       operating environment.
 
@@ -2797,7 +2853,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 50]
+Fussell, et al.            Expires 22 May 2021                 [Page 51]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -2841,9 +2897,9 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 47
 
-4.19.4.2.  Response
+10.16.4.2.  Response
 
-   Reply is a request response as described in Section 4.10.  If
+   Reply is a request response as described in Section 10.7.  If
    "status" is "approved" the "approvedUrl" returned will be the
    identifier of the validation resource which was created or updated as
    a result of this certification.
@@ -2853,12 +2909,12 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 51]
+Fussell, et al.            Expires 22 May 2021                 [Page 52]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-4.19.5.  Cancel Test Session
+10.16.5.  Cancel Test Session
 
    *DELETE /testSessions/{testSessionId}*
 
@@ -2868,13 +2924,13 @@ Internet-Draft                ACVP Protocol                November 2020
    server.  Further operations with the test session resource may return
    404 HTTP Status.
 
-4.19.6.  Request Validation Results
+10.16.6.  Request Validation Results
 
    *GET /testSessions/{testSessionId}/results*
 
    Request Validation Results for a Test Session
 
-4.19.6.1.  Response
+10.16.6.1.  Response
 
    [
      {"acvVersion": "{acvp-version}"},
@@ -2895,7 +2951,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 48
 
-4.20.  Vector Sets
+10.17.  Vector Sets
 
    The REQUIRED properties for vector set resources are:
 
@@ -2909,7 +2965,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 52]
+Fussell, et al.            Expires 22 May 2021                 [Page 53]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -2931,7 +2987,7 @@ Internet-Draft                ACVP Protocol                November 2020
          o  "{varies}" - based on the values of "algorithm" and "mode"
             there are zero or more test properties.
 
-4.20.1.  Vectors Set Listing
+10.17.1.  Vectors Set Listing
 
    *GET /testSessions/{testSessionId}/vectorSets*
 
@@ -2941,7 +2997,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
    *  *vectorSetUrls* - array of "string"
 
-4.20.1.1.  Response
+10.17.1.1.  Response
 
    [
        {"acvVersion": "{acvp-version}"},
@@ -2953,7 +3009,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 49
 
-4.20.2.  Vector Set Download
+10.17.2.  Vector Set Download
 
    *GET /testSessions/{testSessionId}/vectorSets/{vectorSetId}*
 
@@ -2965,7 +3021,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 53]
+Fussell, et al.            Expires 22 May 2021                 [Page 54]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -2975,7 +3031,7 @@ Internet-Draft                ACVP Protocol                November 2020
    response will vary depending on the specific sub-specification of the
    algorithm and testType being tested.
 
-4.20.2.1.  Response
+10.17.2.1.  Response
 
    [
        {"acvVersion": "{acvp-version}"},
@@ -3021,7 +3077,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 54]
+Fussell, et al.            Expires 22 May 2021                 [Page 55]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -3046,7 +3102,7 @@ Internet-Draft                ACVP Protocol                November 2020
    The server may set the "retry" value based on the current server load
    and expected processing time to generate the vector set.
 
-4.20.3.  Cancel Testing of a Vector Set
+10.17.3.  Cancel Testing of a Vector Set
 
    *DELETE /testSessions/{testSessionId}/vectorSets/{vectorSetId}*
 
@@ -3055,19 +3111,19 @@ Internet-Draft                ACVP Protocol                November 2020
    There may be cases where a particular vector set may not be cancelled
    and the entire Test Session will need to be cancelled instead.
 
-4.20.4.  Request Validation Results
+10.17.4.  Request Validation Results
 
    *GET /testSessions/{testSessionId}/vectorSets/{vectorSetId}/results*
 
    Request Validation Results for a Vector Set.
 
    When "showExpected" was set to true from a POST/PUT under
-   Section 4.20.5, additional information is provided back to the client
-   for any failing test cases.  The additional information includes an
-   "expected" as well as "provided" object that MAY be useful in
-   diagnosing issues within the vector set validation.
+   Section 10.17.5, additional information is provided back to the
+   client for any failing test cases.  The additional information
+   includes an "expected" as well as "provided" object that MAY be
+   useful in diagnosing issues within the vector set validation.
 
-4.20.4.1.  Response
+10.17.4.1.  Response
 
    The client will send this request to learn the validation results for
    an individual vector set.  Properties are:
@@ -3077,7 +3133,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 55]
+Fussell, et al.            Expires 22 May 2021                 [Page 56]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -3133,7 +3189,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 56]
+Fussell, et al.            Expires 22 May 2021                 [Page 57]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -3165,13 +3221,13 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 52
 
-4.20.5.  Submit Results
+10.17.5.  Submit Results
 
    *POST /testSessions/{testSessionId}/vectorSets/{vectorSetId}/results*
 
    Initial Submission of Vector Set Test Results.
 
-4.20.5.1.  Request
+10.17.5.1.  Request
 
    The client will send this request to submit the test results for an
    individual vector set.  Similar to the vector set download the format
@@ -3189,7 +3245,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 57]
+Fussell, et al.            Expires 22 May 2021                 [Page 58]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -3222,15 +3278,15 @@ Internet-Draft                ACVP Protocol                November 2020
 
    The "showExpected" property is optional; when included (and set to
    true) the ACVP server will include additional information within the
-   validation response file described in Section 4.20.4.
+   validation response file described in Section 10.17.4.
 
-4.20.5.2.  Response
+10.17.5.2.  Response
 
    No content response.  Standard HTTP status codes will indicate
    success or failure of the submission, but do not indicated the
    disposition of the tests.
 
-4.20.6.  Update Results Submission
+10.17.6.  Update Results Submission
 
    *PUT /testSessions/{testSessionId}/vectorSets/{vectorSetId}/results*
 
@@ -3245,7 +3301,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 58]
+Fussell, et al.            Expires 22 May 2021                 [Page 59]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -3259,26 +3315,26 @@ Internet-Draft                ACVP Protocol                November 2020
    the problem has been corrected in the implementation).  The resending
    of vector set responses MUST occur prior to expiry.
 
-4.20.6.1.  Request
+10.17.6.1.  Request
 
    The request content is identical to the request content described in
-   Section 4.20.5.
+   Section 10.17.5.
 
-4.20.7.  Retrieve Expected Results
+10.17.7.  Retrieve Expected Results
 
    *GET /testSessions/{testSessionId}/vectorSets/{vectorSetId}/expected*
 
    Expected Test Results.
 
-4.20.7.1.  Response
+10.17.7.1.  Response
 
    The response is identical to the request content described in
-   Section 4.20.5.
+   Section 10.17.5.
 
-5.  Large Submission
+11.  Large Submission
 
    When clients have a response which exceeds the "sizeConstraint" in
-   Section 4, this endpoint MUST be used to obtain a URI in order to
+   Section 9, this endpoint MUST be used to obtain a URI in order to
    submit the results.  The URI MAY be a one-time use URI and clients
    SHOULD only attempt to use this URI once regardless of success or
    failure in submitting.  If resubmission is required clients MUST re-
@@ -3301,7 +3357,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 59]
+Fussell, et al.            Expires 22 May 2021                 [Page 60]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -3311,7 +3367,7 @@ Internet-Draft                ACVP Protocol                November 2020
       clients MUST use their current "accessToken" when accessing the
       "url".
 
-5.1.  Request
+11.1.  Request
 
    *POST /large*
 
@@ -3325,19 +3381,19 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 54
 
-5.2.  Response
+11.2.  Response
 
    [
      {"acvVersion": "{acvp-version}"},
      {
          "url": "https://acvts.authority.org:3954/large/QWERTY123",
-         "accessToken" : "<jwt token>"
+         "accessToken" : "&lt;jwt token&gt;"
      }
    ]
 
                                  Figure 55
 
-6.  Vector Set Expiration
+12.  Vector Set Expiration
 
    Vector sets can expire.  For example, in terms of a validation
    authority use, the vector sets are one-time use only.  Old vector
@@ -3357,7 +3413,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 60]
+Fussell, et al.            Expires 22 May 2021                 [Page 61]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -3413,7 +3469,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 61]
+Fussell, et al.            Expires 22 May 2021                 [Page 62]
 
 Internet-Draft                ACVP Protocol                November 2020
 
@@ -3444,7 +3500,7 @@ Internet-Draft                ACVP Protocol                November 2020
                .
                .
                .
-               <remainder of vector set omitted from figure>
+               &lt;remainder of vector set omitted from figure&gt;
                .
                .
                .
@@ -3455,13 +3511,13 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 57
 
-7.  Error Codes
+13.  Error Codes
 
    Errors will follow HTTP[S] numbering scheme.  In addition errors as
    well as 200 messages may carry JSON encoded information that
    describes in detail the error and any associated troubleshooting
    information.  Examples of client and server error messages are in
-   Appendix B. == Algorithm Test Extensions
+   Appendix B.
 
 
 
@@ -3469,10 +3525,12 @@ Internet-Draft                ACVP Protocol                November 2020
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 62]
+Fussell, et al.            Expires 22 May 2021                 [Page 63]
 
 Internet-Draft                ACVP Protocol                November 2020
 
+
+14.  Algorithm Test Extensions
 
    ACVP is intended to be an extensible protocol that supports testing
    of a large number of cryptographic algorithms from several different
@@ -3518,30 +3576,30 @@ Internet-Draft                ACVP Protocol                November 2020
    add a new test type.  Note that this action would require
    modifications of the corresponding algorithm test specification and
    would result in a new version of that test specification to be
-   reflected in the IANA registry [acvp-iana]. == Custom Specification
-   Objects
+   reflected in the IANA registry [acvp-iana].
 
 
 
 
-
-Fussell, et al.            Expires 21 May 2021                 [Page 63]
+Fussell, et al.            Expires 22 May 2021                 [Page 64]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
-7.1.  Date
+15.  Custom Specification Objects
+
+15.1.  Date
 
    A date type is a time "string" formatted according to the rules of
    [RFC3339]; all date/times must use UTC time denoted by 'Z' suffix
    with no local timezone adjustment.  Example is "2018-06-01T20:10:33Z"
 
-7.2.  BitString
+15.2.  BitString
 
    Bitstrings are used to communicate a string of bits between the ACVP
    server and IUT.
 
-7.2.1.  Endianness
+15.2.1.  Endianness
 
    BitStrings SHALL be considered in big endian order, unless otherwise
    specified by the algorithm.
@@ -3549,7 +3607,7 @@ Internet-Draft                ACVP Protocol                November 2020
    The hex string "FA" (assuming all bits are considered) SHALL
    represent the bits 11111010 (in MSb) or the value 250.
 
-7.2.2.  Hex to Bitstring Parsing
+15.2.2.  Hex to Bitstring Parsing
 
    "valueLen" will be used as the example, but it can apply to any bit
    length registration/vector set/etc parameters.
@@ -3565,7 +3623,7 @@ Internet-Draft                ACVP Protocol                November 2020
    bits, meaning the lesser significant bits are the bits that are
    dropped.
 
-7.2.2.1.  Hex string parsing examples
+15.2.2.1.  Hex string parsing examples
 
    *  valueLen: 8, value: "FA", SHALL be parsed as the bits 11111010, or
       the value 250.
@@ -3576,26 +3634,27 @@ Internet-Draft                ACVP Protocol                November 2020
    *  valueLen: 5, value: "FA", SHALL be parsed as the bits 11111, or
       the value 31.
 
-   *  valueLen: 3, value: "FA", SHALL be parsed as the bits 111, or the
-      value 7.
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 64]
+Fussell, et al.            Expires 22 May 2021                 [Page 65]
 
 Internet-Draft                ACVP Protocol                November 2020
 
 
+   *  valueLen: 3, value: "FA", SHALL be parsed as the bits 111, or the
+      value 7.
+
    *  valueLen: 0, value: "", SHALL be interpreted as an empty bit
       string.
 
-7.3.  Range
+15.3.  Range
 
    The Range object can be used to convey a range of values.  It
    contains its own set of properties made up of "min", "max", and
    "increment".
 
-7.3.1.  Range JSON examples
+15.3.1.  Range JSON examples
 
    A range object specifying a minimum of 1, a maximum of 8, with an
    increment of 1.  This range object includes the values 1, 2, 3, 4, 5,
@@ -3621,26 +3680,28 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 59
 
-7.4.  Domain
+15.4.  Domain
 
    The Domain object can be used to specify a set of values similar to
    Range, albeit with more control.  A domain can be made up of an array
    of objects, where those objects can be literal values, and/or Range
    objects.
 
-7.4.1.  Domain JSON examples
-
-   Several sample domain objects that state 0, 8, 16, 32, 96, 128, 192,
-   and 256 are valid values.
 
 
 
 
 
-Fussell, et al.            Expires 21 May 2021                 [Page 65]
+
+Fussell, et al.            Expires 22 May 2021                 [Page 66]
 
 Internet-Draft                ACVP Protocol                November 2020
 
+
+15.4.1.  Domain JSON examples
+
+   Several sample domain objects that state 0, 8, 16, 32, 96, 128, 192,
+   and 256 are valid values.
 
    {"myDomain": [
        {
@@ -3663,16 +3724,17 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 61
 
-7.4.2.  Additional Domain Information
+15.4.2.  Additional Domain Information
 
    Because the Domain is an array of objects consisting of (potentially)
    both literals and ranges, algorithms that use an array of integers
    can be used interchangably with the Domain object.
 
-8.  IANA Considerations
+16.  IANA Considerations
 
-   This document does not require any action by IANA. == Other
-   Considerations
+   This document does not require any action by IANA.
+
+17.  Other Considerations
 
    When an ACVP client is attached to a cryptographic module that is in
    use, access to ACVP MUST be controlled so that only an administrator
@@ -3680,25 +3742,26 @@ Internet-Draft                ACVP Protocol                November 2020
    because an attacker that has access to ACVP can potentially use it to
    probe for weaknesses in the cryptographic module.
 
-9.  Contributors
+
+
+
+
+
+
+
+Fussell, et al.            Expires 22 May 2021                 [Page 67]
+
+Internet-Draft                ACVP Protocol                November 2020
+
+
+18.  Contributors
 
    Original ACV Protocol created by David McGrew, Bill Hudson and
    Anthony Grieco of Cisco Systems.  Additional contributions made by
    Sam Farthing, Ellie Daw and Philip Perricone from Cisco Systems and
    Christopher Celi and Russell Hammett from NIST.
 
-
-
-
-
-
-
-Fussell, et al.            Expires 21 May 2021                 [Page 66]
-
-Internet-Draft                ACVP Protocol                November 2020
-
-
-10.  JSON Formatting Guidelines
+19.  JSON Formatting Guidelines
 
    All JSON keywords SHALL use lower camelCase format with no
    underscores or hyphens and use the following characters only a-z,
@@ -3740,19 +3803,17 @@ Internet-Draft                ACVP Protocol                November 2020
    used without quotes to avoid having to convert the string to an
    integer for use in the code.
 
-11.  Error Messages
-
-   General or registration errors detected by the server SHALL result in
-   an HTML error and description of the problem, for example:
 
 
-
-
-
-Fussell, et al.            Expires 21 May 2021                 [Page 67]
+Fussell, et al.            Expires 22 May 2021                 [Page 68]
 
 Internet-Draft                ACVP Protocol                November 2020
 
+
+20.  Error Messages
+
+   General or registration errors detected by the server SHALL result in
+   an HTML error and description of the problem, for example:
 
             HTTP response: 400
             "error" : "Incorrectly formatted JSON (51:18):
@@ -3770,7 +3831,7 @@ Internet-Draft                ACVP Protocol                November 2020
 
                                  Figure 65
 
-12.  Normative references
+21.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", IETF RFC 2119, IETF RFC 2119,
@@ -3797,18 +3858,18 @@ Internet-Draft                ACVP Protocol                November 2020
               DOI 10.17487/RFC7159, March 2014,
               <https://www.rfc-editor.org/info/rfc7159>.
 
+
+
+
+Fussell, et al.            Expires 22 May 2021                 [Page 69]
+
+Internet-Draft                ACVP Protocol                November 2020
+
+
    [RFC7230]  Fielding, R., Ed. and J. Reschke, Ed., "Hypertext Transfer
               Protocol (HTTP/1.1): Message Syntax and Routing", IETF RFC
               7230, IETF RFC 7230, DOI 10.17487/RFC7230, June 2014,
               <https://www.rfc-editor.org/info/rfc7230>.
-
-
-
-
-Fussell, et al.            Expires 21 May 2021                 [Page 68]
-
-Internet-Draft                ACVP Protocol                November 2020
-
 
    [RFC7519]  Jones, M., Bradley, J., and N. Sakimura, "JSON Web Token
               (JWT)", IETF RFC 7519, IETF RFC 7519,
@@ -3856,9 +3917,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-Fussell, et al.            Expires 21 May 2021                 [Page 69]
+Fussell, et al.            Expires 22 May 2021                 [Page 70]

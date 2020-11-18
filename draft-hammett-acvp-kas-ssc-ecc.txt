@@ -3,9 +3,9 @@
 
 
 Network Working Group                                    R. Hammett, Ed.
-Internet-Draft                                          17 November 2020
+Internet-Draft                                          18 November 2020
 Intended status: Informational                                          
-Expires: 21 May 2021
+Expires: 22 May 2021
 
 
                      ACVP KAS SSC ECC Specification
@@ -26,7 +26,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2021.
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -45,33 +45,35 @@ Table of Contents
    2.  Abstract  . . . . . . . . . . . . . . . . . . . . . . . . . .   2
    3.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
    4.  Terms and definitions . . . . . . . . . . . . . . . . . . . .   2
-   5.  Test Types and Test Coverage  . . . . . . . . . . . . . . . .   2
-     5.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
-     5.2.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   3
-       5.2.1.  Requirements Covered  . . . . . . . . . . . . . . . .   3
-       5.2.2.  Requirements Not Covered  . . . . . . . . . . . . . .   4
+   5.  Supported KAS SSC ECC . . . . . . . . . . . . . . . . . . . .   3
+   6.  Test Types and Test Coverage  . . . . . . . . . . . . . . . .   3
+     6.1.  Test Types  . . . . . . . . . . . . . . . . . . . . . . .   3
+     6.2.  Test Coverage . . . . . . . . . . . . . . . . . . . . . .   3
+       6.2.1.  Requirements Covered  . . . . . . . . . . . . . . . .   3
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 1]
+Hammett                    Expires 22 May 2021                  [Page 1]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
-     5.3.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   4
-     5.4.  Property Registration . . . . . . . . . . . . . . . . . .   5
-       5.4.1.  Schemes . . . . . . . . . . . . . . . . . . . . . . .   7
-       5.4.2.  Domain Parameter Generation Methods . . . . . . . . .   7
-       5.4.3.  Hash Function Z . . . . . . . . . . . . . . . . . . .   8
-     5.5.  Registration Example  . . . . . . . . . . . . . . . . . .   8
-   6.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .   9
-     6.1.  Test Groups . . . . . . . . . . . . . . . . . . . . . . .  10
-     6.2.  Test Cases  . . . . . . . . . . . . . . . . . . . . . . .  11
-   7.  Responses . . . . . . . . . . . . . . . . . . . . . . . . . .  14
-   8.  Security Considerations . . . . . . . . . . . . . . . . . . .  18
-   9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  18
-   10. Normative references  . . . . . . . . . . . . . . . . . . . .  18
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  19
+       6.2.2.  Requirements Not Covered  . . . . . . . . . . . . . .   4
+   7.  Capabilities Registration . . . . . . . . . . . . . . . . . .   4
+     7.1.  Prerequisites . . . . . . . . . . . . . . . . . . . . . .   5
+     7.2.  Property Registration . . . . . . . . . . . . . . . . . .   6
+       7.2.1.  Schemes . . . . . . . . . . . . . . . . . . . . . . .   8
+       7.2.2.  Domain Parameter Generation Methods . . . . . . . . .   8
+       7.2.3.  Hash Function Z . . . . . . . . . . . . . . . . . . .   9
+     7.3.  Registration Example  . . . . . . . . . . . . . . . . . .   9
+   8.  Test Vectors  . . . . . . . . . . . . . . . . . . . . . . . .  10
+     8.1.  Test Groups . . . . . . . . . . . . . . . . . . . . . . .  11
+     8.2.  Test Cases  . . . . . . . . . . . . . . . . . . . . . . .  12
+   9.  Responses . . . . . . . . . . . . . . . . . . . . . . . . . .  15
+   10. Security Considerations . . . . . . . . . . . . . . . . . . .  19
+   11. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  19
+   12. Normative References  . . . . . . . . . . . . . . . . . . . .  19
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  20
 
 1.  Acknowledgements
 
@@ -101,20 +103,32 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
    No terms and definitions are listed in this document.
 
-5.  Test Types and Test Coverage
-
-   This section describes the design of the tests used to validate KAS-
-   SSC-ECC SP800-56Ar3 implementations.
 
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 2]
+
+
+Hammett                    Expires 22 May 2021                  [Page 2]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
-5.1.  Test Types
+5.  Supported KAS SSC ECC
+
+   The following KAS algorithms MAY be advertised by this ACVP compliant
+   crypto module:
+
+   *  KAS-ECC-SSC / null / Sp800-56Ar3
+
+   Other KAS algorithms MAY be advertised by the ACVP module elsewhere.
+
+6.  Test Types and Test Coverage
+
+   This section describes the design of the tests used to validate KAS-
+   SSC-ECC SP800-56Ar3 implementations.
+
+6.1.  Test Types
 
    *  "AFT" - Algorithm Function Test.  In the AFT test mode, the IUT
       SHALL act as a party in the Key Agreement with the ACVP server.
@@ -130,13 +144,13 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
       key agreement process (changed Z, Z with leading zero nibble,
       etc), that the IUT MUST be able to detect and report on.
 
-5.2.  Test Coverage
+6.2.  Test Coverage
 
    The tests described in this document have the intention of ensuring
    an implementation is conformant to SP800-56Ar3 KAS Shared Secret
    Computation (SSC).
 
-5.2.1.  Requirements Covered
+6.2.1.  Requirements Covered
 
    *  SP 800-56Ar3 - 4.1 Key Establishment Preparations.  The ACVP
       server is responsible for generating domain parameters as per the
@@ -147,6 +161,14 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
       and IUT can both take the roles of party U/V, and as such the
       "performer" of steps depicted in "Figure 2: Key Agreement process"
       can vary.
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 3]
+
+Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
+
 
    *  SP 800-56Ar3 - 5.6 Domain Parameters.  Domain Parameter Generation
       SHALL be performed solely from the ACVP server, with constraints
@@ -161,15 +183,6 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
       random tests are only present in groups given appropriate
       assurance functions see: Section 3.3
 
-
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 3]
-
-Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
-
-
    *  SP 800-56Ar3 - 4.3 DLC-based Key-Transport Process / 5.7 DLC
       Primitives.  Depending on the scheme used, either Diffie Hellman
       or MQV SHALL be used to negotiate a shared secret of z.  Testing
@@ -180,13 +193,15 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
       referenced document are supported for validation with the ACVP
       server.
 
-5.2.2.  Requirements Not Covered
+6.2.2.  Requirements Not Covered
 
    *  KAS SSC testing only covers testing of SP800-56Ar3 through the
       computation of a shared secret "z".  Additional functions of KAS
       as a whole such as KDF, KC, etc.  MAY be covered within the scope
       of the full KAS testing; please see that document for further
-      details. == Capabilities Registration
+      details.
+
+7.  Capabilities Registration
 
    ACVP requires crypto modules to register their capabilities.  This
    allows the crypto module to advertise support for specific
@@ -203,7 +218,15 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
    registration message.  See the ACVP specification [ACVP] for more
    details on the registration message.
 
-5.3.  Prerequisites
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 4]
+
+Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
+
+
+7.1.  Prerequisites
 
    Each algorithm implementation MAY rely on other cryptographic
    primitives.  For example, RSA Signature algorithms depend on an
@@ -217,16 +240,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
    "algorithms" array.  Each element in the "prereqVals" array MUST
    contain the following properties
 
-
-
-
-
-Hammett                    Expires 21 May 2021                  [Page 4]
-
-Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
-
-
-        +===============+=============================+===========+
+        +---------------+-----------------------------+-----------+
         | JSON Property | Description                 | JSON Type |
         +===============+=============================+===========+
         | algorithm     | a prerequisite algorithm    | string    |
@@ -257,7 +271,18 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
                                   Figure 1
 
-5.4.  Property Registration
+
+
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 5]
+
+Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
+
+
+7.2.  Property Registration
 
    The KAS-SSC-ECC SP800-56Ar3 mode capabilities are advertised as JSON
    objects within a root "algorithm" object.
@@ -277,53 +302,84 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 5]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Hammett                    Expires 22 May 2021                  [Page 6]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
+   +--------------------------------+-------------+----------+-------------+
+   | JSON Property                  | Description |JSON Type |Valid Values |
    +================================+=============+==========+=============+
-   |JSON Property                   |Description  |JSON Type |Valid Values |
-   +================================+=============+==========+=============+
-   |algorithm                       |Name of the  |string    |"KAS-ECC-SSC"|
+   | algorithm                      | Name of the | string   |"KAS-ECC-SSC"|
    |                                |algorithm to |          |             |
    |                                |be validated |          |             |
    +--------------------------------+-------------+----------+-------------+
-   |revision                        |ACVP Test    |string    |"SP800-56Ar3"|
-   |                                |version      |          |             |
+   | revision                       | ACVP Test   | string   |"SP800-56Ar3"|
+   |                                | version     |          |             |
    +--------------------------------+-------------+----------+-------------+
-   |prereqVals                      |Prerequisites|object    |See          |
-   |                                |of the       |          |Section 5.3  |
-   |                                |algorithm    |          |             |
+   | prereqVals                     |Prerequisites| object   | See         |
+   |                                | of the      |          | Section 7.1 |
+   |                                | algorithm   |          |             |
    +--------------------------------+-------------+----------+-------------+
-   |scheme                          |Array of     |array of  |See          |
-   |                                |schemes      |objects   |Section 5.4.1|
-   |                                |supported    |          |             |
+   | scheme                         | Array of    | array of | See         |
+   |                                | schemes     | objects  |Section 7.2.1|
+   |                                | supported   |          |             |
    +--------------------------------+-------------+----------+-------------+
-   |domainParameterGenerationMethods|Array of     |array of  |See          |
-   |                                |strings      |strings   |Section 5.4.2|
+   |domainParameterGenerationMethods| Array of    | array of | See         |
+   |                                | strings     | strings  |Section 7.2.2|
    |                                |representing |          |             |
    |                                |the supported|          |             |
-   |                                |means of     |          |             |
-   |                                |generating   |          |             |
-   |                                |domain       |          |             |
-   |                                |parameters   |          |             |
+   |                                | means of    |          |             |
+   |                                | generating  |          |             |
+   |                                | domain      |          |             |
+   |                                | parameters  |          |             |
    +--------------------------------+-------------+----------+-------------+
-   |scheme                          |Array of     |dictionary|See          |
-   |                                |schemes      |          |Section 5.4.1|
-   |                                |supported    |          |             |
+   | scheme                         | Array of    |dictionary| See         |
+   |                                | schemes     |          |Section 7.2.1|
+   |                                | supported   |          |             |
    +--------------------------------+-------------+----------+-------------+
-   |hashFunctionZ                   |Optional hash|string    |See          |
-   |                                |function to  |          |Section 5.4.3|
+   | hashFunctionZ                  |Optional hash| string   | See         |
+   |                                | function to |          |Section 7.2.3|
    |                                |apply to the |          |             |
    |                                |shared secret|          |             |
-   |                                |"z" in       |          |             |
-   |                                |instances    |          |             |
+   |                                | "z" in      |          |             |
+   |                                | instances   |          |             |
    |                                |where the IUT|          |             |
    |                                |is unable to |          |             |
-   |                                |return the   |          |             |
-   |                                |"z" in the   |          |             |
-   |                                |clear.       |          |             |
+   |                                | return the  |          |             |
+   |                                | "z" in the  |          |             |
+   |                                | clear.      |          |             |
    +--------------------------------+-------------+----------+-------------+
 
                       Table 2: Registration Properties
@@ -333,18 +389,18 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 6]
+Hammett                    Expires 22 May 2021                  [Page 7]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
-5.4.1.  Schemes
+7.2.1.  Schemes
 
    Schemes MUST be registered as a dictionary (key/value pairs) where
-   the key is a valid Section 5.4.1.1, and the value is a
-   Section 5.4.1.2.
+   the key is a valid Section 7.2.1.1, and the value is a
+   Section 7.2.1.2.
 
-5.4.1.1.  Scheme Identifier
+7.2.1.1.  Scheme Identifier
 
    *  ephemeralUnified
 
@@ -360,7 +416,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
    *  staticUnified
 
-5.4.1.2.  Scheme Object
+7.2.1.2.  Scheme Object
 
    The scheme object is made up of the following properties:
 
@@ -374,7 +430,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
                          Table 3: Scheme Properties
 
-5.4.2.  Domain Parameter Generation Methods
+7.2.2.  Domain Parameter Generation Methods
 
    *  P-224
 
@@ -389,7 +445,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 7]
+Hammett                    Expires 22 May 2021                  [Page 8]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
@@ -408,13 +464,13 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
    *  B-571
 
-5.4.3.  Hash Function Z
+7.2.3.  Hash Function Z
 
    An optional hash function that should be applied to "z" from both the
    ACVP server and IUT for comparison purposes.  The provided
    `hashFunctionZ's security strength MUST be at least as strong as the
    greatest security strength domain parameter selected from
-   Section 5.4.2
+   Section 7.2.2
 
    The following hash functions MAY be advertised by an ACVP compliant
    server:
@@ -439,13 +495,13 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
    *  SHA3-512
 
-5.5.  Registration Example
+7.3.  Registration Example
 
 
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 8]
+Hammett                    Expires 22 May 2021                  [Page 9]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
@@ -474,7 +530,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
                     Figure 2: Registration JSON Example
 
-6.  Test Vectors
+8.  Test Vectors
 
    The ACVP server provides test vectors to the ACVP client, which are
    then processed and returned to the ACVP server for validation.  A
@@ -501,12 +557,12 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                  [Page 9]
+Hammett                    Expires 22 May 2021                 [Page 10]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
-    +=============+======================================+===========+
+    +-------------+--------------------------------------+-----------+
     | JSON Values | Description                          | JSON Type |
     +=============+======================================+===========+
     | acvVersion  | Protocol version identifier          | string    |
@@ -522,7 +578,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
     | revision    | Protocol test revision selected      | string    |
     +-------------+--------------------------------------+-----------+
     | testGroups  | Array of test groups containing test | array     |
-    |             | data, see Section 6.1                |           |
+    |             | data, see Section 8.1                |           |
     +-------------+--------------------------------------+-----------+
 
                Table 4: Top Level Test Vector JSON Elements
@@ -540,7 +596,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
                                   Figure 3
 
-6.1.  Test Groups
+8.1.  Test Groups
 
    The testGroups element at the top level in the test vector JSON
    object is an array of test groups.  Test vectors are grouped into
@@ -557,12 +613,12 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 10]
+Hammett                    Expires 22 May 2021                 [Page 11]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
-    +===============================+======================+=========+
+    +-------------------------------+----------------------+---------+
     | JSON Values                   | Description          | JSON    |
     |                               |                      | Type    |
     +===============================+======================+=========+
@@ -590,7 +646,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
     +-------------------------------+----------------------+---------+
     | tests                         | Array of individual  | See     |
     |                               | test cases           | Section |
-    |                               |                      | 6.2     |
+    |                               |                      | 8.2     |
     +-------------------------------+----------------------+---------+
 
                       Table 5: Test Group Properties
@@ -600,7 +656,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
    a prompt.  Other properties are dependent on which 'testType' the
    group is addressing.
 
-6.2.  Test Cases
+8.2.  Test Cases
 
    Each test group contains an array of one or more test cases.  Each
    test case is a JSON object that represents a single test vector to be
@@ -613,12 +669,12 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 11]
+Hammett                    Expires 22 May 2021                 [Page 12]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
-    +========================+=============================+=========+
+    +------------------------+-----------------------------+---------+
     | JSON Values            | Description                 | JSON    |
     |                        |                             | Type    |
     +========================+=============================+=========+
@@ -669,7 +725,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 12]
+Hammett                    Expires 22 May 2021                 [Page 13]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
@@ -725,7 +781,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 13]
+Hammett                    Expires 22 May 2021                 [Page 14]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
@@ -764,7 +820,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
                      Figure 4: Vector Set JSON Example
 
-7.  Responses
+9.  Responses
 
    After the ACVP client downloads and processes a vector set, it must
    send the response vectors back to the ACVP server.  The following
@@ -781,12 +837,12 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 14]
+Hammett                    Expires 22 May 2021                 [Page 15]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
-        +===============+=============================+===========+
+        +---------------+-----------------------------+-----------+
         | JSON Property | Description                 | JSON Type |
         +===============+=============================+===========+
         | acvVersion    | The version of the protocol | string    |
@@ -803,7 +859,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
    SHALL require the client to send back group level properties in their
    response.  This structure helps accommodate that.
 
-         +===============+===========================+===========+
+         +---------------+---------------------------+-----------+
          | JSON Property | Description               | JSON Type |
          +===============+===========================+===========+
          | tgId          | The test group identifier | integer   |
@@ -837,12 +893,12 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 15]
+Hammett                    Expires 22 May 2021                 [Page 16]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
-   +=====================+===================================+=========+
+   +---------------------+-----------------------------------+---------+
    | JSON Property       | Description                       | JSON    |
    |                     |                                   | Type    |
    +=====================+===================================+=========+
@@ -893,7 +949,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 16]
+Hammett                    Expires 22 May 2021                 [Page 17]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
@@ -949,23 +1005,23 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 17]
+Hammett                    Expires 22 May 2021                 [Page 18]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
                       Figure 5: Example Response JSON
 
-8.  Security Considerations
+10.  Security Considerations
 
    There are no additional security considerations outside of those
    outlined in the ACVP document.
 
-9.  IANA Considerations
+11.  IANA Considerations
 
    This document does not require any action by IANA.
 
-10.  Normative references
+12.  Normative References
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", IETF RFC 2119, IETF RFC 2119,
@@ -1005,7 +1061,7 @@ Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 18]
+Hammett                    Expires 22 May 2021                 [Page 19]
 
 Internet-Draft        ACVP KAS SSC ECC SP800-56Ar3         November 2020
 
@@ -1061,4 +1117,4 @@ Author's Address
 
 
 
-Hammett                    Expires 21 May 2021                 [Page 19]
+Hammett                    Expires 22 May 2021                 [Page 20]
